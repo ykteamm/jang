@@ -237,6 +237,7 @@ class TurnirService
         $t = $this->tour->tour > 3 ? 3 : $this->tour->tour;
         $s = $this->getFirstTourStartDate();
         $e = $this->tour->tour > 3 ? $this->getThirdTourEndDate() : $this->tour->date_end;
+        
         foreach ($tunirGroups as $gr) {
             $groups[$gr->name] = DB::select("SELECT
             tt.id,
@@ -330,11 +331,12 @@ class TurnirService
 
     public function endGroup()
     {
-        return DB::table('turnir_tours')
-            ->where('tour', 3)
-            ->whereDate('month', $this->month)
-            ->orderBy('date_end', "DESC")
-            ->first()->date_end;
+        return '2023-08-15';
+        // return DB::table('turnir_tours')
+        //     ->where('tour', 3)
+        //     ->whereDate('month', $this->month)
+        //     ->orderBy('date_end', "DESC")
+        //     ->first()->date_end;
     }
     public function endTurnir()
     {

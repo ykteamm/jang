@@ -50,7 +50,29 @@
                 </li>
             </ul>
         </div>
-        
+        <script>
+            function changeTab1() {
+                let tab1 = document.querySelector(`#turnirTab1`)
+                let tab2 = document.querySelector(`#turnirTab2`)
+                let tabmain1 = document.querySelector(`#turnir1tab`)
+                let tabmain2 = document.querySelector(`#turnir2tab`)
+                tab2.classList.remove('active')
+                tab1.classList.add('active')
+                tabmain1.classList.remove('d-none')
+                tabmain2.classList.add('d-none')
+            }
+
+            function changeTab2() {
+                let tab1 = document.querySelector(`#turnirTab1`)
+                let tab2 = document.querySelector(`#turnirTab2`)
+                let tabmain1 = document.querySelector(`#turnir1tab`)
+                let tabmain2 = document.querySelector(`#turnir2tab`)
+                tab2.classList.add('active')
+                tab1.classList.remove('active')
+                tabmain1.classList.add('d-none')
+                tabmain2.classList.remove('d-none')
+            }
+        </script>
         <div style="position:absolute;height:1px;top:86px;background:#74d5ff;width:100%"></div>
     </div>
     <div id="turnir2tab" class="modal-body p-0 d-none">
@@ -207,18 +229,18 @@
                             </div>
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text">
-                                    {{ substr($battle->team1[0]->users[0]->f, 0, 3) }}{{ ' + ' }}{{ substr($battle->team1[0]->users[1]->f, 0, 3) }}
+                                    {{ substr($battle->team1[0]->users[0]->f, 0, 8) }}{{ ' + ' }}{{ substr($battle->team1[0]->users[1]->f, 0, 3) }}
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr($battle->team1[0]->prodaja[0]->allprice) }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team1[0]->prodaja[0]->allprice)/2) }}</span>
                                 </div>
-                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                <div class="mt-1 d-flex align-items-center justify-content-center"> 
                                     <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
                                         alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ $battle->team1[0]->ksb[0]->count }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team1[0]->ksb[0]->count)/2 }}</span>
                                 </div>
                             </div>
                         </div>
@@ -230,13 +252,13 @@
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr($battle->team2[0]->prodaja[0]->allprice) }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team2[0]->prodaja[0]->allprice)/2) }}</span>
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
                                         alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ $battle->team2[0]->ksb[0]->count }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team2[0]->ksb[0]->count)/2 }}</span>
                                 </div>
                             </div>
                             <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
@@ -378,8 +400,13 @@
             <h2 style="color: red">Har bir jamoaning sotuvlari bittalab tekshirilyapti.Yaqin orada yarim final g'oliblarini e'lon qilamiz.</h2>
         </div> --}}
         <div class="col-12">
-            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/mainturnir.png') }}"
-                alt="">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr1.webp') }}">
+        </div>
+        <div class="col-12">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr2.webp') }}">
+        </div>
+        <div class="col-12">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr3.webp') }}">
         </div>
         <div class="container mt-1 mb-1">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
@@ -885,7 +912,7 @@
                 </div>
             </div>
         @endif
-        @if ($tour < 5)
+        @if ($tour < 8)
             @if ($playOffStart)
                 <div class="col-12">
                     <button class="my-4 btn btn btn-light supercell w-100" data-toggle="collapse"
@@ -1041,12 +1068,12 @@
                                             </div>
                                         </div>
                                         <div class="col-3 text-center p-0" style="padding-right: 4px !important;">
-                                            <div style="font-size:15px;font-weight:800">{{ $tour > 3 ? 3 : $tour }}
+                                            <div style="font-size:15px;font-weight:800">{{ $tour }}
                                             </div>
                                         </div>
                                         <div class="col-2 text-center" style="border-left:1px solid #959690;">
                                             <button type="button" class="btn btn-sm btn-secondary supercell"
-                                                style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 45px;height: 40px;">
+                                                style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width:50px;height: 40px;">
                                                 <span class="text-center"
                                                     style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
                                                     {{ $team->ball }}

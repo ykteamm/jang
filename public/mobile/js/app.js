@@ -207,6 +207,13 @@ $(window).on('load', function () {
                     el: '.swiper-pagination',
                 },
             });
+            var swiper = new Swiper('.active4', {
+                autoplay: false,
+                initialSlide: 4,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
             var swiper7 = new Swiper('.swipercards', {
                 effect: 'coverflow',
                 grabCursor: true,

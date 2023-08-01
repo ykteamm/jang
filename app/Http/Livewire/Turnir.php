@@ -40,7 +40,7 @@ class Turnir extends Component
         $this->tour = $service->tour->tour;
         $this->tourTitle = $service->tour->title;
         $endDay = 0;
-        if ($service->tour->tour > 3) {
+        if ($service->tour->tour > 9) {
 
             $this->playOffStart = true;
             $this->playOffGames = $service->getCurrentBattles(0);
@@ -62,6 +62,7 @@ class Turnir extends Component
             $endDay = strtotime($service->endGroup()) - strtotime(now()) + 86400;
         }
         $this->groupsTable = $service->getGroupsTable();
+        // dd($this->groupsTable);  
         $this->timer['day'] = (int)round($endDay / 86400);
         $this->timer['hour'] = (int)round(($endDay % 86400) / 3600);
         $this->timer['minut'] = (int)round(($endDay % 86400) / 3600);
