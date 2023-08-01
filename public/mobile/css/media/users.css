@@ -1,0 +1,167 @@
+.user-image1 {
+    position: absolute;
+    bottom: 52%;
+    right: 55%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .user-image2 {
+    position: absolute;
+    bottom: 52%;
+    right: 1%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media screen and (max-width: 400px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 54%;
+    right: 55%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 54%;
+      right: 2%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 120px !important;
+    height: 120px !important;
+    }
+    .for-name {
+      font-size: 12px !important;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 54%;
+    right: 55%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 54%;
+      right: 2%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 110px !important;
+    height: 110px !important;
+    }
+    .for-name {
+      font-size: 12px !important;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 52%;
+    right: 54%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 52%;
+      right: 1%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 110px !important;
+    height: 110px !important;
+    }
+    .for-name {
+      font-size: 10px !important;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 52%;
+    right: 54%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 52%;
+      right: 1%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 100px !important;
+    height: 100px !important;
+    }
+    .for-name {
+      font-size: 10px !important;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 52%;
+    right: 54%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 52%;
+      right: 1%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 90px !important;
+    height: 90px !important;
+    }
+    .for-name {
+      font-size: 9px !important;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    .user-image1 {
+    position: absolute;
+    bottom: 55%;
+    right: 55%;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+    .user-image2 {
+      position: absolute;
+      bottom: 55%;
+      right: 2%;
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      }
+    .for-avatar {
+    width: 80px !important;
+    height: 80px !important;
+    }
+    .for-name {
+      font-size: 8px !important;
+    }
+  }
+  
