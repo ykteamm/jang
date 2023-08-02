@@ -46,7 +46,7 @@ class Karma extends Command
     {
         $teams = Team::with('team_members')->get();
 
-            $dt = date('2023-08-01');
+            $dt = date('Y-m-d');
             $tashqi = 0;
             $jamoaviy = 0;
             foreach ($teams as  $team) {
