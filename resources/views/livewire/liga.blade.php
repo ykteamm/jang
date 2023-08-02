@@ -73,7 +73,6 @@
             var plan = <?php echo json_encode(chartPlan()); ?>;
             var liga = <?php echo json_encode(chartLiga()); ?>;
             var options = {
-    
                 series: [{
                     name: 'Plan',
                     data: plan

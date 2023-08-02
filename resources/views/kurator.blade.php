@@ -67,22 +67,22 @@
                     <div class="row">
                         <div class="col-12 pl-0 pr-0">
 
-                            <button type="button" class="btn" data-toggle="modal" data-target="#reyting">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#reyting" onclick="livewire.emit('for_reyting')">
                                 <img src="{{asset('mobile/reyting.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
                         <div class="col-12 pl-0 pr-0">
 
-                            <button type="button" class="btn" data-toggle="modal" data-target="#region">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#region" onclick="livewire.emit('for_region')">
                                 <img src="{{asset('mobile/viloyatim.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
-                        <div class="col-12 pl-0 pr-0">
+                        {{-- <div class="col-12 pl-0 pr-0">
 
                             <button type="button" class="btn" data-toggle="modal" data-target="#kingsold">
                                 <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
-                        </div>
+                        </div> --}}
                         <div class="col-12 pl-0 pr-0">
                             <livewire:turnir-button>
                     </div>
@@ -130,7 +130,9 @@
     </div>
 </div>
 @include('modals.turnir')
-    @include('modals.king-sold')
+    @include('modals.teambattle')
+
+    {{-- @include('modals.king-sold') --}}
     @include('modals.reyting')
     @include('modals.viloyatim')
     @include('modals.region')
@@ -144,10 +146,13 @@
     @include('modals.ktb')
 @endsection
 @section('scripts')
+@include('partials.home-com')
+
 <script src="{{asset('promo/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
+    
     function getRegionP()
         {
             var region = $("select[name=provizor_region]").val();

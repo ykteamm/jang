@@ -104,4 +104,192 @@
         tabmain1.classList.add('d-none')
         tabmain2.classList.remove('d-none')
     }
+
+    function validPro()
+    {
+        var first = $('#profirst').val();
+        var last = $('#prolast').val();
+        var phone = $('#prophone').val();
+        var region = $('#proregion').val();
+        var district = $('#prodistrict').val();
+        var pharm = $('#propharm').val();
+        if(first.length > 0 && last.length > 0 && phone && region.length > 0 && district.length > 0 && pharm.length > 0)
+        {
+            $('#for-open-smena-user-none').addClass('d-none');
+            $('#for-open-smena-user').removeClass('d-none');
+        }
+        // console.log(first,last,phone,region,district,pharm)
+    }
+
+    function minusPromo($id)
+        {
+            var proId = [36,37,38,39,29,47,61,62,63,64,65];
+
+            var stock = parseInt($(`.productPro${$id}`).val());
+            if(stock <= 1)
+            {
+                $(`.product-borderPro${$id}`).removeClass('plus-borderPro');
+                 $(`.product-borderPro${$id}`).addClass('product-borderPro')
+            }
+            if(stock != 0)
+            {
+                 $(`.productPro${$id}`).val(stock-1);
+                var price = parseInt($(`.product-pricePro${$id}`).text().replace(/[^0-9]/g,''));
+
+                var orderPrice = parseInt($('.summa-zakazPro').text().replace(/[^0-9]/g,''));
+
+                var allprice = number_format(orderPrice-price, 0, ',', ' ');
+
+                $('.summa-zakazPro').text(allprice);
+
+                if(proId.includes($id))
+                {
+
+                    var orderPricePro = parseInt($('.summa-promoPro').text().replace(/[^0-9]/g,''));
+                    var allpricePro = number_format(orderPricePro-price, 0, ',', ' ');
+                    $('.summa-promoPro').text(allpricePro);
+
+
+                }
+
+                var allP = parseInt($('.summa-zakazPro').text().replace(/[^0-9]/g,''));
+                var allPro = parseInt($('.summa-promoPro').text().replace(/[^0-9]/g,''));
+                if(allP == 0)
+                    {
+                        var p = 0;
+
+                    }else{
+                        var p = (allPro*100)/(allP);
+
+                    }
+
+                var pfor = p.toFixed(1);
+                $('#promop').text(pfor);
+
+                if(parseInt(p) >= 60)
+                {
+                    $('.propropro').removeClass('d-none');
+                    $('#def-zakazPro').addClass('d-none');
+                }else{
+                    $('.propropro').addClass('d-none');
+                    $('#def-zakazPro').removeClass('d-none');
+                }
+
+            }
+
+
+
+        }
+        function minusPlus()
+        {
+            var proId = [36,37,38,39,29,47,61,62,63,64,65];
+
+            var allprice = 0;
+            var allpricePro = 0;
+
+            $( '.allmp' ).each(function(index) {
+                var n = $(this).val();
+                if(!n)
+                {
+                    n = 0;
+                }
+                allprice += parseInt($(this).attr('narxi'))*parseInt(n)
+                if(proId.includes(parseInt($(this).attr('proid'))))
+                    {
+                        allpricePro += parseInt($(this).attr('narxi'))*parseInt(n)
+                    }
+            });
+            $('.summa-zakazPro').text(allprice);
+            $('.summa-promoPro').text(allpricePro);
+
+            var allP = parseInt($('.summa-zakazPro').text().replace(/[^0-9]/g,''));
+            var allPro = parseInt($('.summa-promoPro').text().replace(/[^0-9]/g,''));
+            if(allP == 0)
+            {
+                var p = 0;
+
+            }else{
+                var p = (allPro*100)/(allP);
+
+            }
+
+                var pfor = p.toFixed(1);
+
+
+                $('#promop').text(pfor);
+
+                if(parseInt(p) >= 60)
+                {
+                    $('.propropro').removeClass('d-none');
+                    $('#def-zakazPro').addClass('d-none');
+                }else{
+                    $('.propropro').addClass('d-none');
+                    $('#def-zakazPro').removeClass('d-none');
+                }
+
+        }
+        function plusPromo($id)
+        {
+
+            var stock = parseInt($(`.productPro${$id}`).val());
+            $(`.productPro${$id}`).val(stock+1);
+
+            var price = parseInt($(`.product-pricePro${$id}`).text().replace(/[^0-9]/g,''));
+
+            var orderPrice = parseInt($('.summa-zakazPro').text().replace(/[^0-9]/g,''));
+            var allprice = number_format(price+orderPrice, 0, ',', ' ');
+
+
+            $('.summa-zakazPro').text(allprice);
+            $(`.product-borderPro${$id}`).addClass('plus-borderPro');
+            $('.plus-borderPro').removeClass('product-borderPro');
+
+            var proId = [36,37,38,39,29,47,61,62,63,64,65];
+
+            if(proId.includes($id))
+            {
+
+                var orderPricePro = parseInt($('.summa-promoPro').text().replace(/[^0-9]/g,''));
+                var allpricePro = number_format(price+orderPricePro, 0, ',', ' ');
+                $('.summa-promoPro').text(allpricePro);
+
+
+
+
+
+
+            }
+
+            var allP = parseInt($('.summa-zakazPro').text().replace(/[^0-9]/g,''));
+            var allPro = parseInt($('.summa-promoPro').text().replace(/[^0-9]/g,''));
+            if(allP == 0)
+            {
+                var p = 0;
+
+            }else{
+                var p = (allPro*100)/(allP);
+
+            }
+
+
+                var pfor = p.toFixed(1);
+
+
+                $('#promop').text(pfor);
+
+                if(parseInt(p) >= 60)
+                {
+                    $('.propropro').removeClass('d-none');
+                    $('#def-zakazPro').addClass('d-none');
+                }else{
+                    $('.propropro').addClass('d-none');
+                    $('#def-zakazPro').removeClass('d-none');
+                }
+        }
+
+        $("#submitSoldPro").click(function(){
+                $("#soldFormPro").submit();
+                $("#submitSoldPro").addClass('d-none');
+                $("#close-zakazPro").removeClass('d-none');
+            });
 </script>

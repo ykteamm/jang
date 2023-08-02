@@ -444,6 +444,7 @@ class UserController extends Controller
 
         $response = Http::post(apiProvizorUrl().'/api/provizor-store', $arr);
 
+
         Session::put('provizor',$response['password']);
 
 

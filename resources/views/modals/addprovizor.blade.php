@@ -58,7 +58,7 @@
                     </div> --}}
                     <div class="form-group text-center d-none" id="for-pro-add-p2">
                         <label style="color: blue;">Ish joyini kiriting:</label>
-                        <input type="text" name="apteka" class="form-control" id="propharm" required>
+                        <input type="text" name="apteka" class="form-control" id="propharm">
                     </div>
                     {{-- <div class="form-group text-center" id="for-pro-addit-p2">
 

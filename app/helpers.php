@@ -1709,6 +1709,10 @@ if(!function_exists('getRMPRO')){
         {
             $pid = ['1','8'];
         }
+        elseif($idr == 73)
+        {
+            $pid = ['14'];
+        }
         else{
             $pid = [];
         }

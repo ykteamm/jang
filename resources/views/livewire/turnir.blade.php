@@ -234,13 +234,13 @@
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team1[0]->prodaja[0]->allprice)/2) }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team1[0]->prodaja[0]->allprice)) }}</span>
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center"> 
                                     <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
                                         alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team1[0]->ksb[0]->count)/2 }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team1[0]->ksb[0]->count) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -252,13 +252,13 @@
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team2[0]->prodaja[0]->allprice)/2) }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ formatterr(($battle->team2[0]->prodaja[0]->allprice)) }}</span>
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
                                         alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team2[0]->ksb[0]->count)/2 }}</span>
+                                        class="pl-1 text-white supercell turnir-all-text">{{ ($battle->team2[0]->ksb[0]->count) }}</span>
                                 </div>
                             </div>
                             <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">

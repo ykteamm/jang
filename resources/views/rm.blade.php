@@ -18,22 +18,22 @@
                                     <h4>{{Session::get('msg_pro')}}</h4>
                                 @endif
                             </div>
-                            <button type="button" class="btn" data-toggle="modal" data-target="#reyting">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#reyting" onclick="livewire.emit('for_reyting')">
                                 <img src="{{asset('mobile/reyting.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
                         <div class="col-12 pl-0 pr-0">
 
-                            <button type="button" class="btn" data-toggle="modal" data-target="#region">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#region" onclick="livewire.emit('for_region')">
                                 <img src="{{asset('mobile/viloyatim.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
-                        <div class="col-12 pl-0 pr-0">
+                        {{-- <div class="col-12 pl-0 pr-0">
 
                             <button type="button" class="btn" data-toggle="modal" data-target="#kingsold">
                                 <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
-                        </div>
+                        </div> --}}
                         <div class="col-12 pl-0 pr-0">
                             <livewire:turnir-button>
                     </div>
@@ -107,6 +107,7 @@
     </div>
 </div>
 @include('modals.turnir')
+@include('modals.teambattle')
   
     @include('modals.king-sold')
     @include('modals.reyting')
@@ -233,6 +234,8 @@
     @endforeach
 @endsection
 @section('scripts')
+@include('partials.home-com')
+
 <script src="{{asset('promo/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
