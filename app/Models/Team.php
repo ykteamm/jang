@@ -20,4 +20,9 @@ class Team extends Model
     {
         return $this->hasMany(TeamBattle::class,'team2_id','id');
     }
+
+    public function team_members()
+    {
+        return $this->hasMany(TeamMember::class,'team_id','id');
+    }
 }
