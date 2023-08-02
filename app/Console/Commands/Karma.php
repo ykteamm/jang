@@ -50,7 +50,7 @@ class Karma extends Command
             $tashqi = 0;
             $jamoaviy = 0;
             foreach ($teams as  $team) {
-                foreach ($team as $key => $value) {
+                foreach ($team->team_members as $key => $value) {
                 
                     $distiplina = Shift::where('user_id',$value->user_id)->whereDate('open_date',$dt)->exists();
                     if($distiplina)
