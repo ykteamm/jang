@@ -82,7 +82,7 @@ class Karma extends Command
                 ];
             }
 
-            $dt = date('2023-06-27');
+            $dt = date('2023-08-01');
             $ff = [];
             $tashqi = 0;
             $jamoaviy = 0;
