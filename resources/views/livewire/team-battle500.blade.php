@@ -348,7 +348,7 @@
                         </button>
                     </div>
                     <div class="col-6">
-                        <button data-toggle="modal" data-target="#teambattleround" class="btn btn-block btn-warning supercell change-team-time">
+                        <button data-toggle="modal" data-target="#teambattleround" onclick="livewire.emit('for_teambattleround')" class="btn btn-block btn-warning supercell change-team-time">
                             Roundlar
                         </button>
                     </div>

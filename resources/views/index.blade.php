@@ -54,6 +54,7 @@
     @include('modals.turnir')
     @include('modals.history-kubok')
     @include('modals.history-crystal')
+    @include('modals.history-karma')
     {{-- @include('modals.history-elexir') --}}
     @include('modals.reyting')
     @include('modals.region')
@@ -66,6 +67,7 @@
     @endif --}}
     
     @include('modals.teambattle')
+    @include('modals.teambattleround')
 
     
     @include('modals.bonus')

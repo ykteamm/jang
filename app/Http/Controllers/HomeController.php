@@ -464,8 +464,6 @@ class HomeController extends Controller
     public function index()
     {
 
-        
-
         if(userme()->rm == 1)
         {
             return view('rm');

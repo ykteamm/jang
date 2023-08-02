@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Services\TeamBattleServices;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TeamBattle extends Component
@@ -24,12 +25,15 @@ class TeamBattle extends Component
     public $month;
     public $user_id;
     public $resime = 1;
+    public $sliders;
 
     protected $listeners = ['change' => 'changeByTime','for_teambattle' => 'teambattle'];
 
     public function teambattle()
     {
         $this->resime = 2;
+        $this->sliders = DB::table('team_battle_sliders')->get();
+
         $this->month = getMonthName(date("F"));
         $this->start = date("Y-m-d");
         $this->end = date("Y-m-d");

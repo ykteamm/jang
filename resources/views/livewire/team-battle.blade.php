@@ -162,7 +162,7 @@
                     </div>
                     <div class="col-2">
                         <div style="height:70px" class="d-flex justify-content-between align-items-center mt-3">
-                            <button style="border-radius: 5px;padding: 20px 10px;">A</button>
+                            <button type="button" onclick="livewire.emit('for_karma')" data-toggle="modal" data-target="#karma" style="border-radius: 5px;padding: 20px 10px;">A</button>
                         </div>
                     </div>
                 </div>
