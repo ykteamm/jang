@@ -392,7 +392,7 @@ class TurnirService
         //     ->value('points') ?? 0;
 
         return TurnirPoint::where('team_id', $teamId)
-            ->whereDate('month', $this->month)
+            ->whereDate('month','2023-08-01')
             ->sum('point') ?? 0;
     }
 
