@@ -384,16 +384,18 @@ class TurnirService
 
     public function getTotalPoint()
     {
-        $teamId = TurnirMember::where('user_id', Auth::id())->value('team_id');
-        // return TurnirPoint::where('team_id', $teamId)
-        //     ->selectRaw('SUM(point) AS points')
-        //     ->where('month', '=', $this->month)
-        //     ->groupBy('team_id')
-        //     ->value('points') ?? 0;
-
+        $teamId = TurnirMember::where('user_id', Auth::id())
+        ->where('month', '=', $this->month)
+        ->value('team_id');
         return TurnirPoint::where('team_id', $teamId)
-            ->whereDate('month','2023-08-01')
-            ->sum('point') ?? 0;
+            ->selectRaw('SUM(point) AS points')
+            ->where('month', '=', $this->month)
+            ->groupBy('team_id')
+            ->value('points') ?? 0;
+
+        // return TurnirPoint::where('team_id', $teamId)
+        //     ->whereDate('month', $this->month)
+        //     ->sum('point') ?? 0;
     }
 
     public function getPoint($teamId)
