@@ -29,7 +29,7 @@ class UserController extends Controller
     public function getUserCrystall()
     {
         try {
-            return UserCrystall::where('user_id', Auth::id())->first()->crystall;
+            return DB::table('crystal_users')->where('user_id', Auth::id())->sum('crystal');
         } catch (\Throwable $th) {
             return 0;
         }
