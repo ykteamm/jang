@@ -343,7 +343,7 @@ class PlanServices
         // date_default_timezone_set('Asia/Tashkent');
         $cal=Calendar::where('year_month',date('m.Y'))->first();
         $arr=json_decode($cal->day_json);
-        // dd($arr);
+        
 
         foreach ($r as $key => $item){
             if($item!=0){
@@ -380,40 +380,44 @@ class PlanServices
                     $l=$pw->workday;
                     for($j=$start;$j<$start+$l;$j++){
 
+                        if($arr[$j] == 'true' && $arr[$j] == 'false')
+                        {
 
-                        if($arr[$j]=='true'){
-                            $ct++;
-                        }else{
-                            $cf++;
-                            $l++;
-                        }
-
-                        if($ct==1){
-                            $d=$j;
-                            $d=$d.' day';
-                            $pw->startday=date("Y-m-d", strtotime($d, strtotime((Carbon::now()->startOfMonth()))));
-                        }
-
-
-                        if($ct==$pw->workday){
-                            $d=$j;
-                            $start=$j+1;
-                            $d=$d.' day';
-
-                            $pw->endday=date("Y-m-d", strtotime($d, strtotime((Carbon::now()->startOfMonth()))));
-                            if($i!=$count-1){
-                                $pw->plan=round($planwork*$pw->workday);
+                            if($arr[$j]=='true'){
+                                $ct++;
                             }else{
-                                $pw->plan=$plan->number;
+                                $cf++;
+                                $l++;
                             }
 
-                            $plan->number=$plan->number-$pw->plan;
-                            $pw->calendar_id=$cal->id;
-                            $pw->medicine_id=$plan->medicine_id;
-                            $pw->save();
-                            break;
+                            if($ct==1){
+                                $d=$j;
+                                $d=$d.' day';
+                                $pw->startday=date("Y-m-d", strtotime($d, strtotime((Carbon::now()->startOfMonth()))));
+                            }
 
+
+                            if($ct==$pw->workday){
+                                $d=$j;
+                                $start=$j+1;
+                                $d=$d.' day';
+
+                                $pw->endday=date("Y-m-d", strtotime($d, strtotime((Carbon::now()->startOfMonth()))));
+                                if($i!=$count-1){
+                                    $pw->plan=round($planwork*$pw->workday);
+                                }else{
+                                    $pw->plan=$plan->number;
+                                }
+
+                                $plan->number=$plan->number-$pw->plan;
+                                $pw->calendar_id=$cal->id;
+                                $pw->medicine_id=$plan->medicine_id;
+                                $pw->save();
+                                break;
+
+                            }
                         }
+
                     }
 
                 }
