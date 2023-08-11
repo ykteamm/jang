@@ -912,7 +912,7 @@
                 </div>
             </div>
         @endif
-        @if ($tour < 8)
+        @if ($tour <= 9)
             @if ($playOffStart)
                 <div class="col-12">
                     <button class="my-4 btn btn btn-light supercell w-100" data-toggle="collapse"
