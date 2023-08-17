@@ -1018,7 +1018,7 @@
                     @endforeach
                 </div>
             @else
-            <div class="d-none">
+            {{-- <div class="d-none"> --}}
                 @foreach ($groupsTable as $nm => $group)
                     <div class="col-12 mt-3">
                         <div class="card border-0 mb-3" data-toggle="modal" data-target="#region-profil">
@@ -1136,7 +1136,7 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+            {{-- </div> --}}
             @endif
         @endif
     </div>
