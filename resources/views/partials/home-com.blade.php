@@ -292,4 +292,12 @@
                 $("#submitSoldPro").addClass('d-none');
                 $("#close-zakazPro").removeClass('d-none');
             });
+
+            function openKassa() {
+            $(".kassa-input").each(function() {
+                $(this).val(0);
+                $('.summa-zakaz').text(0);
+            })
+
+        }
 </script>
