@@ -408,8 +408,8 @@
         <div class="col-12">
             <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr3.webp') }}">
         </div>
-        <div>
-            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/ploff.jpeg') }}">
+        <div class="col-12">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/playoff.webp') }}">
 
             {{-- <img style="height:750px;width:877px"  src="{{ asset('mobile/turnir/turChem.webp') }}"
                         alt=""> --}}
@@ -417,31 +417,25 @@
         <div class="container mt-1 mb-1">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                 style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
-                {{-- <span class="text-center" id="" style="font-size: 35px;">{{ $timer['day'] }}</span>
+                <span class="text-center" id="" style="font-size: 35px;">{{ $timer['day'] }}</span>
                 <span style="font-size: 15px;">kun :</span>
                 <span class="text-center" id="" style="font-size: 35px;">{{ $timer['hour'] }}</span>
                 <span style="font-size: 15px;">soat :</span>
                 <span class="text-center" id="" style="font-size: 35px;">{{ $timer['minut'] }}</span>
-                <span style="font-size: 15px;">min</span> --}}
-                {{-- <p class="p-0" style="font-size: 20px;">
+                <span style="font-size: 15px;">min</span>
+                <p class="p-0" style="font-size: 20px;">
                     @if ($playOffStart)
                         {{ $tourTitle }} tugashiga qoldi
                     @else
                         Turnir gurux bosqichi tugashiga qoldi
                     @endif
-                </p> --}}
-                <p class="p-0" style="font-size: 20px;">
-                    Guruh bosqichi tugadi
-                    <p class="p-0" style="font-size: 30px;">
-                        ERTAGA PLAYOFF
-                    </p>
                 </p>
             </div>
         </div>
         <div>
 
         @if ($playOffStart)
-            <div class="col-12 mt-3 play-off-image">
+            {{-- <div class="col-12 mt-3 play-off-image">
                 <style>
                     .play-off-image {
                         overflow-x: scroll;
@@ -798,7 +792,7 @@
                         }
                     </style>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-12 mt-3">
                 <div class="card border-0 mb-3" data-toggle="modal" data-target="#region-profil">
                     <div class="card-body" class="pr-0"
@@ -849,7 +843,7 @@
                                 </div>
                                 <div class="col-2 text-center">
                                     <button type="button" class="btn btn-sm btn-secondary supercell"
-                                        style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 45px;height: 40px;">
+                                        style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 55px;height: 40px;">
                                         <span class="text-center"
                                             style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
                                             {{ $team->ball }}
