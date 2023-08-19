@@ -435,7 +435,7 @@
         <div>
 
         @if ($playOffStart)
-            {{-- <div class="col-12 mt-3 play-off-image">
+            <div class="col-12 mt-3 play-off-image">
                 <style>
                     .play-off-image {
                         overflow-x: scroll;
@@ -445,7 +445,7 @@
                     }
                 </style>
                 <div style="height:750px;width:877px;position:relative">
-                    <img style="height:750px;width:877px"  src="{{ asset('mobile/turnir/turChem.webp') }}"
+                    <img style="height:750px;width:877px"  src="{{ asset('mobile/turnir/turChem2.jpeg') }}"
                         alt="">
                     @if ($node1)
                         <div class="node1-1" style="position:absolute;top:148px;left:34px">
@@ -484,7 +484,7 @@
                                 <div class="d-flex align-items-center justify-content-center pl-summa">
                                     <img class="turnir-oltin" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell">9.49M</span>
+                                        class="pl-1 text-white supercell">{{ formatterr($node1[0]->team2[0]->prodaja[0]->allprice) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -506,7 +506,7 @@
                                 <div class="d-flex align-items-center justify-content-center pl-summa">
                                     <img class="turnir-oltin" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell">4.31M</span>
+                                        class="pl-1 text-white supercell">{{ formatterr($node2[0]->team1[0]->prodaja[0]->allprice) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -615,7 +615,7 @@
                             </div>
                         </div>
                     @endif
-                    @if ($node5)
+                    {{-- @if ($node5)
                         <div class="node4-1" style="position:absolute;top:301px;left: 175px;">
                             <div class="pl-node">
                                 <div class="pl-images rounded-circle mx-auto" style="border:1px solid #fff">
@@ -740,7 +740,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                     <style>
                         .turnir-oltin {
                             width:12px;
@@ -792,7 +792,7 @@
                         }
                     </style>
                 </div>
-            </div> --}}
+            </div>
             <div class="col-12 mt-3">
                 <div class="card border-0 mb-3" data-toggle="modal" data-target="#region-profil">
                     <div class="card-body" class="pr-0"
