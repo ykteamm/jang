@@ -615,7 +615,7 @@
                             </div>
                         </div>
                     @endif
-                    {{-- @if ($node5)
+                    @if ($node5)
                         <div class="node4-1" style="position:absolute;top:301px;left: 175px;">
                             <div class="pl-node">
                                 <div class="pl-images rounded-circle mx-auto" style="border:1px solid #fff">
@@ -699,7 +699,7 @@
                             </div>
                         </div>
                     @endif
-                    @if ($node7)
+                    {{-- @if ($node7)
                         <div class="node4-1" style="position:absolute;top:354px;left:323px;">
                             <div class="pl-node">
                                 <div class="pl-images rounded-circle mx-auto" style="border:1px solid #fff">

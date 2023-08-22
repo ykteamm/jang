@@ -354,13 +354,13 @@ class TurnirService
             ->whereDate('date_end', '>=', $date ?? date("Y-m-d"))
             ->first();
 
-        $dd = DB::table('turnir_tours')
-            ->whereDate('date_begin', '<=', '2023-08-18')
-            ->whereDate('date_end', '>=', '2023-08-20')
-            ->first();
+        // $dd = DB::table('turnir_tours')
+        //     ->whereDate('date_begin', '<=', '2023-08-18')
+        //     ->whereDate('date_end', '>=', '2023-08-20')
+        //     ->first();
         return $dd;
     }
-
+    
     public function getFirstTourStartDate()
     {
         return DB::table('turnir_tours')
