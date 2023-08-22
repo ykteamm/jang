@@ -49,14 +49,18 @@ class Turnir extends Component
             $this->playOfTable = $service->getGamesTable(1);
             // dd($this->playOfTable);
             $endDay = strtotime($service->tour->date_end) - strtotime(now());
-            $this->node1 = $service->getNodes(1);
-            $this->node2 = $service->getNodes(2);
-            $this->node3 = $service->getNodes(3);
-            $this->node4 = $service->getNodes(4);
+            // $this->node1 = $service->getNodes(1);
+            // $this->node2 = $service->getNodes(2);
+            // $this->node3 = $service->getNodes(3);
+            // $this->node4 = $service->getNodes(4);
             $this->node5 = $service->getNodes(6);
-            $this->node6 = $service->getNodes(5);
+            // $this->node6 = $service->getNodes(5);
+            dd($this->node5);
             // $this->node7 = $service->getNode7();
-
+            update turnir_members set team_id = 9 where user_id = 5;
+            update turnir_members set team_id = 9 where user_id = 86;
+            update turnir_members set team_id = 6 where user_id = 232;
+            update turnir_members set team_id = 6 where user_id = 338;
         } else {
             $this->groupBattles = $service->getCurrentBattles(0);
             $endDay = strtotime($service->endGroup()) - strtotime(now()) + 86400;

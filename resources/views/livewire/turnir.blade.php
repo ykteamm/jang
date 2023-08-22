@@ -408,12 +408,9 @@
         <div class="col-12">
             <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr3.webp') }}">
         </div>
-        <div class="col-12">
+        {{-- <div class="col-12">
             <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/playoff.webp') }}">
-
-            {{-- <img style="height:750px;width:877px"  src="{{ asset('mobile/turnir/turChem.webp') }}"
-                        alt=""> --}}
-        </div>
+        </div> --}}
         <div class="container mt-1 mb-1">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                 style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">

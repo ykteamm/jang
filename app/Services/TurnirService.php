@@ -31,6 +31,7 @@ class TurnirService
         $pl = DB::table('turnir_playoffs')
             ->where('node', $node)
             ->first();
+
         if (isset($pl->battle_id)) {
             $battle_id = $pl->battle_id;
 
@@ -41,11 +42,11 @@ class TurnirService
         // dd($pl);
     }
 
-    public function getNode6()
-    {
-        $battle = $this->getCurrentBattles(1, 41);
-        return $battle;
-    }
+    // public function getNode6()
+    // {
+    //     $battle = $this->getCurrentBattles();
+    //     return $battle;
+    // }
     public function getNode7()
     {
         $battle = $this->getCurrentBattles(1, 50);
