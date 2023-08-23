@@ -55,6 +55,7 @@ class Turnir extends Component
             $this->node4 = $service->getNodes(4);
             $this->node5 = $service->getNodes(6);
             $this->node6 = $service->getNodes(5);
+
             // $this->node7 = $service->getNode7();
         } else {
             $this->groupBattles = $service->getCurrentBattles(0);
@@ -67,7 +68,6 @@ class Turnir extends Component
         $this->timer['hour'] = (int)round(($endDay % 86400) / 3600);
         $this->timer['minut'] = (int)round(($endDay % 86400) / 3600);
     }
-
 
     public function render()
     {
