@@ -43,12 +43,12 @@ class SoldController extends Controller
             }
         }
 
-        if($firewall >= 500000)
-        {
-            $services = new SoldService;
-            $fire = $services->firewallSold($inputs);
-            return redirect()->back()->with('checksold',null);
-        }
+        // if($firewall >= 500000)
+        // {
+        //     $services = new SoldService;
+        //     $fire = $services->firewallSold($inputs);
+        //     return redirect()->back()->with('checksold',null);
+        // }
 
         $pharm_id = Shift::where('user_id',Auth::user()->id)
         ->whereDate('open_date',Carbon::now())
