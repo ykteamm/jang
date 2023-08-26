@@ -13,11 +13,14 @@ class TeamBattle500 extends Component
     public $team1 = [];
     public $team2 = [];
     public $myTeamBattle;
+    public $myTeamBattle2;
     public $time = 'Kun';
     public $start;
     public $end;
     public $sum1 = 0;
     public $sum2 = 0;
+    public $sum11 = 0;
+    public $sum22 = 0;
     public $amIinTeamOne = false;
     public $haveIGotTeam = false;
     public $isTeamBattleBegin = false;
@@ -43,6 +46,7 @@ class TeamBattle500 extends Component
             $this->team1 = $teamBtl->team1;
             $this->team2 = $teamBtl->team2;
             $this->myTeamBattle = $teamBtl->my_team_battle[0];
+            $this->changeByTimeAll();
             if ($this->amIinTeamOne) {
                 $this->sum1 = $teamService->sum($this->start, $this->end, $teamBtl->my_team_battle[0]->team1->id)[0]->allprice;
                 $this->sum2 = $teamService->sum($this->start, $this->end, $teamBtl->my_team_battle[0]->team2->id)[0]->allprice;
@@ -113,6 +117,29 @@ class TeamBattle500 extends Component
             } else {
                 $this->sum2 = $teamService->sum($this->start, $this->end, $teamBtl->my_team_battle[0]->team1->id)[0]->allprice;
                 $this->sum1 = $teamService->sum($this->start, $this->end, $teamBtl->my_team_battle[0]->team2->id)[0]->allprice;
+            }
+        }
+    }
+
+    public function changeByTimeAll()
+    {
+        $teamService = new TeamBattleServices($this->user_id ?? Auth::id());
+            $start12 = "2023-07-01";
+            $end12 = "2023-09-30";
+        $teamBtl = $teamService->getTeamBattle($this->start, $this->end);
+        $this->isTeamBattleBegin = $teamBtl->isTeamBattleBegin;
+        $this->haveIGotTeam = $teamBtl->haveIGotTeam;
+        if ($this->haveIGotTeam && $this->isTeamBattleBegin) {
+            $this->amIinTeamOne = $teamService->amIinTeamOne;
+            $this->team1 = $teamBtl->team1;
+            $this->team2 = $teamBtl->team2;
+            $this->myTeamBattle2 = $teamBtl->my_team_battle[0];
+            if ($this->amIinTeamOne) {
+                $this->sum11 = $teamService->sum($start12, $end12, $teamBtl->my_team_battle[0]->team1->id)[0]->allprice;
+                $this->sum22 = $teamService->sum($start12, $end12, $teamBtl->my_team_battle[0]->team2->id)[0]->allprice;
+            } else {
+                $this->sum22 = $teamService->sum($start12, $end12, $teamBtl->my_team_battle[0]->team1->id)[0]->allprice;
+                $this->sum11 = $teamService->sum($start12, $end12, $teamBtl->my_team_battle[0]->team2->id)[0]->allprice;
             }
         }
     }

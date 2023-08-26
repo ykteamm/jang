@@ -42,7 +42,7 @@ class SoldController extends Controller
                 $firewall += $value*$arr[1];
             }
         }
-
+         
         // if($firewall >= 500000)
         // {
         //     $services = new SoldService;

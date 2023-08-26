@@ -56,7 +56,7 @@ class Turnir extends Component
             $this->node5 = $service->getNodes(6);
             $this->node6 = $service->getNodes(5);
 
-            // $this->node7 = $service->getNode7();
+            $this->node7 = $service->getNodes(7);
         } else {
             $this->groupBattles = $service->getCurrentBattles(0);
             $endDay = strtotime($service->endGroup()) - strtotime(now()) + 86400;

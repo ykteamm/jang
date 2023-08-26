@@ -1817,9 +1817,10 @@ if(!function_exists('apiProvizorUrl2')){
 if(!function_exists('getcris')){
     function getcris($id) {
 
-        try {
-            return UserCrystall::where('user_id', $id)->first()->crystall;
-        } catch (\Throwable $th) {
+        $crystall = DB::table('user_crystalls')->where('user_id', $id)->first();
+        if($crystall){
+            return $crystall->crystall;
+        }else{
             return 0;
         }
     }

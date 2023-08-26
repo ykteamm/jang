@@ -359,10 +359,7 @@
                                                 style="color: #272730;font-size:10px">{{ $t1->f }}
                                                 {{ substr($t1->l, 0, 1) }}</span>
                                         </div>
-                                        {{-- <div class="col-2 pl-0 pr-1 text-right">
-                                            <img src="{{ asset('mobile/oltin.png') }}" width="15px;">
-                                        </div> --}}
-                                        <div class="col-3 pl-0 pr-0">
+                                           <div class="col-3 pl-0 pr-0">
                                             <div style="width:100%;background:#8599b7;border-radius:6px;">
                                                 <span class="py-1"
                                                     style="font-size:10px;-webkit-text-stroke: 1px #040c10;">{{ numb($t1->allprice) }}</span>

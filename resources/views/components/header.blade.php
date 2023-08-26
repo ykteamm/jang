@@ -29,8 +29,9 @@
                     </button> --}}
                     <button class="btn img-container live-history-crystal" type="button" style="padding: 0px 0px;" data-toggle="modal" data-target="#history-crystal">
                         <img src="{{asset('mobile/crystall.webp')}}" width="95px" alt="">
-                            <div class="text-block supercell" style="padding-right: 10px" id="userCrystallMain">
-                        </div>
+                            <div class="text-block supercell" style="padding-right: 10px">
+                                {{getcris(Auth::id())}}
+                            </div>
                     </button>
                 </div>
             </div>

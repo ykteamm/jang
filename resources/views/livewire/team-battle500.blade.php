@@ -121,50 +121,6 @@
                         <img width="20" class="instruksiya" src="{{ asset('mobile/instruksiya.png') }}" alt="Instruksiya">
                     </button>
                     <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:2">
-                        {{-- <div class="row team-btl-info" style="position: absolute;right:30px; left:30px;bottom:20px;z-index:4">
-                            @foreach ($months as $m)
-                                @if ($month == $m['month'])
-                                    <div class="col-4">
-                                        <div class="supercell pb-1 text-white">
-                                            {{ $m['month'] }}
-                                        </div>
-                                        <div class="text-white supercell team-btl-info-text" style="font-size:10px">
-                                            @if ($amIinTeamOne)
-                                                {{ round($m['sum'] / 1000000) . '/' . $myTeamBattle->team1->plan/3 . ' m' }}
-                                            @else
-                                                {{ round($m['sum'] / 1000000) . '/' . $myTeamBattle->team2->plan/3 . ' m' }}
-                                            @endif
-                                        </div>
-                                        <div class="team-btl-info-images">
-                                            @if (isset($myTeamBattle->monthround))
-                                                <img width="80"
-                                                    src="{{ asset('mobile/team/' . $m['count'] . '-' . $myTeamBattle->monthround . '.png') }}"
-                                                    alt="">
-                                            @else
-                                                <img width="80"
-                                                    src="{{ asset('mobile/team/' . $m['count'] . '-' . $myTeamBattle->round . '.png') }}"
-                                                    alt="">
-                                            @endif
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="col-4 d-flex align-items-center justify-content-center">
-                                        <div>
-                                            <div class="supercell pb-1 text-white">
-                                                <span>{{ $m['month'] }}</span>
-                                            </div>
-                                            <div class="text-white supercell team-btl-info-text" style="font-size:10px">
-                                                @if ($amIinTeamOne)
-                                                    {{ round($m['sum'] / 1000000) . '/' . $myTeamBattle->team1->plan/3 . ' m' }}
-                                                @else
-                                                    {{ round($m['sum'] / 1000000) . '/' . $myTeamBattle->team2->plan/3 . ' m' }}
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div> --}}
                         <img src="{{ asset('mobile/team/third.webp') }}" width="100%" style="width:100%" alt="Image">
                     </div>
                     <img src="{{ asset('mobile/team/first.png') }}" width="100%"
@@ -177,16 +133,7 @@
                     <div style="position: absolute;top:-85px;left:0px;right:0;bottom:0;z-index:5;color:#fab516"
                         class="d-flex align-items-center justify-content-center">
                         <img src="{{ asset('mobile/team/'.$myTeamBattle->team1->win_bonus.'.webp') }}" style="width:50%" alt="Image">
-
-                            {{-- <p><span class="supercell text-orange-400">G'alaba uchun: {{$myTeamBattle->team1->win_bonus}}</span></p> --}}
-                            
                     </div>
-                    {{-- <div style="position: absolute;top:-75px;left:0px;right:0;bottom:0;z-index:5;color:#fab516"
-                        class="d-flex align-items-center justify-content-center">
-                        
-                            <p><span class="supercell text-orange-400">Mag'lubiyat uchun: {{$myTeamBattle->team1->lose_bonus}}</span></p>
-                            
-                    </div> --}}
                 </div>
             </div>
         
@@ -196,33 +143,33 @@
                 <div class="userimage1">
                     <div>
                         <div>
-                            <img src="{{asset('mobile/regions/'.$myTeamBattle->team1->id.'.png')}}" alt="">
+                            <img src="{{asset('mobile/regions/'.$myTeamBattle2->team1->id.'.png')}}" alt="">
                         </div>
                     </div>
                     <div class="text-white mt-4 supercell text-font for-name">
-                        {{$myTeamBattle->team1->name}}
+                        {{$myTeamBattle2->team1->name}}
                     </div>
                     <div class="turnir-result">
                         <div class="mt-1 d-flex align-items-center justify-content-center">
                             <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
-                            <span class="pl-1 text-white supercell text-font for-name">{{$sum1}}</span>
+                            <span class="pl-1 text-white supercell text-font for-name">{{numb($sum11)}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="userimage2">
                     <div>
                         <div>
-                            <img src="{{asset('mobile/regions/'.$myTeamBattle->team2->id.'.png')}}" alt="">
+                            <img src="{{asset('mobile/regions/'.$myTeamBattle2->team2->id.'.png')}}" alt="">
                         </div>
                     </div>
         
                     <div class="text-white mt-4 supercell text-font for-name">
-                        {{$myTeamBattle->team2->name}}
+                        {{$myTeamBattle2->team2->name}}
                     </div>
                     <div class="turnir-result">
                         <div class="mt-1 d-flex align-items-center justify-content-center">
                             <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
-                            <span class="pl-1 text-white supercell text-font for-name">{{$sum2}}</span>
+                            <span class="pl-1 text-white supercell text-font for-name">{{numb($sum22)}}</span>
                         </div>
                     </div>
                 </div>
