@@ -55,7 +55,7 @@ Route::get('admin/searchUsers', [AdminController::class, 'searchUsers']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', [HomeController::class, 'index567'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/', [HomeController::class, 'anotherTeacher'])->name('another-teacher');/
 
     // NEWS SECTION
