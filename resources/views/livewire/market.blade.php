@@ -51,8 +51,8 @@
                                     style="position: absolute;left:21px;top:35px;width:110px;height:110px;overflow:hidden;border-radius:10px">
                                     <div class="d-flex align-items-center justify-content-center"
                                         style="width:100%;height:100%">
-                                        <img width="100%" src="{{ asset('outermarket/' . $item->image) }}"
-                                            alt="MarketItemImage">
+                                        {{-- <img width="100%" src="{{ asset('outermarket/' . $item->image) }}" alt="MarketItemImage"> --}}
+                                        <img width="100%" src="https://matrix.novatio.uz/outermarket/{{$item->image}}" alt="MarketItemImage">
                                     </div>
                                 </div>
                                 <div

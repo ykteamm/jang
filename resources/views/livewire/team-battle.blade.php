@@ -140,7 +140,6 @@
                         <div class="col-10">
                             <div style="height:70px" class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    
                                     <div class="mb-1 supercell text-dark" style="font-size:12px;">
                                         IYUL-AVG-SEN
                                     </div>
