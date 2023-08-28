@@ -133,8 +133,8 @@
             <div class="card" style="background: #ffffff">
                 <div class="col align-self-center">
                     @php
-                                $fact = $sum1;
-                                $plan = $myTeamBattle->team1->plan*10000;
+                                $fact = $sum11;
+                                $plan = $myTeamBattle2->team1->plan*1000000;
                             @endphp
                     <div class="row">
                         <div class="col-10">
@@ -146,12 +146,12 @@
                                     </div>
                                     <div class="text-left">
                                         <span class="supercell"
-                                            style="color:#272730;font-weight:600;font-size:10px">{{numb($fact)}}/{{$myTeamBattle->team1->plan}}M</span>
+                                            style="color:#272730;font-weight:600;font-size:10px">{{numb($fact)}}/{{$myTeamBattle2->team1->plan}}M</span>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="supercell" style="background: linear-gradient(154deg, #f9a710 60%, cyan);border-radius: 8px;padding: 3px;">
-                                        {{$myTeamBattle->team1->plan}}M
+                                        {{$myTeamBattle2->team1->plan}}M
                                     </span>
                                 </div>
                             </div>
