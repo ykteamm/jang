@@ -1818,6 +1818,8 @@ if(!function_exists('getcris')){
     function getcris($id) {
 
         $crystall = DB::table('crystal_users')->where('user_id', $id)->sum('crystal');
+
+        return $crystall;
         if($crystall){
             return $crystall->crystall;
         }else{
