@@ -1817,7 +1817,7 @@ if(!function_exists('apiProvizorUrl2')){
 if(!function_exists('getcris')){
     function getcris($id) {
 
-        $crystall = DB::table('user_crystalls')->where('user_id', $id)->first();
+        $crystall = DB::table('crystal_users')->where('user_id', $id)->sum('crystal');
         if($crystall){
             return $crystall->crystall;
         }else{

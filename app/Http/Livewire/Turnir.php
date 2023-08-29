@@ -55,7 +55,6 @@ class Turnir extends Component
             $this->node4 = $service->getNodes(4);
             $this->node5 = $service->getNodes(6);
             $this->node6 = $service->getNodes(5);
-
             $this->node7 = $service->getNodes(7);
         } else {
             $this->groupBattles = $service->getCurrentBattles(0);
