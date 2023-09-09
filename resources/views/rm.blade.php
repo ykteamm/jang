@@ -29,13 +29,17 @@
                             </button>
                         </div>
                         @if (count(getRekrut()) > 0)
-                                    <div class="col-12 pl-0 pr-0">
+                        <div class="col-12 pl-0 pr-0 supercell">
 
-                                        <button type="button" style="background: #8bd137" class="btn live-rekrut"
-                                            data-toggle="modal" data-target="#myrekrut">
-                                            Rekrut
-                                        </button>
-                                    </div>
+                            <button type="button" style="background: #329fff;
+                            color: white;
+                            -webkit-text-stroke: 1px black;
+                            font-size: 25px;
+                            border: 2px solid white;
+                            border-radius: 12px;" class="btn" data-toggle="modal" data-target="#myrekrut">
+                                REKRUT
+                            </button>
+                        </div>
                                 @endif
                         {{-- <div class="col-12 pl-0 pr-0">
 
