@@ -25,7 +25,7 @@
                                     <div class="border-0 mb-1">
                                         <div class="card-body" style="border-radius:15px;">
                                             <div class="row align-items-center">
-                                                <div class="col-2">
+                                                {{-- <div class="col-2">
                                                     <button type="button" class="btn btn-sm btn-secondary " style="background: #e0aa2c;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                                         @if ($item->status == 0)
                                                             Ko'rilmagan
@@ -35,9 +35,9 @@
                                                             Bekor qilindi
                                                         @endif
                                                     </button>
-                                                </div>
-                                                <div class="col-auto ml-auto mr-3">
-                                                    <span class="mb-1" style="color: #272730;font-size:12px">{{$item->fname}}</span>
+                                                </div> --}}
+                                                <div class="col-auto mr-3">
+                                                    <span class="mb-1" style="color: #272730;font-size:20px">{{$item->fname}} ({{$item->phone}})</span>
                                                 </div>
                                             </div>
 

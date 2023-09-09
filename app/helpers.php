@@ -1188,6 +1188,8 @@ if(!function_exists('getRekrut')){
         ->join('tg_region','tg_region.id','rekruts.region_id')
         ->join('tg_district','tg_district.id','rekruts.district_id')
         ->where('rekruts.rm_id',Auth::user()->id)
+        ->where('rekruts.status',0)
+        ->whereDate('rekruts.created_at','>=','2023-09-01')
         ->get();
 
         return $rekruts;

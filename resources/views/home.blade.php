@@ -142,32 +142,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
-        function rekrutSuccess(id)
-    {
-        var comment = $(`#rekruting${id}`).val();
-
-        if(comment.length > 5)
-        {
-            $('.rekrutbutton').addClass('d-none');
-            $('.rekrutbutton2').removeClass('d-none');
-            $(`.rekrutinput${id}`).val(1);
-            $(`#rekrutform${id}`).submit();
-        }
-
-    }
-    function rekrutCancel(id)
-    {
-        var comment = $(`#rekruting${id}`).val();
-
-        if(comment.length > 5)
-        {
-            $('.rekrutbutton').addClass('d-none');
-            $('.rekrutbutton2').removeClass('d-none');
-            $(`.rekrutinput${id}`).val(2);
-            $(`#rekrutform${id}`).submit();
-        }
-
-    }
+    
         $(function() {
             $('[data-toggle="popover"]').popover()
         })

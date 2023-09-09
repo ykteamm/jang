@@ -38,11 +38,19 @@
 
         setTimeout(function() { 
                 livewire.emit('for_teambattle'); 
+                livewire.emit('for_rekrut'); 
+                var rekrut_count = <?php echo json_encode(count(getRekrut())); ?>;
+                if(rekrut_count > 0)
+                {
+                    $('.live-rekrut').click();
+                }
         }, 1000);
         
         setTimeout(function() { 
                 livewire.emit('for_info'); 
         }, 3000);
+
+        
     });
     
     function showRegion(id) {
@@ -300,4 +308,31 @@
             })
 
         }
+
+        function rekrutSuccess(id)
+    {
+        var comment = $(`#rekruting${id}`).val();
+
+        if(comment.length > 5)
+        {
+            $('.rekrutbutton').addClass('d-none');
+            $('.rekrutbutton2').removeClass('d-none');
+            $(`.rekrutinput${id}`).val(1);
+            $(`#rekrutform${id}`).submit();
+        }
+
+    }
+    function rekrutCancel(id)
+    {
+        var comment = $(`#rekruting${id}`).val();
+
+        if(comment.length > 5)
+        {
+            $('.rekrutbutton').addClass('d-none');
+            $('.rekrutbutton2').removeClass('d-none');
+            $(`.rekrutinput${id}`).val(2);
+            $(`#rekrutform${id}`).submit();
+        }
+
+    }
 </script>

@@ -189,7 +189,7 @@
                                     <livewire:turnir-button>
                             </div>
 
-                            <div class="col-6 pl-0 pr-0" style="position: relative">
+                            {{-- <div class="col-6 pl-0 pr-0" style="position: relative">
                                 <div>
                                     <button style="position: absolute;top:-12px;right:25px;z-index:10000" type="button"
                                         class="for-media-task-btn btn pl-0" data-toggle="modal" data-target="#exercise">
@@ -200,7 +200,7 @@
                                 <div style="padding-top:35px">
                                     <livewire:news-button>
                                 </div>
-                            </div>
+                            </div> --}}
                         @else
                             @if (Auth::user()->status == 1)
                                 <div class="col-6 pl-0 pr-0" style="position: relative">
