@@ -28,6 +28,15 @@
                                 <img src="{{asset('mobile/viloyatim.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
+                        @if (count(getRekrut()) > 0)
+                                    <div class="col-12 pl-0 pr-0">
+
+                                        <button type="button" style="background: #8bd137" class="btn live-rekrut"
+                                            data-toggle="modal" data-target="#myrekrut">
+                                            Rekrut
+                                        </button>
+                                    </div>
+                                @endif
                         {{-- <div class="col-12 pl-0 pr-0">
 
                             <button type="button" class="btn" data-toggle="modal" data-target="#kingsold">
@@ -126,7 +135,9 @@
         @include('modals.myshogirdin')
         @include('modals.onemonthin')
     @endif
-
+    @if (count(getRekrut()) > 0)
+    @include('modals.myrekrut')
+@endif
     @foreach (getOrderUser() as $key => $item)
     <div class="modal fade" id="userorder{{$item['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">

@@ -77,7 +77,7 @@
                                 <img src="{{asset('mobile/viloyatim.webp')}}" class="for-media-img" width="230px" alt="">
                             </button>
                         </div>
-                        @if (count(getRekrut()) > 0)
+                            @if (count(getRekrut()) > 0)
                                     <div class="col-12 pl-0 pr-0">
 
                                         <button type="button" style="background: #8bd137" class="btn live-rekrut"
@@ -151,7 +151,9 @@
     @include('modals.change-image')
     @include('modals.change-profil')
     @include('modals.addprovizor')
-
+    @if (count(getRekrut()) > 0)
+    @include('modals.myrekrut')
+@endif
     @include('modals.ktb')
 @endsection
 @section('scripts')
