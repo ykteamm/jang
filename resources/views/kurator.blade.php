@@ -92,7 +92,7 @@
                                         -webkit-text-stroke: 1px black;
                                         font-size: 25px;
                                         border: 2px solid white;
-                                        border-radius: 12px;" class="btn" data-toggle="modal" data-target="#myrekrut">
+                                        border-radius: 12px;" class="btn live-rekrut" data-toggle="modal" data-target="#myrekrut">
                                             REKRUT
                                         </button>
                                     </div>
