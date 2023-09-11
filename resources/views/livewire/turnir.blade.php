@@ -79,7 +79,7 @@
         {{-- <div class="col-12 mt-1 mb-1 text-center">
             <h2 style="color: red">Har bir jamoaning sotuvlari bittalab tekshirilyapti.Yaqin orada yarim final g'oliblarini e'lon qilamiz.</h2>
         </div> --}}
-        <div class="col-12 mt-1 mb-1">
+        {{-- <div class="col-12 mt-1 mb-1">
             @if ($playOffStart)
                 <div class="supercell text-center mb-2" style="color:#2d4ac1">
                     {{ $tourTitle }} janglar
@@ -393,7 +393,7 @@
                     }
                 }
             </style>
-        </div>
+        </div> --}}
     </div>
     <div id="turnir1tab" class="modal-body p-0">
         {{-- <div class="col-12 mt-1 mb-1 text-center">

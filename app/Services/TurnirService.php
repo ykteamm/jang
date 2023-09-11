@@ -23,7 +23,8 @@ class TurnirService
     {
         $this->tour = $this->getTour();
         $this->date =  date("Y-m-d");
-        $this->month = Carbon::now()->startOfMonth()->format("Y-m-d");
+        // $this->month = Carbon::now()->startOfMonth()->format("Y-m-d");
+        $this->month = '2023-08-01';
     }
 
     public function getNodes($node)
@@ -350,15 +351,15 @@ class TurnirService
 
     public function getTour($date = NULL)
     {
-        $dd = DB::table('turnir_tours')
-            ->whereDate('date_begin', '<=', $date ?? date("Y-m-d"))
-            ->whereDate('date_end', '>=', $date ?? date("Y-m-d"))
-            ->first();
-
         // $dd = DB::table('turnir_tours')
-        //     ->whereDate('date_begin', '<=', '2023-08-18')
-        //     ->whereDate('date_end', '>=', '2023-08-20')
+        //     ->whereDate('date_begin', '<=', $date ?? date("Y-m-d"))
+        //     ->whereDate('date_end', '>=', $date ?? date("Y-m-d"))
         //     ->first();
+
+        $dd = DB::table('turnir_tours')
+            ->whereDate('date_begin', '<=', '2023-08-18')
+            ->whereDate('date_end', '>=', '2023-08-20')
+            ->first();
         return $dd;
     }
     
