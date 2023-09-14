@@ -80,15 +80,199 @@
         
     </div>
     <div id="turnir1tab" class="modal-body p-0">
-        <div class="col-12">
+
+        <div class="col-12 mb-3">
             <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr1.webp') }}">
         </div>
-        <div class="col-12">
-            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/slavi1.webp') }}">
-        </div>
+
         <div class="col-12 mb-3">
-            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/slavi2.webp') }}">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/trtr.jpg') }}">
         </div>
+
+        @php    
+            $arrs1[0] = ['Xadicha N','Qizlarxon T'];
+            $arrs1[1] = ['Komola I',''];
+            $arrs1[2] = ['Mohigul B','Aziza N'];
+
+            $arrs1s[0] = ['2222','2222'];
+            $arrs1s[1] = ['600','600'];
+            $arrs1s[2] = ['400','400'];
+
+            $arrs12[0] = ['Gulzar K','Gulnoza T'];
+            $arrs12[1] = ['Xadicha N','Aziza N'];
+            $arrs12[2] = ['Marhabo G','Feruza I'];
+
+            $arrs12s[0] = ['1200','1200'];
+            $arrs12s[1] = ['600','600'];
+            $arrs12s[2] = ['400','400'];
+        @endphp
+
+        @foreach ($arrs1 as $key => $item)
+            
+            <div class="col-12">
+                <div class="card border-0 mb-1">
+                    <div class="card-body" style="background-image: linear-gradient(to bottom,#ced0c6,#d9dbd5,#c7c9c1);border-radius: 7px;border: 1px solid #9c9191;">
+                        <div class="row align-items-center pr-3">
+                            <div class="col-2 pl-2">
+                                <button type="button" class="btn-sm btn-secondary supercell p-0" 
+                                @if ($key == 0)
+                                    style="-webkit-text-stroke: 1px #36393a !important;background-image: linear-gradient(to bottom left,#f3e48d,#ffd20f,#c39008);border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #fff0a8;;width: 45px;height: 35px;"
+                                @elseif($key == 1)
+                                style="-webkit-text-stroke: 1px #36393a !important;
+                                background-image: linear-gradient(to bottom left,#a1aab8,#d4d9e0,#767c81);
+                                border: 1px solid #c8b7b7;
+                                box-shadow: 0px 0px 0px 2px #e7eae8;
+                                width: 45px;
+                                height: 35px;"
+                                @else
+                                    style="    -webkit-text-stroke: 1px #36393a !important;
+                                    background-image: linear-gradient(to bottom left,#c7854d,#d89d6e,#946c48);
+                                    border: 1px solid #c8b7b7;
+                                    box-shadow: 0px 0px 0px 2px #fbe2c4;
+                                    width: 45px;
+                                    height: 35px;"
+                                @endif
+                                >
+                                        <span style="font-size: 16px;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                        {{$key+1}}</span>
+                                </button>
+                            </div>
+                            {{-- <div class="col-1 text-center p-0" style="border-left:1px solid #959690">
+                                <img style="width:40px;padding-left:4px" src="http://127.0.0.1:8000/mobile/regions/11.png" alt="">
+                            </div> --}}
+                            <div class="col-4 pr-0 pl-3">
+                                {{-- <span class="mb-1 supercell" style="color: #272730;font-size:12px">
+                                    {{$item[0]}}
+                                    {{$item[1]}}
+                                </span> --}}
+
+                                <span class="mb-1 supercell"
+                                        style="color: #272730;font-size:11px">
+                                        {{$item[0]}}
+                                    </span>
+                                    <p style="color: #272730;font-size:11px;color:#272730;" class="supercell">
+                                        {{$item[1]}}
+                                    </p>
+                            </div>
+                            {{-- <div class="col-2 text-center p-0" style="padding-right: 4px !important;">
+                                <div style="font-size:12px;font-weight:600">Elchilar</div>
+                                <div style="font-size:15px;font-weight:800">15</div>
+                            </div> --}}
+                            <div class="col-3 p-0" style="padding-left: 4px !important;">
+                                <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
+                                    <div class="d-flex align-items-center">
+                                        <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                                                                                        {{$arrs1s[$key][0]}}
+                                                                                                </span>
+                                        <img src="{{asset('mobile/crys.png')}}" width="23px;" style="padding-left:3px">
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-3 p-0" style="padding-left: 4px !important;">
+                                <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
+                                    <div class="d-flex align-items-center">
+                                        <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                            {{$arrs1s[$key][1]}}
+                                                                                                        
+                                                                                                </span>
+                                        <img src="{{asset('mobile/kb.png')}}" width="23px;" style="padding-left:3px">
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+        
+
+        
+        <div class="col-12 mb-3">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/tr3.webp') }}">
+        </div>
+
+        @foreach ($arrs12 as $key => $item)
+            
+            <div class="col-12">
+                <div class="card border-0 mb-1">
+                    <div class="card-body" style="background-image: linear-gradient(to bottom,#ced0c6,#d9dbd5,#c7c9c1);border-radius: 7px;border: 1px solid #9c9191;">
+                        <div class="row align-items-center pr-3">
+                            <div class="col-2 pl-2">
+                                <button type="button" class="btn-sm btn-secondary supercell p-0" 
+                                @if ($key == 0)
+                                    style="-webkit-text-stroke: 1px #36393a !important;background-image: linear-gradient(to bottom left,#f3e48d,#ffd20f,#c39008);border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #fff0a8;;width: 45px;height: 35px;"
+                                @elseif($key == 1)
+                                style="-webkit-text-stroke: 1px #36393a !important;
+                                background-image: linear-gradient(to bottom left,#a1aab8,#d4d9e0,#767c81);
+                                border: 1px solid #c8b7b7;
+                                box-shadow: 0px 0px 0px 2px #e7eae8;
+                                width: 45px;
+                                height: 35px;"
+                                @else
+                                    style="    -webkit-text-stroke: 1px #36393a !important;
+                                    background-image: linear-gradient(to bottom left,#c7854d,#d89d6e,#946c48);
+                                    border: 1px solid #c8b7b7;
+                                    box-shadow: 0px 0px 0px 2px #fbe2c4;
+                                    width: 45px;
+                                    height: 35px;"
+                                @endif
+                                >
+                                        <span style="font-size: 16px;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                        {{$key+1}}</span>
+                                </button>
+                            </div>
+                            {{-- <div class="col-1 text-center p-0" style="border-left:1px solid #959690">
+                                <img style="width:40px;padding-left:4px" src="http://127.0.0.1:8000/mobile/regions/11.png" alt="">
+                            </div> --}}
+                            <div class="col-4 pr-0 pl-3">
+                                {{-- <span class="mb-1 supercell" style="color: #272730;font-size:12px">
+                                    {{$item[0]}}
+                                    {{$item[1]}}
+                                </span> --}}
+
+                                <span class="mb-1 supercell"
+                                        style="color: #272730;font-size:11px">
+                                        {{$item[0]}}
+                                    </span>
+                                    <p style="color: #272730;font-size:11px;color:#272730;" class="supercell">
+                                        {{$item[1]}}
+                                    </p>
+                            </div>
+                            {{-- <div class="col-2 text-center p-0" style="padding-right: 4px !important;">
+                                <div style="font-size:12px;font-weight:600">Elchilar</div>
+                                <div style="font-size:15px;font-weight:800">15</div>
+                            </div> --}}
+                            <div class="col-3 p-0" style="padding-left: 4px !important;">
+                                <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
+                                    <div class="d-flex align-items-center">
+                                        <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                                                                                        {{$arrs12s[$key][0]}}
+                                                                                                </span>
+                                        <img src="{{asset('mobile/crys.png')}}" width="23px;" style="padding-left:3px">
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-3 p-0" style="padding-left: 4px !important;">
+                                <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
+                                    <div class="d-flex align-items-center">
+                                        <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                            {{$arrs12s[$key][1]}}
+                                                                                                        
+                                                                                                </span>
+                                        <img src="{{asset('mobile/kb.png')}}" width="23px;" style="padding-left:3px">
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+        {{-- <div class="col-12 mb-3">
+            <img width="100%" style="margin-top:5px" src="{{ asset('mobile/turnir/slavi2.webp') }}">
+        </div> --}}
         <div>
     </div>
     </div>
