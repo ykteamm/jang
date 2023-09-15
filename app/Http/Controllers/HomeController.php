@@ -701,7 +701,7 @@ class HomeController extends Controller
         $winImage = null;
         $battle_history = array_merge([], $battle_history->all());
         if(count($battle_history) > 0) {
-            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
+            // $winImage = $this->image->make($battle_history[count($battle_history)-1]);
         }
 
 
