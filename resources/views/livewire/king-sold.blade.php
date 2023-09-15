@@ -19,7 +19,6 @@
             style="background: #2d6ace;border-top:5px solid #e3b456;border-bottom:5px solid #e3b456">
             <span class="supercell text-white pl-3" style="font-size:25px;">SHOH YURISH {{ $ksnumber }}</span>
         </div>
-        {{-- <img src="{{asset('mobile/ks.webp')}}" width="111%" style="border-radius:15px;margin-left: -20px;margin-top:-18px;position:relative"> --}}
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
             style="opacity: 5;position:absolute;top:8px;right:10px;">
             <img src="{{ asset('mobile/xclose.png') }}" width="30px">

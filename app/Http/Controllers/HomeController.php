@@ -493,7 +493,11 @@ class HomeController extends Controller
 
 
 
+            // $fsd = new UserBattleService;
 
+            // $ff = $fsd->battle('2023-09-14');
+
+            // dd($ff);
 
 
 
@@ -510,208 +514,208 @@ class HomeController extends Controller
 
         }
 
-        // if (count(getOneMonthUser()) != 0)
-        // {
-        //     $my_battle_all = UserBattle::with('u1ids','u2ids')
-        //     ->where(function($query) use ($my_id){
-        //                 $query->where('u1id',$my_id)
-        //                 ->orWhere('u2id',$my_id);
-        //             })->get();
+        if (count(getOneMonthUser()) != 0)
+        {
+            $my_battle_all = UserBattle::with('u1ids','u2ids')
+            ->where(function($query) use ($my_id){
+                        $query->where('u1id',$my_id)
+                        ->orWhere('u2id',$my_id);
+                    })->get();
 
 
-        //     if(count($my_battle_all) < 2)
-        //     {
-        //         $b = new NewUserOneMonthService;
-        //         $bser = $b->getBattle($my_id);
-        //     }
+            if(count($my_battle_all) < 2)
+            {
+                $b = new NewUserOneMonthService;
+                $bser = $b->getBattle($my_id);
+            }
 
-        //     $my_battle_all_ends = UserBattle::with('u1ids','u2ids')
-        //     ->where(function($query) use ($my_id){
-        //                 $query->where('u1id',$my_id)
-        //                 ->orWhere('u2id',$my_id);
-        //             })->where('ends',1)->get();
-
-
-        //     if(count($my_battle_all_ends) < 2)
-        //     {
-        //         $my_battle = UserBattle::with('u1ids','u2ids')
-        //         ->whereDate('start_day','<=',$battle_date)
-        //         ->whereDate('end_day','>=',$battle_date)
-        //         ->where(function($query) use ($my_id){
-        //                     $query->where('u1id',$my_id)
-        //                     ->orWhere('u2id',$my_id);
-        //                 })->get();
-
-        //             // return count($my_battle);
-
-        //         $battle_yes = 'yes';
-        //     }else{
-        //         $my_battle = UserBattle::with('u1ids','u2ids')
-        //         ->whereDate('start_day','<=',$battle_date)
-        //         ->whereDate('end_day','>=',$battle_date)
-        //         ->where(function($query) use ($my_id){
-        //                     $query->where('u1id',$my_id)
-        //                     ->orWhere('u2id',$my_id);
-        //                 })->get();
-
-        //             $battle_yes = 'yes';
-
-        //             if(count($my_battle) == 0)
-        //             {
-        //                 $battle_yes = 'no';
-        //             }
-        //             if(count($my_battle) == 2)
-        //             {
-        //                 $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
-        //                 ->whereDate('start_day','<=',$battle_date)
-        //                 ->whereDate('end_day','>=',$battle_date)
-        //                 ->where(function($query) use ($my_id){
-        //                         $query->where('u1id',$my_id)
-        //                         ->orWhere('u2id',$my_id);
-        //                     })->get();
-        //                 $battle_yes = 'yes';
-        //             }
+            $my_battle_all_ends = UserBattle::with('u1ids','u2ids')
+            ->where(function($query) use ($my_id){
+                        $query->where('u1id',$my_id)
+                        ->orWhere('u2id',$my_id);
+                    })->where('ends',1)->get();
 
 
-        //             $n = new HelperServices;
-        //             $my_jang = $n->myBattle($my_battle,$sold_date);
-        //             $summa1 = $my_jang->summa1;
-        //             $summa2 = $my_jang->summa2;
-        //             $summa_bugun1 = $my_jang->summa_bugun1;
-        //             $summa_bugun2 = $my_jang->summa_bugun2;
-        //             $battle_start_day = $my_jang->battle_start_day;
-        //         }
+            if(count($my_battle_all_ends) < 2)
+            {
+                $my_battle = UserBattle::with('u1ids','u2ids')
+                ->whereDate('start_day','<=',$battle_date)
+                ->whereDate('end_day','>=',$battle_date)
+                ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->get();
+
+                    // return count($my_battle);
+
+                $battle_yes = 'yes';
+            }else{
+                $my_battle = UserBattle::with('u1ids','u2ids')
+                ->whereDate('start_day','<=',$battle_date)
+                ->whereDate('end_day','>=',$battle_date)
+                ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->get();
+
+                    $battle_yes = 'yes';
+
+                    if(count($my_battle) == 0)
+                    {
+                        $battle_yes = 'no';
+                    }
+                    if(count($my_battle) == 2)
+                    {
+                        $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
+                        ->whereDate('start_day','<=',$battle_date)
+                        ->whereDate('end_day','>=',$battle_date)
+                        ->where(function($query) use ($my_id){
+                                $query->where('u1id',$my_id)
+                                ->orWhere('u2id',$my_id);
+                            })->get();
+                        $battle_yes = 'yes';
+                    }
 
 
-        //     if(count($my_battle_all) == 1)
-        //     {
-        //         $n = new NewUserOneMonthService;
-        //         $my_jang = $n->myFirstFakeBattle($my_battle,$sold_date);
-        //         $summa1 = $my_jang->summa1;
-        //         $summa2 = $my_jang->summa2;
-        //         $summa_bugun1 = $my_jang->summa_bugun1;
-        //         $summa_bugun2 = $my_jang->summa_bugun2;
-        //         $battle_start_day = $my_jang->battle_start_day;
-        //         }elseif(count($my_battle_all) == 2)
-        //         {
-        //             $n = new NewUserOneMonthService;
-        //             $my_jang = $n->mySecondFakeBattle($my_battle,$sold_date);
-        //             $summa1 = $my_jang->summa1;
-        //             $summa2 = $my_jang->summa2;
-        //             $summa_bugun1 = $my_jang->summa_bugun1;
-        //             $summa_bugun2 = $my_jang->summa_bugun2;
-        //             $battle_start_day = $my_jang->battle_start_day;
-        //         }else{
-        //             $my_battle = UserBattle::with('u1ids','u2ids')
-        //             ->whereDate('start_day','<=',$battle_date)
-        //             ->whereDate('end_day','>=',$battle_date)
-        //             ->where(function($query) use ($my_id){
-        //                         $query->where('u1id',$my_id)
-        //                         ->orWhere('u2id',$my_id);
-        //                     })->get();
-
-        //             $battle_yes = 'yes';
-
-        //             if(count($my_battle) == 0)
-        //             {
-        //                 $battle_yes = 'no';
-        //             }
-        //             if(count($my_battle) == 2)
-        //             {
-        //                 $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
-        //                 ->whereDate('start_day','<=',$battle_date)
-        //                 ->whereDate('end_day','>=',$battle_date)
-        //                 ->where(function($query) use ($my_id){
-        //                         $query->where('u1id',$my_id)
-        //                         ->orWhere('u2id',$my_id);
-        //                     })->get();
-        //                 $battle_yes = 'yes';
-        //             }
+                    $n = new HelperServices;
+                    $my_jang = $n->myBattle($my_battle,$sold_date);
+                    $summa1 = $my_jang->summa1;
+                    $summa2 = $my_jang->summa2;
+                    $summa_bugun1 = $my_jang->summa_bugun1;
+                    $summa_bugun2 = $my_jang->summa_bugun2;
+                    $battle_start_day = $my_jang->battle_start_day;
+                }
 
 
-        //             $n = new HelperServices;
-        //             $my_jang = $n->myBattle($my_battle,$sold_date);
-        //             $summa1 = $my_jang->summa1;
-        //             $summa2 = $my_jang->summa2;
-        //             $summa_bugun1 = $my_jang->summa_bugun1;
-        //             $summa_bugun2 = $my_jang->summa_bugun2;
-        //             $battle_start_day = $my_jang->battle_start_day;
-        //         }
+            if(count($my_battle_all) == 1)
+            {
+                $n = new NewUserOneMonthService;
+                $my_jang = $n->myFirstFakeBattle($my_battle,$sold_date);
+                $summa1 = $my_jang->summa1;
+                $summa2 = $my_jang->summa2;
+                $summa_bugun1 = $my_jang->summa_bugun1;
+                $summa_bugun2 = $my_jang->summa_bugun2;
+                $battle_start_day = $my_jang->battle_start_day;
+                }elseif(count($my_battle_all) == 2)
+                {
+                    $n = new NewUserOneMonthService;
+                    $my_jang = $n->mySecondFakeBattle($my_battle,$sold_date);
+                    $summa1 = $my_jang->summa1;
+                    $summa2 = $my_jang->summa2;
+                    $summa_bugun1 = $my_jang->summa_bugun1;
+                    $summa_bugun2 = $my_jang->summa_bugun2;
+                    $battle_start_day = $my_jang->battle_start_day;
+                }else{
+                    $my_battle = UserBattle::with('u1ids','u2ids')
+                    ->whereDate('start_day','<=',$battle_date)
+                    ->whereDate('end_day','>=',$battle_date)
+                    ->where(function($query) use ($my_id){
+                                $query->where('u1id',$my_id)
+                                ->orWhere('u2id',$my_id);
+                            })->get();
+
+                    $battle_yes = 'yes';
+
+                    if(count($my_battle) == 0)
+                    {
+                        $battle_yes = 'no';
+                    }
+                    if(count($my_battle) == 2)
+                    {
+                        $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
+                        ->whereDate('start_day','<=',$battle_date)
+                        ->whereDate('end_day','>=',$battle_date)
+                        ->where(function($query) use ($my_id){
+                                $query->where('u1id',$my_id)
+                                ->orWhere('u2id',$my_id);
+                            })->get();
+                        $battle_yes = 'yes';
+                    }
 
 
-        // }else{
-        //             $my_battle = UserBattle::with('u1ids','u2ids')
-        //         ->whereDate('start_day','<=',$battle_date)
-        //         ->whereDate('end_day','>=',$battle_date)
-        //         ->where(function($query) use ($my_id){
-        //                     $query->where('u1id',$my_id)
-        //                     ->orWhere('u2id',$my_id);
-        //                 })->get();
-
-        //         $battle_yes = 'yes';
-
-        //         if(count($my_battle) == 0)
-        //         {
-        //             $battle_yes = 'no';
-        //         }
-        //         if(count($my_battle) == 2)
-        //         {
-        //             $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
-        //             ->whereDate('start_day','<=',$battle_date)
-        //             ->whereDate('end_day','>=',$battle_date)
-        //             ->where(function($query) use ($my_id){
-        //                     $query->where('u1id',$my_id)
-        //                     ->orWhere('u2id',$my_id);
-        //                 })->get();
-        //             $battle_yes = 'yes';
-        //         }
+                    $n = new HelperServices;
+                    $my_jang = $n->myBattle($my_battle,$sold_date);
+                    $summa1 = $my_jang->summa1;
+                    $summa2 = $my_jang->summa2;
+                    $summa_bugun1 = $my_jang->summa_bugun1;
+                    $summa_bugun2 = $my_jang->summa_bugun2;
+                    $battle_start_day = $my_jang->battle_start_day;
+                }
 
 
-        //         $n = new HelperServices;
-        //         $my_jang = $n->myBattle($my_battle,$sold_date);
-        //         $summa1 = $my_jang->summa1;
-        //         $summa2 = $my_jang->summa2;
-        //         $summa_bugun1 = $my_jang->summa_bugun1;
-        //         $summa_bugun2 = $my_jang->summa_bugun2;
-        //         $battle_start_day = $my_jang->battle_start_day;
+        }else{
+                    $my_battle = UserBattle::with('u1ids','u2ids')
+                ->whereDate('start_day','<=',$battle_date)
+                ->whereDate('end_day','>=',$battle_date)
+                ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->get();
 
-        // }
+                $battle_yes = 'yes';
 
-
-        // $battle_history = UserBattle::where('ends',1)
-        //     ->where(function($query) use ($my_id){
-        //             $query->where('u1id',$my_id)
-        //             ->orWhere('u2id',$my_id);
-        //         })->orderBy('id','DESC')->get();
-        // foreach ($battle_history as $key => $value) {
-        //     if($value->u2id == $my_id && $value->bot ==1)
-        //     {
-        //         unset($battle_history[$key]);
-        //     }
-        // }
-        // $teskari2=[];
-        // foreach ($battle_history as $key => $value) {
-        //     $teskari2[] = $value;
-        // }
-
-        // $winImage = null;
-        // $battle_history = array_merge([], $battle_history->all());
-        // if(count($battle_history) > 0) {
-        //     $winImage = $this->image->make($battle_history[count($battle_history)-1]);
-        // }
+                if(count($my_battle) == 0)
+                {
+                    $battle_yes = 'no';
+                }
+                if(count($my_battle) == 2)
+                {
+                    $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
+                    ->whereDate('start_day','<=',$battle_date)
+                    ->whereDate('end_day','>=',$battle_date)
+                    ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->get();
+                    $battle_yes = 'yes';
+                }
 
 
-        // $all_battle = UserBattle::with('u1ids','u2ids','battle_elchi','battle_elchi.u1ids','battle_elchi.u2ids')
-        //         ->where(function($query) use ($my_id){
-        //                     $query->where('u1id',$my_id)
-        //                     ->orWhere('u2id',$my_id);
-        //                 })->orderBy('id','DESC')->get();
-        //   foreach ($all_battle as $key => $value) {
-        //       if($value->u2id == $my_id && $value->bot ==1)
-        //       {
-        //           unset($all_battle[$key]);
-        //       }
-        //   }
+                $n = new HelperServices;
+                $my_jang = $n->myBattle($my_battle,$sold_date);
+                $summa1 = $my_jang->summa1;
+                $summa2 = $my_jang->summa2;
+                $summa_bugun1 = $my_jang->summa_bugun1;
+                $summa_bugun2 = $my_jang->summa_bugun2;
+                $battle_start_day = $my_jang->battle_start_day;
+
+        }
+
+
+        $battle_history = UserBattle::where('ends',1)
+            ->where(function($query) use ($my_id){
+                    $query->where('u1id',$my_id)
+                    ->orWhere('u2id',$my_id);
+                })->orderBy('id','DESC')->get();
+        foreach ($battle_history as $key => $value) {
+            if($value->u2id == $my_id && $value->bot ==1)
+            {
+                unset($battle_history[$key]);
+            }
+        }
+        $teskari2=[];
+        foreach ($battle_history as $key => $value) {
+            $teskari2[] = $value;
+        }
+
+        $winImage = null;
+        $battle_history = array_merge([], $battle_history->all());
+        if(count($battle_history) > 0) {
+            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
+        }
+
+
+        $all_battle = UserBattle::with('u1ids','u2ids','battle_elchi','battle_elchi.u1ids','battle_elchi.u2ids')
+                ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->orderBy('id','DESC')->get();
+          foreach ($all_battle as $key => $value) {
+              if($value->u2id == $my_id && $value->bot ==1)
+              {
+                  unset($all_battle[$key]);
+              }
+          }
 
         $shifts = Shift::with('pharmacy')->where('user_id',Auth::user()->id)
         ->whereDate('open_date',Carbon::now())
@@ -794,8 +798,18 @@ class HomeController extends Controller
         
 
         $outerMarket = OuterMarket::all();
-        $battle_yes = 'no';
-        return view('index',compact('videos','infos','battle_yes','outerMarket','lock','haveTurnirBattle','news','shifts','makeCloseShift','products','pharmacy','all_sold'));
+        // $battle_yes = 'no';
+        // return $my_battle;
+        return view('index',compact('videos','infos','battle_yes','outerMarket','lock','haveTurnirBattle','news','shifts','makeCloseShift','products','pharmacy','all_sold'
+        ,'summa1'
+        ,'summa2'
+        ,'battle_history'
+        ,'summa_bugun2'
+        ,'summa_bugun1'
+        ,'my_battle'
+        ,'all_battle'
+        ,'battle_start_day'
+        ));
 
     }
     public function rm()

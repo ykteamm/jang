@@ -44,8 +44,11 @@ class BattleEnd extends Command
     public function handle()
     {
         $b = new UserBattleService;
-        $bser = $b->endBattle(date('Y-m-d'));
-        $bser = $b->battle(date('Y-m-d'));
+
+        $date = date('2023-09-14');
+
+        $bser = $b->endBattle($date);
+        $bser = $b->battle($date);
         
         $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
 
@@ -61,14 +64,14 @@ class BattleEnd extends Command
                 if(count($my_battle_all) == 1)
                 {
                     $b = new NewUserOneMonthService;
-                    $bser = $b->firstFakeBattleDay(date('Y-m-d'));
-                    $bser = $b->endBattle(date('Y-m-d'));
+                    $bser = $b->firstFakeBattleDay($date);
+                    $bser = $b->endBattle($date);
                 }
                 if(count($my_battle_all) == 2)
                 {
                     $b = new NewUserOneMonthService;
-                    $bser = $b->secondFakeBattleDay(date('Y-m-d'));
-                    $bser = $b->endBattle(date('Y-m-d'));
+                    $bser = $b->secondFakeBattleDay($date);
+                    $bser = $b->endBattle($date);
                 }
             }
             

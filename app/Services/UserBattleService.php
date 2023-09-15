@@ -84,7 +84,7 @@ class UserBattleService
                 }
 
 
-                if($sum >= 2)
+                if($sum >= 1)
                 {
                     $users[] = $id;
                 }
@@ -111,7 +111,6 @@ class UserBattleService
 
 
 
-
             if(count($foruser) > 1)
                 {
                     $bat = $this->getWinLoseAlgoritm($foruser);
@@ -124,6 +123,7 @@ class UserBattleService
                             $defaultuser[] = $all_user;
                         }
                     }
+
                      $this->forKubok($defaultuser,$this->str_day,$bat);
                 }
             if(count($forpro) > 1)
@@ -138,7 +138,7 @@ class UserBattleService
                             $defaultpro[] = $all_user_pro;
                         }
                     }
-                     $this->forKubok($defaultpro,$this->str_day,$batpro);
+                    //  $this->forKubok($defaultpro,$this->str_day,$batpro);
                 }
         }
 
@@ -290,12 +290,10 @@ class UserBattleService
         // $user = [33,104,194,197,5,211,215];
 
 
-
         $kubok = DB::table('tg_balls')->whereIn('user_id',$users)->orderBy('ball','DESC')->get();
         $kubok_users = DB::table('tg_balls')->whereIn('user_id',$users)->orderBy('ball','DESC')->pluck('user_id')->toArray();
         $battle=array();
         $sdf = $kubok;
-
 
 
         foreach($kubok as $k => $v)
@@ -430,7 +428,6 @@ class UserBattleService
     }
     public function battleSaveKubok($battle,$start_day,$end_day)
     {
-        // dd($battle);
         if (count($battle)%2 == 0) {
             for ($i=0; $i < count($battle)/2; $i++) {
                 $new_battle = new UserBattle([

@@ -29,6 +29,9 @@
     @include('modals.change-image')
     @include('modals.change-profil')
 
+    @include('modals.battle')
+    @include('modals.battle-day')
+
     @include('modals.smena')
     @include('modals.smenaclose')
     @include('modals.openkassa')
