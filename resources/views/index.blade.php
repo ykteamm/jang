@@ -29,6 +29,9 @@
     @include('modals.change-image')
     @include('modals.change-profil')
 
+    @include('modals.ustoz-shogird')
+    @include('modals.ustoz-profil')
+
     @include('modals.battle')
     @include('modals.battle-day')
 

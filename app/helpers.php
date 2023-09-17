@@ -1176,6 +1176,22 @@ if(!function_exists('getShogirdUser')){
     }
 }
 
+if (!function_exists('numb')) {
+    function numb($number)
+    {
+        if ($number < 999999 && $number > 999) {
+            // Anything less than a billion
+            $format =  number_format($number / 1000) . 'K';
+        } else if ($number < 999999999 && $number > 999999) {
+            // Anything less than a billion
+            $format =  number_format($number / 1000000,) . 'M';
+        } else {
+            $format = number_format($number, 0, '', '.');
+        }
+        return $format;
+    }
+}
+
 
 if(!function_exists('getRekrut')){
     function getRekrut() {
@@ -1363,6 +1379,93 @@ if(!function_exists('getTodaySold')){
         return $price;
     }
 }
+
+if(!function_exists('ustozStajer')){
+    function ustozStajer() {
+
+        $ustoz = TeacherUser::whereIn('ustoz',[1,2])->distinct('teacher_id')->pluck('teacher_id')->toArray();
+
+        $ustoz_arr = [];
+
+        foreach ($ustoz as $f => $value) {
+
+            $key = $value;
+            $shid = TeacherUser::where('teacher_id',$value)->where('game',1)->pluck('user_id')->toArray();
+
+            $shid[] = $value;
+
+            $sold = AllSold::whereIn('user_id',$shid)
+                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->sum(DB::raw('number*price_product'));
+
+            $ustoz_arr[$value] = $sold;
+            
+        }
+
+        arsort($ustoz_arr);
+
+        $arr = [];
+        foreach ($ustoz_arr as $key => $value) {
+            $shid = TeacherUser::where('teacher_id',$key)->where('game',1)->pluck('user_id')->toArray();
+
+            $status = TeacherUser::where('teacher_id',$key)->where('game',1)->first();
+
+            $user = User::find($key);
+
+            $arr[$key] = array(
+                'sum' => $value,
+                'shogird' => count($shid),
+                'status' => $status->ustoz,
+                'user' => $user,
+            );
+            
+        }
+
+        usort($arr, function($a, $b) {
+            return $a['sum'] < $b['sum'];
+        });
+        
+
+        return $arr;
+    }
+}
+
+if(!function_exists('ustozProfil')){
+    function ustozProfil($id) {
+
+        $shids = TeacherUser::where('teacher_id',$id)->where('game',1)->pluck('user_id')->toArray();
+
+        $arr = [];
+        $shogird = [];
+        
+        foreach ($shids as $key => $value) {
+            $sold = AllSold::where('user_id',$value)
+                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->sum(DB::raw('number*price_product'));
+
+            $user = User::find($value);
+
+            $shogird[] = array('user' => $user,'sum' => $sold);
+        }
+
+        $ustoz = User::find($id);
+
+        $ustoz_sum = AllSold::where('user_id',$id)
+                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->sum(DB::raw('number*price_product'));
+
+        usort($shogird, function($a, $b) {
+            return $a['sum'] < $b['sum'];
+        });
+
+        $arr[0] = $ustoz;
+        $arr[1] = $ustoz_sum;
+        $arr[2] = $shogird;
+    
+        return $arr;
+    }
+}
+
 if(!function_exists('getShogirdExercise')){
     function getShogirdExercise() {
 

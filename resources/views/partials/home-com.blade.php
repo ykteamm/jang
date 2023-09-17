@@ -29,6 +29,8 @@
             livewire.emit('for_history_crystal');
         });
         
+
+
         getUserCrystall()
 
         setTimeout(function() { 
@@ -56,6 +58,7 @@
     function showRegion(id) {
         livewire.emit('regionlive',id);
     }
+
 
     function upModal(id) {
         livewire.emit('profiluserlive',id);

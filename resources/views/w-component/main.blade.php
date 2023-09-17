@@ -234,11 +234,12 @@
                         @endif
                         <div class="col-6 pl-0 pr-0" style="position: relative">
                             <div>
-                                <button style="position: absolute;top:-12px;right:25px;z-index:10000"
+                                <button style="position: absolute;top:-18px;right:-13px;z-index:10000"
                                     type="button" class="for-media-task-btn btn pl-0" data-toggle="modal"
-                                    data-target="#exercise">
-                                    <img src="{{ asset('mobile/news/top.png') }}" class="for-media-task"
-                                        width="100px" style="margin-right:21px" alt="">
+                                    data-target="#ustoz-shogird" onclick="livewire.emit('for_ustoz_stajer');">
+                                    <img src="{{ asset('mobile/ustoz/btnust.jpg') }}" class="for-media-task"
+                                    height="50px"
+                                    width=  "140px" style="margin-right:21px" alt="">
                                 </button>
                             </div>
                             <div style="padding-top:35px">
