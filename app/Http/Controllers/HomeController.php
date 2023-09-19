@@ -798,7 +798,7 @@ class HomeController extends Controller
         
 
         $outerMarket = OuterMarket::all();
-        // $battle_yes = 'no';
+        $battle_yes = 'no';
         // return $my_battle;
         return view('index',compact('videos','infos','battle_yes','outerMarket','lock','haveTurnirBattle','news','shifts','makeCloseShift','products','pharmacy','all_sold'
         ,'summa1'
