@@ -1679,6 +1679,19 @@ if(!function_exists('getOneMonthUser')){
         return $user;
     }
 }
+
+if(!function_exists('getpdold')){
+    function getpdold() {
+        $user = DB::table('tg_productssold')->where('user_id',Auth::id())
+            ->whereDate('created_at',date('Y-m-d'))
+            ->sum(DB::raw('number*price_product'));
+
+        $user = $user*0.1;
+
+        return $user;
+    }
+}
+
 if(!function_exists('getSavdo')){
     function getSavdo($id,$date) {
         $other_sum = DB::table('tg_productssold')

@@ -11,7 +11,14 @@
         </button>
 
         @foreach (getMonthM(2) as $key => $item)
-            <div class="bg-primary" onclick="liveMoneyModal()" data-toggle="modal" data-target="#money" style="cursor:pointer">
+            <div class="bg-primary" 
+            @if (Auth::user()->specialty_id == 9)
+            @elseif(Auth::user()->specialty_id == 1)
+
+            onclick="liveMoneyModal()" data-toggle="modal" data-target="#money" style="cursor:pointer"
+            @else
+            @endif
+            >
                 <div class="mt-2 px-2 bg-amber rounded text-dark">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="mb-3 supercell pt-2" style="text-align:center">
@@ -42,10 +49,21 @@
                                 $getSH = $getSH + $gp->price;
                             @endphp
                         @endforeach
+
+                        @if (Auth::user()->specialty_id == 9)
+                        <h5 style="font-weight:700">
+                            {{ number_format(getpdold(), 0, ',', ' ') }}
+                            <span style="font-size:14px">so'm</span>
+                        </h5>
+                        @elseif(Auth::user()->specialty_id == 1)
                         <h5 style="font-weight:700">
                             {{ number_format($item['maosh'] - $item['jarima'] + $getPD + $getP - $getSH, 0, ',', ' ') }}
                             <span style="font-size:14px">so'm</span>
                         </h5>
+                        @else
+                        @endif
+
+                        
                     </div>
                 </div>
             </div>
