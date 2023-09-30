@@ -1399,7 +1399,7 @@ if(!function_exists('ustozStajer')){
                     ->sum(DB::raw('number*price_product'));
 
             $ustoz_arr[$value] = $sold;
-            
+            // 'fdf'
         }
 
         arsort($ustoz_arr);
