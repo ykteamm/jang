@@ -38,10 +38,10 @@
                             <div class="col-3" style="border-left:1px solid #959690;">
                                 <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
                                     <div class="d-flex align-items-center">
-                                        <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                        <span title="{{$shogird[1]}}" style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
                                                                                                         {{ numb($shogird[1])}}
                                                                                                 </span>
-                                        <img src="http://127.0.0.1:8000/mobile/oltin.png" width="23px;" style="padding-left:3px">
+                                        <img src="{{asset('mobile/oltin.png')}}" width="23px;" style="padding-left:3px">
                                     </div>
                                 </button>
                             </div>
@@ -83,10 +83,10 @@
                                 <div class="col-3" style="border-left:1px solid #959690;">
                                     <button type="button" class="btn btn-sm btn-secondary supercell" style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width: 85px;height: 40px;">
                                         <div class="d-flex align-items-center">
-                                            <span style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
+                                            <span  title="{{$item['sum']}}" style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
                                                                                                             {{ numb($item['sum'])}}
                                                                                                     </span>
-                                            <img src="http://127.0.0.1:8000/mobile/oltin.png" width="23px;" style="padding-left:3px">
+                                            <img src="{{asset('mobile/oltin.png')}}" width="23px;" style="padding-left:3px">
                                         </div>
                                     </button>
                                 </div>
