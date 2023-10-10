@@ -31,8 +31,16 @@ class SoldController extends Controller
     }
     public function store(Request $request)
     {
+        
         $inputs = $request->all();
+        // $full_name = $inputs['full_name'];
+        // $phone = $inputs['phone_number'];
+
+        // dd($inputs);
         unset($inputs['_token']);
+        // unset($inputs['full_name']);
+        // unset($inputs['phone_number']);
+
         $firewall = 0;
         foreach ($inputs as $key => $value) {
             if($value !=0 )
@@ -55,23 +63,24 @@ class SoldController extends Controller
         ->where('active',1)
         ->value('pharma_id');
 
-        if(isset($inputs['phone_number']))
-        {
-            $phone = preg_replace("/[^0-9]/", '', $inputs['phone_number']);
-        }else{
-            $phone = null;
-        }
+        // if(isset($inputs['phone_number']))
+        // {
+        //     $phone = preg_replace("/[^0-9]/", '', $inputs['phone_number']);
+        // }else{
+        //     $phone = null;
+        // }
 
-        if(isset($inputs['full_name']))
-        {
-            $fio = $inputs['full_name'];
-        }else{
-            $fio = null;
-        }
+        // if(isset($inputs['full_name']))
+        // {
+        //     $fio = $inputs['full_name'];
+        // }else{
+        //     $fio = null;
+        // }
+
         // $fio = $inputs['full_name'];
         unset($inputs['_token']);
-        unset($inputs['phone_number']);
-        unset($inputs['full_name']);
+        // unset($inputs['phone_number']);
+        // unset($inputs['full_name']);
 
         $pharm_id = Shift::where('user_id',Auth::user()->id)
         ->whereDate('open_date',Carbon::now())
@@ -82,7 +91,7 @@ class SoldController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'user_id' => Auth::user()->id,
             'pharm_id' => $pharm_id,
-            // 'full_name' => $fio,
+            // 'full_name' => $full_name,
             // 'phone_number' => '+998'.$phone,
         ]);
 
@@ -106,19 +115,32 @@ class SoldController extends Controller
 
         // if($phone != NULL)
         // {
+        //     $response = Http::post('notify.eskiz.uz/api/auth/login', [
+        //         'email' => 'mubashirov2002@gmail.com',
+        //         'password' => 'PM4g0AWXQxRg0cQ2h4Rmn7Ysoi7IuzyMyJ76GuJa'
+        //     ]);
+        //     $token = $response['data']['token'];
+
+            
+
         //     if(myHost() == 127)
         //     {
         //         $message = 'Hurmatli mijoz bu sizning shaxsiy profilingiz. http://127.0.0.1:8000/'.$phone;
-        //         $this->sms($phone,$message);
         //     }elseif(myHost() == 192)
         //     {
         //         $message = 'Hurmatli mijoz bu sizning shaxsiy profilingiz. http://192.168.0.175:8000/'.'+998'.$phone;
-        //         $this->sms($phone,$message);
         //     }
         //     else{
         //         $message = 'Hurmatli mijoz bu sizning shaxsiy profilingiz. https://mijoz.novatio.uz/'.$phone;
-        //         $this->sms($phone,$message);
         //     }
+
+        //     $sms = Http::withToken($token)->post('notify.eskiz.uz/api/message/sms/send', [
+        //         'mobile_phone' => '998'.$phone,
+        //         'message' => $message,
+        //         'from' => '4546',
+        //         'callback_url' => 'http://0000.uz/test.php'
+        //     ]);
+
 
         // }
 

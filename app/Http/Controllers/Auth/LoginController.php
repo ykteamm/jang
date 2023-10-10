@@ -86,7 +86,6 @@ class LoginController extends Controller
             ->first();
 
 
-
         // $update = DB::table('tg_user')
         //     ->where('username', $request->username)->where('pr', $request->password)
         //     ->update([
@@ -108,8 +107,10 @@ class LoginController extends Controller
 
             if ($uuu->rm == 0) {
 
+
                 $teacher_user = TeacherUser::where('user_id', $user_id)->get();
                 if (count($teacher_user) == 1 && $uuu->status == 0) {
+
 
                     $shifts = Shift::whereDate('open_date', '<=', date('Y-m-d'))
                         ->whereDate('open_date', '>=', $teacher_user[0]->week_date)
@@ -232,7 +233,9 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
+
+        if ($this->attemptLoginP($request)) {
+
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -257,7 +260,7 @@ class LoginController extends Controller
 
         $user_id = User::where('pr', $request->password)->value('id');
 
-        // dd($user_id);
+        // Hash::make($academy->parol),
 
         if ($user_id) {
 
@@ -360,23 +363,28 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return bool
      */
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attempt(
-            $this->credentials($request),
-            $request->boolean('remember')
-        );
-    }
+    // protected function attemptLogin(Request $request)
+    // {
+    //     return $this->guard()->attempt(
+    //         $request->boolean('remember')
+    //     );
+    // }
 
     protected function attemptLoginP(Request $request)
     {
-        $username = User::where('pr',$request->password)->first()->username;
-        $arr = array('username' => $username,'password' => $request->password);
+
+        $username = User::where('pr',$request->password)->where('username',$request->usernam)->first();
+
+
+        // $arr = array('username' => $request->username,'password' => $request->password);
+
 
         // $this->credentialsProviz($request),
 
+
         return $this->guard()->attempt(
-            $arr,
+            $this->credentials($request),
+
             $request->boolean('remember')
         );
     }

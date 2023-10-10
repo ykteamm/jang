@@ -11,6 +11,7 @@
                 <div class="swiper-wrapper">
                     @include('w-component.profil')
                     @include('w-component.smena')
+                    {{-- @include('w-component.mijoz') --}}
                     @include('w-component.main')
 
                     @if (Auth::user()->status == 1)
