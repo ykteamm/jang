@@ -21,6 +21,8 @@ class Turnir extends Component
     public function turnir()
     {
 
+        $this->arrays = [];
+        
         $this->resime = 2;
 
         $teachers = MegaTurnirTeacher::all();
