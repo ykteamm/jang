@@ -27,6 +27,7 @@
             </div>
     </div>
 
+
     @include('modals.change-image')
     @include('modals.change-profil')
 
@@ -58,7 +59,11 @@
     @include('modals.recommendNews')
     @include('modals.showNw')
     @include('modals.exercise') 
+
     @include('modals.turnir')
+
+    @include('modals.mega-turnir-battle')
+
     @include('modals.history-kubok')
     @include('modals.history-crystal')
     @include('modals.history-karma')

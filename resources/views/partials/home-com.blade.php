@@ -44,7 +44,7 @@
                 var rekrut_count = <?php echo json_encode(count(getRekrut())); ?>;
                 if(rekrut_count > 0)
                 {
-                    $('.live-rekrut').click();
+                    // $('.live-rekrut').click();
                 }
         }, 1000);
         

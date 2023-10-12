@@ -28,7 +28,7 @@
     </div> --}}
     @endif
 
-    <img src="{{ asset('mobile/turnir/saroy1.png') }}" class="for-media-shox" width="230px" alt=""
+    <img src="{{ asset('mobile/turnir/mtlogo.webp') }}" class="for-media-shox" width="230px" alt=""
         style="margin-left:10px">
 
 </button>
