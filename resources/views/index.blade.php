@@ -62,6 +62,7 @@
 
     @include('modals.turnir')
 
+    @include('modals.mega-turnir-dori')
     @include('modals.mega-turnir-battle')
 
     @include('modals.history-kubok')

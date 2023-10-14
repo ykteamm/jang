@@ -73,9 +73,24 @@
         <div class="col-12 mt-1 mb-1" >
             <img src="{{asset('mobile/turnir/saroy.webp')}}" style="width:100%;" alt="">
         </div>
-        <div class="col-12 mt-1 mb-1" >
-            <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
+        <div class="row mt-1 mb-1 pl-3 pr-3" >
+                <div class="col-2" data-toggle="modal" data-target="#mega-turnir-dori">
+                    <img src="{{asset('mobile/turnir/dorioy.webp')}}" style="width:175%;" alt="">
+    
+                </div>
+                <div class="col-10">
+                    <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
+    
+                </div>
+            
         </div>
+        {{-- <div class="col-10 mt-1 mb-1" >
+                <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
+
+        </div> --}}
+        {{-- <div class="col-12 mt-1 mb-1" >
+            <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
+        </div> --}}
         <div class="col-12 mt-1 mb-1" >
             <img src="{{asset('mobile/turnir/qilich.webp')}}" style="width:100%;" alt="">
         </div>
