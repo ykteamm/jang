@@ -24,15 +24,17 @@ class MegaTurnirBattle extends Component
     {
         // $this->resime = 2;
 
-        $tour = 1;
-        $begin = '2023-10-12';
-        $end = '2023-10-15';
+        $tour = 2;
+        $begin = '2023-10-16';
+        $end = '2023-10-18';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->where('tour',$tour)
             ->where('ends',0)
-            ->whereDate('begin','<=',date('Y-m-d'))
-            ->whereDate('end','>=',date('Y-m-d'))
+            // ->whereDate('begin','<=',date('Y-m-d'))
+            // ->whereDate('end','>=',date('Y-m-d'))
+            ->whereDate('begin','=',$begin)
+            ->whereDate('end','=',$end)
             ->get();
 
 
@@ -58,8 +60,8 @@ class MegaTurnirBattle extends Component
         $team_battles = MegaTurnirTeamBattle::with('user1','user2')
             ->where('tour',$tour)
             ->where('ends',0)
-            ->whereDate('begin','<=',date('Y-m-d'))
-            ->whereDate('end','>=',date('Y-m-d'))
+            ->whereDate('begin','=',$begin)
+            ->whereDate('end','=',$end)
             ->get();
 
         $teacher_id = MegaTurnirTeacher::pluck('teacher_id')->toArray();
@@ -114,6 +116,7 @@ class MegaTurnirBattle extends Component
 
         $sums = array_column($this->team_battle_sold, 'sum');
         array_multisort($sums, SORT_DESC , $this->team_battle_sold);
+
 
     }
 

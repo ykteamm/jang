@@ -25,29 +25,63 @@ class Turnir extends Component
         
         $this->resime = 2;
 
-        $teachers = MegaTurnirTeacher::all();
+        // $teachers = MegaTurnirTeacher::all();
 
-        $user1 = MegaTurnirUserBattle::pluck('user1id')->toArray();
-        $user2 = MegaTurnirUserBattle::pluck('user2id')->toArray();
+        // $user1 = MegaTurnirUserBattle::pluck('user1id')->toArray();
+        // $user2 = MegaTurnirUserBattle::pluck('user2id')->toArray();
 
-        $ids = array_merge($user1,$user2);
+        // $ids = array_merge($user1,$user2);
 
-        $users = User::whereIn('id',$ids)->get();
+        // $users = User::whereIn('id',$ids)->get();
 
-        foreach ($teachers as $key => $value) {
-            $user = User::find($value->teacher_id);
-            $name = $user->first_name.' '.substr($user->last_name,0,1).' jamoasi';
-            $this->arrays[] = array('name' => $name,'ball' => 0);
-        }
+        // foreach ($teachers as $key => $value) {
+        //     $user = User::find($value->teacher_id);
+        //     $name = $user->first_name.' '.substr($user->last_name,0,1).' jamoasi';
+        //     $this->arrays[] = array('name' => $name,'ball' => 0);
+        // }
 
-        foreach ($users as $key => $value) {
+        // foreach ($users as $key => $value) {
 
-            $name = $value->first_name.' '.substr($value->last_name,0,1);
+        //     $name = $value->first_name.' '.substr($value->last_name,0,1);
 
-            $this->arrays[] = array('name' => $name,'ball' => 0);
-        }
+        //     $this->arrays[] = array('name' => $name,'ball' => 0);
+        // }
 
-        $sums = array_column($this->arrays, 'name');
+        $arr = [];
+
+
+        $arr[] = ['name' => 'Umidaxon O','ball' => 3];
+        $arr[] = ['name' => 'Dirabo N','ball' => 3];
+        $arr[] = ['name' => 'Elmira B','ball' => 0];
+        $arr[] = ['name' => 'Shaxnoza S','ball' => 3];
+        $arr[] = ['name' => 'Aziza N','ball' => 0];
+        $arr[] = ['name' => 'Qizlarxon T','ball' => 3];
+        $arr[] = ['name' => 'Zebo T','ball' => 0];
+        $arr[] = ['name' => 'Nigoraxon U','ball' => 3];
+        $arr[] = ['name' => 'Elmira U','ball' => 0];
+        $arr[] = ['name' => 'Babajanova J','ball' => 3];
+        $arr[] = ['name' => 'Oysanam M','ball' => 0];
+        $arr[] = ['name' => 'Aysuluw B','ball' => 0];
+        $arr[] = ['name' => 'Feruza S','ball' => 0];
+
+
+        $arr[] = ['name' => 'Guzal Y jamoasi','ball' => 1];
+        $arr[] = ['name' => 'Komolo I jamoasi','ball' => 3];
+        $arr[] = ['name' => 'Nargiza K jamoasi','ball' => 1];
+        $arr[] = ['name' => 'Marxabo G jamoasi','ball' => 0];
+        $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 3];
+        $arr[] = ['name' => 'Nilufar M jamoasi','ball' => 3];
+        $arr[] = ['name' => 'Shaxnoza X jamoasi','ball' => 0];
+
+
+        $arr[] = ['name' => 'Nargiza B jamoasi','ball' => 3];
+
+
+        $arr[] = ['name' => 'Dilfuza X','ball' => 0];
+
+        $this->arrays = $arr;
+
+        $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
     }
