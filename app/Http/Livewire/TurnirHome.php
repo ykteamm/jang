@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
+use App\Models\AllSold;
 use App\Models\MegaTurnirTeamBattle;
 use App\Models\MegaTurnirUserBattle;
 use App\Services\TurnirService;
@@ -85,16 +86,26 @@ class TurnirHome extends Component
             $this->team2images = $users_battles->user2->image_url;
 
 
-            $this->team1summa = DB::table('tg_productssold')->where('id',$users_battles->user1->id)
+            // $this->team1summa = DB::table('tg_productssold')->where('id',$users_battles->user1->id)
+            //     ->whereDate('created_at','>=','2023-10-16')
+            //     ->whereDate('created_at','<=','2023-10-18')
+            //     ->sum(DB::raw('price_product*number'));
+
+            // $this->team2summa = DB::table('tg_productssold')->where('id',$users_battles->user2->id)
+            //     ->whereDate('created_at','>=','2023-10-16')
+            //     ->whereDate('created_at','<=','2023-10-18')
+            //     ->sum(DB::raw('price_product*number'));
+            
+            $this->team1summa = AllSold::where('id',$users_battles->user1->id)
                 ->whereDate('created_at','>=','2023-10-16')
                 ->whereDate('created_at','<=','2023-10-18')
                 ->sum(DB::raw('price_product*number'));
-                
-            $this->team2summa = DB::table('tg_productssold')->where('id',$users_battles->user2->id)
+
+            $this->team2summa = AllSold::where('id',$users_battles->user2->id)
                 ->whereDate('created_at','>=','2023-10-16')
                 ->whereDate('created_at','<=','2023-10-18')
                 ->sum(DB::raw('price_product*number'));
-        
+
         }
 
         // dd($this->turnir);
