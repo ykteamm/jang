@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AllSold;
+use App\Models\MegaTurnirTeamBattle;
+use App\Models\MegaTurnirUserBattle;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Battle;
@@ -793,10 +795,51 @@ class HomeController extends Controller
         $videos = Video::where('publish', true)->where('category', 0)->orderBy('id', "DESC")->get();
         // $battleVideos = Video::where('publish', true)->where('category', 1)->orderBy('id', "DESC")->get();
         $infos = Info::where('publish', true)->orderBy('id', "DESC")->get();
-        $turnir = new TurnirService;
-        $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
+        // $turnir = new TurnirService;
+        // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
         
+        $userId = Auth::id();
+        $tour = 2;
+        $begin = '2023-10-16';
+        $end = '2023-10-18';
 
+        $users_battles = MegaTurnirUserBattle::with('user1','user2')
+        ->where('tour',$tour)
+        ->where('ends',0)
+        ->whereDate('begin','=',$begin)
+        ->whereDate('end','=',$end)
+        ->where(function($query) use ($userId){
+            $query->where('user1id',$userId)
+            ->orWhere('user2id',$userId);
+        })
+        ->first();
+
+        if(!$users_battles)
+        {
+            $users_battles = MegaTurnirTeamBattle::with('user1','user2')
+            ->where('tour',$tour)
+            ->where('ends',0)
+            ->whereDate('begin','=',$begin)
+            ->whereDate('end','=',$end)
+            ->where(function($query) use ($userId){
+                $query->where('user1id',$userId)
+                ->orWhere('user2id',$userId);
+            })
+            ->first();
+
+            if($users_battles)
+            {
+                $haveTurnirBattle = 1;
+            }else{
+                $haveTurnirBattle = 0;
+            }
+        }else{
+            $haveTurnirBattle = 1;
+
+        }
+
+
+        // return $haveTurnirBattle;
         $outerMarket = OuterMarket::all();
         $battle_yes = 'no';
         // return $my_battle;

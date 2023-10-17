@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\MegaTurnirTeamBattle;
+use App\Models\MegaTurnirUserBattle;
 use App\Models\TurnirGroup;
 use App\Models\TurnirMember;
 use App\Models\TurnirPoint;
@@ -420,13 +422,15 @@ class TurnirService
     }
     public function myTurnirBattle($userId)
     {
-        $teamId = TurnirMember::where('user_id', $userId)->whereDate('month',date('Y-m').'-01')->value('team_id');
-        return TurnirStanding::where(function ($q) use ($teamId) {
-            $q->where('team1_id', $teamId)
-                ->orWhere('team2_id', $teamId);
-        })->where('date_begin', '<=', $this->date)
-            ->where('date_end', '>=', $this->date)
-            ->first();
+        
+
+        // $teamId = TurnirMember::where('user_id', $userId)->whereDate('month',date('Y-m').'-01')->value('team_id');
+        // return TurnirStanding::where(function ($q) use ($teamId) {
+        //     $q->where('team1_id', $teamId)
+        //         ->orWhere('team2_id', $teamId);
+        // })->where('date_begin', '<=', $this->date)
+        //     ->where('date_end', '>=', $this->date)
+        //     ->first();
     }
     public function team1ksb()
     {

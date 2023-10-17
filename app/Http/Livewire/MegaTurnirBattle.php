@@ -56,6 +56,7 @@ class MegaTurnirBattle extends Component
         $sums = array_column($this->user_battle_sold, 'sum');
         array_multisort($sums, SORT_DESC , $this->user_battle_sold);
 
+        // dd($this->user_battle_sold);
 
         $team_battles = MegaTurnirTeamBattle::with('user1','user2')
             ->where('tour',$tour)
@@ -116,7 +117,6 @@ class MegaTurnirBattle extends Component
 
         $sums = array_column($this->team_battle_sold, 'sum');
         array_multisort($sums, SORT_DESC , $this->team_battle_sold);
-
 
     }
 

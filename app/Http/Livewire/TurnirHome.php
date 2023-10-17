@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
+use App\Models\MegaTurnirTeamBattle;
+use App\Models\MegaTurnirUserBattle;
 use App\Services\TurnirService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TurnirHome extends Component
@@ -23,17 +26,70 @@ class TurnirHome extends Component
     {
         $service = new TurnirService;
         $service->getUserProfile(Auth::id());
-        $this->tour = $service->tour->tour;
-        $this->tourTitle = $service->tour->title;
-        $this->turnir = $service->turnirbattle;
-        $this->team1images = $service->team1images();
-        $this->team2images = $service->team2images();
-        $this->team1names = $service->team1names();
-        $this->team2names = $service->team2names();
-        $this->team1summa = $service->team1summa();
-        $this->team2summa = $service->team2summa();
-        $this->team1ksb = $service->team1ksb();
-        $this->team2ksb = $service->team2ksb();
+        // $this->tour = $service->tour->tour;
+        $this->tourTitle = 'dsdsdsdsdsd';
+       
+        $this->team2images = 'https://wallpapercave.com/wp/wp5504863.jpg';
+        
+        
+
+        $userId = Auth::id();
+        $this->tour = 2;
+        $begin = '2023-10-16';
+        $end = '2023-10-18';
+
+        $users_battles = MegaTurnirUserBattle::with('user1','user2')
+        ->where('tour',$this->tour)
+        ->where('ends',0)
+        ->whereDate('begin','=',$begin)
+        ->whereDate('end','=',$end)
+        ->where(function($query) use ($userId){
+            $query->where('user1id',$userId)
+            ->orWhere('user2id',$userId);
+        })
+        ->first();
+
+        if($users_battles)
+        {
+            $this->turnir = true;
+            
+        }else{
+            $users_battles = MegaTurnirTeamBattle::with('user1','user2')
+            ->where('tour',$this->tour)
+            ->where('ends',0)
+            ->whereDate('begin','=',$begin)
+            ->whereDate('end','=',$end)
+            ->where(function($query) use ($userId){
+                $query->where('user1id',$userId)
+                ->orWhere('user2id',$userId);
+            })
+            ->first();
+
+            if($users_battles)
+            {
+                $this->turnir = true;
+            }else{
+                $this->turnir = false;
+            }
+        }
+
+        // $this->team1names = 'dasd';
+        // dd($this->turnir);
+        if($this->turnir)
+        {
+
+            $this->team1names = $users_battles->user1->first_name;
+            $this->team2names = $users_battles->user2->first_name;
+
+            $this->team1images = $users_battles->user1->image_url;
+            $this->team2images = $users_battles->user2->image_url;
+
+
+            $this->team1summa = DB::table('tg_productssold')->where('id',$users_battles->user1->id)->sum(DB::raw('price_product*number'));
+            $this->team2summa = DB::table('tg_productssold')->where('id',$users_battles->user2->id)->sum(DB::raw('price_product*number'));
+        
+        }
+
         // dd($this->turnir);
         // dd($this->team1names);
         // dd($this->team1summa);

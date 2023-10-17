@@ -257,7 +257,7 @@
 
             @if (Auth::user()->status == 1)
                 @if (count(getOneMonthUser()) == 0)
-                    @if ($haveTurnirBattle)
+                    @if ($haveTurnirBattle == 1)
                         <livewire:turnir-home>
                     @else
                         @if ($battle_yes == 'end' || $battle_yes == 'no')
@@ -561,7 +561,7 @@
                         @endif
                     @endif
                 @else
-                    @if ($haveTurnirBattle)
+                    @if ($haveTurnirBattle == 1)
                         <livewire:turnir-home>
                         @else
                             @if ($battle_yes == 'end' || $battle_yes == 'no')

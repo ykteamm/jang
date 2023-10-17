@@ -10,29 +10,26 @@
                             box-shadow: 0px 1px 17px 5px #ff0000; @endif
                             ">
                     <div>
-                        <img src="{{ $team1images[0]->image_url }}" alt="">
-                    </div>
-                    <div>
-                        <img src="{{ $team1images[1]->image_url }}" alt="">
+                        <img src="{{ $team1images}}" alt="">
                     </div>
                 </div>
                 <div class="text-white mt-4 supercell text-font for-name">
-                    {{ $team1names[0]->first_name }}
-                    {{ substr($team1names[0]->last_name, 0, 1) }}
+                    {{ $team1names }}
+                    {{ substr($team1names, 0, 1) }}
                 </div>
-                <div class="text-white mt-1 supercell text-font for-name">
-                    {{ $team1names[1]->first_name }}
-                    {{ substr($team1names[1]->last_name, 0, 1) }}
-                </div>
+                {{-- <div class="text-white mt-1 supercell text-font for-name">
+                    {{ $team1names }}
+                    {{ substr($team1names, 0, 1) }}
+                </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team1summa) }}</span>
                     </div>
-                    <div class="mt-1 d-flex align-items-center justify-content-center">
+                    {{-- <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ $team1ksb }}</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="userimage2">
@@ -42,30 +39,27 @@
                             box-shadow: 0px 1px 17px 5px #ff0000; @endif
                             ">
                     <div>
-                        <img src="{{ $team2images[0]->image_url }}" alt="">
-                    </div>
-                    <div>
-                        <img src="{{ $team2images[1]->image_url }}" alt="">
+                        <img src="{{ $team2images }}" alt="">
                     </div>
                 </div>
 
                 <div class="text-white mt-4 supercell text-font for-name">
-                    {{ $team2names[0]->first_name }}
-                    {{ substr($team2names[0]->last_name, 0, 1) }}
+                    {{ $team2names }}
+                    {{ substr($team2names, 0, 1) }}
                 </div>
-                <div class="text-white mt-1 supercell text-font for-name">
-                    {{ $team2names[1]->first_name }}
-                    {{ substr($team2names[1]->last_name, 0, 1) }}
-                </div>
+                {{-- <div class="text-white mt-1 supercell text-font for-name">
+                    {{ $team2names }}
+                    {{ substr($team2names, 0, 1) }}
+                </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team2summa) }}</span>
                     </div>
-                    <div class="mt-1 d-flex align-items-center justify-content-center">
+                    {{-- <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ $team2ksb }}</span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -110,11 +104,11 @@
 
                     .teamprof div {
                         overflow: hidden;
-                        width: 50%;
+                        /* width: 50%; */
                     }
 
                     .teamprof div img {
-                        transform: translateX(-40%);
+                        /* transform: translateX(-40%); */
                         width: 100px;
                     }
 
