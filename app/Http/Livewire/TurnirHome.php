@@ -85,8 +85,14 @@ class TurnirHome extends Component
             $this->team2images = $users_battles->user2->image_url;
 
 
-            $this->team1summa = DB::table('tg_productssold')->where('id',$users_battles->user1->id)->sum(DB::raw('price_product*number'));
-            $this->team2summa = DB::table('tg_productssold')->where('id',$users_battles->user2->id)->sum(DB::raw('price_product*number'));
+            $this->team1summa = DB::table('tg_productssold')->where('id',$users_battles->user1->id)
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('price_product*number'));
+            $this->team2summa = DB::table('tg_productssold')->where('id',$users_battles->user2->id)
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('price_product*number'));
         
         }
 
