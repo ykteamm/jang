@@ -335,7 +335,7 @@
                                     Jamoasidan
                                 </div>
                                 <div class="text-white mt-1 supercell turnir-all-text">
-                                    {{-- {{ $battle['user2']->first_name }} {{ substr($battle['user2']->last_name, 0, 1) }} --}}
+                                    {{ $battle['user2']->first_name }} {{ substr($battle['user2']->last_name, 0, 1) }}
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
