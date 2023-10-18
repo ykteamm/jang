@@ -43,7 +43,7 @@ class TurnirHome extends Component
         ->where('tour',$this->tour)
         ->where('ends',0)
         ->whereDate('begin','=',$begin)
-        ->whereDate('end','=',$end)
+        ->whereDate('end','<=',$end)
         ->where(function($query) use ($userId){
             $query->where('user1id',$userId)
             ->orWhere('user2id',$userId);
@@ -59,7 +59,7 @@ class TurnirHome extends Component
             ->where('tour',$this->tour)
             ->where('ends',0)
             ->whereDate('begin','=',$begin)
-            ->whereDate('end','=',$end)
+            ->whereDate('end','<=',$end)
             ->where(function($query) use ($userId){
                 $query->where('user1id',$userId)
                 ->orWhere('user2id',$userId);
