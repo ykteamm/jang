@@ -62,7 +62,7 @@ class MegaTurnirBattle extends Component
             ->where('tour',$tour)
             ->where('ends',0)
             ->whereDate('begin','=',$begin)
-            ->whereDate('end','=',$end)
+            ->whereDate('end','<=',$end)
             ->get();
 
         $teacher_id = MegaTurnirTeacher::pluck('teacher_id')->toArray();
