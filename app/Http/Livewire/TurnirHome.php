@@ -37,7 +37,7 @@ class TurnirHome extends Component
         $userId = Auth::id();
         $this->tour = 2;
         $begin = '2023-10-16';
-        $end = '2023-10-18';
+        $end = '2023-10-19';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$this->tour)
