@@ -107,7 +107,7 @@
 <div class="container-fluid h-100 loader-display">
     <div class="row h-100 main-loader">
         <div class="main-loader-image">
-            <img style="width:100%" src="https://jang.novatio.uz/product/loader.webp" alt="IMg">
+            <img style="width:100%" src="{{ asset('mobile/turnir/loader.webp') }}" alt="IMg">
             {{-- <img style="width:100%" src="http://127.0.0.1:8000/product/loader.jpg" alt="IMg"> --}}
             {{-- <div class="novatio-brand-image">
                 <img style="width:60%" src="{{ asset('mobile/load-brand.webp') }}" alt="IMg">
