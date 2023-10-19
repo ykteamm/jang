@@ -799,9 +799,9 @@ class HomeController extends Controller
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
         
         $userId = Auth::id();
-        $tour = 2;
-        $begin = '2023-10-16';
-        $end = '2023-10-19';
+        $tour = 3;
+        $begin = '2023-10-19';
+        $end = '2023-10-21';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$tour)

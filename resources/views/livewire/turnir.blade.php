@@ -28,17 +28,15 @@
                 -1px -1px 0 #000;
         }
     </style>
-    <div class="modal-header p-0" style="position:relative;height:90px;background:#384b5e">
-        <button type="button" class="close" data-dismiss="modal" aria-label="allNews"
-            style="opacity: 5;position:absolute;top:8px;right:10px;z-index:20">
-            <img src="{{ asset('mobile/news/close.png') }}" width="30px">
-        </button>
-        <div class="supercell d-flex align-items-center justify-content-center"
-            style="position:absolute;top:0px;left:0;right:0;font-size:22px">
-            <div class="pl-4 text-white pt-2"
-                style="text-shadow: -1px 4px 0 #000, 3px 1px 0 #000, 3px -1px 0 #000, -1px -1px 0 #000">
-                MEGA TURNIR</div>
+    <div class="modal-header p-0" style="position:relative;background:#384b5e">
+        <div class="container p-0"
+            style="background: #2d6ace;border-top:5px solid #e3b456;border-bottom:5px solid #e3b456">
+            <span class="supercell text-white pl-3" style="font-size:25px;">MEGA TURNIR</span>
         </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            style="opacity: 5;position:absolute;top:8px;right:10px;">
+            <img src="{{ asset('mobile/xclose.png') }}" width="30px">
+        </button>
         <script>
             function changeTab1() {
                 let tab1 = document.querySelector(`#turnirTab1`)
@@ -62,7 +60,6 @@
                 tabmain2.classList.remove('d-none')
             }
         </script>
-        <div style="position:absolute;height:1px;top:86px;background:#74d5ff;width:100%"></div>
     </div>
 
         
@@ -70,32 +67,48 @@
 
     <div class="col-12" style="background-image: url(/promo/dist/img/promo/bg2.png);">
         
+
         <div class="col-12 mt-1 mb-1" >
             <img src="{{asset('mobile/turnir/saroy.webp')}}" style="width:100%;" alt="">
         </div>
-        <div class="row mt-1 mb-1 pl-3 pr-3" >
-                <div class="col-2" data-toggle="modal" data-target="#mega-turnir-dori">
-                    <img src="{{asset('mobile/turnir/dorioy.webp')}}" style="width:175%;" alt="">
-    
-                </div>
-                <div class="col-10">
-                    <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
-    
-                </div>
-            
-        </div>
-        {{-- <div class="col-10 mt-1 mb-1" >
-                <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
 
-        </div> --}}
-        {{-- <div class="col-12 mt-1 mb-1" >
-            <img src="{{asset('mobile/turnir/sovrin.webp')}}" style="width:100%;" alt="">
-        </div> --}}
-        <div class="col-12 mt-1 mb-1" >
-            <img src="{{asset('mobile/turnir/qilich.webp')}}" style="width:100%;" alt="">
+        <script>
+            var dday = <?php echo json_encode(date('d', strtotime('2023-10-27'))); ?>;
+            var dname = <?php echo json_encode(date('F', strtotime('2023-10-27'))); ?>;
+            var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
+
+            var x = setInterval(function() {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("count-timer-day").innerHTML = days;
+                document.getElementById("count-timer-hour").innerHTML = hours;
+                document.getElementById("count-timer-minut").innerHTML = minutes;
+            }, 1000);
+
+            var countDownDate2 = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
+        </script>
+        <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">
+            <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
+                style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
+                <img src="{{asset('mobile/turnir/dorioy.webp')}}" style="width:15%;margin-right: 15px;" alt="">
+
+                <span class="text-center" id="count-timer-day" style="font-size: 25px;"></span>
+                <span style="font-size: 15px;">k :</span>
+                <span class="text-center" id="count-timer-hour" style="font-size: 25px;"></span>
+                <span style="font-size: 15px;">s :</span>
+                <span class="text-center" id="count-timer-minut" style="font-size: 25px;"></span>
+                <span style="font-size: 15px;">m</span>
+            </div>
         </div>
         <div class="col-12 mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-battle">
-            <img src="{{asset('mobile/turnir/battle.webp')}}" style="width:100%;" alt="">
+            <img src="{{asset('mobile/turnir/battle.webp')}}" style="width:100%;" height="60px" alt="">
         </div>
         
 
@@ -106,10 +119,10 @@
         </div> --}}
 
 
-        <div class="border-0 mb-3" data-toggle="modal" data-target="#region-profil">
+        <div class="border-0 mb-3">
             <div class="card-body" class="pr-0"
                 style="background:none;">
-                <div class="supercell text-center mb-4" style="color:rgb(255, 255, 255)">Jangchilar</div>
+                {{-- <div class="supercell text-center mb-4" style="color:rgb(255, 255, 255)">Jangchilar</div> --}}
 
                 
                 <style>

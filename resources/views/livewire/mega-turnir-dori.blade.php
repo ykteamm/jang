@@ -81,7 +81,7 @@
         </div> --}}
 
 
-        <div class="border-0 mb-3" data-toggle="modal" data-target="#region-profil">
+        <div class="border-0 mb-3">
             <div class="card-body" class="pr-0"
                 style="background:none;">
                 <div class="supercell text-center mb-4" style="color:rgb(255, 255, 255)">Reyting</div>
@@ -145,7 +145,7 @@
                                 style="background:{{$katak}}">
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
                                     {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
-                                    {{$team['ball']}} ball
+                                    {{$team['ball']}} dona
                                 </div>
                             </div>
                             {{-- <div class="col-3 text-center p-0" style="padding-right: 4px !important;">
@@ -201,7 +201,7 @@
                                 style="background:{{$katak}}">
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
                                     {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
-                                    {{$team['ball']}} ball
+                                    {{$team['ball']}} dona
                                 </div>
                             </div>
                             {{-- <div class="col-3 text-center p-0" style="padding-right: 4px !important;">

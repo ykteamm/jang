@@ -85,7 +85,6 @@ class LoginController extends Controller
             ->where('pr', $request->password)
             ->first();
 
-
         // $update = DB::table('tg_user')
         //     ->where('username', $request->username)->where('pr', $request->password)
         //     ->update([
@@ -373,17 +372,21 @@ class LoginController extends Controller
     protected function attemptLoginP(Request $request)
     {
 
-        $username = User::where('pr',$request->password)->where('username',$request->usernam)->first();
+
+        $username = User::where('pr',$request->password)->where('username',$request->username)->first();
+
+        // dd($username);
 
 
-        // $arr = array('username' => $request->username,'password' => $request->password);
+        $arr = array('id' => $username->id,'password' => $request->password);
 
 
         // $this->credentialsProviz($request),
 
 
         return $this->guard()->attempt(
-            $this->credentials($request),
+
+            $arr,
 
             $request->boolean('remember')
         );

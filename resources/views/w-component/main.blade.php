@@ -177,7 +177,7 @@
                                     SINOV
                                 </button>
                             </div>
-                            <div class="col-6 pl-0 pr-0" style="position: relative">
+                            <div class="col-12" style="position: relative">
                                 {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
                                     Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
                                     0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
@@ -203,7 +203,7 @@
                             </div> --}}
                         @else
                             @if (Auth::user()->status == 1)
-                                <div class="col-6 pl-0 pr-0" style="position: relative">
+                                <div class="col-12" style="position: relative">
                                     {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
                                         Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
                                         0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
@@ -215,7 +215,7 @@
                                     <livewire:turnir-button>
                                 </div>
                             @else
-                                <div class="col-6 pl-0 pr-0" style="position: relative">
+                                <div class="col-12" style="position: relative">
                                     {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
                                         Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
                                         0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
@@ -232,7 +232,7 @@
                                 
                             @endif --}}
                         @endif
-                        <div class="col-6 pl-0 pr-0" style="position: relative">
+                        {{-- <div class="col-6 pl-0 pr-0" style="position: relative">
                             <div>
                                 <button style="position: absolute;top:-18px;right:-13px;z-index:10000"
                                     type="button" class="for-media-task-btn btn pl-0" data-toggle="modal"
@@ -245,7 +245,7 @@
                             <div style="padding-top:35px">
                                 <livewire:news-button>
                             </div>
-                        </div>
+                        </div> --}}
                         <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal"
                             data-target="#openkingcheck">
                             Ko'rish
