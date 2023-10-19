@@ -35,9 +35,9 @@ class TurnirHome extends Component
         
 
         $userId = Auth::id();
-        $this->tour = 2;
-        $begin = '2023-10-16';
-        $end = '2023-10-19';
+        $this->tour = 3;
+        $begin = '2023-10-19';
+        $end = '2023-10-21';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$this->tour)
@@ -97,13 +97,13 @@ class TurnirHome extends Component
             //     ->sum(DB::raw('price_product*number'));
             
             $this->team1summa = AllSold::where('user_id',$users_battles->user1->id)
-                ->whereDate('created_at','>=','2023-10-16')
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','>=','2023-10-19')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('price_product*number'));
 
             $this->team2summa = AllSold::where('user_id',$users_battles->user2->id)
-                ->whereDate('created_at','>=','2023-10-16')
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','>=','2023-10-19')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('price_product*number'));
 
         }

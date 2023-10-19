@@ -24,9 +24,9 @@ class MegaTurnirBattle extends Component
     {
         // $this->resime = 2;
 
-        $tour = 2;
-        $begin = '2023-10-16';
-        $end = '2023-10-19';
+        $tour = 3;
+        $begin = '2023-10-19';
+        $end = '2023-10-23';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->where('tour',$tour)
@@ -41,12 +41,12 @@ class MegaTurnirBattle extends Component
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
                 ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
                 ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('number*price_product'));
             $user1 = $value->user1;
             $user2 = $value->user2;
@@ -72,12 +72,12 @@ class MegaTurnirBattle extends Component
 
             $sold1 = AllSold::where('user_id',$value->user1id)
                 ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
                 ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=','2023-10-18')
+                ->whereDate('created_at','<=','2023-10-21')
                 ->sum(DB::raw('number*price_product'));
 
             $user1 = $value->user1;
