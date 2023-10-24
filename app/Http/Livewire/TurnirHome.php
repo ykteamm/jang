@@ -28,7 +28,7 @@ class TurnirHome extends Component
         $service = new TurnirService;
         $service->getUserProfile(Auth::id());
         // $this->tour = $service->tour->tour;
-        $this->tourTitle = 'dsdsdsdsdsd';
+        $this->tourTitle = '4';
        
         $this->team2images = 'https://wallpapercave.com/wp/wp5504863.jpg';
         
