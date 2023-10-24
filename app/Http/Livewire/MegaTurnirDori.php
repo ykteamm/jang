@@ -30,12 +30,12 @@ class MegaTurnirDori extends Component
         $teachers = MegaTurnirTeacher::with('teacher_shogird')->get();
 
 
+
         $user1 = MegaTurnirUserBattle::pluck('user1id')->toArray();
         $user2 = MegaTurnirUserBattle::pluck('user2id')->toArray();
 
         $ids = array_merge($user1,$user2);
 
-        $users = User::whereIn('id',$ids)->get();
 
         foreach ($teachers as $key => $value) {
             $idf = [];
@@ -55,6 +55,9 @@ class MegaTurnirDori extends Component
             $name = $user->first_name.' '.substr($user->last_name,0,1).' jamoasi';
             $this->arrays[] = array('name' => $name,'ball' => $sold1/count($idf));
         }
+
+        $users = User::whereIn('id',$ids)->whereNotIn('id',$idf)->get();
+
 
         foreach ($users as $key => $value) {
 
