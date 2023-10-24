@@ -36,14 +36,19 @@ class MegaTurnirDori extends Component
 
         $ids = array_merge($user1,$user2);
 
+        $igh = [];
+        $ighust = [];
 
         foreach ($teachers as $key => $value) {
             $idf = [];
             foreach ($value->teacher_shogird as $j => $k) {
                 $idf[] = $k->shogird_id;
+                $igh[] = $k->teacher_id;
+
             }
 
             $idf[] = $value->teacher_id;
+            $ighust[] = $value->teacher_id;
 
             $sold1 = AllSold::whereIn('user_id',$idf)
                 ->whereDate('created_at','>=','2023-10-19')
@@ -58,11 +63,15 @@ class MegaTurnirDori extends Component
 
         $users = User::whereIn('id',$ids)->get();
 
+        $ids333 = array_merge($ighust,$igh);
+
 
         foreach ($users as $key => $value) {
 
-            if(!in_array($value->id,$idf))
+            if(in_array($value->id,$ids333))
             {
+                
+            }else{
                 $name = $value->first_name.' '.substr($value->last_name,0,1);
 
                 $sold1 = AllSold::where('user_id',$value->id)
