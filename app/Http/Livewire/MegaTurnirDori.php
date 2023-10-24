@@ -56,20 +56,24 @@ class MegaTurnirDori extends Component
             $this->arrays[] = array('name' => $name,'ball' => $sold1/count($idf));
         }
 
-        $users = User::whereIn('id',$ids)->whereNotIn('id',$idf)->get();
+        $users = User::whereIn('id',$ids)->get();
 
 
         foreach ($users as $key => $value) {
 
-            $name = $value->first_name.' '.substr($value->last_name,0,1);
+            if(!in_array($value->id,$idf))
+            {
+                $name = $value->first_name.' '.substr($value->last_name,0,1);
 
-            $sold1 = AllSold::where('user_id',$value->id)
-                ->whereDate('created_at','>=','2023-10-19')
-                ->whereDate('created_at','<=','2023-10-26')
-                ->where('medicine_id',29)
-                ->sum('number');
-
-            $this->arrays[] = array('name' => $name,'ball' => $sold1);
+                $sold1 = AllSold::where('user_id',$value->id)
+                    ->whereDate('created_at','>=','2023-10-19')
+                    ->whereDate('created_at','<=','2023-10-26')
+                    ->where('medicine_id',29)
+                    ->sum('number');
+    
+                $this->arrays[] = array('name' => $name,'ball' => $sold1);
+            }
+            
         }
 
         $sums = array_column($this->arrays, 'ball');
