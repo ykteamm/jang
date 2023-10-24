@@ -47,7 +47,7 @@ class MegaTurnirDori extends Component
 
             $sold1 = AllSold::whereIn('user_id',$idf)
                 ->whereDate('created_at','>=','2023-10-19')
-                ->whereDate('created_at','<=','2023-10-23')
+                ->whereDate('created_at','<=','2023-10-26')
                 ->where('medicine_id',29)
                 ->sum('number');
 
@@ -62,7 +62,7 @@ class MegaTurnirDori extends Component
 
             $sold1 = AllSold::where('user_id',$value->id)
                 ->whereDate('created_at','>=','2023-10-19')
-                ->whereDate('created_at','<=','2023-10-23')
+                ->whereDate('created_at','<=','2023-10-26')
                 ->where('medicine_id',29)
                 ->sum('number');
 

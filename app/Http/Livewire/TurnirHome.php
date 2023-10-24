@@ -35,15 +35,17 @@ class TurnirHome extends Component
         
 
         $userId = Auth::id();
-        $this->tour = 3;
-        $begin = '2023-10-19';
-        $end = '2023-10-23';
+        $this->tour = 4;
+        $begin = '2023-10-24';
+        $end = '2023-10-26';
+
+        $soldd = '2023-10-27';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$this->tour)
         ->where('ends',0)
         ->whereDate('begin','=',$begin)
-        ->whereDate('end','<=',$end)
+        ->whereDate('end','=',$end)
         ->where(function($query) use ($userId){
             $query->where('user1id',$userId)
             ->orWhere('user2id',$userId);
@@ -59,7 +61,7 @@ class TurnirHome extends Component
             ->where('tour',$this->tour)
             ->where('ends',0)
             ->whereDate('begin','=',$begin)
-            ->whereDate('end','<=',$end)
+            ->whereDate('end','=',$end)
             ->where(function($query) use ($userId){
                 $query->where('user1id',$userId)
                 ->orWhere('user2id',$userId);
@@ -97,13 +99,13 @@ class TurnirHome extends Component
             //     ->sum(DB::raw('price_product*number'));
             
             $this->team1summa = AllSold::where('user_id',$users_battles->user1->id)
-                ->whereDate('created_at','>=','2023-10-24')
-                ->whereDate('created_at','<=','2023-10-26')
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
                 ->sum(DB::raw('price_product*number'));
 
             $this->team2summa = AllSold::where('user_id',$users_battles->user2->id)
-                ->whereDate('created_at','>=','2023-10-24')
-                ->whereDate('created_at','<=','2023-10-26')
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
                 ->sum(DB::raw('price_product*number'));
 
         }

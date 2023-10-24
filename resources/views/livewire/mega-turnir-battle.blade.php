@@ -42,12 +42,12 @@
         </div>
         <div style="position: absolute; bottom:3px;left:0;right:0">
             <ul class="mx-1 navbar-nav flex-row align-items-center justify-content-around">
-                <li onclick="megachangeTab1()" id="megaturnirTab1" class="nav-item news-menu-item active">
+                {{-- <li onclick="megachangeTab1()" id="megaturnirTab1" class="nav-item news-menu-item active">
                     <a class="nav-link p-0 text-white supercell" href="#">Jamoa</a>
-                </li>
-                <li onclick="megachangeTab2()" id="megaturnirTab2" class="nav-item news-menu-item">
+                </li> --}}
+                {{-- <li onclick="megachangeTab2()" id="megaturnirTab2" class="nav-item news-menu-item active">
                     <a class="nav-link p-0 text-white supercell" href="#">Jangchi</a>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <script>
@@ -75,7 +75,7 @@
         </script>
         <div style="position:absolute;height:1px;top:86px;background:#74d5ff;width:100%"></div>
     </div>
-    <div id="megaturnir2tab" class="modal-body p-0 d-none">
+    <div id="megaturnir1tab" class="modal-body p-0">
         <div class="col-12 mt-1 mb-1">
                 @foreach ($user_battle_sold as $key => $battle)
                     @if ($key == 0)
@@ -273,7 +273,7 @@
             </style>
         </div>
     </div>
-        <div id="megaturnir1tab" class="modal-body p-0">
+        <div id="megaturnir2tab" class="modal-body p-0 d-none">
             <div class="col-12 mt-1 mb-1">
                 @foreach ($team_battle_sold as $key => $battle)
                     @if ($key == 0)

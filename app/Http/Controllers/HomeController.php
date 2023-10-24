@@ -799,15 +799,18 @@ class HomeController extends Controller
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
         
         $userId = Auth::id();
-        $tour = 3;
-        $begin = '2023-10-19';
-        $end = '2023-10-23';
+        $tour = 4;
+        $begin = '2023-10-24';
+        $end = '2023-10-26';
+
+        $soldd = '2023-10-27';
+
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$tour)
         ->where('ends',0)
         ->whereDate('begin','=',$begin)
-        ->whereDate('end','<=',$end)
+        ->whereDate('end','=',$end)
         ->where(function($query) use ($userId){
             $query->where('user1id',$userId)
             ->orWhere('user2id',$userId);
@@ -820,7 +823,7 @@ class HomeController extends Controller
             ->where('tour',$tour)
             ->where('ends',0)
             ->whereDate('begin','=',$begin)
-            ->whereDate('end','<=',$end)
+            ->whereDate('end','=',$end)
             ->where(function($query) use ($userId){
                 $query->where('user1id',$userId)
                 ->orWhere('user2id',$userId);
