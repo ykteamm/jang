@@ -35,7 +35,7 @@ class TurnirHome extends Component
         
 
         $userId = Auth::id();
-        $this->tour = 4;
+        $this->tour = 3;
         $begin = '2023-10-19';
         $end = '2023-10-24';
 
