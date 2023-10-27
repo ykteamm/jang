@@ -51,8 +51,8 @@ class MegaTurnirDori extends Component
             $ighust[] = $value->teacher_id;
 
             $sold1 = AllSold::whereIn('user_id',$idf)
-                ->whereDate('created_at','>=','2023-10-19')
-                ->whereDate('created_at','<=','2023-10-26')
+                ->whereDate('created_at','>=','2023-10-27')
+                ->whereDate('created_at','<=','2023-11-02')
                 ->where('medicine_id',29)
                 ->sum('number');
 
