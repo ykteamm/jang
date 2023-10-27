@@ -14,8 +14,8 @@
                     </div>
                 </div>
                 <div class="text-white mt-4 supercell text-font for-name">
-                    {{ $team1names }}
-                    {{ substr($team1names, 0, 1) }}
+                    {{ $team1names->first_name }}
+                    {{ substr($team1names->last_name, 0, 1) }}
                 </div>
                 {{-- <div class="text-white mt-1 supercell text-font for-name">
                     {{ $team1names }}
@@ -44,8 +44,8 @@
                 </div>
 
                 <div class="text-white mt-4 supercell text-font for-name">
-                    {{ $team2names }}
-                    {{ substr($team2names, 0, 1) }}
+                    {{ $team2names->first_name }}
+                    {{ substr($team2names->last_name, 0, 1) }}
                 </div>
                 {{-- <div class="text-white mt-1 supercell text-font for-name">
                     {{ $team2names }}

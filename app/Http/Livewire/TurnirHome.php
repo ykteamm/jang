@@ -81,8 +81,8 @@ class TurnirHome extends Component
         if($this->turnir)
         {
 
-            $this->team1names = $users_battles->user1->first_name;
-            $this->team2names = $users_battles->user2->first_name;
+            $this->team1names = $users_battles->user1;
+            $this->team2names = $users_battles->user2;
 
             $this->team1images = $users_battles->user1->image_url;
             $this->team2images = $users_battles->user2->image_url;
