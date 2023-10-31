@@ -373,11 +373,12 @@ class LoginController extends Controller
     {
 
 
+        $username = User::where('pr',$request->password)->where('username',$request->username)->first();
 
         // dd($username);
 
 
-        $arr = array('password' => $request->password);
+        $arr = array('id' => $username->id,'password' => $request->password);
 
 
         // $this->credentialsProviz($request),
@@ -395,12 +396,12 @@ class LoginController extends Controller
     {
 
 
-        $username = User::where('pr',$request->password)->where('username',$request->username)->first();
+        $username = User::where('pr',$request->password)->first();
 
         // dd($username);
 
 
-        $arr = array('id' => $username->id,'password' => $request->password);
+        $arr = array('password' => $request->password);
 
 
         // $this->credentialsProviz($request),
