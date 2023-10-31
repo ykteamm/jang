@@ -85,11 +85,11 @@ class LoginController extends Controller
             ->where('pr', $request->password)
             ->first();
 
-        // $update = DB::table('tg_user')
-        //     ->where('username', $request->username)->where('pr', $request->password)
-        //     ->update([
-        //         'password' => Hash::make($request->password),
-        //     ]);
+        $update = DB::table('tg_user')
+            ->where('username', $request->username)->where('pr', $request->password)
+            ->update([
+                'password' => Hash::make($request->password),
+            ]);
 
 
         if ($uuu) {
