@@ -324,7 +324,7 @@ class LoginController extends Controller
         }
 
 
-        if ($this->attemptLoginP($request)) {
+        if ($this->attemptLoginProv($request)) {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -370,6 +370,28 @@ class LoginController extends Controller
     // }
 
     protected function attemptLoginP(Request $request)
+    {
+
+
+
+        // dd($username);
+
+
+        $arr = array('password' => $request->password);
+
+
+        // $this->credentialsProviz($request),
+
+
+        return $this->guard()->attempt(
+
+            $arr,
+
+            $request->boolean('remember')
+        );
+    }
+
+    protected function attemptLoginProv(Request $request)
     {
 
 
