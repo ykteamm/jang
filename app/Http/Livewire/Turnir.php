@@ -59,7 +59,7 @@ class Turnir extends Component
         $arr[] = ['name' => 'Zebo T','ball' => 0];
         $arr[] = ['name' => 'Nigoraxon U','ball' => 9];
         $arr[] = ['name' => 'Elmira U','ball' => 3];
-        $arr[] = ['name' => 'Babajanova J','ball' => 9];
+        $arr[] = ['name' => 'Janat B','ball' => 9];
         $arr[] = ['name' => 'Oysanam M','ball' => 0];
         $arr[] = ['name' => 'Aysuluw B','ball' => 0];
         $arr[] = ['name' => 'Feruza S','ball' => 0];

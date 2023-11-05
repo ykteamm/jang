@@ -27,7 +27,7 @@ class MegaTurnirBattle extends Component
         $tour = 6;
         $begin = '2023-11-01';
         $end = '2023-11-04';
-        $soldd = '2023-10-04';
+        $soldd = '2023-11-04';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->where('tour',$tour)
