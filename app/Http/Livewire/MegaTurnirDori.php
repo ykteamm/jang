@@ -39,27 +39,27 @@ class MegaTurnirDori extends Component
         $igh = [];
         $ighust = [];
 
-        foreach ($teachers as $key => $value) {
-            $idf = [];
-            foreach ($value->teacher_shogird as $j => $k) {
-                $idf[] = $k->shogird_id;
-                $igh[] = $k->teacher_id;
+        // foreach ($teachers as $key => $value) {
+        //     $idf = [];
+        //     foreach ($value->teacher_shogird as $j => $k) {
+        //         $idf[] = $k->shogird_id;
+        //         $igh[] = $k->teacher_id;
 
-            }
+        //     }
 
-            $idf[] = $value->teacher_id;
-            $ighust[] = $value->teacher_id;
+        //     $idf[] = $value->teacher_id;
+        //     $ighust[] = $value->teacher_id;
 
-            $sold1 = AllSold::whereIn('user_id',$idf)
-                ->whereDate('created_at','>=','2023-11-10')
-                ->whereDate('created_at','<=','2023-11-16')
-                ->where('medicine_id',29)
-                ->sum('number');
+        //     $sold1 = AllSold::whereIn('user_id',$idf)
+        //         ->whereDate('created_at','>=','2023-11-10')
+        //         ->whereDate('created_at','<=','2023-11-16')
+        //         ->where('medicine_id',29)
+        //         ->sum('number');
 
-            $user = User::find($value->teacher_id);
-            $name = $user->first_name.' '.substr($user->last_name,0,1).' jamoasi';
-            $this->arrays[] = array('name' => $name,'ball' => $sold1/count($idf));
-        }
+        //     $user = User::find($value->teacher_id);
+        //     $name = $user->first_name.' '.substr($user->last_name,0,1).' jamoasi';
+        //     $this->arrays[] = array('name' => $name,'ball' => $sold1/count($idf));
+        // }
 
         $users = User::whereIn('id',$ids)->get();
 
