@@ -53,8 +53,8 @@ class Turnir extends Component
         $arr[] = ['name' => 'Umidaxon O','ball' => 21];
         $arr[] = ['name' => 'Dirabo N','ball' => 8];
         $arr[] = ['name' => 'Elmira B','ball' => 9];
-        $arr[] = ['name' => 'Shaxnoza S','ball' => 16];
-        $arr[] = ['name' => 'Aziza N','ball' => 15];
+        $arr[] = ['name' => 'Shaxnoza S','ball' => 19];
+        $arr[] = ['name' => 'Aziza N','ball' => 18];
         $arr[] = ['name' => 'Qizlarxon T','ball' => 20];
         $arr[] = ['name' => 'Zebo T','ball' => 0];
         $arr[] = ['name' => 'Nigoraxon U','ball' => 9];
@@ -67,18 +67,18 @@ class Turnir extends Component
         $arr[] = ['name' => 'Gulnora N','ball' => 6];
 
 
-        $arr[] = ['name' => 'Guzal Y jamoasi','ball' => 16];
-        $arr[] = ['name' => 'Komola I jamoasi','ball' => 14];
-        $arr[] = ['name' => 'G\'olibjon M jamoasi','ball' => 15];
+        $arr[] = ['name' => 'Guzal Y jamoasi','ball' => 19];
+        $arr[] = ['name' => 'Komola I jamoasi','ball' => 18];
+        $arr[] = ['name' => 'G\'olibjon M jamoasi','ball' => 18];
         $arr[] = ['name' => 'Marxabo G jamoasi','ball' => 6];
-        $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 14];
+        $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 17];
         $arr[] = ['name' => 'Nilufar M jamoasi','ball' => 16];
         $arr[] = ['name' => 'Shaxnoza X jamoasi','ball' => 10];
 
 
         $arr[] = ['name' => 'Hamida P jamoasi','ball' => 11];
 
-        $arr[] = ['name' => 'Naisba X','ball' => 3];
+        $arr[] = ['name' => 'Nasiba X','ball' => 6];
         $arr[] = ['name' => 'Shohida S','ball' => 3];
 
 
