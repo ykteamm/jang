@@ -72,7 +72,7 @@ class Turnir extends Component
         $arr[] = ['name' => 'G\'olibjon M jamoasi','ball' => 18];
         $arr[] = ['name' => 'Marxabo G jamoasi','ball' => 6];
         $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 17];
-        $arr[] = ['name' => 'Nilufar M jamoasi','ball' => 16];
+        $arr[] = ['name' => 'Nilufar M jamoasi','ball' => 19];
         $arr[] = ['name' => 'Shaxnoza X jamoasi','ball' => 10];
 
 
