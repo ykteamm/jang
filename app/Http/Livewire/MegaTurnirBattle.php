@@ -24,10 +24,10 @@ class MegaTurnirBattle extends Component
     {
         // $this->resime = 2;
 
-        $tour = 10;
-        $begin = '2023-11-16';
-        $end = '2023-11-18';
-        $soldd = '2023-11-18';
+        $tour = 11;
+        $begin = '2023-11-20';
+        $end = '2023-11-22';
+        $soldd = '2023-11-22';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->where('tour',$tour)

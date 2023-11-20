@@ -28,17 +28,17 @@ class TurnirHome extends Component
         $service = new TurnirService;
         $service->getUserProfile(Auth::id());
         // $this->tour = $service->tour->tour;
-        $this->tourTitle = '9 Tur';
+        $this->tourTitle = '11 Tur';
        
         $this->team2images = 'https://wallpapercave.com/wp/wp5504863.jpg';
         
         
 
         $userId = Auth::id();
-        $this->tour = 10;
-        $begin = '2023-11-16';
-        $end = '2023-11-18';
-        $soldd = '2023-11-18';
+        $this->tour = 11;
+        $begin = '2023-11-20';
+        $end = '2023-11-22';
+        $soldd = '2023-11-22';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->where('tour',$this->tour)

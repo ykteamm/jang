@@ -50,35 +50,36 @@ class Turnir extends Component
         $arr = [];
 
 
-        $arr[] = ['name' => 'Umidaxon O','ball' => 21];
+        $arr[] = ['name' => 'Umidaxon O','ball' => 24];
         $arr[] = ['name' => 'Dirabo N','ball' => 8];
         $arr[] = ['name' => 'Elmira B','ball' => 9];
-        $arr[] = ['name' => 'Shaxnoza S','ball' => 19];
+        $arr[] = ['name' => 'Shaxnoza S','ball' => 22];
         $arr[] = ['name' => 'Aziza N','ball' => 18];
         $arr[] = ['name' => 'Qizlarxon T','ball' => 20];
         $arr[] = ['name' => 'Zebo T','ball' => 0];
-        $arr[] = ['name' => 'Nigoraxon U','ball' => 9];
+        // $arr[] = ['name' => 'Nigoraxon U','ball' => 9];
         $arr[] = ['name' => 'Elmira U','ball' => 9];
         $arr[] = ['name' => 'Janat B','ball' => 15];
         $arr[] = ['name' => 'Oysanam M','ball' => 0];
         $arr[] = ['name' => 'Aysuluw B','ball' => 0];
         $arr[] = ['name' => 'Feruza S','ball' => 0];
         $arr[] = ['name' => 'Saodat S','ball' => 6];
-        $arr[] = ['name' => 'Gulnora N','ball' => 6];
+        $arr[] = ['name' => 'Gulnora N','ball' => 9];
+        $arr[] = ['name' => 'Bibinaz A','ball' => 9];
 
 
-        $arr[] = ['name' => 'Guzal Y jamoasi','ball' => 19];
-        $arr[] = ['name' => 'Komola I jamoasi','ball' => 18];
+        $arr[] = ['name' => 'Guzal Y jamoasi','ball' => 22];
+        $arr[] = ['name' => 'Komola I jamoasi','ball' => 23];
         $arr[] = ['name' => 'G\'olibjon M jamoasi','ball' => 18];
         $arr[] = ['name' => 'Marxabo G jamoasi','ball' => 6];
-        $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 17];
+        $arr[] = ['name' => 'Gulzar K jamoasi','ball' => 20];
         $arr[] = ['name' => 'Nilufar M jamoasi','ball' => 19];
-        $arr[] = ['name' => 'Shaxnoza X jamoasi','ball' => 10];
+        $arr[] = ['name' => 'Shaxnoza X jamoasi','ball' => 13];
 
 
         $arr[] = ['name' => 'Hamida P jamoasi','ball' => 11];
 
-        $arr[] = ['name' => 'Nasiba X','ball' => 6];
+        $arr[] = ['name' => 'Nasiba X','ball' => 9];
         $arr[] = ['name' => 'Shohida S','ball' => 3];
 
 
