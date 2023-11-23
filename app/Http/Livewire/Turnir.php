@@ -76,10 +76,13 @@ class Turnir extends Component
                 ->whereDate('created_at','=',date('Y-m-d'))
                 ->sum(DB::raw('number*price_product'));
 
+            $ids1 = $value->user1id;
+            $ids2 = $value->user2id;
+
             $user1 = User::find($value->user1id);
             $user2 = User::find($value->user2id);
             $limit = $value->tour;
-            $this->user_battle_sold[] = array('limit' => $limit,'user1' => $user1,'user2' => $user2,'sold1' => $sold1,'sold2' => $sold2,'sum' => ($sold1 + $sold2));
+            $this->user_battle_sold[] = array('id1'=>$ids1, 'id2'=> $ids2,'limit' => $limit,'user1' => $user1,'user2' => $user2,'sold1' => $sold1,'sold2' => $sold2,'sum' => ($sold1 + $sold2));
         }
 
         $sums = array_column($this->user_battle_sold, 'sum');

@@ -162,6 +162,10 @@
                             <img style="width: 100%" src="{{ asset('mobile/turnir/turnirbattles.png') }}"
                                 alt="Image">
                         @endif
+                        @php
+                            $user1 = User::find($battle['id1']);
+                            $user2 = User::find($battle['id2']);
+                        @endphp
                         <div class="teamimage1" style="left: 23px;">
                             {{-- <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
                                 <div>
@@ -174,12 +178,12 @@
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
                                     {{-- @if (isset($battle['user1']->first_name)) --}}
-                                    {{ $battle['user1']->first_name }} 
+                                    {{ $user1->first_name }} 
                                         
                                     {{-- @endif --}}
                                     
                                     {{-- @if (isset($battle['user1']->last_name)) --}}
-                                    {{ substr($battle['user1']->last_name, 0, 1) }}
+                                    {{ substr($user2->last_name, 0, 1) }}
 
                                         
                                     {{-- @endif --}}
@@ -205,16 +209,17 @@
                                 </div>43 --}}
                             </div>
                         </div>
+                        
                         <div class="teamimage2" style="left: 330px;">
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
                                     {{-- @if (isset($battle['user2']->first_name)) --}}
-                                    {{ $battle['user2']->first_name }} 
+                                    {{ $user2->first_name }} 
                                         
                                     {{-- @endif --}}
                                     
                                     {{-- @if (isset($battle['user2']->last_name)) --}}
-                                    {{ substr($battle['user2']->last_name, 0, 1) }}
+                                    {{ substr($user2->last_name, 0, 1) }}
  
                                         
                                     {{-- @endif --}}
