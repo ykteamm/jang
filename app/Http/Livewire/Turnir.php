@@ -59,7 +59,7 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-11-23';
+        $begin = '2023-11-24';
         $end = '2023-11-27';
         $soldd = '2023-11-27';
 
