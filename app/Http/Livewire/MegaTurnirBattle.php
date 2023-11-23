@@ -24,7 +24,7 @@ class MegaTurnirBattle extends Component
     {
         // $this->resime = 2;
 
-        $tour = 11;
+        $tour = 10;
         $begin = '2023-11-20';
         $end = '2023-11-22';
         $soldd = '2023-11-22';
