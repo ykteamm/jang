@@ -799,7 +799,7 @@ class HomeController extends Controller
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
         
         $userId = Auth::id();
-        $tour = 11;
+        $tour = 10;
         $begin = '2023-11-20';
         $end = '2023-11-22';
 
