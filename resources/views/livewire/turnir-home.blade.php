@@ -64,12 +64,8 @@
             </div>
 
             <div class="turnir-status supercell">
-                @if ($tour < 4)
-                    <span>{{ $tour }}</span>
-                    <p>TUR</p>
-                @else
+               
                     <span style="width:55px;display:block">{{ $tourTitle }}</span> 
-                @endif
             </div>
 
             <style>

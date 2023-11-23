@@ -33,23 +33,29 @@
 
         getUserCrystall()
 
+
+        setTimeout(function() { 
+            livewire.emit('for_turnir');
+        }, 4000);
+
+
         setTimeout(function() { 
                 livewire.emit('for_profil'); 
                 livewire.emit('for_money'); 
-        }, 1500);
+        }, 2500);
 
         setTimeout(function() { 
-                livewire.emit('for_teambattle'); 
-                livewire.emit('for_rekrut'); 
-                var rekrut_count = <?php echo json_encode(count(getRekrut())); ?>;
-                if(rekrut_count > 0)
-                {
+                // livewire.emit('for_teambattle'); 
+                // livewire.emit('for_rekrut'); 
+                // var rekrut_count = <?php echo json_encode(count(getRekrut())); ?>;
+                // if(rekrut_count > 0)
+                // {
                     // $('.live-rekrut').click();
-                }
-        }, 1000);
+                // }
+        }, 2000);
         
         setTimeout(function() { 
-                livewire.emit('for_info'); 
+                // livewire.emit('for_info'); 
         }, 3000);
 
         

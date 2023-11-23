@@ -37,29 +37,7 @@
             style="opacity: 5;position:absolute;top:8px;right:10px;">
             <img src="{{ asset('mobile/xclose.png') }}" width="30px">
         </button>
-        <script>
-            function changeTab1() {
-                let tab1 = document.querySelector(`#turnirTab1`)
-                let tab2 = document.querySelector(`#turnirTab2`)
-                let tabmain1 = document.querySelector(`#turnir1tab`)
-                let tabmain2 = document.querySelector(`#turnir2tab`)
-                tab2.classList.remove('active')
-                tab1.classList.add('active')
-                tabmain1.classList.remove('d-none')
-                tabmain2.classList.add('d-none')
-            }
-
-            function changeTab2() {
-                let tab1 = document.querySelector(`#turnirTab1`)
-                let tab2 = document.querySelector(`#turnirTab2`)
-                let tabmain1 = document.querySelector(`#turnir1tab`)
-                let tabmain2 = document.querySelector(`#turnir2tab`)
-                tab2.classList.add('active')
-                tab1.classList.remove('active')
-                tabmain1.classList.add('d-none')
-                tabmain2.classList.remove('d-none')
-            }
-        </script>
+       
     </div>
 
         
@@ -72,28 +50,7 @@
             <img src="{{asset('mobile/turnir/saroy.webp')}}" style="width:100%;" alt="">
         </div>
 
-        <script>
-            var dday = <?php echo json_encode(date('d', strtotime('2023-11-23'))); ?>;
-            var dname = <?php echo json_encode(date('F', strtotime('2023-11-23'))); ?>;
-            var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
-
-            var x = setInterval(function() {
-
-                // Get today's date and time
-                var now = new Date().getTime();
-
-                var distance = countDownDate - now;
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("count-timer-day").innerHTML = days;
-                document.getElementById("count-timer-hour").innerHTML = hours;
-                document.getElementById("count-timer-minut").innerHTML = minutes;
-            }, 1000);
-
-            var countDownDate2 = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
-        </script>
+      
         <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                 style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
@@ -107,122 +64,47 @@
                 <span style="font-size: 15px;">m</span>
             </div>
         </div>
-        <div class="col-12 mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-battle">
-            <img src="{{asset('mobile/turnir/battle.webp')}}" style="width:100%;" height="60px" alt="">
+
+        <div class="row">
+        
+            <div class="col-6 mt-1 mb-1" >
+                <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt="" 
+                onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');">
+            </div>
+
+            <div class="col-6 mt-1 mb-1" >
+                <img src="{{asset('mobile/turnir/turnirb.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
+                onclick="$('#turnirreyt').css('display','none');$('#turnirtab').css('display','block');">
+            </div>
+
         </div>
         
 
-        {{-- <div class="col-12 mt-1 mb-1" >
+      
 
-           <button class="btn btn-danger" data-toggle="modal" data-target="#mega-turnir-battle">janglar</button>
-
-        </div> --}}
-
-
-        <div class="border-0 mb-3">
-            <div class="card-body" class="pr-0"
+        <div class="border-0 mb-3" id="turnirreyt">
+            <div class="card-body" class="pr-0 d-none"
                 style="background:none;">
-                {{-- <div class="supercell text-center mb-4" style="color:rgb(255, 255, 255)">Jangchilar</div> --}}
-
-                
                 <style>
                     .katak1{
-                        padding: 9px 10px;
+                        padding: 2px 3px;
                         border-radius: 4px;
                     }
                 </style>
                 @foreach ($arrays as $key => $team)
                     @php
-                        if ($key == 0) {
-                            $color = '-webkit-text-stroke: 1px #36393a !important;background-image: linear-gradient(to bottom left,#f3e48d,#ffd20f,#c39008);border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #fff0a8;';
-                            $gr = 'linear-gradient(45deg, #f5b746, #ffe764)';
-                            $grv = 'linear-gradient(45deg, #c78f29, #e9cb29)';
-                            $katak = '#d99d2f';
-                        }
-                        if ($key == 1) {
-                            $color = '-webkit-text-stroke: 1px #36393a !important;background-image: linear-gradient(to bottom left,#a1aab8,#d4d9e0,#767c81);border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #e7eae8;';
-                            $gr = 'linear-gradient(45deg, #6c6b6d, #adaca7)';
-                            $grv = 'linear-gradient(45deg, #4b4848, #a1a09a)';
-                            $katak = '#6c6b6d';
-
-                        }
-                        if ($key == 2) {
-                            $color = '-webkit-text-stroke: 1px #36393a !important;background-image: linear-gradient(to bottom left,#f1791f,#cd9b41,#cd8832);border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #e7eae8;';
-                            $gr= 'linear-gradient(45deg, #b97338, #f3b35f)';
-                            $grv = 'linear-gradient(45deg, #935725, #c38d45)';
-                            $katak = '#b36829';
-
-                        }
-                        if (!in_array($key, [0, 1, 2])) {
                             $color = '-webkit-text-stroke: 1px #36393a !important;background: #77a9d5;border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #e7eae8;';
                             $grv = 'linear-gradient(45deg, #7f9cef, #7f9cef)';
                             $katak = '#7f9cef';
-
-                        }
+                            $gr= 'linear-gradient(45deg, #b97338, #f3b35f)';
                     @endphp
-                    @if (in_array($key,[0,1,2]))
                         <div class="row align-items-center pr-3 py-2"
-                        style="
-                            background: {{$grv}};
-                            border-top-left-radius: 15px;
-                            border-top-right-radius: 15px;
-                        "
-                        ></div>
-                        <div class="row align-items-center pr-3 py-1 mb-1"
-                            style="border-bottom:1px solid #959690;background: {{$gr}};
-                            border-bottom-left-radius: 15px;
-                            border-bottom-right-radius: 15px;
-                            ">
-                            
-                            <div class="col-2 pl-2">
-                                <button type="button" class="btn-sm btn-secondary supercell p-0"
-                                    style="{{ $color }};width: 35px;height: 35px;">
-                                    @php
-                                        $wer = $key + 1 . '.';
-                                    @endphp
-                                    <span
-                                        style="font-size: 16px;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
-                                        {{ $key + 1 }}</span>
-                                </button>
-                                {{-- <img src="{{asset('mobile/turnir/qil.webp')}}" width="100%" alt=""> --}}
-                            </div>
-                            <div class="col-5 katak1"
-                                style="background:{{$katak}}">
-                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
-                                    {{$team['name']}}
-                                </div>
-                            </div>
-                            <div class="col-3 katak1 ml-3"
-                                style="background:{{$katak}}">
-                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
-                                    {{$team['ball']}} ball
-                                </div>
-                            </div>
-                            {{-- <div class="col-3 text-center p-0" style="padding-right: 4px !important;">
-                                <div style="font-size:15px;font-weight:800">
-                                    <img src="{{asset('mobile/team/12000.webp')}}" width="50px" alt=""> 
-                                </div>
-                            </div>
-                            <div class="col-2 text-center" style="border-left:1px solid #717fe9;">
-                                <button type="button" class="btn btn-sm btn-secondary supercell"
-                                    style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width:50px;height: 40px;">
-                                    <span class="text-center"
-                                        style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
-                                        23
-                                    </span>
-                                </button>
-                            </div> --}}
+                                style="
+                                    background: {{$grv}};
+                                    border-top-left-radius: 15px;
+                                    border-top-right-radius: 15px;
+                                ">
                         </div>
-                    @else
-                    <div class="row align-items-center pr-3 py-2"
-                        style="
-                            background: {{$grv}};
-                            border-top-left-radius: 15px;
-                            border-top-right-radius: 15px;
-                        "
-                        ></div>
                         <div class="row align-items-center pr-3 py-1 mb-1"
                             style="background:linear-gradient(45deg, #b2bccf, #bdc1c7);;
                             border-bottom-left-radius: 15px;
@@ -238,13 +120,10 @@
                                         style="font-size: 16px;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
                                         {{ $key + 1 }}</span>
                                 </button>
-                                {{-- <img src="{{asset('mobile/turnir/qil.webp')}}" width="100%" alt=""> --}}
-
                             </div>
                             <div class="col-5 katak1"
                                 style="background:{{$katak}}">
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
                                     {{$team['name']}}
 
                                 </div>
@@ -252,34 +131,265 @@
                             <div class="col-3 katak1 ml-3"
                                 style="background:{{$katak}}">
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{-- {{ substr($team->f1, 0, 8) }}.{{ substr($team->l1, 0, 1) }} --}}
-                                    {{$team['ball']}} ball
-                                </div>
-                            </div>
-                            {{-- <div class="col-3 text-center p-0" style="padding-right: 4px !important;">
-                                <div style="font-size:15px;font-weight:800">
-                                    -
-                                </div>
-                            </div>
-                            <div class="col-2 text-center" style="border-left:1px solid #717fe9;">
-                                <button type="button" class="btn btn-sm btn-secondary supercell"
-                                    style="background-image: linear-gradient(to bottom,#eed8a7,#f3d791,#f8c953);border-radius: 5px; border: 2px solid #eee7cc;width:50px;height: 40px;">
-                                    <span class="text-center"
-                                        style="font-size:11px;-webkit-text-stroke: 1px #36393a !important;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
-                                23
-                                    </span>
-                                </button>
-                            </div> --}}
-                        </div>
-                    @endif
+                                    {{$team['ball']}} 
+                                
+                                    <img src="{{asset('mobile/turnir/star.png')}}" width="30%" alt="">
 
+                                </div>
+                            </div>
+                        </div>
                 @endforeach
             </div>
         </div>
+        <div class="border-0 mb-3" id="turnirtab" style="display:none;">
+            <div class="col-12 mt-1 mb-1">
+                @foreach ($user_battle_sold as $key => $battle)
+                    {{-- @if ($key == 0)
+                        <div class="supercell text-center mb-2" style="color:#2d4ac1">
+                            Qiziq janglar
+                        </div>
+                    @endif
+                    @if ($key == 3)
+                        <div class="supercell text-center mb-2" style="color:#2d4ac1">
+                            Qolgan janglar
+                        </div>
+                    @endif --}}
+                    <div style="position: relative" class="mb-2">
+                        @if ($key == 0 || $key == 1 || $key == 2)
+                            <img style="width: 100%" src="{{ asset('mobile/turnir/turnirtop.png') }}"
+                                alt="Image">
+                        @else
+                            <img style="width: 100%" src="{{ asset('mobile/turnir/turnirbattles.png') }}"
+                                alt="Image">
+                        @endif
+                        <div class="teamimage1" style="left: 23px;">
+                            {{-- <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
+                                <div>
+                                    <img src="{{ asset('mobile/target.webp') }}" alt="">
+                                </div>
+                                <div>
+                                    <img src="{{ asset('mobile/target.webp') }}" alt="">
+                                </div>
+                            </div> --}}
+                            <div class="turnir-all-result">
+                                <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 13px;">
+                                    {{ $battle['user1']->first_name }} {{ substr($battle['user1']->last_name, 0, 1) }}
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold1'])}}</span>
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">15</span>
+                                </div>
 
 
+
+                                {{-- <div class="mt-1 d-flex align-items-center justify-content-center"> 
+                                    <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
+                                        alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text">444</span>
+                                </div>43 --}}
+                            </div>
+                        </div>
+                        <div class="teamimage2" style="left: 330px;">
+                            <div class="turnir-all-result">
+                                <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 13px;">
+                                    {{ $battle['user2']->first_name }} {{ substr($battle['user2']->last_name, 0, 1) }}
+
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold2'])}}</span>
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">15</span>
+                                </div>
+                                {{-- <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-king" src="{{ asset('mobile/load-king.png') }}"
+                                        alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text">43</span>
+                                </div> --}}
+                            </div>
+                            {{-- <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
+                                <div>
+                                    <img src="{{ asset('mobile/target.webp') }}" alt="">
+                                </div>
+                                <div>
+                                    <img src="{{ asset('mobile/target.webp') }}" alt="">
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="teamimage3">
+                            <div class="turnir-all-result">
+                                <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 15px;">
+                                    LIMIT: {{$battle['limit']/100}} mln
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                @endforeach
+            <style>
+                @media (min-width: 200px) {
+                    .turnir-all-text {
+                        font-size: 9px;
+                    }
+
+                    .teamimage3{
+                        position: absolute;
+                        display: flex;
+                        top: 76%;
+                        left: 35%;
+                        -webkit-text-stroke: 1px #040c10;
+                        font-size: 15px;
+                    }
+
+                    .teamimage1 {
+                        position: absolute;
+                        display: flex;
+                        top: 18%;
+                        left: 2%;
+                    }
+
+                    .teamimage2 {
+                        display: flex;
+                        position: absolute;
+                        top: 18%;
+                        right: 2%;
+                    }
+
+                    .teamprof-detail {
+                        display: flex;
+                        overflow: hidden;
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    .teamprof-detail div {
+                        overflow: hidden;
+                        width: 50%;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-30%);
+                        width: 50px;
+                    }
+
+                    .tur-all-gold {
+                        width: 12px;
+                    }
+
+                    .tur-all-king {
+                        width: 12px;
+                    }
+                }
+
+                @media (min-width: 340px) {
+                    .teamimage1 {
+                        top: 20%;
+                    }
+
+                    .teamimage2 {
+                        top: 20%;
+                    }
+
+                    .teamprof-detail {
+                        width: 52px;
+                        height: 52px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-35%);
+                        width: 52px;
+                    }
+
+                    .tur-all-gold {
+                        width: 16px;
+                    }
+
+                    .tur-all-king {
+                        width: 16px;
+                    }
+                }
+
+                @media (min-width: 370px) {
+                    .teamimage1 {
+                        top: 17%;
+                    }
+
+                    .teamimage2 {
+                        top: 17%;
+                    }
+
+                    .teamprof-detail {
+                        display: flex;
+                        overflow: hidden;
+                        width: 65px;
+                        height: 65px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-40%);
+                        width: 65px;
+                    }
+                }
+
+                @media (min-width: 410px) {
+                    .turnir-all-text {
+                        font-size: 10px;
+                    }
+
+                    .teamprof-detail {
+                        width: 70px;
+                        height: 70px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-40%);
+                        width: 70px;
+                    }
+
+                    .tur-all-gold {
+                        width: 18px;
+                    }
+
+                    .tur-all-king {
+                        width: 18px;
+                    }
+                }
+            </style>
+        </div>
+        </div>
     </div>
     @endif
+    <script>
+        var dday = <?php echo json_encode(date('d', strtotime('2023-11-23'))); ?>;
+        var dname = <?php echo json_encode(date('F', strtotime('2023-11-23'))); ?>;
+        var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
 
+        var x = setInterval(function() {
 
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("count-timer-day").innerHTML = days;
+            document.getElementById("count-timer-hour").innerHTML = hours;
+            document.getElementById("count-timer-minut").innerHTML = minutes;
+        }, 1000);
+
+        var countDownDate2 = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
+    </script>
 </div>

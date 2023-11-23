@@ -4,11 +4,11 @@
 
     $(document).ready(function(){
         
-        $('.class-news').click(function(){
-            getAllNews()
-            livewire.emit('for_newsin');
+        // $('.class-news').click(function(){
+        //     getAllNews()
+        //     livewire.emit('for_newsin');
 
-        });
+        // });
     });
     
         function readNotificationEvent(id) {

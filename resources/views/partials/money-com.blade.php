@@ -2,10 +2,10 @@
     $(document).ready(function(){
 
         setTimeout(function() { 
-            liveMoneyModal()
-            liveMarket()
-            livePlan()
-        }, 3000);
+            // liveMoneyModal()
+            // liveMarket()
+            // livePlan()
+        }, 6000);
 
     });
 

@@ -110,7 +110,7 @@
             var price = parseInt($(`.product-price${$id}`).text().replace(/[^0-9]/g, ''));
             var orderPrice = parseInt($('.summa-zakaz').text().replace(/[^0-9]/g, ''));
 
-            console.log(orderPrice);
+            // console.log(orderPrice);
 
             var allprice = number_format(price + orderPrice, 0, ',', ' ');
 

@@ -28,21 +28,17 @@ class TurnirHome extends Component
         $service = new TurnirService;
         $service->getUserProfile(Auth::id());
         // $this->tour = $service->tour->tour;
-        $this->tourTitle = '11 Tur';
        
         $this->team2images = 'https://wallpapercave.com/wp/wp5504863.jpg';
         
         
 
         $userId = Auth::id();
-        $this->tour = 11;
-        $begin = '2023-11-20';
-        $end = '2023-11-22';
-        $soldd = '2023-11-22';
+        $begin = '2023-11-24';
+        $end = '2023-11-27';
+        $soldd = '2023-11-27';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
-        ->where('tour',$this->tour)
-        ->where('ends',0)
         ->whereDate('begin','=',$begin)
         ->whereDate('end','=',$end)
         ->where(function($query) use ($userId){
@@ -80,6 +76,8 @@ class TurnirHome extends Component
         if($this->turnir)
         {
 
+            $this->tourTitle = 'Limit ' .($users_battles->tour/100).' mln';
+
             $this->team1names = $users_battles->user1;
             $this->team2names = $users_battles->user2;
 
@@ -98,13 +96,11 @@ class TurnirHome extends Component
             //     ->sum(DB::raw('price_product*number'));
             
             $this->team1summa = AllSold::where('user_id',$users_battles->user1->id)
-                ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=',$end)
+                ->whereDate('created_at','=',date('Y-m-d'))
                 ->sum(DB::raw('price_product*number'));
 
             $this->team2summa = AllSold::where('user_id',$users_battles->user2->id)
-                ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=',$end)
+                ->whereDate('created_at','=',date('Y-m-d'))
                 ->sum(DB::raw('price_product*number'));
 
         }
