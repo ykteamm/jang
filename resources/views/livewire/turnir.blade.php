@@ -163,8 +163,8 @@
                                 alt="Image">
                         @endif
                         @php
-                            $user1 = App/Models/User::find($battle['id1']);
-                            $user2 = App/Models/User::find($battle['id2']);
+                            $user1 = DB::table('tg_user')->where('id',$battle['id1'])->first();
+                            $user2 = DB::table('tg_user')->where('id',$battle['id2'])->first();
                         @endphp
                         <div class="teamimage1" style="left: 23px;">
                             {{-- <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
