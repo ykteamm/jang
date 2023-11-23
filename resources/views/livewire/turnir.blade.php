@@ -178,7 +178,11 @@
                                         
                                     @endif
                                     
+                                    @if (isset($battle['user1']->last_name))
                                     {{ substr($battle['user1']->last_name, 0, 1) }}
+
+                                        
+                                    @endif
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
@@ -209,7 +213,12 @@
                                         
                                     @endif
                                     
+                                    @if (isset($battle['user2']->last_name))
                                     {{ substr($battle['user2']->last_name, 0, 1) }}
+ 
+                                        
+                                    @endif
+
 
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
