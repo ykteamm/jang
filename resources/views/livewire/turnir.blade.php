@@ -155,13 +155,13 @@
                         </div>
                     @endif --}}
                     <div style="position: relative" class="mb-2">
-                        {{-- @if ($key == 0 || $key == 1 || $key == 2)
+                        @if ($key == 0 || $key == 1 || $key == 2)
                             <img style="width: 100%" src="{{ asset('mobile/turnir/turnirtop.png') }}"
                                 alt="Image">
                         @else
                             <img style="width: 100%" src="{{ asset('mobile/turnir/turnirbattles.png') }}"
                                 alt="Image">
-                        @endif --}}
+                        @endif
                         <div class="teamimage1" style="left: 23px;">
                             {{-- <div class="teamprof-detail rounded-circle mx-auto" style="border:1px solid #fff">
                                 <div>
