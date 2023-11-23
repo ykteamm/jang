@@ -76,7 +76,7 @@
         <div style="position:absolute;height:1px;top:86px;background:#74d5ff;width:100%"></div>
     </div>
     <div id="megaturnir1tab" class="modal-body p-0">
-        <div class="col-12 mt-1 mb-1" style="display: none;">
+        <div class="col-12 mt-1 mb-1">
                 @foreach ($user_battle_sold as $key => $battle)
                     @if ($key == 0)
                         <div class="supercell text-center mb-2" style="color:#2d4ac1">
