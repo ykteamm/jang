@@ -173,16 +173,16 @@
                             </div> --}}
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
-                                    @if (isset($battle['user1']->first_name))
+                                    {{-- @if (isset($battle['user1']->first_name)) --}}
                                     {{ $battle['user1']->first_name }} 
                                         
-                                    @endif
+                                    {{-- @endif --}}
                                     
-                                    @if (isset($battle['user1']->last_name))
+                                    {{-- @if (isset($battle['user1']->last_name)) --}}
                                     {{ substr($battle['user1']->last_name, 0, 1) }}
 
                                         
-                                    @endif
+                                    {{-- @endif --}}
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
@@ -208,16 +208,16 @@
                         <div class="teamimage2" style="left: 330px;">
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
-                                    @if (isset($battle['user2']->first_name))
+                                    {{-- @if (isset($battle['user2']->first_name)) --}}
                                     {{ $battle['user2']->first_name }} 
                                         
-                                    @endif
+                                    {{-- @endif --}}
                                     
-                                    @if (isset($battle['user2']->last_name))
+                                    {{-- @if (isset($battle['user2']->last_name)) --}}
                                     {{ substr($battle['user2']->last_name, 0, 1) }}
  
                                         
-                                    @endif
+                                    {{-- @endif --}}
 
 
                                 </div>
