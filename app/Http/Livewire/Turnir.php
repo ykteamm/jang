@@ -25,6 +25,8 @@ class Turnir extends Component
     {
 
         $this->arrays = [];
+
+        $this->user_battle_sold = [];
         
         $this->resime = 2;
 
@@ -57,7 +59,7 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-11-24';
+        $begin = '2023-11-23';
         $end = '2023-11-27';
         $soldd = '2023-11-27';
 
@@ -84,6 +86,7 @@ class Turnir extends Component
             $limit = $value->tour;
             $this->user_battle_sold[] = array('id1'=>$ids1, 'id2'=> $ids2,'limit' => $limit,'user1' => $user1,'user2' => $user2,'sold1' => $sold1,'sold2' => $sold2,'sum' => ($sold1 + $sold2));
         }
+
 
         $sums = array_column($this->user_battle_sold, 'sum');
         array_multisort($sums, SORT_DESC , $this->user_battle_sold);
