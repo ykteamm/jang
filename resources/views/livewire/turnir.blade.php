@@ -174,7 +174,7 @@
                                     {{ $user1->first_name }} 
                                         
                                     
-                                    {{ substr($user2->last_name, 0, 1) }}
+                                    {{ substr($user1->last_name, 0, 1) }}
 
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
@@ -185,7 +185,9 @@
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">15</span>
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
+                                        {{$battle['b1']}}
+                                    </span>
                                 </div>
 
 
@@ -212,7 +214,10 @@
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
                                     <span
-                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">15</span>
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
+                                        {{$battle['b2']}}
+                                    
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -359,8 +364,8 @@
     </div>
     @endif
     <script>
-        var dday = <?php echo json_encode(date('d', strtotime('2023-11-23'))); ?>;
-        var dname = <?php echo json_encode(date('F', strtotime('2023-11-23'))); ?>;
+        var dday = <?php echo json_encode(date('d', strtotime('2023-11-30'))); ?>;
+        var dname = <?php echo json_encode(date('F', strtotime('2023-11-30'))); ?>;
         var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
 
         var x = setInterval(function() {
