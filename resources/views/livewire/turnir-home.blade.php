@@ -23,10 +23,12 @@
                 </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
+                        Bugun
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team1summa) }}</span>
                     </div>
                     <div class="mt-1 d-flex align-items-center justify-content-center">
+                        Umumiy
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team1ksb) }}</span>
                     </div>
@@ -53,10 +55,12 @@
                 </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
+                        Bugun
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team2summa) }}</span>
                     </div>
                     <div class="mt-1 d-flex align-items-center justify-content-center">
+                        Umumiy
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team2ksb) }}</span>
                     </div>
