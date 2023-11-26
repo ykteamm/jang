@@ -103,6 +103,16 @@ class TurnirHome extends Component
                 ->whereDate('created_at','=',date('Y-m-d'))
                 ->sum(DB::raw('price_product*number'));
 
+            $this->team1ksb = AllSold::where('user_id',$users_battles->user1->id)
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('price_product*number'));
+
+            $this->team2ksb = AllSold::where('user_id',$users_battles->user2->id)
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('price_product*number'));
+
         }
 
         // dd($this->turnir);

@@ -26,10 +26,10 @@
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team1summa) }}</span>
                     </div>
-                    {{-- <div class="mt-1 d-flex align-items-center justify-content-center">
+                    <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name">{{ $team1ksb }}</span>
-                    </div> --}}
+                        <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team1ksb) }}</span>
+                    </div>
                 </div>
             </div>
             <div class="userimage2">
@@ -56,10 +56,10 @@
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team2summa) }}</span>
                     </div>
-                    {{-- <div class="mt-1 d-flex align-items-center justify-content-center">
+                    <div class="mt-1 d-flex align-items-center justify-content-center">
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name">{{ $team2ksb }}</span>
-                    </div> --}}
+                        <span class="pl-1 text-white supercell text-font for-name">{{ formatterr($team2ksb) }}</span>
+                    </div>
                 </div>
             </div>
 
