@@ -23,14 +23,14 @@
                 </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
-                        <span class="supercell" style="font-size:15px">Bugun</span>
+                        <span class="supercell" style="font-size:11px">Bugun</span>
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:15px">{{ formatterr($team1summa) }}</span>
+                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:11px">{{ formatterr($team1summa) }}</span>
                     </div>
                     <div class="mt-1 d-flex align-items-center justify-content-center">
-                        <span class="supercell" style="font-size:15px">Umumiy</span>
+                        <span class="supercell" style="font-size:11px">Umumiy</span>
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:15px">{{ formatterr($team1ksb) }}</span>
+                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:11px">{{ formatterr($team1ksb) }}</span>
                     </div>
                 </div>
             </div>
@@ -55,14 +55,14 @@
                 </div> --}}
                 <div class="turnir-result">
                     <div class="mt-1 d-flex align-items-center justify-content-center">
-                        <span class="supercell" style="font-size:15px">Bugun</span>
+                        <span class="supercell" style="font-size:11px">Bugun</span>
                         <img class="turgold" src="{{ asset('mobile/oltin.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:15px">{{ formatterr($team2summa) }}</span>
+                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:11px">{{ formatterr($team2summa) }}</span>
                     </div>
                     <div class="mt-1 d-flex align-items-center justify-content-center">
-                        <span class="supercell" style="font-size:15px">Umumiy</span>
+                        <span class="supercell" style="font-size:11px">Umumiy</span>
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
-                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:15px">{{ formatterr($team2ksb) }}</span>
+                        <span class="pl-1 text-white supercell text-font for-name" style="font-size:11px">{{ formatterr($team2ksb) }}</span>
                     </div>
                 </div>
             </div>
