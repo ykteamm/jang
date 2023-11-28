@@ -105,11 +105,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('Y-m-d'))
+                ->whereDate('created_at','=',date('2023-11-28'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('Y-m-d'))
+                ->whereDate('created_at','=',date('2023-11-28'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
