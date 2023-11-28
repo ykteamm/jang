@@ -93,9 +93,9 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-11-24';
-        $end = '2023-11-27';
-        $soldd = '2023-11-27';
+        $begin = '2023-11-28';
+        $end = '2023-11-30';
+        $soldd = '2023-11-30';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->whereDate('begin','=',$begin)
