@@ -36,51 +36,51 @@ class Turnir extends Component
         $arr = [];
 
 
-        $arr[429] = ['name' => 'Umidaxon O','ball' => 13];
-        $arr[64] = ['name' => 'Dilrabo N','ball' => 15];
-        $arr[286] = ['name' => 'Elmira B','ball' => 13];
-        $arr[86] = ['name' => 'Shaxnoza S','ball' => 13];
-        $arr[279] = ['name' => 'Aziza N','ball' => 14];
+        $arr[429] = ['name' => 'Umidaxon O','ball' => 12];
+        $arr[64] = ['name' => 'Dilrabo N','ball' => 14];
+        $arr[286] = ['name' => 'Elmira B','ball' => 12];
+        $arr[86] = ['name' => 'Shaxnoza S','ball' => 12];
+        $arr[279] = ['name' => 'Aziza N','ball' => 13];
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 15];
 
-        $arr[454] = ['name' => 'Janat B','ball' => 15];
+        $arr[454] = ['name' => 'Janat B','ball' => 14];
 
         $arr[499] = ['name' => 'Bibinaz A','ball' => 15];
         $arr[172] = ['name' => 'Nasiba X','ball' => 14];
 
         $arr[491] = ['name' => 'Rushana Y','ball' => 15];
-        $arr[470] = ['name' => 'Kumush E','ball' => 14];
+        $arr[470] = ['name' => 'Kumush E','ball' => 13];
         $arr[508] = ['name' => 'Malika X','ball' => 14];
 
-        $arr[79] = ['name' => 'Komola I','ball' => 14];
-        $arr[502] = ['name' => 'Mavjuda Q','ball' => 13];
+        $arr[79] = ['name' => 'Komola I','ball' => 13];
+        $arr[502] = ['name' => 'Mavjuda Q','ball' => 12];
         $arr[500] = ['name' => 'Xurshida X','ball' => 13];
 
 
-        $arr[483] = ['name' => 'Gozal A','ball' => 14];
-        $arr[443] = ['name' => 'Maftuna S','ball' => 13];
+        $arr[483] = ['name' => 'Gozal A','ball' => 13];
+        $arr[443] = ['name' => 'Maftuna S','ball' => 12];
         $arr[495] = ['name' => 'Marjona B','ball' => 15];
 
         $arr[177] = ['name' => 'Gulzar K','ball' => 14];
         $arr[505] = ['name' => 'Shahlo H','ball' => 14];
         $arr[512] = ['name' => 'Nozima R','ball' => 15];
-        $arr[467] = ['name' => 'Dilnoza G','ball' => 14];
+        $arr[467] = ['name' => 'Dilnoza G','ball' => 13];
 
 
         $arr[5] = ['name' => 'Nilufar M','ball' => 15];
         $arr[437] = ['name' => 'Dilnoza M','ball' => 14];
-        $arr[498] = ['name' => 'Dilrabo A','ball' => 13];
-        $arr[488] = ['name' => 'Shukrona Q','ball' => 14];
-        $arr[504] = ['name' => 'Sayfura O','ball' => 13];
-        $arr[490] = ['name' => 'Xanifa R','ball' => 14];
-        $arr[511] = ['name' => 'Shoira E','ball' => 14];
+        $arr[498] = ['name' => 'Dilrabo A','ball' => 12];
+        $arr[488] = ['name' => 'Shukrona Q','ball' => 13];
+        $arr[504] = ['name' => 'Sayfura O','ball' => 12];
+        $arr[490] = ['name' => 'Xanifa R','ball' => 13];
+        $arr[511] = ['name' => 'Shoira E','ball' => 13];
 
 
 
         $arr[232] = ['name' => 'Shaxnoza X','ball' => 15];
-        $arr[503] = ['name' => 'Ruxsora R','ball' => 14];
+        $arr[503] = ['name' => 'Ruxsora R','ball' => 13];
         $arr[469] = ['name' => 'Chehroz O','ball' => 15];
-        $arr[466] = ['name' => 'Durdona Y','ball' => 14];
+        $arr[466] = ['name' => 'Durdona Y','ball' => 13];
 
         $arr[344] = ['name' => 'Dilfuza X','ball' => 13];
         $arr[506] = ['name' => 'Aybibi A','ball' => 15];
