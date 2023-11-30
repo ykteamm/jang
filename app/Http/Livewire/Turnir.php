@@ -36,42 +36,42 @@ class Turnir extends Component
         $arr = [];
 
 
-        $arr[429] = ['name' => 'Umidaxon O','ball' => 10];
+        $arr[429] = ['name' => 'Umidaxon O','ball' => 9];
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 11 ];
-        $arr[64] = ['name' => 'Dilrabo N','ball' => 13];
-        $arr[286] = ['name' => 'Elmira B','ball' => 10];
+        $arr[64] = ['name' => 'Dilrabo N','ball' => 12];
+        $arr[286] = ['name' => 'Elmira B','ball' => 9];
         $arr[86] = ['name' => 'Shaxnoza S','ball' => 11];
         $arr[279] = ['name' => 'Aziza N','ball' => 12];
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 15];
 
-        $arr[454] = ['name' => 'Janat B','ball' => 12];
+        $arr[454] = ['name' => 'Janat B','ball' => 11];
 
         $arr[499] = ['name' => 'Bibinaz A','ball' => 14];
         $arr[172] = ['name' => 'Nasiba X','ball' => 14];
 
-        $arr[491] = ['name' => 'Rushana Y','ball' => 14];
+        $arr[491] = ['name' => 'Rushana Y','ball' => 13];
       
-        $arr[508] = ['name' => 'Malika X','ball' => 13];
+        $arr[508] = ['name' => 'Malika X','ball' => 12];
 
         $arr[79] = ['name' => 'Komola I','ball' => 12];
-        $arr[502] = ['name' => 'Mavjuda Q','ball' => 10];
+        $arr[502] = ['name' => 'Mavjuda Q','ball' => 9];
         $arr[500] = ['name' => 'Xurshida X','ball' => 12];
 
 
-        $arr[483] = ['name' => 'Gozal A','ball' => 11];
+        $arr[483] = ['name' => 'Gozal A','ball' => 10];
       
         $arr[495] = ['name' => 'Marjona B','ball' => 15];
 
-        $arr[177] = ['name' => 'Gulzar K','ball' => 13];
+        $arr[177] = ['name' => 'Gulzar K','ball' => 12];
         $arr[505] = ['name' => 'Shahlo H','ball' => 12];
-        $arr[512] = ['name' => 'Nozima R','ball' => 13];
-        $arr[467] = ['name' => 'Dilnoza G','ball' => 11];
+        $arr[512] = ['name' => 'Nozima R','ball' => 12];
+        $arr[467] = ['name' => 'Dilnoza G','ball' => 10];
 
 
-        $arr[5] = ['name' => 'Nilufar M','ball' => 13];
+        $arr[5] = ['name' => 'Nilufar M','ball' => 12];
         $arr[437] = ['name' => 'Dilnoza M','ball' => 12];
        
-        $arr[488] = ['name' => 'Shukrona Q','ball' => 11];
+        $arr[488] = ['name' => 'Shukrona Q','ball' => 10];
         $arr[504] = ['name' => 'Sayfura O','ball' => 11];
        
         $arr[511] = ['name' => 'Shoira E','ball' => 12];
@@ -79,12 +79,12 @@ class Turnir extends Component
 
 
         $arr[232] = ['name' => 'Shaxnoza X','ball' => 15];
-        $arr[503] = ['name' => 'Ruxsora R','ball' => 11];
+        $arr[503] = ['name' => 'Ruxsora R','ball' => 10];
         $arr[469] = ['name' => 'Chehroz O','ball' => 14];
         $arr[466] = ['name' => 'Durdona Y','ball' => 13];
 
-        $arr[344] = ['name' => 'Dilfuza X','ball' => 12];
-        $arr[506] = ['name' => 'Aybibi A','ball' => 13];
+        $arr[344] = ['name' => 'Dilfuza X','ball' => 11];
+        $arr[506] = ['name' => 'Aybibi A','ball' => 12];
 
 
         $this->arrays = $arr;
