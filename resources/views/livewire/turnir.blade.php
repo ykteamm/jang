@@ -364,8 +364,8 @@
     </div>
     @endif
     <script>
-        var dday = <?php echo json_encode(date('d', strtotime('2023-12-04'))); ?>;
-        var dname = <?php echo json_encode(date('F', strtotime('2023-12-04'))); ?>;
+        var dday = <?php echo json_encode(date('d', strtotime('2023-12-07'))); ?>;
+        var dname = <?php echo json_encode(date('F', strtotime('2023-12-07'))); ?>;
         var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
 
         var x = setInterval(function() {
