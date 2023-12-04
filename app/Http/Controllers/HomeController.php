@@ -458,7 +458,7 @@ class HomeController extends Controller
         $infos = Info::where('publish', true)->orderBy('id', "DESC")->get();
         $turnir = new TurnirService;
         $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
-        
+
         // return view('home',compact('haveTurnirBattle','battleVideos','makeCloseShift','user_king_liga','videos','infos','outerMarket','news','weekDays','lock','winImage','bonus_product','producte','all_sold','all_battle','battle_history','battle_start_day','summa1','summa_bugun1','summa_bugun2','summa2','my_battle','products','shifts','pharmacy','number_array','number_array_user','exercise','user_exercise','battle_yes'));
         return view('home',compact('haveTurnirBattle'));
 
@@ -491,7 +491,7 @@ class HomeController extends Controller
         //     }
         // }
 
-        
+
 
 
 
@@ -776,14 +776,14 @@ class HomeController extends Controller
         ->orderBy('id','DESC')
         ->get();
 
-        
+
 
 
 
         // $bonus_product = ProductService::bonusProduct();
         // $producte = Product::all();
 
-        
+
 
         $lock = $this->lockElchiService->init(Auth::user()->id);
         $news = News::where('publish', true)->orderBy('id', "DESC")->get();
@@ -797,12 +797,12 @@ class HomeController extends Controller
         $infos = Info::where('publish', true)->orderBy('id', "DESC")->get();
         // $turnir = new TurnirService;
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
-        
-        $userId = Auth::id();
-        $begin = '2023-12-01';
-        $end = '2023-12-04';
 
-        $soldd = '2023-12-04';
+        $userId = Auth::id();
+        $begin = '2023-12-05';
+        $end = '2023-12-07';
+
+        $soldd = '2023-12-07';
 
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')

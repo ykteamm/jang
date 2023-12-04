@@ -28,15 +28,15 @@ class TurnirHome extends Component
         $service = new TurnirService;
         $service->getUserProfile(Auth::id());
         // $this->tour = $service->tour->tour;
-       
+
         $this->team2images = 'https://wallpapercave.com/wp/wp5504863.jpg';
-        
-        
+
+
 
         $userId = Auth::id();
-        $begin = '2023-12-01';
-        $end = '2023-12-04';
-        $soldd = '2023-12-04';
+        $begin = '2023-12-05';
+        $end = '2023-12-07';
+        $soldd = '2023-12-07';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->whereDate('begin','=',$begin)
@@ -50,7 +50,7 @@ class TurnirHome extends Component
         if($users_battles)
         {
             $this->turnir = true;
-            
+
         }else{
             $users_battles = MegaTurnirTeamBattle::with('user1','user2')
             ->where('tour',$this->tour)
@@ -94,7 +94,7 @@ class TurnirHome extends Component
             //     ->whereDate('created_at','>=','2023-10-16')
             //     ->whereDate('created_at','<=','2023-10-18')
             //     ->sum(DB::raw('price_product*number'));
-            
+
             $this->team1summa = AllSold::where('user_id',$users_battles->user1->id)
                 ->whereDate('created_at','=',date('Y-m-d'))
                 ->sum(DB::raw('price_product*number'));
@@ -146,7 +146,7 @@ class TurnirHome extends Component
 
         // dd($this->team1summa, $sum1, $sum2);
         // dd($this->team1images);
-    } 
+    }
 
 
     public function render()
