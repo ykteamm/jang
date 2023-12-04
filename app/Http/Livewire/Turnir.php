@@ -27,10 +27,10 @@ class Turnir extends Component
         $this->arrays = [];
 
         $this->user_battle_sold = [];
-        
+
         $this->resime = 2;
 
-      
+
         // }
 
         $arr = [];
@@ -50,7 +50,7 @@ class Turnir extends Component
         $arr[172] = ['name' => 'Nasiba X','ball' => 12];
 
         $arr[491] = ['name' => 'Rushana Y','ball' => 11];
-      
+
         $arr[508] = ['name' => 'Malika X','ball' => 10];
 
         $arr[79] = ['name' => 'Komola I','ball' => 10];
@@ -59,7 +59,7 @@ class Turnir extends Component
 
 
         $arr[483] = ['name' => 'Gozal A','ball' => 6];
-      
+
         $arr[495] = ['name' => 'Marjona B','ball' => 15];
 
         $arr[177] = ['name' => 'Gulzar K','ball' => 10];
@@ -70,10 +70,10 @@ class Turnir extends Component
 
         $arr[5] = ['name' => 'Nilufar M','ball' => 10];
         $arr[437] = ['name' => 'Dilnoza M','ball' => 8];
-       
+
         $arr[488] = ['name' => 'Shukrona Q','ball' => 6];
         $arr[504] = ['name' => 'Sayfura O','ball' => 10];
-       
+
         $arr[511] = ['name' => 'Shoira E','ball' => 12];
 
 
@@ -90,7 +90,7 @@ class Turnir extends Component
 
         $this->arrays = $arr;
 
-        
+
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
@@ -106,11 +106,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('Y-m-d'))
+                ->whereDate('created_at','=',date('2023-12-04'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('Y-m-d'))
+                ->whereDate('created_at','=',date('2023-12-04'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
