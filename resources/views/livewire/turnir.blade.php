@@ -37,20 +37,20 @@
             style="opacity: 5;position:absolute;top:8px;right:10px;">
             <img src="{{ asset('mobile/xclose.png') }}" width="30px">
         </button>
-       
+
     </div>
 
-        
+
     @if($resime == 2)
 
     <div class="col-12" style="background-image: url(/promo/dist/img/promo/bg2.png);">
-        
+
 
         <div class="col-12 mt-1 mb-1" >
             <img src="{{asset('mobile/turnir/saroy.webp')}}" style="width:100%;" alt="">
         </div>
 
-      
+
         <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                 style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
@@ -66,9 +66,9 @@
         </div>
 
         <div class="row">
-        
+
             <div class="col-6 mt-1 mb-1" >
-                <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt="" 
+                <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
                 onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');">
             </div>
 
@@ -78,9 +78,9 @@
             </div>
 
         </div>
-        
 
-      
+
+
 
         <div class="border-0 mb-3" id="turnirreyt">
             <div class="card-body" class="pr-0 d-none"
@@ -130,12 +130,20 @@
                             </div>
                             <div class="col-3 katak1 ml-3"
                                 style="background:{{$katak}}">
+                                @if ($team['ball'] == 0)
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{$team['ball']}} 
-                                
+                                   <span> ko'ngilli </span>
+
+                                </div>
+                                @else
+                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
+                                    {{$team['ball']}}
+
                                     <img src="{{asset('mobile/turnir/star.png')}}" width="30%" alt="">
 
                                 </div>
+                                @endif
+
                             </div>
                         </div>
                 @endforeach
@@ -167,13 +175,13 @@
                             $user2 = DB::table('tg_user')->where('id',$battle['id2'])->first();
                         @endphp
                         <div class="teamimage1" style="left: 23px;">
-                            
+
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
-                                    
-                                    {{ $user1->first_name }} 
-                                        
-                                    
+
+                                    {{ $user1->first_name }}
+
+
                                     {{ substr($user1->last_name, 0, 1) }}
 
                                 </div>
@@ -192,19 +200,19 @@
 
 
 
-                                
+
                             </div>
                         </div>
-                        
+
                         <div class="teamimage2" style="left: 330px;">
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
-                                    
-                                    {{ $user2->first_name }} 
-                                        
-                                    
+
+                                    {{ $user2->first_name }}
+
+
                                     {{ substr($user2->last_name, 0, 1) }}
- 
+
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
                                     <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
@@ -216,7 +224,7 @@
                                     <span
                                         class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
                                         {{$battle['b2']}}
-                                    
+
                                     </span>
                                 </div>
                             </div>
