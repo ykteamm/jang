@@ -700,11 +700,7 @@ class HomeController extends Controller
             $teskari2[] = $value;
         }
 
-        $winImage = null;
-        $battle_history = array_merge([], $battle_history->all());
-        if(count($battle_history) > 0) {
-            // $winImage = $this->image->make($battle_history[count($battle_history)-1]);
-        }
+
 
 
         $all_battle = UserBattle::with('u1ids','u2ids','battle_elchi','battle_elchi.u1ids','battle_elchi.u2ids')
@@ -800,7 +796,7 @@ class HomeController extends Controller
 
         $userId = Auth::id();
         $begin = '2023-12-05';
-        $end = '2023-12-07';
+        $end = '2023-12-05';
 
         $soldd = '2023-12-07';
 
@@ -837,7 +833,15 @@ class HomeController extends Controller
         }
 
 
-        // return $haveTurnirBattle;
+
+        // $winImage = null;
+        // $battle_history = array_merge([], $battle_history->all());
+        // if(count($battle_history) > 0) {
+        //     $winImage = $this->image->make($users_battles);
+        // }
+
+        // return $winImage;
+
         $outerMarket = OuterMarket::all();
         $battle_yes = 'no';
         // return $my_battle;
@@ -850,6 +854,7 @@ class HomeController extends Controller
         ,'my_battle'
         ,'all_battle'
         ,'battle_start_day'
+        ,'winImage'
         ));
 
     }

@@ -42,7 +42,6 @@ class Turnir extends Component
         $arr[512] = ['name' => 'Nozima R','ball' => 8];
         $arr[517] = ['name' => 'Mohira B','ball' => 0]; // oooooooooo
         $arr[523] = ['name' => 'Madina U','ball' => 0]; // oooooooooo
-
         #fargona
 
         #toshkent
@@ -65,8 +64,6 @@ class Turnir extends Component
         $arr[508] = ['name' => 'Malika X','ball' => 8];
         $arr[10] = ['name' => 'Saodat S','ball' => 0]; // oooooooooo
         $arr[519] = ['name' => 'Eliza S','ball' => 0]; // oooooooooo
-
-
         #qarshi
 
         #buxoro
@@ -75,7 +72,6 @@ class Turnir extends Component
         $arr[500] = ['name' => 'Xurshida X','ball' => 9];
         $arr[521] = ['name' => 'Charos J','ball' => 0]; // oooooooooo
         $arr[515] = ['name' => 'Mehrangiz U','ball' => 0]; // oooooooooo
-
         #buxoro
 
         #namangan

@@ -18,13 +18,13 @@ class MegaTurnirDori extends Component
     public $resime = 1;
 
     // protected $listeners = ['tab' => 'changeTab','for_turnir' => 'turnir'];
-    
+
 
     public function mount()
     {
 
         $this->arrays = [];
-        
+
         $this->resime = 2;
 
         $teachers = MegaTurnirTeacher::with('teacher_shogird')->get();
@@ -70,19 +70,19 @@ class MegaTurnirDori extends Component
 
             if(in_array($value->id,$ids333))
             {
-                
+
             }else{
                 $name = $value->first_name.' '.substr($value->last_name,0,1);
 
                 $sold1 = AllSold::where('user_id',$value->id)
                 ->whereDate('created_at','>=','2023-12-01')
-                ->whereDate('created_at','<=','2023-12-04')
+                ->whereDate('created_at','<=','2023-12-07')
                     ->where('medicine_id',29)
                     ->sum('number');
-    
+
                 $this->arrays[] = array('name' => $name,'ball' => $sold1);
             }
-            
+
         }
 
         $sums = array_column($this->arrays, 'ball');
