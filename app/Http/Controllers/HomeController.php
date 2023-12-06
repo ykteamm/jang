@@ -854,7 +854,6 @@ class HomeController extends Controller
         ,'my_battle'
         ,'all_battle'
         ,'battle_start_day'
-        ,'winImage'
         ));
 
     }
