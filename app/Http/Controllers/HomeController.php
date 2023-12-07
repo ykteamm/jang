@@ -796,7 +796,7 @@ class HomeController extends Controller
 
         $userId = Auth::id();
         $begin = '2023-12-05';
-        $end = '2023-12-05';
+        $end = '2023-12-07';
 
         $soldd = '2023-12-07';
 
