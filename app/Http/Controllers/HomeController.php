@@ -840,6 +840,8 @@ class HomeController extends Controller
         //     $winImage = $this->image->make($users_battles);
         // }
 
+        
+
         // return $winImage;
 
         $outerMarket = OuterMarket::all();

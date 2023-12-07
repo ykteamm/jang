@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\AllSold;
 use App\Models\MegaTurnirTeamBattle;
 use App\Models\MegaTurnirUserBattle;
+use App\Services\MakeImageService;
 use App\Services\TurnirService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class TurnirHome extends Component
     public $team2summa = 0;
     public $team1ksb = 0;
     public $team2ksb = 0;
+    public $winImage;
 
     public function mount()
     {
@@ -46,6 +48,26 @@ class TurnirHome extends Component
             ->orWhere('user2id',$userId);
         })
         ->first();
+
+        if($users_battles)
+        {
+            $last_id = $users_battles->id;
+
+            $last_battles = MegaTurnirUserBattle::with('user1','user2')
+            ->where('id','<',$last_id)
+            ->where(function($query) use ($userId){
+                $query->where('user1id',$userId)
+                ->orWhere('user2id',$userId);
+            })
+            ->orderBy('id','DESC')
+            ->first();
+
+            $image = new MakeImageService;
+
+            $this->winImage = $image->make($last_battles);
+        }else{
+            $this->winImage = null;
+        }
 
         if($users_battles)
         {

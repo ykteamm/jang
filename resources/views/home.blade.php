@@ -85,8 +85,8 @@
     {{-- @include('modals.image') --}}
     {{-- @include('modals.battle') --}}
     {{-- @include('modals.battle-day') --}}
-    
-    
+
+
     {{-- @include('modals.bonus') --}}
     {{-- @include('modals.king-sold') --}}
     {{-- @include('modals.region-profil') --}}
@@ -142,7 +142,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
-    
+
         $(function() {
             $('[data-toggle="popover"]').popover()
         })

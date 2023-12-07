@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\AllSold;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -119,22 +120,46 @@ class MakeImageService
 
   public function make($battle)
   {
+
     if($battle['win_image'] !== NULL){
       return asset("winners/" . $battle['win_image']);
     }
 
-    dd(434);
-    $winner = User::find(23);
-    $loser = User::find(29);
+
+    // $id1 = $battle['user1id'];
+    // $id2 = $battle['user2id'];
+
+    $sold1 = AllSold::where('user_id',$battle['user1id'])
+    ->whereDate('created_at','>=',$battle['begin'])
+    ->whereDate('created_at','<=',$battle['end'])
+    ->sum(DB::raw('price_product*number'));
+
+    $sold2 = AllSold::where('user_id',$battle['user2id'])
+    ->whereDate('created_at','>=',$battle['begin'])
+    ->whereDate('created_at','<=',$battle['end'])
+    ->sum(DB::raw('price_product*number'));
+
+
+    if($sold1 > $sold2)
+    {
+        $winner = User::find($battle['user1id']);
+        $loser = User::find($battle['user2id']);
+    }else{
+        $winner = User::find($battle['user2id']);
+        $loser = User::find($battle['user1id']);
+    }
+
+
     if($winner == NULL || $loser == NULL) {
       return NULL;
     }
+
     $winnerName = $this->namer($winner);
     $loserName = $this->namer($loser);
 
-    $sum1 = $this->summer($winner->id, $battle['start_day'], $battle['end_day']);
-    $sum2 = $this->summer($loser->id, $battle['start_day'], $battle['end_day']);
-    $ball = $battle['ball' . ($winner->id == $battle['u1id'] ? 1 : 2)];
+    $sum1 = $this->summer($winner->id, $battle['begin'], $battle['end']);
+    $sum2 = $this->summer($loser->id, $battle['begin'], $battle['end']);
+    $ball = 12;
     // dd($battle, $sum1, $sum2, $ball);
 
     $imgName = date("Y-m-d-h-m-s") . ".png";
@@ -158,7 +183,7 @@ class MakeImageService
     }
     // header("Content-Type: image/png");
     $this->name(strtoupper($winnerName), $winnerNameStart + 50, 1620, $this->nameFontSize, $this->color(255, 255, 255))
-        ->text(strtoupper("+" . $ball), $ballStart + strlen($ball) * 10, 1740, $this->ballFontSize, $this->color(255, 255, 255))
+        ->text(strtoupper('golib'), $ballStart + strlen($ball) * 10, 1740, $this->ballFontSize, $this->color(255, 255, 255))
         ->text(strtoupper($winnerName), 130, 140, $this->textFontSize, $this->color(255, 255, 255))
         ->text(strtoupper($loserName), $loserNameStart, 140, $this->textFontSize, $this->color(255, 255, 255))
         ->setImage($winner['image_url'], 282, 512, 0, 0, 520, 520, 100)
@@ -170,7 +195,7 @@ class MakeImageService
         ->destroy();
 
     DB::table('mega_turnir_user_battles')
-      ->where('id', 10)
+      ->where('id', $battle['id'])
       ->update(['win_image' => $imgName]);
 
     return $outerPath;
@@ -188,7 +213,7 @@ class MakeImageService
       {
         $summa = 0;
       }
-      return 4343;
+      return $summa;
   }
 
   private function namer($user) {

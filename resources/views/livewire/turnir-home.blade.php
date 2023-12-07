@@ -6,7 +6,7 @@
             <div class="userimage1">
                 <div class="teamprof rounded-circle mx-auto"
                     style="@if ($team1summa > $team2summa) box-shadow: 0px 1px 17px 5px #d3cf17;
-                            @else 
+                            @else
                             box-shadow: 0px 1px 17px 5px #ff0000; @endif
                             ">
                     <div>
@@ -37,7 +37,7 @@
             <div class="userimage2">
                 <div class="teamprof rounded-circle mx-auto"
                     style="@if ($team1summa < $team2summa) box-shadow: 0px 1px 17px 5px #d3cf17;
-                            @else 
+                            @else
                             box-shadow: 0px 1px 17px 5px #ff0000; @endif
                             ">
                     <div>
@@ -64,12 +64,21 @@
                         <img class="turking" src="{{ asset('mobile/load-king.png') }}" alt="">
                         <span class="pl-1 text-white supercell text-font for-name" style="font-size:11px">{{ formatterr($team2ksb) }}</span>
                     </div>
+                    @if ($winImage != null)
+
+                    <a href="{{ 'https://t.me/share/url?url=' . $winImage }}" target="_blank" class="play-btn" style="position: absolute;top:-110px;right:280px"
+                                                >
+                                                <img src="{{ asset('mobile/kb.png') }}" alt="Image"
+                                                    width="30">
+                                            </a>
+                    @endif
+
                 </div>
             </div>
 
             <div class="turnir-status supercell">
-               
-                    <span style="width:55px;display:block">{{ $tourTitle }}</span> 
+
+                    <span style="width:55px;display:block">{{ $tourTitle }}</span>
             </div>
 
             <style>
@@ -164,7 +173,7 @@
 
                 @media (min-width: 410px) {
                     .turnir-result {
-                        margin-top: 15px; 
+                        margin-top: 15px;
                     }
                 }
             </style>
@@ -188,5 +197,29 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="modal fade" id="imageDownload" tabindex="-1" role="dialog" aria-labelledby="imageDownload" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header p-0">
+                        <button type="button" class="close p-3" style="font-size: 2rem" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="d-flex justify-content-center align-items-center" style="">
+                            <img src="{{ $winImage }}" style="width: 100%" alt="Image">
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="{{ $winImage }}" download="{{ $winImage }}" target="_blank"
+                                class="py-1 px-2 d-flex justify-content-between align-items-center">
+                                <img src="{{ asset('mobile/saqlash.png') }}" width="150px" alt="">
+                            </a>
+                            <a href="{{ 'https://t.me/share/url?url=' . $winImage }}" target="_blank"
+                                class="py-1 px-2 d-flex justify-content-between align-items-center">
+                                <img src="{{ asset('mobile/ulashish.png') }}" width="150px" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     @endif
 </div>
