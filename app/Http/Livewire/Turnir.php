@@ -40,8 +40,6 @@ class Turnir extends Component
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 2];
         $arr[505] = ['name' => 'Shahlo H','ball' => 3];
         $arr[512] = ['name' => 'Nozima R','ball' => 8];
-        $arr[517] = ['name' => 'Mohira B','ball' => 0]; // oooooooooo
-        $arr[523] = ['name' => 'Madina U','ball' => 0]; // oooooooooo
         #fargona
 
         #toshkent
@@ -52,8 +50,6 @@ class Turnir extends Component
         $arr[286] = ['name' => 'Elmira B','ball' => 0]; //chiqdi
         $arr[454] = ['name' => 'Janat B','ball' => 0]; //chiqdi
         $arr[499] = ['name' => 'Bibinaz A','ball' => 5];
-        $arr[468] = ['name' => 'Elmira U','ball' => 0]; // oooooooooo
-        $arr[514] = ['name' => 'Nigora T','ball' => 0]; // oooooooooo
 
         #qoraqalpoq
 
@@ -62,16 +58,12 @@ class Turnir extends Component
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 13];
         $arr[491] = ['name' => 'Rushana Y','ball' => 7];
         $arr[508] = ['name' => 'Malika X','ball' => 8];
-        $arr[10] = ['name' => 'Saodat S','ball' => 0]; // oooooooooo
-        $arr[519] = ['name' => 'Eliza S','ball' => 0]; // oooooooooo
         #qarshi
 
         #buxoro
         $arr[79] = ['name' => 'Komola I','ball' => 9];
         $arr[502] = ['name' => 'Mavjuda Q','ball' => 0]; //chiqdi
         $arr[500] = ['name' => 'Xurshida X','ball' => 5];
-        $arr[521] = ['name' => 'Charos J','ball' => 0]; // oooooooooo
-        $arr[515] = ['name' => 'Mehrangiz U','ball' => 0]; // oooooooooo
         #buxoro
 
         #namangan
