@@ -95,12 +95,13 @@
                     @php
                             $color = '-webkit-text-stroke: 1px #36393a !important;background: #77a9d5;border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #e7eae8;';
                             $grv = 'linear-gradient(45deg, #7f9cef, #7f9cef)';
+                            $grv2 = 'red';
                             $katak = '#7f9cef';
                             $gr= 'linear-gradient(45deg, #b97338, #f3b35f)';
                     @endphp
                         <div class="row align-items-center pr-3 py-2"
                                 style="
-                                    background: {{$grv}};
+                                    background: @if ($team['ball'] == 0) {{$grv2}}   @else {{$grv}} @endif;
                                     border-top-left-radius: 15px;
                                     border-top-right-radius: 15px;
                                 ">
@@ -132,7 +133,7 @@
                                 style="background:{{$katak}}">
                                 @if ($team['ball'] == 0)
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                   <span> ko'ngilli </span>
+                                   <span> Turnirdan chiqdi </span>
 
                                 </div>
                                 @else
@@ -372,8 +373,8 @@
     </div>
     @endif
     <script>
-        var dday = <?php echo json_encode(date('d', strtotime('2023-12-07'))); ?>;
-        var dname = <?php echo json_encode(date('F', strtotime('2023-12-07'))); ?>;
+        var dday = <?php echo json_encode(date('d', strtotime('2023-12-08'))); ?>;
+        var dname = <?php echo json_encode(date('F', strtotime('2023-12-14'))); ?>;
         var countDownDate = new Date(dname + " " + dday + ", 2023 23:59:59").getTime();
 
         var x = setInterval(function() {

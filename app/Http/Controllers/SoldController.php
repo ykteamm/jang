@@ -31,7 +31,7 @@ class SoldController extends Controller
     }
     public function store(Request $request)
     {
-        
+
         $inputs = $request->all();
         // $full_name = $inputs['full_name'];
         // $phone = $inputs['phone_number'];
@@ -50,7 +50,7 @@ class SoldController extends Controller
                 $firewall += $value*$arr[1];
             }
         }
-         
+
         // if($firewall >= 500000)
         // {
         //     $services = new SoldService;
@@ -121,7 +121,7 @@ class SoldController extends Controller
         //     ]);
         //     $token = $response['data']['token'];
 
-            
+
 
         //     if(myHost() == 127)
         //     {
@@ -134,12 +134,12 @@ class SoldController extends Controller
         //         $message = 'Hurmatli mijoz bu sizning shaxsiy profilingiz. https://mijoz.novatio.uz/'.$phone;
         //     }
 
-        //     $sms = Http::withToken($token)->post('notify.eskiz.uz/api/message/sms/send', [
-        //         'mobile_phone' => '998'.$phone,
-        //         'message' => $message,
-        //         'from' => '4546',
-        //         'callback_url' => 'http://0000.uz/test.php'
-        //     ]);
+            // $sms = Http::withToken($token)->post('notify.eskiz.uz/api/message/sms/send', [
+            //     'mobile_phone' => '998'.$phone,
+            //     'message' => $message,
+            //     'from' => '4546',
+            //     'callback_url' => 'http://0000.uz/test.php'
+            // ]);
 
 
         // }
@@ -167,7 +167,7 @@ class SoldController extends Controller
             ->whereDate('created_at', date('Y-m-d'))
             ->first();
 
-            // return $premya;  
+            // return $premya;
 
             if($first)
             {
