@@ -205,7 +205,7 @@
                             </div>
                         </div>
 
-                        <div class="teamimage2" style="left: 330px;">
+                        <div class="teamimage2">
                             <div class="turnir-all-result">
                                 <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
 
@@ -294,6 +294,26 @@
                     }
                 }
 
+                @media (max-width: 540px) {
+                    .teamimage2 {
+                        left: 330px;
+                    }
+                }
+                @media (max-width: 500px) {
+                    .teamimage2 {
+                        left: 290px;
+                    }
+                }
+                @media (max-width: 450px) {
+                    .teamimage2 {
+                        left: 242px;
+                    }
+                }
+                @media (max-width: 350px) {
+                    .teamimage2 {
+                        left: 142px;
+                    }
+                }
                 @media (min-width: 340px) {
                     .teamimage1 {
                         top: 20%;
