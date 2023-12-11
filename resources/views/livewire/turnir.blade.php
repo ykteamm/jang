@@ -54,7 +54,7 @@
         <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">
             <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                 style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
-                <img src="{{asset('mobile/turnir/dorioy.webp')}}" style="width:15%;margin-right: 15px;" alt="">
+                <img src="{{asset('mobile/turnir/newchoy.png')}}" style="width:15%;margin-right: 15px;" alt="">
 
                 <span class="text-center" id="count-timer-day" style="font-size: 25px;"></span>
                 <span style="font-size: 15px;">k :</span>

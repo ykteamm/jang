@@ -77,7 +77,7 @@ class MegaTurnirDori extends Component
                 $sold1 = AllSold::where('user_id',$value->id)
                 ->whereDate('created_at','>=','2023-12-09')
                 ->whereDate('created_at','<=','2023-12-14')
-                    ->where('medicine_id',29)
+                    ->where('medicine_id',246)
                     ->sum('number');
 
                 $this->arrays[] = array('name' => $name,'ball' => $sold1);
