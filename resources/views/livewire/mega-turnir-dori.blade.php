@@ -37,7 +37,7 @@
             style="position:absolute;top:0px;left:0;right:0;font-size:22px">
             <div class="pl-4 text-white pt-2"
                 style="text-shadow: -1px 4px 0 #000, 3px 1px 0 #000, 3px -1px 0 #000, -1px -1px 0 #000">
-                Gelmintatsit</div>
+                Karobka sovg'a choy</div>
         </div>
         <script>
             function changeTab1() {
@@ -65,14 +65,14 @@
         <div style="position:absolute;height:1px;top:86px;background:#74d5ff;width:100%"></div>
     </div>
 
-        
+
     @if($resime == 2)
 
     <div class="col-12" style="background-image: url(/promo/dist/img/promo/bg2.png);">
-        
-        
-        
-        
+
+
+
+
 
         {{-- <div class="col-12 mt-1 mb-1" >
 
@@ -86,7 +86,7 @@
                 style="background:none;">
                 <div class="supercell text-center mb-4" style="color:rgb(255, 255, 255)">Reyting</div>
 
-                
+
                 <style>
                     .katak1{
                         padding: 9px 10px;
@@ -121,7 +121,7 @@
                             border-bottom-left-radius: 15px;
                             border-bottom-right-radius: 15px;
                             ">
-                            
+
                             <div class="col-2 pl-2">
                                 <button type="button" class="btn-sm btn-secondary supercell p-0"
                                     style="{{ $color }};width: 35px;height: 35px;">
@@ -150,7 +150,7 @@
                             </div>
                             {{-- <div class="col-3 text-center p-0" style="padding-right: 4px !important;">
                                 <div style="font-size:15px;font-weight:800">
-                                    <img src="{{asset('mobile/team/12000.webp')}}" width="50px" alt=""> 
+                                    <img src="{{asset('mobile/team/12000.webp')}}" width="50px" alt="">
                                 </div>
                             </div>
                             <div class="col-2 text-center" style="border-left:1px solid #717fe9;">
