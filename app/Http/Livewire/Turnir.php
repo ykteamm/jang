@@ -43,13 +43,13 @@ class Turnir extends Component
         #fargona
 
         #toshkent
-        $arr[64] = ['name' => 'Dilrabo N','ball' => 4];
+        $arr[64] = ['name' => 'Dilrabo N','ball' => 2];
         #toshkent
 
         #qoraqalpoq
         $arr[286] = ['name' => 'Elmira B','ball' => 0]; //chiqdi
         $arr[454] = ['name' => 'Janat B','ball' => 0]; //chiqdi
-        $arr[499] = ['name' => 'Bibinaz A','ball' => 5];
+        $arr[499] = ['name' => 'Bibinaz A','ball' => 3];
 
         #qoraqalpoq
 
@@ -61,7 +61,7 @@ class Turnir extends Component
         #qarshi
 
         #buxoro
-        $arr[79] = ['name' => 'Komola I','ball' => 7];
+        $arr[79] = ['name' => 'Komola I','ball' => 5];
         $arr[502] = ['name' => 'Mavjuda Q','ball' => 0]; //chiqdi
         $arr[500] = ['name' => 'Xurshida X','ball' => 5];
         #buxoro
@@ -72,15 +72,15 @@ class Turnir extends Component
         #namangan
 
         #andijon
-        $arr[177] = ['name' => 'Gulzar K','ball' => 5];
+        $arr[177] = ['name' => 'Gulzar K','ball' => 3];
         $arr[467] = ['name' => 'Dilnoza G','ball' => 0]; //chiqdi
-        $arr[5] = ['name' => 'Nilufar M','ball' => 2];
+        $arr[5] = ['name' => 'Nilufar M','ball' => 0]; //chiqdi3
         $arr[437] = ['name' => 'Dilnoza M','ball' => 0]; // chiqdi
-        $arr[488] = ['name' => 'Shukrona Q','ball' => 2];
-        $arr[504] = ['name' => 'Sayfura O','ball' => 4];
-        $arr[511] = ['name' => 'Shoira E','ball' => 2];
-        $arr[172] = ['name' => 'Nasiba X','ball' => 1];
-        $arr[86] = ['name' => 'Shaxnoza S','ball' => 5];
+        $arr[488] = ['name' => 'Shukrona Q','ball' => 0]; //chiqdi3
+        $arr[504] = ['name' => 'Sayfura O','ball' => 2];
+        $arr[511] = ['name' => 'Shoira E','ball' => 0]; //chiqdi3
+        $arr[172] = ['name' => 'Nasiba X','ball' => 0]; //chiqdi3
+        $arr[86] = ['name' => 'Shaxnoza S','ball' => 3];
         #andijon
 
         #samarqand
@@ -92,7 +92,7 @@ class Turnir extends Component
 
         #xorazm
         $arr[344] = ['name' => 'Dilfuza X','ball' => 5];
-        $arr[506] = ['name' => 'Aybibi A','ball' => 4];
+        $arr[506] = ['name' => 'Aybibi A','ball' => 2];
         #xorazm
 
 
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-11'))
+                ->whereDate('created_at','=',date('2023-12-12'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-11'))
+                ->whereDate('created_at','=',date('2023-12-12'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
