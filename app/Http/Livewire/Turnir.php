@@ -39,31 +39,31 @@ class Turnir extends Component
         $arr[429] = ['name' => 'Umidaxon O','ball' => 0]; // chiqdi
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 0]; // chiqdi2
         $arr[505] = ['name' => 'Shahlo H','ball' => 0];  // chiqdi2
-        $arr[512] = ['name' => 'Nozima R','ball' => 8];
+        $arr[512] = ['name' => 'Nozima R','ball' => 6];
         #fargona
 
         #toshkent
-        $arr[64] = ['name' => 'Dilrabo N','ball' => 2];
+        $arr[64] = ['name' => 'Dilrabo N','ball' => 0]; //chiqdi4
         #toshkent
 
         #qoraqalpoq
         $arr[286] = ['name' => 'Elmira B','ball' => 0]; //chiqdi
         $arr[454] = ['name' => 'Janat B','ball' => 0]; //chiqdi
-        $arr[499] = ['name' => 'Bibinaz A','ball' => 3];
+        $arr[499] = ['name' => 'Bibinaz A','ball' => 0]; //chiqdi
 
         #qoraqalpoq
 
         #qarshi
-        $arr[279] = ['name' => 'Aziza N','ball' => 4];
+        $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 13];
-        $arr[491] = ['name' => 'Rushana Y','ball' => 7];
-        $arr[508] = ['name' => 'Malika X','ball' => 8];
+        $arr[491] = ['name' => 'Rushana Y','ball' => 3];
+        $arr[508] = ['name' => 'Malika X','ball' => 6];
         #qarshi
 
         #buxoro
-        $arr[79] = ['name' => 'Komola I','ball' => 5];
+        $arr[79] = ['name' => 'Komola I','ball' => 1];
         $arr[502] = ['name' => 'Mavjuda Q','ball' => 0]; //chiqdi
-        $arr[500] = ['name' => 'Xurshida X','ball' => 5];
+        $arr[500] = ['name' => 'Xurshida X','ball' => 1];
         #buxoro
 
         #namangan
@@ -72,27 +72,27 @@ class Turnir extends Component
         #namangan
 
         #andijon
-        $arr[177] = ['name' => 'Gulzar K','ball' => 3];
+        $arr[177] = ['name' => 'Gulzar K','ball' => 2];
         $arr[467] = ['name' => 'Dilnoza G','ball' => 0]; //chiqdi
         $arr[5] = ['name' => 'Nilufar M','ball' => 0]; //chiqdi3
         $arr[437] = ['name' => 'Dilnoza M','ball' => 0]; // chiqdi
         $arr[488] = ['name' => 'Shukrona Q','ball' => 0]; //chiqdi3
-        $arr[504] = ['name' => 'Sayfura O','ball' => 2];
+        $arr[504] = ['name' => 'Sayfura O','ball' => 0]; //chiqdi4
         $arr[511] = ['name' => 'Shoira E','ball' => 0]; //chiqdi3
         $arr[172] = ['name' => 'Nasiba X','ball' => 0]; //chiqdi3
-        $arr[86] = ['name' => 'Shaxnoza S','ball' => 3];
+        $arr[86] = ['name' => 'Shaxnoza S','ball' => 1];
         #andijon
 
         #samarqand
-        $arr[232] = ['name' => 'Shaxnoza X','ball' => 9];
-        $arr[469] = ['name' => 'Chehroz O','ball' => 6];
-        $arr[466] = ['name' => 'Durdona Y','ball' => 4];
+        $arr[232] = ['name' => 'Shaxnoza X','ball' => 7];
+        $arr[469] = ['name' => 'Chehroz O','ball' => 4];
+        $arr[466] = ['name' => 'Durdona Y','ball' => 0]; //chiqdi4
         $arr[503] = ['name' => 'Ruxsora R','ball' => 0]; //chiqdi
         #samarqand
 
         #xorazm
-        $arr[344] = ['name' => 'Dilfuza X','ball' => 5];
-        $arr[506] = ['name' => 'Aybibi A','ball' => 2];
+        $arr[344] = ['name' => 'Dilfuza X','ball' => 3];
+        $arr[506] = ['name' => 'Aybibi A','ball' => 0]; //chiqdi4
         #xorazm
 
 
@@ -104,9 +104,9 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-12-09';
-        $end = '2023-12-12';
-        $soldd = '2023-12-12';
+        $begin = '2023-12-13';
+        $end = '2023-12-15';
+        $soldd = '2023-12-15';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->whereDate('begin','=',$begin)
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-12'))
+                ->whereDate('created_at','=',date('2023-12-13'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-12'))
+                ->whereDate('created_at','=',date('2023-12-13'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
