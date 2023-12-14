@@ -57,22 +57,22 @@ class Turnir extends Component
         $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 13];
         $arr[491] = ['name' => 'Rushana Y','ball' => 3];
-        $arr[508] = ['name' => 'Malika X','ball' => 6];
+        $arr[508] = ['name' => 'Malika X','ball' => 4];
         #qarshi
 
         #buxoro
         $arr[79] = ['name' => 'Komola I','ball' => 1];
         $arr[502] = ['name' => 'Mavjuda Q','ball' => 0]; //chiqdi
-        $arr[500] = ['name' => 'Xurshida X','ball' => 1];
+        $arr[500] = ['name' => 'Xurshida X','ball' => 0]; //chiqdi5
         #buxoro
 
         #namangan
         $arr[483] = ['name' => 'Gozal A','ball' => 0];  //chiqdi
-        $arr[495] = ['name' => 'Marjona B','ball' => 13];
+        $arr[495] = ['name' => 'Marjona B','ball' => 11];
         #namangan
 
         #andijon
-        $arr[177] = ['name' => 'Gulzar K','ball' => 2];
+        $arr[177] = ['name' => 'Gulzar K','ball' => 0]; //chiqdi5
         $arr[467] = ['name' => 'Dilnoza G','ball' => 0]; //chiqdi
         $arr[5] = ['name' => 'Nilufar M','ball' => 0]; //chiqdi3
         $arr[437] = ['name' => 'Dilnoza M','ball' => 0]; // chiqdi
@@ -84,8 +84,8 @@ class Turnir extends Component
         #andijon
 
         #samarqand
-        $arr[232] = ['name' => 'Shaxnoza X','ball' => 7];
-        $arr[469] = ['name' => 'Chehroz O','ball' => 4];
+        $arr[232] = ['name' => 'Shaxnoza X','ball' => 5];
+        $arr[469] = ['name' => 'Chehroz O','ball' => 2];
         $arr[466] = ['name' => 'Durdona Y','ball' => 0]; //chiqdi4
         $arr[503] = ['name' => 'Ruxsora R','ball' => 0]; //chiqdi
         #samarqand
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-13'))
+                ->whereDate('created_at','=',date('2023-12-14'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-13'))
+                ->whereDate('created_at','=',date('2023-12-14'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
