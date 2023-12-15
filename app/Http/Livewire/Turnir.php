@@ -39,7 +39,7 @@ class Turnir extends Component
         $arr[429] = ['name' => 'Umidaxon O','ball' => 0]; // chiqdi
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 0]; // chiqdi2
         $arr[505] = ['name' => 'Shahlo H','ball' => 0];  // chiqdi2
-        $arr[512] = ['name' => 'Nozima R','ball' => 6];
+        $arr[512] = ['name' => 'Nozima R','ball' => 5];
         #fargona
 
         #toshkent
@@ -55,7 +55,7 @@ class Turnir extends Component
 
         #qarshi
         $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
-        $arr[323] = ['name' => 'Qizlarxon T','ball' => 13];
+        $arr[323] = ['name' => 'Qizlarxon T','ball' => 12];
         $arr[491] = ['name' => 'Rushana Y','ball' => 3];
         $arr[508] = ['name' => 'Malika X','ball' => 4];
         #qarshi
@@ -84,14 +84,14 @@ class Turnir extends Component
         #andijon
 
         #samarqand
-        $arr[232] = ['name' => 'Shaxnoza X','ball' => 5];
-        $arr[469] = ['name' => 'Chehroz O','ball' => 2];
+        $arr[232] = ['name' => 'Shaxnoza X','ball' => 4];
+        $arr[469] = ['name' => 'Chehroz O','ball' => 1];
         $arr[466] = ['name' => 'Durdona Y','ball' => 0]; //chiqdi4
         $arr[503] = ['name' => 'Ruxsora R','ball' => 0]; //chiqdi
         #samarqand
 
         #xorazm
-        $arr[344] = ['name' => 'Dilfuza X','ball' => 3];
+        $arr[344] = ['name' => 'Dilfuza X','ball' => 2];
         $arr[506] = ['name' => 'Aybibi A','ball' => 0]; //chiqdi4
         #xorazm
 
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-14'))
+                ->whereDate('created_at','=',date('2023-12-15'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-14'))
+                ->whereDate('created_at','=',date('2023-12-15'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
