@@ -795,10 +795,10 @@ class HomeController extends Controller
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
 
         $userId = Auth::id();
-        $begin = '2023-12-13';
-        $end = '2023-12-15';
+        $begin = '2023-12-16';
+        $end = '2023-12-19';
 
-        $soldd = '2023-12-15';
+        $soldd = '2023-12-19';
 
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
