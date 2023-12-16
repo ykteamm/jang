@@ -39,7 +39,7 @@ class Turnir extends Component
         $arr[429] = ['name' => 'Umidaxon O','ball' => 0]; // chiqdi
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 0]; // chiqdi2
         $arr[505] = ['name' => 'Shahlo H','ball' => 0];  // chiqdi2
-        $arr[512] = ['name' => 'Nozima R','ball' => 5];
+        $arr[512] = ['name' => 'Nozima R','ball' => 3];
         #fargona
 
         #toshkent
@@ -56,19 +56,19 @@ class Turnir extends Component
         #qarshi
         $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 12];
-        $arr[491] = ['name' => 'Rushana Y','ball' => 3];
-        $arr[508] = ['name' => 'Malika X','ball' => 4];
+        $arr[491] = ['name' => 'Rushana Y','ball' => 2];
+        $arr[508] = ['name' => 'Malika X','ball' => 3];
         #qarshi
 
         #buxoro
-        $arr[79] = ['name' => 'Komola I','ball' => 1];
+        $arr[79] = ['name' => 'Komola I','ball' => 0]; //chiqdi6
         $arr[502] = ['name' => 'Mavjuda Q','ball' => 0]; //chiqdi
         $arr[500] = ['name' => 'Xurshida X','ball' => 0]; //chiqdi5
         #buxoro
 
         #namangan
         $arr[483] = ['name' => 'Gozal A','ball' => 0];  //chiqdi
-        $arr[495] = ['name' => 'Marjona B','ball' => 11];
+        $arr[495] = ['name' => 'Marjona B','ball' => 10];
         #namangan
 
         #andijon
@@ -80,18 +80,18 @@ class Turnir extends Component
         $arr[504] = ['name' => 'Sayfura O','ball' => 0]; //chiqdi4
         $arr[511] = ['name' => 'Shoira E','ball' => 0]; //chiqdi3
         $arr[172] = ['name' => 'Nasiba X','ball' => 0]; //chiqdi3
-        $arr[86] = ['name' => 'Shaxnoza S','ball' => 1];
+        $arr[86] = ['name' => 'Shaxnoza S','ball' => 0]; //chiqdi6
         #andijon
 
         #samarqand
-        $arr[232] = ['name' => 'Shaxnoza X','ball' => 4];
-        $arr[469] = ['name' => 'Chehroz O','ball' => 1];
+        $arr[232] = ['name' => 'Shaxnoza X','ball' => 2];
+        $arr[469] = ['name' => 'Chehroz O','ball' => 0]; //chiqdi6
         $arr[466] = ['name' => 'Durdona Y','ball' => 0]; //chiqdi4
         $arr[503] = ['name' => 'Ruxsora R','ball' => 0]; //chiqdi
         #samarqand
 
         #xorazm
-        $arr[344] = ['name' => 'Dilfuza X','ball' => 2];
+        $arr[344] = ['name' => 'Dilfuza X','ball' => 0]; //chiqdi6
         $arr[506] = ['name' => 'Aybibi A','ball' => 0]; //chiqdi4
         #xorazm
 
@@ -104,9 +104,9 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-12-13';
-        $end = '2023-12-15';
-        $soldd = '2023-12-15';
+        $begin = '2023-12-16';
+        $end = '2023-12-19';
+        $soldd = '2023-12-19';
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->whereDate('begin','=',$begin)
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-15'))
+                ->whereDate('created_at','=',date('2023-12-16'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-15'))
+                ->whereDate('created_at','=',date('2023-12-16'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
