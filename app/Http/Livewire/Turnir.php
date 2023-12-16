@@ -55,7 +55,7 @@ class Turnir extends Component
 
         #qarshi
         $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
-        $arr[323] = ['name' => 'Qizlarxon T','ball' => 12];
+        $arr[323] = ['name' => 'Qizlarxon T','ball' => 11];
         $arr[491] = ['name' => 'Rushana Y','ball' => 2];
         $arr[508] = ['name' => 'Malika X','ball' => 3];
         #qarshi
@@ -68,7 +68,7 @@ class Turnir extends Component
 
         #namangan
         $arr[483] = ['name' => 'Gozal A','ball' => 0];  //chiqdi
-        $arr[495] = ['name' => 'Marjona B','ball' => 10];
+        $arr[495] = ['name' => 'Marjona B','ball' => 11];
         #namangan
 
         #andijon
