@@ -39,7 +39,7 @@ class Turnir extends Component
         $arr[429] = ['name' => 'Umidaxon O','ball' => 0]; // chiqdi
         $arr[516] = ['name'=> 'Durdona N' , 'ball'=> 0]; // chiqdi2
         $arr[505] = ['name' => 'Shahlo H','ball' => 0];  // chiqdi2
-        $arr[512] = ['name' => 'Nozima R','ball' => 2];
+        $arr[512] = ['name' => 'Nozima R','ball' => 1];
         #fargona
 
         #toshkent
@@ -57,7 +57,7 @@ class Turnir extends Component
         $arr[279] = ['name' => 'Aziza N','ball' => 0]; //chiqdi4
         $arr[323] = ['name' => 'Qizlarxon T','ball' => 11];
         $arr[491] = ['name' => 'Rushana Y','ball' => 2];
-        $arr[508] = ['name' => 'Malika X','ball' => 3];
+        $arr[508] = ['name' => 'Malika X','ball' => 2];
         #qarshi
 
         #buxoro
@@ -68,7 +68,7 @@ class Turnir extends Component
 
         #namangan
         $arr[483] = ['name' => 'Gozal A','ball' => 0];  //chiqdi
-        $arr[495] = ['name' => 'Marjona B','ball' => 10];
+        $arr[495] = ['name' => 'Marjona B','ball' => 9];
         #namangan
 
         #andijon
@@ -116,11 +116,11 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-18'))
+                ->whereDate('created_at','=',date('2023-12-19'))
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-18'))
+                ->whereDate('created_at','=',date('2023-12-19'))
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
