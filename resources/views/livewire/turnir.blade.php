@@ -137,7 +137,7 @@
                                 </div>
                                 @else
                                 <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{$team['ball']}}
+                                    ?
 
                                     <img src="{{asset('mobile/turnir/star.png')}}" width="30%" alt="">
 
