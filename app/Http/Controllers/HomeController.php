@@ -474,32 +474,14 @@ class HomeController extends Controller
         {
             return view('kurator');
         }
+
         $my_id = userme()->id;
 
         if (userme()->status == 4) {
             return redirect()->route('block');
         }
-        // if (count(getShogirdStar()) == 1 &&  getTestReview() == 0)
-        // {
+        
 
-        //     if (userme()->status == 0 && gettype(getTeacher()) != 'array') {
-        //         $shifts123 = Shift::whereDate('close_date','<=',date('Y-m-d'))->where('user_id',$my_id)->orderBy('id','ASC')->get();
-        //         if(count($shifts123) >= 7)
-        //         {
-        //             return redirect()->route('login');
-        //         }
-        //     }
-        // }
-
-
-
-
-
-            // $fsd = new UserBattleService;
-
-            // $ff = $fsd->battle('2023-09-14');
-
-            // dd($ff);
 
 
 
@@ -795,10 +777,10 @@ class HomeController extends Controller
         // $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
 
         $userId = Auth::id();
-        $begin = '2023-12-16';
-        $end = '2023-12-19';
-
-        $soldd = '2023-12-19';
+        $date_mini = megaMini();
+        $begin = $date_mini['begin'];
+        $end = $date_mini['end'];
+        $sold = $date_mini['sold'];
 
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
@@ -832,14 +814,23 @@ class HomeController extends Controller
 
         }
 
-
+        $ard = [323,495,512,232];
 
         // $winImage = null;
         // $battle_history = array_merge([], $battle_history->all());
         // if(count($battle_history) > 0) {
         //     $winImage = $this->image->make($users_battles);
         // }
+        $userId = Auth::id();
+        $date_mini = megaTurnir();
+        $begin = $date_mini['begin'];
+        $end = $date_mini['end'];
+        $sold = $date_mini['sold'];
 
+        if(in_array($userId,$ard))
+        {
+            $haveTurnirBattle = 1;
+        }
 
 
 

@@ -1946,6 +1946,30 @@ if(!function_exists('getcris')){
     }
 }
 
+if(!function_exists('megaTurnir')){
+    function megaTurnir() {
+
+        $arr = [];
+        $arr['begin'] = '2023-12-21';
+        $arr['end'] = '2023-12-25';
+        $arr['sold'] = date('Y-m-d');
+
+        return $arr;
+    }
+}
+
+if(!function_exists('megaMini')){
+    function megaMini() {
+
+        $arr = [];
+        $arr['begin'] = '2023-12-21';
+        $arr['end'] = '2023-12-22';
+        $arr['sold'] = date('Y-m-d');
+
+        return $arr;
+    }
+}
+
 if(!function_exists('nickname')){
     function nickname() {
 

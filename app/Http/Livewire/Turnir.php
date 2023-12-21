@@ -18,6 +18,7 @@ class Turnir extends Component
     public $resime = 1;
 
     public $user_battle_sold = [];
+    public $user_battle_sold2 = [];
     protected $listeners = ['tab' => 'changeTab','for_turnir' => 'turnir'];
 
 
@@ -27,10 +28,11 @@ class Turnir extends Component
         $this->arrays = [];
 
         $this->user_battle_sold = [];
+        $this->user_battle_sold2 = [];
 
         $this->resime = 2;
 
-
+        
         // }
 
         $arr = [];
@@ -104,9 +106,10 @@ class Turnir extends Component
         $sums = array_column($this->arrays, 'ball');
         array_multisort($sums, SORT_DESC , $this->arrays);
 
-        $begin = '2023-12-16';
-        $end = '2023-12-17';
-        $soldd = '2023-12-17';
+        $date_mini = megaMini();
+        $begin = $date_mini['begin'];
+        $end = $date_mini['end'];
+        $sold = $date_mini['sold'];
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
             ->whereDate('begin','=',$begin)
@@ -116,11 +119,21 @@ class Turnir extends Component
 
         foreach ($users_battles as $key => $value) {
             $sold1 = AllSold::where('user_id',$value->user1id)
-                ->whereDate('created_at','=',date('2023-12-19'))
+                ->whereDate('created_at','=',$sold)
                 ->sum(DB::raw('number*price_product'));
 
             $sold2 = AllSold::where('user_id',$value->user2id)
-                ->whereDate('created_at','=',date('2023-12-19'))
+                ->whereDate('created_at','=',$sold)
+                ->sum(DB::raw('number*price_product'));
+
+                $sold11 = AllSold::where('user_id',$value->user1id)
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('number*price_product'));
+
+            $sold22 = AllSold::where('user_id',$value->user2id)
+            ->whereDate('created_at','>=',$begin)
+            ->whereDate('created_at','<=',$end)
                 ->sum(DB::raw('number*price_product'));
 
             $ids1 = $value->user1id;
@@ -136,12 +149,59 @@ class Turnir extends Component
                 'limit' => $limit,
                 'user1' => $user1,'user2' => $user2,
                 'sold1' => $sold1,'sold2' => $sold2,
+                'sold11' => $sold11,'sold22' => $sold22,
                 'sum' => ($sold1 + $sold2));
         }
 
 
         $sums = array_column($this->user_battle_sold, 'sum');
         array_multisort($sums, SORT_DESC , $this->user_battle_sold);
+
+        $date_mini = megaTurnir();
+        $begin = $date_mini['begin'];
+        $end = $date_mini['end'];
+        $sold = $date_mini['sold'];
+
+        $ard = [];
+        $ard[] = ['user1' => 323, 'user2' =>495, 'limit' => 700];
+        $ard[] = ['user1' => 512, 'user2' =>232, 'limit' => 700];
+
+        foreach ($ard as $key => $value) {
+            $sold1 = AllSold::where('user_id',$value['user1'])
+                ->whereDate('created_at','=',$sold)
+                ->sum(DB::raw('number*price_product'));
+
+            $sold2 = AllSold::where('user_id',$value['user2'])
+                ->whereDate('created_at','=',$sold)
+                ->sum(DB::raw('number*price_product'));
+
+                $sold11 = AllSold::where('user_id',$value['user1'])
+                ->whereDate('created_at','>=',$begin)
+                ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('number*price_product'));
+
+            $sold22 = AllSold::where('user_id',$value['user2'])
+            ->whereDate('created_at','>=',$begin)
+            ->whereDate('created_at','<=',$end)
+                ->sum(DB::raw('number*price_product'));
+
+            $ids1 = $value['user1'];
+            $ids2 = $value['user2'];
+
+            $user1 = User::find($value['user1']);
+            $user2 = User::find($value['user2']);
+            $this->user_battle_sold2[] = array(
+                'id1'=>$ids1, 'id2'=> $ids2,
+                'limit' => $value['limit'],
+                'user1' => $user1,'user2' => $user2,
+                'sold1' => $sold1,'sold2' => $sold2,
+                'sold11' => $sold11,'sold22' => $sold22,
+                'sum' => ($sold1 + $sold2));
+        }
+
+
+        $sums = array_column($this->user_battle_sold2, 'sum');
+        array_multisort($sums, SORT_DESC , $this->user_battle_sold2);
 
     }
 

@@ -67,13 +67,29 @@
         <div class="row">
 
             <div class="col-6 mt-1 mb-1" >
-                <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
-                onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');">
+                <button class="btn btn-block supercell"
+                style="background: #4b2c8b;
+                border-radius: 12px;
+                font-size: 28px;
+                border: 2px solid white;
+                color: white;"
+                onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');"
+                >MINI O'YIN</button>
+                {{-- <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
+                > --}}
             </div>
 
             <div class="col-6 mt-1 mb-1" >
-                <img src="{{asset('mobile/turnir/turnirb.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
-                onclick="$('#turnirreyt').css('display','none');$('#turnirtab').css('display','block');">
+                <button class="btn btn-block supercell"
+                style="background: #ffbb2b;
+                border-radius: 12px;
+                font-size: 28px;
+                border: 2px solid white;
+                color: white;"
+                onclick="$('#turnirreyt').css('display','none');$('#turnirtab').css('display','block');"
+                >YARIM FINAL</button>
+                {{-- <img src="{{asset('mobile/turnir/turnirb.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
+                > --}}
             </div>
 
         </div>
@@ -82,74 +98,6 @@
 
 
         <div class="border-0 mb-3" id="turnirreyt">
-            <div class="card-body" class="pr-0 d-none"
-                style="background:none;">
-                <style>
-                    .katak1{
-                        padding: 2px 3px;
-                        border-radius: 4px;
-                    }
-                </style>
-                @foreach ($arrays as $key => $team)
-                    @php
-                            $color = '-webkit-text-stroke: 1px #36393a !important;background: #77a9d5;border: 1px solid #c8b7b7;box-shadow: 0px 0px 0px 2px #e7eae8;';
-                            $grv = 'linear-gradient(45deg, #7f9cef, #7f9cef)';
-                            $grv2 = 'red';
-                            $katak = '#7f9cef';
-                            $gr= 'linear-gradient(45deg, #b97338, #f3b35f)';
-                    @endphp
-                        <div class="row align-items-center pr-3 py-2"
-                                style="
-                                    background: @if ($team['ball'] == 0) {{$grv2}}   @else {{$grv}} @endif;
-                                    border-top-left-radius: 15px;
-                                    border-top-right-radius: 15px;
-                                ">
-                        </div>
-                        <div class="row align-items-center pr-3 py-1 mb-1"
-                            style="background:linear-gradient(45deg, #b2bccf, #bdc1c7);;
-                            border-bottom-left-radius: 15px;
-                            border-bottom-right-radius: 15px;
-                            ">
-                            <div class="col-2 pl-2">
-                                <button type="button" class="btn-sm btn-secondary supercell p-0"
-                                    style="{{ $color }};width: 35px;height: 35px;">
-                                    @php
-                                        $wer = $key + 1 . '.';
-                                    @endphp
-                                    <span
-                                        style="font-size: 16px;text-shadow: -1px 1.3px 1px #000, -1px 1px 3px black">
-                                        {{ $key + 1 }}</span>
-                                </button>
-                            </div>
-                            <div class="col-5 katak1"
-                                style="background:{{$katak}}">
-                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    {{$team['name']}}
-
-                                </div>
-                            </div>
-                            <div class="col-3 katak1 ml-3"
-                                style="background:{{$katak}}">
-                                @if ($team['ball'] == 0)
-                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                   <span> Turnirdan chiqdi </span>
-
-                                </div>
-                                @else
-                                <div class="mb-1 supercell" style="color: #ffffff;font-size:12px;-webkit-text-stroke: 1px #36393a !important;">
-                                    ?
-
-                                    <img src="{{asset('mobile/turnir/star.png')}}" width="30%" alt="">
-
-                                </div>
-                                @endif
-
-                            </div>
-                        </div>
-                @endforeach
-            </div>
-        </div>
-        <div class="border-0 mb-3" id="turnirtab" style="display:none;">
             <div class="col-12 mt-1 mb-1">
                 @foreach ($user_battle_sold as $key => $battle)
                     {{-- @if ($key == 0)
@@ -191,10 +139,241 @@
                                         class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold1'])}}</span>
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
-                                    <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
                                         class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
-                                        {{$battle['b1']}}
+                                        {{formatterr($battle['sold11'])}}
+                                    </span>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="teamimage2">
+                            <div class="turnir-all-result">
+                                <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
+
+                                    {{ $user2->first_name }}
+
+
+                                    {{ substr($user2->last_name, 0, 1) }}
+
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold2'])}}</span>
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
+                                        {{formatterr($battle['sold22'])}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                @endforeach
+            <style>
+                @media (min-width: 200px) {
+                    .turnir-all-text {
+                        font-size: 9px;
+                    }
+
+                    .teamimage3{
+                        position: absolute;
+                        display: flex;
+                        top: 76%;
+                        left: 35%;
+                        -webkit-text-stroke: 1px #040c10;
+                        font-size: 15px;
+                    }
+
+                    .teamimage1 {
+                        position: absolute;
+                        display: flex;
+                        top: 18%;
+                        left: 2%;
+                    }
+
+                    .teamimage2 {
+                        display: flex;
+                        position: absolute;
+                        top: 18%;
+                        right: 2%;
+                    }
+
+                    .teamprof-detail {
+                        display: flex;
+                        overflow: hidden;
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    .teamprof-detail div {
+                        overflow: hidden;
+                        width: 50%;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-30%);
+                        width: 50px;
+                    }
+
+                    .tur-all-gold {
+                        width: 12px;
+                    }
+
+                    .tur-all-king {
+                        width: 12px;
+                    }
+                }
+
+                @media (max-width: 540px) {
+                    .teamimage2 {
+                        left: 330px;
+                    }
+                }
+                @media (max-width: 500px) {
+                    .teamimage2 {
+                        left: 290px;
+                    }
+                }
+                @media (max-width: 450px) {
+                    .teamimage2 {
+                        left: 242px;
+                    }
+                }
+                @media (max-width: 350px) {
+                    .teamimage2 {
+                        left: 142px;
+                    }
+                }
+                @media (min-width: 340px) {
+                    .teamimage1 {
+                        top: 20%;
+                    }
+
+                    .teamimage2 {
+                        top: 20%;
+                    }
+
+                    .teamprof-detail {
+                        width: 52px;
+                        height: 52px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-35%);
+                        width: 52px;
+                    }
+
+                    .tur-all-gold {
+                        width: 16px;
+                    }
+
+                    .tur-all-king {
+                        width: 16px;
+                    }
+                }
+
+                @media (min-width: 370px) {
+                    .teamimage1 {
+                        top: 17%;
+                    }
+
+                    .teamimage2 {
+                        top: 17%;
+                    }
+
+                    .teamprof-detail {
+                        display: flex;
+                        overflow: hidden;
+                        width: 65px;
+                        height: 65px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-40%);
+                        width: 65px;
+                    }
+                }
+
+                @media (min-width: 410px) {
+                    .turnir-all-text {
+                        font-size: 10px;
+                    }
+
+                    .teamprof-detail {
+                        width: 70px;
+                        height: 70px;
+                    }
+
+                    .teamprof-detail div img {
+                        transform: translateX(-40%);
+                        width: 70px;
+                    }
+
+                    .tur-all-gold {
+                        width: 18px;
+                    }
+
+                    .tur-all-king {
+                        width: 18px;
+                    }
+                }
+            </style>
+        </div>
+        </div>
+        <div class="border-0 mb-3" id="turnirtab" style="display:none;">
+            <div class="col-12 mt-1 mb-1">
+                @foreach ($user_battle_sold2 as $key => $battle)
+                    {{-- @if ($key == 0)
+                        <div class="supercell text-center mb-2" style="color:#2d4ac1">
+                            Qiziq janglar
+                        </div>
+                    @endif
+                    @if ($key == 3)
+                        <div class="supercell text-center mb-2" style="color:#2d4ac1">
+                            Qolgan janglar
+                        </div>
+                    @endif --}}
+                    <div style="position: relative" class="mb-2">
+                        @if ($key == 0 || $key == 1 || $key == 2)
+                            <img style="width: 100%" src="{{ asset('mobile/turnir/turnirtop.png') }}"
+                                alt="Image">
+                        @else
+                            <img style="width: 100%" src="{{ asset('mobile/turnir/turnirbattles.png') }}"
+                                alt="Image">
+                        @endif
+                        @php
+                            $user1 = DB::table('tg_user')->where('id',$battle['id1'])->first();
+                            $user2 = DB::table('tg_user')->where('id',$battle['id2'])->first();
+                        @endphp
+                        <div class="teamimage1" style="left: 23px;">
+
+                            <div class="turnir-all-result">
+                                <div class="text-white mt-1 supercell turnir-all-text" style="font-size: 10px;">
+
+                                    {{ $user1->first_name }}
+
+
+                                    {{ substr($user1->last_name, 0, 1) }}
+
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold1'])}}</span>
+                                </div>
+                                <div class="mt-1 d-flex align-items-center justify-content-center">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
+                                    <span
+                                        class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
+                                        {{formatterr($battle['sold11'])}}
                                     </span>
                                 </div>
 
@@ -220,10 +399,10 @@
                                         class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">{{formatterr($battle['sold2'])}}</span>
                                 </div>
                                 <div class="mt-1 d-flex align-items-center justify-content-center">
-                                    <img class="tur-all-gold" src="{{ asset('mobile/turnir/star.png') }}" alt="">
+                                    <img class="tur-all-gold" src="{{ asset('mobile/oltin.png') }}" alt="">
                                     <span
                                         class="pl-1 text-white supercell turnir-all-text" style="font-size: 13px;">
-                                        {{$battle['b2']}}
+                                        {{formatterr($battle['sold22'])}}
 
                                     </span>
                                 </div>
