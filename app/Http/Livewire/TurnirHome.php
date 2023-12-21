@@ -68,7 +68,7 @@ class TurnirHome extends Component
             
             $this->winImage = null;
         
-
+        }
         if($users_battles)
         {
             $this->turnir = true;
