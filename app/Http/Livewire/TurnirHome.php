@@ -65,12 +65,9 @@ class TurnirHome extends Component
             ->orderBy('id','DESC')
             ->first();
 
-            $image = new MakeImageService;
-
-            $this->winImage = $image->make($last_battles);
-        }else{
+            
             $this->winImage = null;
-        }
+        
 
         if($users_battles)
         {
