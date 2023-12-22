@@ -75,8 +75,8 @@ class MegaTurnirDori extends Component
                 $name = $value->first_name.' '.substr($value->last_name,0,1);
 
                 $sold1 = AllSold::where('user_id',$value->id)
-                ->whereDate('created_at','>=','2023-12-15')
-                ->whereDate('created_at','<=','2023-12-21')
+                ->whereDate('created_at','>=','2023-12-22')
+                ->whereDate('created_at','<=','2023-12-28')
                     ->where('medicine_id',246)
                     ->sum('number');
 
