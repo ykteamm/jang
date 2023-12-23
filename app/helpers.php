@@ -1395,7 +1395,7 @@ if(!function_exists('ustozStajer')){
             $shid[] = $value;
 
             $sold = AllSold::whereIn('user_id',$shid)
-                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->whereDate('created_at','>=','2023-09-01')
                     ->sum(DB::raw('number*price_product'));
 
             $ustoz_arr[$value] = $sold;
@@ -1418,13 +1418,13 @@ if(!function_exists('ustozStajer')){
                 'status' => $status->ustoz,
                 'user' => $user,
             );
-            
+
         }
 
         usort($arr, function($a, $b) {
             return $a['sum'] < $b['sum'];
         });
-        
+
 
         return $arr;
     }
@@ -1437,10 +1437,10 @@ if(!function_exists('ustozProfil')){
 
         $arr = [];
         $shogird = [];
-        
+
         foreach ($shids as $key => $value) {
             $sold = AllSold::where('user_id',$value)
-                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->whereDate('created_at','>=','2023-09-01')
                     ->sum(DB::raw('number*price_product'));
 
             $user = User::find($value);
@@ -1451,7 +1451,7 @@ if(!function_exists('ustozProfil')){
         $ustoz = User::find($id);
 
         $ustoz_sum = AllSold::where('user_id',$id)
-                    ->whereDate('created_at','>=','2023-09-01')        
+                    ->whereDate('created_at','>=','2023-09-01')
                     ->sum(DB::raw('number*price_product'));
 
         usort($shogird, function($a, $b) {
@@ -1461,7 +1461,7 @@ if(!function_exists('ustozProfil')){
         $arr[0] = $ustoz;
         $arr[1] = $ustoz_sum;
         $arr[2] = $shogird;
-    
+
         return $arr;
     }
 }
@@ -1962,8 +1962,8 @@ if(!function_exists('megaMini')){
     function megaMini() {
 
         $arr = [];
-        $arr['begin'] = '2023-12-21';
-        $arr['end'] = '2023-12-22';
+        $arr['begin'] = '2023-12-23';
+        $arr['end'] = '2023-12-25';
         $arr['sold'] = date('Y-m-d');
 
         return $arr;
