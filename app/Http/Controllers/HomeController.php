@@ -466,6 +466,7 @@ class HomeController extends Controller
     public function index()
     {
 
+return 'Natijalar hisoblanyapti......';
         if(userme()->rm == 1)
         {
             return view('rm');
