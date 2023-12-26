@@ -32,7 +32,7 @@ class Turnir extends Component
 
         $this->resime = 2;
 
-        
+
         // }
 
         $arr = [];
@@ -163,8 +163,7 @@ class Turnir extends Component
         $sold = $date_mini['sold'];
 
         $ard = [];
-        $ard[] = ['user1' => 323, 'user2' =>495, 'limit' => 700];
-        $ard[] = ['user1' => 512, 'user2' =>232, 'limit' => 700];
+        $ard[] = ['user1' => 323, 'user2' =>232, 'limit' => 1000];
 
         foreach ($ard as $key => $value) {
             $sold1 = AllSold::where('user_id',$value['user1'])

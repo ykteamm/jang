@@ -1951,7 +1951,7 @@ if(!function_exists('megaTurnir')){
 
         $arr = [];
         $arr['begin'] = '2023-12-26';
-        $arr['end'] = '2023-12-27';
+        $arr['end'] = '2023-12-30';
         $arr['sold'] = date('Y-m-d');
 
         return $arr;
