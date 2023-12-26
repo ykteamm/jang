@@ -1950,8 +1950,8 @@ if(!function_exists('megaTurnir')){
     function megaTurnir() {
 
         $arr = [];
-        $arr['begin'] = '2023-12-21';
-        $arr['end'] = '2023-12-25';
+        $arr['begin'] = '2023-12-26';
+        $arr['end'] = '2023-12-27';
         $arr['sold'] = date('Y-m-d');
 
         return $arr;
@@ -1962,8 +1962,8 @@ if(!function_exists('megaMini')){
     function megaMini() {
 
         $arr = [];
-        $arr['begin'] = '2023-12-23';
-        $arr['end'] = '2023-12-25';
+        $arr['begin'] = '2023-12-26';
+        $arr['end'] = '2023-12-27';
         $arr['sold'] = date('Y-m-d');
 
         return $arr;
