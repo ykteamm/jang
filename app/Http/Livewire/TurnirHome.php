@@ -41,7 +41,7 @@ class TurnirHome extends Component
         $begin = $date_mini['begin'];
         $end = $date_mini['end'];
         $sold = $date_mini['sold'];
-        
+
 
         $users_battles = MegaTurnirUserBattle::with('user1','user2')
         ->whereDate('begin','=',$begin)
@@ -65,9 +65,9 @@ class TurnirHome extends Component
             ->orderBy('id','DESC')
             ->first();
 
-            
+
             $this->winImage = null;
-        
+
         }
         if($users_battles)
         {
@@ -125,8 +125,9 @@ class TurnirHome extends Component
 
         }
 
-        $ard = [323,495];
-        $ard2 = [512,232];
+        $ard = [323,232];
+        // $ard2 = [512,232];
+        // $ard[] = ['user1' => 323, 'user2' =>232, 'limit' => 1000];
 
         $userId = Auth::id();
         $date_mini = megaTurnir();
@@ -160,37 +161,6 @@ class TurnirHome extends Component
                 ->sum(DB::raw('price_product*number'));
 
             $this->team2ksb = AllSold::where('user_id',$ard[1])
-                ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=',$end)
-                ->sum(DB::raw('price_product*number'));
-        }
-
-        if(in_array($userId,$ard2))
-        {
-            $this->turnir = true;
-            $this->tourTitle = 'Limit 7 mln';
-
-            $this->team1names = User::find($ard2[0]);
-            $this->team2names = User::find($ard2[1]);
-
-            $this->team1images = User::find($ard2[0])->image_url;
-            $this->team2images = User::find($ard2[1])->image_url;
-
-
-            $this->team1summa = AllSold::where('user_id',$ard2[0])
-                ->whereDate('created_at','=',$sold)
-                ->sum(DB::raw('price_product*number'));
-
-            $this->team2summa = AllSold::where('user_id',$ard2[1])
-                ->whereDate('created_at','=',$sold)
-                ->sum(DB::raw('price_product*number'));
-
-            $this->team1ksb = AllSold::where('user_id',$ard2[0])
-                ->whereDate('created_at','>=',$begin)
-                ->whereDate('created_at','<=',$end)
-                ->sum(DB::raw('price_product*number'));
-
-            $this->team2ksb = AllSold::where('user_id',$ard2[1])
                 ->whereDate('created_at','>=',$begin)
                 ->whereDate('created_at','<=',$end)
                 ->sum(DB::raw('price_product*number'));

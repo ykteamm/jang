@@ -480,7 +480,7 @@ class HomeController extends Controller
         if (userme()->status == 4) {
             return redirect()->route('block');
         }
-        
+
 
 
 
@@ -814,7 +814,7 @@ class HomeController extends Controller
 
         }
 
-        $ard = [323,495,512,232];
+        $ard = [323,232];
 
         // $winImage = null;
         // $battle_history = array_merge([], $battle_history->all());
