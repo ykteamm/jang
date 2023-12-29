@@ -1962,8 +1962,8 @@ if(!function_exists('megaMini')){
     function megaMini() {
 
         $arr = [];
-        $arr['begin'] = '2023-12-28';
-        $arr['end'] = '2023-12-28';
+        $arr['begin'] = '2023-12-29';
+        $arr['end'] = '2023-12-30';
         $arr['sold'] = date('Y-m-d');
 
         return $arr;
