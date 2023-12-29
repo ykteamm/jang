@@ -1965,7 +1965,7 @@ if(!function_exists('megaMini')){
         $arr['begin'] = '2023-12-29';
         $arr['end'] = '2023-12-30';
         $arr['sold'] = date('Y-m-d');
-
+// dsd
         return $arr;
     }
 }
