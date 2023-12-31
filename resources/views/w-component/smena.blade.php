@@ -129,7 +129,7 @@
                 @endif
                 <div class="row">
                     <div class="col-6">
-                        {{-- @if (count($shifts) == 1)
+                        @if (count($shifts) == 1)
                             <button type="button" onclick="openKassa()" class="mb-2 btn btn-block btn-lg btn-info"
                                 data-toggle="modal" data-target="#openkassa">
                                 KASSA
@@ -139,7 +139,7 @@
                                 data-target="#kassa">
                                 KASSA
                             </button>
-                        @endif --}}
+                        @endif
                     </div>
                     <div class="col-6">
                         <button type="button" class="mb-2 btn btn-block btn-lg btn-info live-hisobot" data-toggle="modal"
