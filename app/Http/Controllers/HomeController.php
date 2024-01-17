@@ -836,6 +836,12 @@ class HomeController extends Controller
 
         $outerMarket = OuterMarket::all();
         $battle_yes = 'no';
+
+        if($userId == 474)
+        {
+        $battle_yes = 'yes';
+
+        }
         // return $my_battle;
         return view('index',compact('videos','infos','battle_yes','outerMarket','lock','haveTurnirBattle','news','shifts','makeCloseShift','products','pharmacy','all_sold'
         ,'summa1'
