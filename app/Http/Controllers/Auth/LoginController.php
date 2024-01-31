@@ -85,6 +85,8 @@ class LoginController extends Controller
             ->where('pr', $request->password)
             ->first();
 
+//        return $uuu;
+
         $update = DB::table('tg_user')
             ->where('username', $request->username)->where('pr', $request->password)
             ->update([
@@ -108,13 +110,16 @@ class LoginController extends Controller
 
 
                 $teacher_user = TeacherUser::where('user_id', $user_id)->get();
-                if (count($teacher_user) == 1 && $uuu->status == 0) {
+//                return $teacher_user;
 
+                if (count($teacher_user) == 1 && $uuu->status == 0) {
+//return $teacher_user[0];
 
                     $shifts = Shift::whereDate('open_date', '<=', date('Y-m-d'))
                         ->whereDate('open_date', '>=', $teacher_user[0]->week_date)
                         ->where('user_id', $user_id)->where('active',2)->orderBy('id', 'ASC')->get();
 
+//                    return $shifts;
                     if (count($shifts) >= 7) {
                         $rrr = 0;
                         $rrr3 = 0;

@@ -49,50 +49,54 @@
             <img src="{{asset('mobile/turnir/saroy.webp')}}" style="width:100%;" alt="">
         </div>
 
-
-        <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">
-            <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
-                style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
-                <img src="{{asset('mobile/turnir/newchoy.png')}}" style="width:15%;margin-right: 15px;" alt="">
-
-                <span class="text-center" id="count-timer-day" style="font-size: 25px;"></span>
-                <span style="font-size: 15px;">k :</span>
-                <span class="text-center" id="count-timer-hour" style="font-size: 25px;"></span>
-                <span style="font-size: 15px;">s :</span>
-                <span class="text-center" id="count-timer-minut" style="font-size: 25px;"></span>
-                <span style="font-size: 15px;">m</span>
-            </div>
+        <div class="col-12 mt-1 mb-1" >
+            <img src="{{asset('mobile/turnir/shaxnoza_opa.jpeg')}}" style="width:100%;" alt="">
         </div>
 
-        <div class="row">
 
-            <div class="col-6 mt-1 mb-1" >
-                <button class="btn btn-block supercell"
-                style="background: #4b2c8b;
-                border-radius: 12px;
-                font-size: 28px;
-                border: 2px solid white;
-                color: white;"
-                onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');"
-                >MINI O'YIN</button>
-                {{-- <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
-                > --}}
-            </div>
+{{--        <div class="container mt-1 mb-1" data-toggle="modal" data-target="#mega-turnir-dori">--}}
+{{--            <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"--}}
+{{--                style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">--}}
+{{--                <img src="{{asset('mobile/turnir/newchoy.png')}}" style="width:15%;margin-right: 15px;" alt="">--}}
 
-            <div class="col-6 mt-1 mb-1" >
-                <button class="btn btn-block supercell"
-                style="background: #ffbb2b;
-                border-radius: 12px;
-                font-size: 28px;
-                border: 2px solid white;
-                color: white;"
-                onclick="$('#turnirreyt').css('display','none');$('#turnirtab').css('display','block');"
-                >YARIM FINAL</button>
-                {{-- <img src="{{asset('mobile/turnir/turnirb.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""
-                > --}}
-            </div>
+{{--                <span class="text-center" id="count-timer-day" style="font-size: 25px;"></span>--}}
+{{--                <span style="font-size: 15px;">k :</span>--}}
+{{--                <span class="text-center" id="count-timer-hour" style="font-size: 25px;"></span>--}}
+{{--                <span style="font-size: 15px;">s :</span>--}}
+{{--                <span class="text-center" id="count-timer-minut" style="font-size: 25px;"></span>--}}
+{{--                <span style="font-size: 15px;">m</span>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        </div>
+{{--        <div class="row">--}}
+
+{{--            <div class="col-6 mt-1 mb-1" >--}}
+{{--                <button class="btn btn-block supercell"--}}
+{{--                style="background: #4b2c8b;--}}
+{{--                border-radius: 12px;--}}
+{{--                font-size: 28px;--}}
+{{--                border: 2px solid white;--}}
+{{--                color: white;"--}}
+{{--                onclick="$('#turnirreyt').css('display','block');$('#turnirtab').css('display','none');"--}}
+{{--                >MINI O'YIN</button>--}}
+{{--                --}}{{-- <img src="{{asset('mobile/turnir/turnirr.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""--}}
+{{--                > --}}
+{{--            </div>--}}
+
+{{--            <div class="col-6 mt-1 mb-1" >--}}
+{{--                <button class="btn btn-block supercell"--}}
+{{--                style="background: #ffbb2b;--}}
+{{--                border-radius: 12px;--}}
+{{--                font-size: 28px;--}}
+{{--                border: 2px solid white;--}}
+{{--                color: white;"--}}
+{{--                onclick="$('#turnirreyt').css('display','none');$('#turnirtab').css('display','block');"--}}
+{{--                >YARIM FINAL</button>--}}
+{{--                --}}{{-- <img src="{{asset('mobile/turnir/turnirb.png')}}" style="width:100%;cursor: pointer;" height="60px" alt=""--}}
+{{--                > --}}
+{{--            </div>--}}
+
+{{--        </div>--}}
 
 
 
