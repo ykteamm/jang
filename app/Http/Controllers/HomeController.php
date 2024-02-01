@@ -148,16 +148,6 @@ class HomeController extends Controller
 
         $battle_yes = 'yes';
         
-        if($my_id == 5)
-        {
-            $my_battle = UserBattle::with('u1ids','u2ids')
-            // ->whereDate('start_day','<=',$battle_date)
-            // ->whereDate('end_day','>=',$battle_date)
-            ->orderBy('id','desc')
-            ->get();
-
-            return $my_battle;
-        }
         
         if(count($my_battle) == 0)
         {
