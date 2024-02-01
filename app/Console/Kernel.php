@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('battle:elchi')
-        ->dailyAt('11:30');
+        ->dailyAt('11:34');
 
         $schedule->command('battleEnd:elchi')
         ->dailyAt('23:55');
