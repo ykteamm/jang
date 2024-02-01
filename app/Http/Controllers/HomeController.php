@@ -129,8 +129,8 @@ class HomeController extends Controller
         $host = substr(request()->getHttpHost(),0,3);
         if($host == 127)
         {
-            $battle_date = date('2023-12-19');
-            $sold_date = date('2023-12-19');
+            $battle_date = date('Y-m-d');
+            $sold_date = date('Y-m-d');
 
         }else{
             $battle_date = date('Y-m-d');
