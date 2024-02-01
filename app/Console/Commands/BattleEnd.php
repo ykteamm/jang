@@ -50,7 +50,7 @@ class BattleEnd extends Command
         $bser = $b->endBattle($date);
         $bser = $b->battle($date);
         
-        $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
+        // $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
 
         // if (count($new_user_id) > 0)
         // {

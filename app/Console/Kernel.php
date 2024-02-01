@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('battle:elchi')
-        ->dailyAt('11:52');
+        ->dailyAt('23:55');
 
         $schedule->command('battleEnd:elchi')
         ->dailyAt('23:55');
@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
         // ->monthlyOn(1, '00:10');
 
         $schedule->command('create:plan')
-        ->monthlyOn(1, '00:10');
+        ->monthlyOn(1, '14:00');
 
         // $schedule->command('turnir:battle')
         // ->dailyAt('23:59');
