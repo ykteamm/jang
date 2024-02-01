@@ -109,14 +109,14 @@ class HomeController extends Controller
             return redirect()->route('block');
         }
 
-        $userbat = UserBattle::whereIn('day',[0,1,2])->pluck('id');
+        // $userbat = UserBattle::whereIn('day',[0,1,2])->pluck('id');
 
-        foreach ($userbat as $key => $value) {
-            UserBattle::where('id',$value)->delete();
-            UserBattleDay::where('battle_id',$value)->delete();
-        }
+        // foreach ($userbat as $key => $value) {
+        //     UserBattle::where('id',$value)->delete();
+        //     UserBattleDay::where('battle_id',$value)->delete();
+        // }
 // 
-        $b = new UserBattleService;
+        // $b = new UserBattleService;
         // $Store = date('l');
         // return $Store;
         // $date = date('2023-12-19');
@@ -147,7 +147,12 @@ class HomeController extends Controller
                 })->get();
 
         $battle_yes = 'yes';
-
+        
+        if($my_id == 5)
+        {
+            return $my_battle;
+        }
+        
         if(count($my_battle) == 0)
         {
             $battle_yes = 'no';
