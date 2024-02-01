@@ -1,4 +1,15 @@
 <script>
+    function changeDay(number) {
+            // console.log(number);
+            if (number == 0) {
+                $('.first_one').addClass('d-none');
+                $('.first_two').removeClass('d-none');
+            } else {
+                $('.first_two').addClass('d-none');
+                $('.first_one').removeClass('d-none');
+            }
+
+        }
     $(document).ready(function(){
         
         $(".live-reyting").click(function(){

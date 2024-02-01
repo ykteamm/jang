@@ -28,10 +28,10 @@
 <div class="swiper-slide overflow-hidden text-center">
     <div class="row">
         <div class="col align-self-center px-3">
-            @if (Auth::user()->specialty_id == 1)
+            {{-- @if (Auth::user()->specialty_id == 1)
 
                 @if ($lock->mayBeLocked)
-                    {{-- <button class="my-2 btn btn-danger w-100 mt-0 d-flex align-items-center justify-content-between"
+                    <button class="my-2 btn btn-danger w-100 mt-0 d-flex align-items-center justify-content-between"
                         type="button" data-toggle="modal" data-target="#lock">
                         <div class="" style="font-size:20px;font-weight:800">
                             Blokirovkaga qoldi
@@ -45,33 +45,32 @@
                                 {{ $lock->hour }}
                             </span> soat
                         </span>
-                    </button> --}}
-                    {{-- @else
-                <div class="container pl-0 pr-0">
-                    <div class="row">
-                        <div class="col-6 pl-0 pr-0">
+                    </button>
+                @else
+                    <div class="container pl-0 pr-0">
+                        <div class="row">
+                            <div class="col-6 pl-0 pr-0">
 
-                            <button type="button" class="btn pr-0" data-toggle="modal" data-target="#exercise">
-                                <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">
+                                <button type="button" class="btn pr-0" data-toggle="modal" data-target="#exercise">
+                                    <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">
+                                </button>
+                            </div>
+                            <div class="col-6 pl-0 pr-0">
+
+                                <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">
+                                    <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">
+                                </button>
+                            </div>
+                            <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal" data-target="#openkingcheck">
+                                Ko'rish
                             </button>
                         </div>
-                        <div class="col-6 pl-0 pr-0">
-
-                            <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">
-                                <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">
-                            </button>
-                        </div>
-                        <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal" data-target="#openkingcheck">
-                            Ko'rish
-                        </button>
+                        
                     </div>
-                    
-                </div> --}}
                 @endif
-            @endif
+            @endif --}}
 
             @foreach (getShogirdUser() as $item)
-                {{-- <h4>{{getCloseShift(Auth::id())}}</h4> --}}
                 <div class="container mt-3">
                     @if (count(getAllShiftShogird($item->id)) != 0)
                         @if (getCloseShift(Auth::id()) >= 1)
@@ -489,7 +488,7 @@
                                             <img src="{{ asset('mobile/natija.webp') }}" width="190px"
                                                 alt="">
                                         </button>
-                                        @if (count($battle_history) > 5)
+                                        @if (count($battle_history) >=  5)
                                             @php
                                                 $i = 1;
                                             @endphp
@@ -576,9 +575,9 @@
                                     <div class="user-image1">
                                         <div class="for-avatar avatar avatar-140 rounded-circle mx-auto"
                                             style="width: 130px;height:130px;
-                            @if ($summa_bugun1 > $summa_bugun2) box-shadow: 0px 1px 17px 5px #d3cf17; @endif
-                            @if ($summa_bugun1 < $summa_bugun2) box-shadow: 0px 1px 17px 5px #ff0000; @endif
-                            ">
+                                @if ($summa_bugun1 > $summa_bugun2) box-shadow: 0px 1px 17px 5px #d3cf17; @endif
+                                @if ($summa_bugun1 < $summa_bugun2) box-shadow: 0px 1px 17px 5px #ff0000; @endif
+                                ">
                                             <div class="background">
 
                                                 @if (Auth::user()->id == $my_battle[0]->u1ids->id)

@@ -45,37 +45,37 @@ class BattleEnd extends Command
     {
         $b = new UserBattleService;
 
-        $date = date('2023-09-14');
+        $date = date('Y-m-d');
 
         $bser = $b->endBattle($date);
         $bser = $b->battle($date);
         
         $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
 
-        if (count($new_user_id) > 0)
-        {
-            foreach ($new_user_id as $key => $value) {
-                    $my_battle_all = UserBattle::with('u1ids','u2ids')
-                ->where(function($query) use ($value){
-                            $query->where('u1id',$value)
-                            ->orWhere('u2id',$value);
-                        })->get();
+        // if (count($new_user_id) > 0)
+        // {
+        //     foreach ($new_user_id as $key => $value) {
+        //             $my_battle_all = UserBattle::with('u1ids','u2ids')
+        //         ->where(function($query) use ($value){
+        //                     $query->where('u1id',$value)
+        //                     ->orWhere('u2id',$value);
+        //                 })->get();
 
-                if(count($my_battle_all) == 1)
-                {
-                    $b = new NewUserOneMonthService;
-                    $bser = $b->firstFakeBattleDay($date);
-                    $bser = $b->endBattle($date);
-                }
-                if(count($my_battle_all) == 2)
-                {
-                    $b = new NewUserOneMonthService;
-                    $bser = $b->secondFakeBattleDay($date);
-                    $bser = $b->endBattle($date);
-                }
-            }
+        //         if(count($my_battle_all) == 1)
+        //         {
+        //             $b = new NewUserOneMonthService;
+        //             $bser = $b->firstFakeBattleDay($date);
+        //             $bser = $b->endBattle($date);
+        //         }
+        //         if(count($my_battle_all) == 2)
+        //         {
+        //             $b = new NewUserOneMonthService;
+        //             $bser = $b->secondFakeBattleDay($date);
+        //             $bser = $b->endBattle($date);
+        //         }
+        //     }
             
-        }
+        // }
         // $bser = $b->endBattle('2023-02-03');
         // $bser = $b->endBattle('2023-02-07');
 

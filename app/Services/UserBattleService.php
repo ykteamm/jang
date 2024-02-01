@@ -34,26 +34,28 @@ class UserBattleService
             $endday = date('Y-m-d',(strtotime ( '-0 day' , strtotime ( $this->str_day ) ) ));
             $startday = date('Y-m-d',(strtotime ( '-20 day' , strtotime ( $this->str_day ) ) ));
 
-        $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
-        $arr_new = [];
-        foreach ($new_user_id as $key => $value) {
-            $my_battle_all = UserBattle::with('u1ids','u2ids')
-            ->where(function($query) use ($value){
-                        $query->where('u1id',$value)
-                        ->orWhere('u2id',$value);
-                    })->where('ends',1)->get();
+        // $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
+        // $arr_new = [];
+        // foreach ($new_user_id as $key => $value) {
+        //     $my_battle_all = UserBattle::with('u1ids','u2ids')
+        //     ->where(function($query) use ($value){
+        //                 $query->where('u1id',$value)
+        //                 ->orWhere('u2id',$value);
+        //             })->where('ends',1)->get();
 
-            if(count($my_battle_all) < 2)
-            {
-                $arr_new[] = $value;
-            }
-        }
+        //     if(count($my_battle_all) < 2)
+        //     {
+        //         $arr_new[] = $value;
+        //     }
+        // }
 
 
         $all_user = User::pluck('id');
-        $u1id = UserBattle::where('ends',0)->whereNotIn('u1id',$arr_new)->pluck('u1id')->toArray();
-        $u2id = UserBattle::where('ends',0)->whereNotIn('u1id',$arr_new)->pluck('u2id')->toArray();
+        // $u1id = UserBattle::where('ends',0)->whereNotIn('u1id',$arr_new)->pluck('u1id')->toArray();
+        // $u2id = UserBattle::where('ends',0)->whereNotIn('u1id',$arr_new)->pluck('u2id')->toArray();
 
+        $u1id = UserBattle::where('ends',0)->pluck('u1id')->toArray();
+        $u2id = UserBattle::where('ends',0)->pluck('u2id')->toArray();
 
         $alluid = array_unique(array_merge($u1id,$u2id));
 
@@ -93,6 +95,7 @@ class UserBattleService
         }
 
 
+
         if(count($users) > 1)
         {
             $foruser = [];
@@ -113,33 +116,35 @@ class UserBattleService
 
             if(count($foruser) > 1)
                 {
-                    $bat = $this->getWinLoseAlgoritm($foruser);
+                    // $bat = $this->getWinLoseAlgoritm($foruser);
 
-                    $defaultuser = [];
-                    foreach($foruser as $all_user)
-                    {
-                        if(!in_array($all_user,$bat))
-                        {
-                            $defaultuser[] = $all_user;
-                        }
-                    }
+                    // $defaultuser = [];
+                    // foreach($foruser as $all_user)
+                    // {
+                    //     if(!in_array($all_user,$bat))
+                    //     {
+                    //         $defaultuser[] = $all_user;
+                    //     }
+                    // }
 
-                     $this->forKubok($defaultuser,$this->str_day,$bat);
+
+
+                    //  $this->forKubok($defaultuser,$this->str_day,$bat);
+                     $this->forSold($foruser,$this->str_day);
                 }
-            if(count($forpro) > 1)
-                {
-                    $batpro = $this->getWinLoseAlgoritm($forpro);
+            // if(count($forpro) > 1)
+            //     {
+            //         $batpro = $this->getWinLoseAlgoritm($forpro);
 
-                    $defaultpro = [];
-                    foreach($forpro as $all_user_pro)
-                    {
-                        if(!in_array($all_user_pro,$batpro))
-                        {
-                            $defaultpro[] = $all_user_pro;
-                        }
-                    }
-                    //  $this->forKubok($defaultpro,$this->str_day,$batpro);
-                }
+            //         $defaultpro = [];
+            //         foreach($forpro as $all_user_pro)
+            //         {
+            //             if(!in_array($all_user_pro,$batpro))
+            //             {
+            //                 $defaultpro[] = $all_user_pro;
+            //             }
+            //         }
+            //     }
         }
 
     }
@@ -385,7 +390,7 @@ class UserBattleService
         }
         return $arr;
     }
-    public function forSold($users)
+    public function forSold($users,$startday)
     {
         $battle=array();
         $day = 13;

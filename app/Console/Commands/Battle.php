@@ -42,13 +42,13 @@ class Battle extends Command
         $b = new UserBattleService;
         // $Store = date('l');
         // return $Store;
-        $date = date('2023-09-14');
+        $date = date('Y-m-d');
         $bser = $b->battle($date);
         
-        $sunday = date('w');
-        if($sunday != 0)
-        {
-            $bser = $b->battleDay($date);
-        }
+        // $sunday = date('w');
+        // if($sunday != 0)
+        // {
+        //     $bser = $b->battleDay($date);
+        // }
     }
 }

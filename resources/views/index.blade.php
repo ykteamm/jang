@@ -19,9 +19,9 @@
                     @endif
 
                     @include('w-component.team-battle')
-                    @if (count($videos) > 0 || count($infos) > 0)
+                    {{-- @if (count($videos) > 0 || count($infos) > 0)
                         @include('w-component.info-section')
-                    @endif
+                    @endif --}}
 
                 </div>
             </div>
@@ -34,7 +34,7 @@
     @include('modals.ustoz-shogird')
     @include('modals.ustoz-profil')
 
-    @include('modals.battle')
+    @include('modals.battle')  
     @include('modals.battle-day')
 
     @include('modals.smena')
@@ -55,7 +55,7 @@
         @include('modals.myrekrut')
     @endif
 
-    @include('modals.news')
+    {{-- @include('modals.news') --}}
     @include('modals.recommendNews')
     @include('modals.showNw')
     @include('modals.exercise') 

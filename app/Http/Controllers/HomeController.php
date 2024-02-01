@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AllSold;
 use App\Models\MegaTurnirTeamBattle;
 use App\Models\MegaTurnirUserBattle;
+use App\Models\UserBattleDay;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Battle;
@@ -89,6 +90,184 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function index()
+    {
+
+        if(userme()->rm == 1)
+        {
+            return view('rm');
+        }
+        if(userme()->rm == 2)
+        {
+            return view('kurator');
+        }
+
+        $my_id = userme()->id;
+
+        if (userme()->status == 4) {
+            return redirect()->route('block');
+        }
+
+        $userbat = UserBattle::whereIn('day',[0,1,2])->pluck('id');
+
+        foreach ($userbat as $key => $value) {
+            UserBattle::where('id',$value)->delete();
+            UserBattleDay::where('battle_id',$value)->delete();
+        }
+// 
+        $b = new UserBattleService;
+        // $Store = date('l');
+        // return $Store;
+        // $date = date('2023-12-19');
+        // $bser = $b->battle($date);
+        // $bser = $b->endBattle($date);
+        // $bser = $b->battleDay($date);
+
+
+
+        $host = substr(request()->getHttpHost(),0,3);
+        if($host == 127)
+        {
+            $battle_date = date('2023-12-19');
+            $sold_date = date('2023-12-19');
+
+        }else{
+            $battle_date = date('Y-m-d');
+            $sold_date = date('Y-m-d');
+
+        }
+
+        $my_battle = UserBattle::with('u1ids','u2ids')
+        ->whereDate('start_day','<=',$battle_date)
+        ->whereDate('end_day','>=',$battle_date)
+        ->where(function($query) use ($my_id){
+                    $query->where('u1id',$my_id)
+                    ->orWhere('u2id',$my_id);
+                })->get();
+
+        $battle_yes = 'yes';
+
+        if(count($my_battle) == 0)
+        {
+            $battle_yes = 'no';
+        }
+        if(count($my_battle) == 2)
+        {
+            $my_battle = UserBattle::with('u1ids','u2ids')->where('bot',0)
+            ->whereDate('start_day','<=',$battle_date)
+            ->whereDate('end_day','>=',$battle_date)
+            ->where(function($query) use ($my_id){
+                    $query->where('u1id',$my_id)
+                    ->orWhere('u2id',$my_id);
+                })->get();
+            $battle_yes = 'yes';
+        }
+        
+        $n = new HelperServices;
+        $my_jang = $n->myBattle($my_battle,$sold_date);
+        $summa1 = $my_jang->summa1;
+        $summa2 = $my_jang->summa2;
+        $summa_bugun1 = $my_jang->summa_bugun1;
+        $summa_bugun2 = $my_jang->summa_bugun2;
+        $battle_start_day = $my_jang->battle_start_day;
+
+        $battle_history = UserBattle::where('ends',1)
+        ->where(function($query) use ($my_id){
+                $query->where('u1id',$my_id)
+                ->orWhere('u2id',$my_id);
+            })->orderBy('id','DESC')->limit(5)->get();
+
+        foreach ($battle_history as $key => $value) {
+            if($value->u2id == $my_id && $value->bot ==1)
+            {
+                unset($battle_history[$key]);
+            }
+        }
+
+        $teskari2=[];
+        foreach ($battle_history as $key => $value) {
+            $teskari2[] = $value;
+        }
+        $teskari=[];
+        foreach ($teskari2 as $key => $value) {
+            $teskari[] = $teskari2[count($teskari2)-$key-1];
+        }
+        $battle_history = $teskari;
+    // return $battle_history;
+
+        $all_battle = UserBattle::with('u1ids','u2ids','battle_elchi','battle_elchi.u1ids','battle_elchi.u2ids')
+                ->where(function($query) use ($my_id){
+                            $query->where('u1id',$my_id)
+                            ->orWhere('u2id',$my_id);
+                        })->orderBy('id','DESC')->get();
+        foreach ($all_battle as $key => $value) {
+            if($value->u2id == $my_id && $value->bot ==1)
+            {
+                unset($all_battle[$key]);
+            }
+        }
+
+        // dd(($battle_history));    
+        
+        $shifts = Shift::with('pharmacy')->where('user_id',Auth::user()->id)
+        ->whereDate('open_date',Carbon::now())
+        ->orderBy('id','DESC')->limit(1)
+        ->where('active',1)->get();
+
+        $makeCloseShift = Shift::with('pharmacy')->where('user_id', Auth::user()->id)
+        ->whereDate('open_date', Carbon::now())
+        ->orderBy('id','DESC')
+        ->where('active', 0)->first();
+
+        $close_shifts = Shift::where('user_id',Auth::user()->id)
+        ->whereDate('open_date',Carbon::now())
+        ->where('active',2)->pluck('pharma_id')->toArray();
+
+        $pharmacy = PharmacyUser::with('pharmacy')->where('user_id',Auth::user()->id)->whereNotIn('pharma_id',$close_shifts)->get();
+
+
+        $products = Shift::with('pharmacy.shablon_pharmacy.shablon.price.medicine')->where('user_id',Auth::user()->id)
+        ->whereDate('open_date',Carbon::now())
+        ->where('active',1)
+        ->get();
+
+        $last_solt_day = date('Y-m-d',(strtotime ( '-3 day' , strtotime ( date('Y-m-d') ) ) ));
+
+        $all_sold = Order::with('sold','king_sold','sold.medicine')->where('user_id',Auth::id())
+        ->whereDate('created_at','>=',$last_solt_day)
+        ->orderBy('id','DESC')
+        ->get();
+
+
+
+
+
+
+        $outerMarket = OuterMarket::all();
+        // $battle_yes = 'no';
+        $lock = 1;
+        // $summa1 = 1;
+        // $summa2 = 1;
+        // $battle_history = 1;
+        // $summa_bugun2 = 1;
+        // $summa_bugun1 = 1;
+        // $my_battle = 1;
+        // $all_battle = 1;
+        // $battle_start_day = 1;
+        $haveTurnirBattle = 'no';
+        return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
+        ,'summa1'
+        ,'summa2'
+        ,'battle_history'
+        ,'summa_bugun2'
+        ,'summa_bugun1'
+        ,'my_battle'
+        ,'all_battle'
+        ,'battle_start_day'
+        ));
+
+    }
     public function index2()
     {
         $shifts = Shift::with('pharmacy')->where('user_id',Auth::user()->id)
@@ -463,7 +642,7 @@ class HomeController extends Controller
         return view('home',compact('haveTurnirBattle'));
 
     }
-    public function index()
+    public function index4()
     {
 
         if(userme()->rm == 1)
