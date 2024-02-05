@@ -1,8 +1,8 @@
 
 <div class="swiper-slide overflow-hidden text-center">
     @if ($resime == 2)
-        
-        @if(Auth::user()->id != 5)
+
+        @if(Auth::user()->id != 5 || Auth::user()->specialty_id == 9)
         <button
             style="position: absolute;top:10px;right:0px;z-index:10;border:none;outline:none;background:transparent;color:#fff"
             type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover"
@@ -11,12 +11,12 @@
         </button>
 
         @foreach (getMonthM(2) as $key => $item)
-            <div class="bg-primary" 
+            <div class="bg-primary"
             @if (Auth::user()->specialty_id == 9)
-            @elseif(Auth::user()->specialty_id == 1)
+                @elseif(Auth::user()->specialty_id == 1)
 
-            onclick="liveMoneyModal()" data-toggle="modal" data-target="#money" style="cursor:pointer"
-            @else
+                    onclick="liveMoneyModal()" data-toggle="modal" data-target="#money" style="cursor:pointer"
+                @else
             @endif
             >
                 <div class="mt-2 px-2 bg-amber rounded text-dark">
@@ -63,7 +63,7 @@
                         @else
                         @endif
 
-                        
+
                     </div>
                 </div>
             </div>
