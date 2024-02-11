@@ -53,6 +53,10 @@ Auth::routes();
 Route::get('admin/users', [AdminController::class, 'users'])->name('admin.users');
 Route::get('admin/searchUsers', [AdminController::class, 'searchUsers']);
 
+
+Route::get('test-topshiriq-lms', [AdminController::class, 'TTL'])->name('test-topshiriq-lms');
+
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -145,7 +149,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('mijoz-message', [UserController::class, 'mijozMessage'])->name('mijoz.message');
 
-    
+
 
 });
 

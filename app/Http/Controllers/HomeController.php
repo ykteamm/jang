@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\AllSold;
 use App\Models\MegaTurnirTeamBattle;
 use App\Models\MegaTurnirUserBattle;
+use App\Models\Topshiriq;
+use App\Models\TopshiriqJavob;
+use App\Models\TopshiriqLevel;
+use App\Models\TopshiriqLevelUsers;
+use App\Models\TopshiriqStar;
 use App\Models\UserBattleDay;
+use App\Services\LMSTopshiriq;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Battle;
@@ -115,7 +121,7 @@ class HomeController extends Controller
         //     UserBattle::where('id',$value)->delete();
         //     UserBattleDay::where('battle_id',$value)->delete();
         // }
-// 
+//
         // $b = new UserBattleService;
         // $Store = date('l');
         // return $Store;
@@ -147,8 +153,8 @@ class HomeController extends Controller
                 })->get();
 
         $battle_yes = 'yes';
-        
-        
+
+
         if(count($my_battle) == 0)
         {
             $battle_yes = 'no';
@@ -164,7 +170,7 @@ class HomeController extends Controller
                 })->get();
             $battle_yes = 'yes';
         }
-        
+
         $n = new HelperServices;
         $my_jang = $n->myBattle($my_battle,$sold_date);
         $summa1 = $my_jang->summa1;
@@ -209,8 +215,8 @@ class HomeController extends Controller
             }
         }
 
-        // dd(($battle_history));    
-        
+        // dd(($battle_history));
+
         $shifts = Shift::with('pharmacy')->where('user_id',Auth::user()->id)
         ->whereDate('open_date',Carbon::now())
         ->orderBy('id','DESC')->limit(1)
@@ -257,6 +263,554 @@ class HomeController extends Controller
         // $all_battle = 1;
         // $battle_start_day = 1;
         $haveTurnirBattle = 'no';
+
+//        Level
+         $userID = \auth()->user()->id;
+         $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
+         $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
+         $daraja = TopshiriqLevel::where('daraja',1)->first();
+         $daraja_2 = TopshiriqLevel::where('daraja',2)->first();
+         $daraja_3 = TopshiriqLevel::where('daraja',3)->first();
+         $daraja_4 = TopshiriqLevel::where('daraja',4)->first();
+         $daraja_5 = TopshiriqLevel::where('daraja',5)->first();
+         $daraja_6 = TopshiriqLevel::where('daraja',6)->first();
+
+         $user_level_profile = [];
+         if (!$level_user){
+             $user_level = new TopshiriqLevelUsers();
+             $user_level->tg_user_id = $userID;
+             $user_level->level_user = $daraja->daraja;
+             $user_level->save();
+
+             $user_level_profile = [
+               'level'=>$daraja->daraja,
+               'collect_star'=>$daraja->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         elseif ($level_user && $user_star->star >= $daraja->number_star)
+         {
+             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
+                'level_user'=>$daraja_2->daraja
+             ]);
+             $user_level_profile = [
+                 'level'=>$daraja_2->daraja,
+                 'collect_star'=>$daraja_2->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         elseif ($level_user && $user_star->star >= $daraja_2->number_star)
+         {
+             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
+                 'level_user'=>$daraja_3->daraja
+             ]);
+             $user_level_profile = [
+                 'level'=>$daraja_3->daraja,
+                 'collect_star'=>$daraja_3->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         elseif ($level_user && $user_star->star >= $daraja_3->number_star)
+         {
+             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
+                 'level_user'=>$daraja_4->daraja
+             ]);
+             $user_level_profile = [
+                 'level'=>$daraja_4->daraja,
+                 'collect_star'=>$daraja_4->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         elseif ($level_user && $user_star->star >= $daraja_4->number_star)
+         {
+             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
+                 'level_user'=>$daraja_5->daraja
+             ]);
+             $user_level_profile = [
+                 'level'=>$daraja_5->daraja,
+                 'collect_star'=>$daraja_5->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         elseif ($level_user && $user_star->star >= $daraja_5->number_star)
+         {
+             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
+                 'level_user'=>$daraja_6->daraja
+             ]);
+             $user_level_profile = [
+                 'level'=>$daraja_6->daraja,
+                 'collect_star'=>$daraja_6->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+         else{
+             $daraja_find = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
+             $star_find = TopshiriqLevel::where('daraja',$daraja_find->level_user)->first();
+             $user_level_profile = [
+                 'level'=>$daraja_find->level_user,
+                 'collect_star'=>$star_find->number_star,
+                 'star'=>$user_star->star,
+             ];
+         }
+
+
+
+
+
+
+
+//         End Level
+
+
+
+// LMS dars ko'rish
+        $userID = \auth()->user()->id;
+        $topshiriq = new LMSTopshiriq();
+
+        $topshiriq_name = Topshiriq::where(['key'=>'lms','status'=>1])->first();
+        $topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$topshiriq_name->id,'topshiriq_key'=>$topshiriq_name->key,'tg_user_id'=>$userID])->first();
+        $top_star_ball = TopshiriqStar::where('tg_user_id',$userID)->first();
+        $user_id = $userID;
+        $first_date = $topshiriq_name->first_date;
+        $end_date = $topshiriq_name->end_date;
+        $number = $topshiriq_name->number;
+
+         $time = new DateTime();
+         $soat = new DateTime('23:59');
+
+         $sana = new DateTime($end_date);
+         $intervalSana = $time->diff($sana);
+         $intervalSoat = $time->diff($soat);
+         $lms_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+         $result = $topshiriq->LMS($user_id,$first_date,$end_date);
+        if ($lms_days){
+            if ($result >= $number){
+                if (!$topshiriq_javob){
+                    $javob = new TopshiriqJavob();
+                    $javob->topshiriq_id = $topshiriq_name->id;
+                    $javob->tg_user_id = $userID;
+                    $javob->topshiriq_key = $topshiriq_name->key;
+                    $javob->topshiriq_done = $result;
+                    $javob->topshiriq_number = $number;
+                    $javob->topshiriq_star = $topshiriq_name->star;
+                    $javob->status = 1;
+                    $javob->save();
+                    if (!$top_star_ball){
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = $topshiriq_name->star;
+                        $star->save();
+                    }else{
+                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                            'star'=>$top_star_ball->star + $topshiriq_name->star
+                        ]);
+                    }
+                }
+            }else{
+                if (!$topshiriq_javob){
+                    $javob = new TopshiriqJavob();
+                    $javob->topshiriq_id = $topshiriq_name->id;
+                    $javob->tg_user_id = $userID;
+                    $javob->topshiriq_key = $topshiriq_name->key;
+                    $javob->topshiriq_done = $result;
+                    $javob->topshiriq_number = $number;
+                    $javob->topshiriq_star = 0;
+                    $javob->status = 0;
+                    $javob->save();
+                    if (!$top_star_ball){
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = 0;
+                        $star->save();
+                    }else{
+                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                            'star'=>$top_star_ball->star + 0
+                        ]);
+                    }
+                }
+            }
+        }else{
+            if ($result >= $number){
+                if (!$topshiriq_javob){
+                    $javob = new TopshiriqJavob();
+                    $javob->topshiriq_id = $topshiriq_name->id;
+                    $javob->tg_user_id = $userID;
+                    $javob->topshiriq_key = $topshiriq_name->key;
+                    $javob->topshiriq_done = $result;
+                    $javob->topshiriq_number = $number;
+                    $javob->topshiriq_star = $topshiriq_name->star;
+                    $javob->status = 1;
+                    $javob->save();
+                    if (!$top_star_ball){
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = $topshiriq_name->star;
+                        $star->save();
+                    }else{
+                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                            'star'=>$top_star_ball->star + $topshiriq_name->star
+                        ]);
+                    }
+                }
+            }
+        }
+
+//        end LMS dars ko'rish
+
+//         SMENA ochish
+         $userID = \auth()->user()->id;
+        $smena_topshiriq_name = Topshiriq::where(['key'=>'smena','status'=>1])->first();
+        $smena_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$smena_topshiriq_name->id,'topshiriq_key'=>$smena_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+        $smena_first_date=  $smena_topshiriq_name->first_date;
+        $smena_end_date = $smena_topshiriq_name->end_date;
+        $smena_number = $smena_topshiriq_name->number;
+
+        $smena = $topshiriq->SMENA($userID,$smena_first_date,$smena_end_date);
+
+         $sana = new DateTime($smena_end_date);
+         $intervalSana = $time->diff($sana);
+         $intervalSoat = $time->diff($soat);
+         $smena_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+
+         if ($smena_days){
+             if ($smena >= $smena_number){
+                 if (!$smena_topshiriq_javob){
+                     $smena_javob = new TopshiriqJavob();
+                     $smena_javob->topshiriq_id = $smena_topshiriq_name->id;
+                     $smena_javob->tg_user_id = $userID;
+                     $smena_javob->topshiriq_key = $smena_topshiriq_name->key;
+                     $javob->topshiriq_done = $smena;
+                     $smena_javob->topshiriq_number = $smena_number;
+                     $smena_javob->topshiriq_star = $smena_topshiriq_name->star;
+                     $smena_javob->status = 1;
+                     $smena_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $smena_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $smena_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }else{
+                 if (!$smena_topshiriq_javob){
+                     $smena_javob = new TopshiriqJavob();
+                     $smena_javob->topshiriq_id = $smena_topshiriq_name->id;
+                     $smena_javob->tg_user_id = $userID;
+                     $smena_javob->topshiriq_key = $smena_topshiriq_name->key;
+                     $javob->topshiriq_done = $smena;
+                     $smena_javob->topshiriq_number = $smena_number;
+                     $smena_javob->topshiriq_star = 0;
+                     $smena_javob->status = 0;
+                     $smena_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = 0;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + 0
+                         ]);
+                     }
+                 }
+             }
+         }else{
+             if ($smena >= $smena_number){
+                 if (!$smena_topshiriq_javob){
+                     $javob = new TopshiriqJavob();
+                     $javob->topshiriq_id = $smena_topshiriq_name->id;
+                     $javob->tg_user_id = $userID;
+                     $javob->topshiriq_key = $smena_topshiriq_name->key;
+                     $javob->topshiriq_done = $smena;
+                     $javob->topshiriq_number = $smena_number;
+                     $javob->topshiriq_star = $smena_topshiriq_name->star;
+                     $javob->status = 1;
+                     $javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $smena_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $smena_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }
+         }
+//         END SMENA
+
+//         Savdo 300
+         $userID = \auth()->user()->id;
+         $savdo_topshiriq_name = Topshiriq::where(['key'=>'savdo_300','status'=>1])->first();
+         $savdo_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$savdo_topshiriq_name->id,'topshiriq_key'=>$savdo_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+         $savdo_first_date=  $savdo_topshiriq_name->first_date;
+         $savdo_end_date = $savdo_topshiriq_name->end_date;
+         $savdo_number = $savdo_topshiriq_name->number;
+
+         $savdo = $topshiriq->savdo_300($userID,$savdo_first_date,$savdo_end_date);
+
+         $sana = new DateTime($savdo_end_date);
+         $intervalSana = $time->diff($sana);
+         $intervalSoat = $time->diff($soat);
+         $savdo_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+
+         if ($savdo_days){
+             if ($savdo >= $savdo_number){
+                 if (!$savdo_topshiriq_javob){
+                     $savdo_javob = new TopshiriqJavob();
+                     $savdo_javob->topshiriq_id = $savdo_topshiriq_name->id;
+                     $savdo_javob->tg_user_id = $userID;
+                     $savdo_javob->topshiriq_key = $savdo_topshiriq_name->key;
+                     $javob->topshiriq_done = $savdo;
+                     $savdo_javob->topshiriq_number = $savdo_number;
+                     $savdo_javob->topshiriq_star = $savdo_topshiriq_name->star;
+                     $savdo_javob->status = 1;
+                     $savdo_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $savdo_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $savdo_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }else{
+                 if (!$savdo_topshiriq_javob){
+                     $savdo_javob = new TopshiriqJavob();
+                     $savdo_javob->topshiriq_id = $savdo_topshiriq_name->id;
+                     $savdo_javob->tg_user_id = $userID;
+                     $savdo_javob->topshiriq_key = $savdo_topshiriq_name->key;
+                     $javob->topshiriq_done = $savdo;
+                     $savdo_javob->topshiriq_number = $savdo_number;
+                     $savdo_javob->topshiriq_star = 0;
+                     $savdo_javob->status = 0;
+                     $savdo_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = 0;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + 0
+                         ]);
+                     }
+                 }
+             }
+         }else{
+             if ($savdo >= $savdo_number){
+                 if (!$savdo_topshiriq_javob){
+                     $javob = new TopshiriqJavob();
+                     $javob->topshiriq_id = $savdo_topshiriq_name->id;
+                     $javob->tg_user_id = $userID;
+                     $javob->topshiriq_key = $savdo_topshiriq_name->key;
+                     $javob->topshiriq_done = $savdo;
+                     $javob->topshiriq_number = $savdo_number;
+                     $javob->topshiriq_star = $savdo_topshiriq_name->star;
+                     $javob->status = 1;
+                     $javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $savdo_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $savdo_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }
+         }
+//         end Savdo 300
+
+//         Oltin Sut
+         $oltin_sut_topshiriq_name = Topshiriq::where(['key'=>'oltin_sut','status'=>1])->first();
+         $oltin_sut_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$oltin_sut_topshiriq_name->id,'topshiriq_key'=>$oltin_sut_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+         $oltin_sut_first_date =  $oltin_sut_topshiriq_name->first_date;
+         $oltin_sut_end_date = $oltin_sut_topshiriq_name->end_date;
+         $oltin_sut_number = $oltin_sut_topshiriq_name->number;
+
+         $oltin_sut = $topshiriq->oltin_sut($userID,$oltin_sut_first_date,$oltin_sut_end_date);
+
+         $sana = new DateTime($oltin_sut_end_date);
+         $intervalSana = $time->diff($sana);
+         $intervalSoat = $time->diff($soat);
+         $oltin_sut_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+         if ($oltin_sut_days){
+             if ($oltin_sut >= $oltin_sut_number){
+                 if (!$oltin_sut_topshiriq_javob){
+                     $oltin_sut_javob = new TopshiriqJavob();
+                     $oltin_sut_javob->topshiriq_id = $oltin_sut_topshiriq_name->id;
+                     $oltin_sut_javob->tg_user_id = $userID;
+                     $oltin_sut_javob->topshiriq_key = $oltin_sut_topshiriq_name->key;
+                     $javob->topshiriq_done = $oltin_sut;
+                     $oltin_sut_javob->topshiriq_number = $oltin_sut_number;
+                     $oltin_sut_javob->topshiriq_star = $oltin_sut_topshiriq_name->star;
+                     $oltin_sut_javob->status = 1;
+                     $oltin_sut_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $oltin_sut_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $oltin_sut_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }else{
+                 if (!$oltin_sut_topshiriq_javob){
+                     $oltin_sut_javob = new TopshiriqJavob();
+                     $oltin_sut_javob->topshiriq_id = $oltin_sut_topshiriq_name->id;
+                     $oltin_sut_javob->tg_user_id = $userID;
+                     $oltin_sut_javob->topshiriq_key = $oltin_sut_topshiriq_name->key;
+                     $javob->topshiriq_done = $oltin_sut;
+                     $oltin_sut_javob->topshiriq_number = $oltin_sut_number;
+                     $oltin_sut_javob->topshiriq_star = 0;
+                     $oltin_sut_javob->status = 0;
+                     $oltin_sut_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = 0;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + 0
+                         ]);
+                     }
+                 }
+             }
+         }else{
+             if ($oltin_sut >= $oltin_sut_number){
+                 if (!$oltin_sut_topshiriq_javob){
+                     $javob = new TopshiriqJavob();
+                     $javob->topshiriq_id = $oltin_sut_topshiriq_name->id;
+                     $javob->tg_user_id = $userID;
+                     $javob->topshiriq_key = $oltin_sut_topshiriq_name->key;
+                     $javob->topshiriq_done = $oltin_sut;
+                     $javob->topshiriq_number = $oltin_sut_number;
+                     $javob->topshiriq_star = $oltin_sut_topshiriq_name->star;
+                     $javob->status = 1;
+                     $javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $oltin_sut_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $oltin_sut_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }
+         }
+//         End Oltin Sut
+
+//         Suyak Komplex
+         $suyak_komplex_topshiriq_name = Topshiriq::where(['key'=>'suyak_komplex','status'=>1])->first();
+         $suyak_komplex_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$suyak_komplex_topshiriq_name->id,'topshiriq_key'=>$suyak_komplex_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+         $suyak_komplex_first_date =  $oltin_sut_topshiriq_name->first_date;
+         $suyak_komplex_end_date = $oltin_sut_topshiriq_name->end_date;
+         $suyak_komplex_number = $oltin_sut_topshiriq_name->number;
+
+         $suyak_komplex = $topshiriq->oltin_sut($userID,$suyak_komplex_first_date,$suyak_komplex_end_date);
+
+         $sana = new DateTime($suyak_komplex_end_date);
+         $intervalSana = $time->diff($sana);
+         $intervalSoat = $time->diff($soat);
+         $suyak_komplex_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+         if ($suyak_komplex_days){
+             if ($suyak_komplex >= $suyak_komplex_number){
+                 if (!$suyak_komplex_topshiriq_javob){
+                     $suyak_komplex_javob = new TopshiriqJavob();
+                     $suyak_komplex_javob->topshiriq_id = $suyak_komplex_topshiriq_name->id;
+                     $suyak_komplex_javob->tg_user_id = $userID;
+                     $suyak_komplex_javob->topshiriq_key = $suyak_komplex_topshiriq_name->key;
+                     $javob->topshiriq_done = $suyak_komplex;
+                     $suyak_komplex_javob->topshiriq_number = $suyak_komplex_number;
+                     $suyak_komplex_javob->topshiriq_star = $suyak_komplex_topshiriq_name->star;
+                     $suyak_komplex_javob->status = 1;
+                     $suyak_komplex_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $suyak_komplex_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $suyak_komplex_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }else{
+                 if (!$suyak_komplex_topshiriq_javob){
+                     $suyak_komplex_javob = new TopshiriqJavob();
+                     $suyak_komplex_javob->topshiriq_id = $suyak_komplex_topshiriq_name->id;
+                     $suyak_komplex_javob->tg_user_id = $userID;
+                     $suyak_komplex_javob->topshiriq_key = $suyak_komplex_topshiriq_name->key;
+                     $javob->topshiriq_done = $suyak_komplex;
+                     $suyak_komplex_javob->topshiriq_number = $suyak_komplex_number;
+                     $suyak_komplex_javob->topshiriq_star = 0;
+                     $suyak_komplex_javob->status = 0;
+                     $suyak_komplex_javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = 0;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + 0
+                         ]);
+                     }
+                 }
+             }
+         }else{
+             if ($suyak_komplex >= $suyak_komplex_number){
+                 if (!$suyak_komplex_topshiriq_javob){
+                     $javob = new TopshiriqJavob();
+                     $javob->topshiriq_id = $suyak_komplex_topshiriq_name->id;
+                     $javob->tg_user_id = $userID;
+                     $javob->topshiriq_key = $suyak_komplex_topshiriq_name->key;
+                     $javob->topshiriq_done = $suyak_komplex;
+                     $javob->topshiriq_number = $suyak_komplex_number;
+                     $javob->topshiriq_star = $suyak_komplex_topshiriq_name->star;
+                     $javob->status = 1;
+                     $javob->save();
+                     if (!$top_star_ball){
+                         $star = new TopshiriqStar();
+                         $star->tg_user_id = $userID;
+                         $star->star = $suyak_komplex_topshiriq_name->star;
+                         $star->save();
+                     }else{
+                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
+                             'star'=>$top_star_ball->star + $suyak_komplex_topshiriq_name->star
+                         ]);
+                     }
+                 }
+             }
+         }
+//         End Suyak Komplex
+
+
         return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
         ,'summa1'
         ,'summa2'
@@ -266,6 +820,7 @@ class HomeController extends Controller
         ,'my_battle'
         ,'all_battle'
         ,'battle_start_day'
+        ,'user_level_profile'
         ));
 
     }

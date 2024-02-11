@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container h-100 pl-0 pr-0">
-        
+
         @if (Session::get('recommendNews'))
             <button class="d-none" data-toggle="modal" id="recommendNews-btn" data-target="#recommendNews"></button>
         @endif
@@ -34,7 +34,7 @@
     @include('modals.ustoz-shogird')
     @include('modals.ustoz-profil')
 
-    @include('modals.battle')  
+    @include('modals.battle')
     @include('modals.battle-day')
 
     @include('modals.smena')
@@ -50,7 +50,7 @@
         @include('modals.myshogirdin')
         {{-- @include('modals.onemonthin') --}}
     @endif
-    
+
     @if (count(getRekrut()) > 0)
         @include('modals.myrekrut')
     @endif
@@ -58,9 +58,11 @@
     {{-- @include('modals.news') --}}
     @include('modals.recommendNews')
     @include('modals.showNw')
-    @include('modals.exercise') 
+    @include('modals.exercise')
 
     @include('modals.turnir')
+
+    @include('modals.topshiriq')
 
     @include('modals.mega-turnir-dori')
     @include('modals.mega-turnir-battle')
@@ -71,18 +73,18 @@
     {{-- @include('modals.history-elexir') --}}
     @include('modals.reyting')
     @include('modals.region')
-    @include('modals.planuser') 
+    @include('modals.planuser')
     @include('modals.change_plan')
     @include('modals.region-profil')
     @include('modals.user-profil')
     {{-- @if (Auth::user()->status == 0)
         @include('modals.new-elchi')
     @endif --}}
-    
+
     @include('modals.teambattle')
     @include('modals.teambattleround')
 
-    
+
     @include('modals.bonus')
     @include('modals.money')
 
@@ -95,5 +97,5 @@
     @include('partials.money-com')
     {{-- @include('partials.swiper-com') --}}
 
-    
+
 @endsection

@@ -22,7 +22,7 @@
 <link href="{{asset('mobile/css/media/bugun.css')}}" rel="stylesheet" id="style">
 
 <link href="{{asset('mobile/vendor/swiper/css/swiper.min.css')}}" rel="stylesheet" id="style">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {{-- <link href="vendor/swiper/css/swiper.min.css" rel="stylesheet"> --}}
 <style>
   .plans {
@@ -118,7 +118,7 @@
     .gilroy{
       font-family: Gilroy ExtraBold;
     }
-   
+
     .profile-img {
     width: 230px;
     height: 230px;

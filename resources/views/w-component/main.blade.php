@@ -1,4 +1,58 @@
 <style>
+    /*progress {*/
+    /*    width: 40%;*/
+    /*    display: block; !* default: inline-block *!*/
+    /*    !*margin: 2em auto;*!*/
+    /*    margin: 10px auto;*/
+    /*    padding: 3px;*/
+    /*    border: 0 none;*/
+    /*    background: #444;*/
+    /*    border-radius: 14px;*/
+    /*}*/
+    /*progress::-moz-progress-bar {*/
+    /*    border-radius: 12px;*/
+    /*    background: orange;*/
+
+    /*}*/
+
+    progress {
+        width: 150px;
+        display: block; /* default: inline-block */
+        /*margin: 2em auto;*/
+        margin: 10px auto;
+        padding: 3px;
+        border: 0 none;
+        background: #444;
+        border-radius: 14px;
+    }
+    progress::-moz-progress-bar {
+        border-radius: 12px;
+        background: orange;
+
+    }
+
+    .level_topshiriq {
+        position: absolute;
+        /*top: 50%;*/
+        /*left: 50%;*/
+        transform: translate(-45%, -160%);
+        font-size: 14px;
+        color: white;
+    }
+    /* webkit */
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        progress {
+            height: 25px;
+        }
+    }
+    progress::-webkit-progress-bar {
+        background: transparent;
+    }
+    progress::-webkit-progress-value {
+        border-radius: 12px;
+        background: orange;
+    }
+
     @media screen and (max-width: 360px) {
         .for-media-img {
             width: 150px !important;
@@ -65,11 +119,41 @@
                                 Ko'rish
                             </button>
                         </div>
-                        
+
                     </div>
                 @endif
             @endif --}}
+            <div class="container pl-0 pr-0">
+                <div class="row">
+                    <div class="col-6 pl-0 pr-0">
 
+                        <button type="button" class="btn pr-0" data-toggle="modal" data-target="#topshiriq">
+                            <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">
+                        </button>
+                    </div>
+                    <div class="col-6 pl-0 pr-0">
+
+{{--                        <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">--}}
+{{--                            <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">--}}
+{{--                        </button>--}}
+                        <button type="button" style="background: #329fff;
+                                    color: white;
+                                    -webkit-text-stroke: 1px black;
+                                    font-size: 25px;
+                                    border: 2px solid white;
+                                    border-radius: 12px;" class="btn" data-toggle="modal" data-target="#addprovizor">
+                            {{$user_level_profile['level']}}
+                        </button>
+
+                        <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"></progress>
+                        <span class="level_topshiriq">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
+                    </div>
+{{--                    <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal" data-target="#openkingcheck">--}}
+{{--                        Ko'rish--}}
+{{--                    </button>--}}
+                </div>
+
+            </div>
             @foreach (getShogirdUser() as $item)
                 <div class="container mt-3">
                     @if (count(getAllShiftShogird($item->id)) != 0)
@@ -169,6 +253,16 @@
 
                 <div class="container pl-0 pr-0">
                     <div class="row">
+
+                        {{--                  topshiriq              --}}
+{{--                        <div class="container p-1 " style="color: white;margin-top: 30px">--}}
+{{--                            <button style="width: 200px" type="button" class="btn btn-info" data-toggle="modal" data-target="#topshiriq">--}}
+{{--                                <i class="fas fa-award"></i>--}}
+{{--                                Topshiriq--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+
+                        {{-- end topshiriq --}}
                         @if (getShogirdOneMonth(Auth::id()) == 1)
                             <div class="col-12 pb-1 pl-0 pr-0">
                                 <button type="button" class="btn" style="background: #8bd137" data-toggle="modal"
@@ -228,23 +322,23 @@
                             @endif
 
                             {{-- @if (Auth::user()->status == 1)
-                                
+
                             @endif --}}
                         @endif
-                        {{-- <div class="col-6 pl-0 pr-0" style="position: relative">
-                            <div>
-                                <button style="position: absolute;top:-18px;right:-13px;z-index:10000"
-                                    type="button" class="for-media-task-btn btn pl-0" data-toggle="modal"
-                                    data-target="#ustoz-shogird" onclick="livewire.emit('for_ustoz_stajer');">
-                                    <img src="{{ asset('mobile/ustoz/btnust.jpg') }}" class="for-media-task"
-                                    height="50px"
-                                    width=  "140px" style="margin-right:21px" alt="">
-                                </button>
-                            </div>
-                            <div style="padding-top:35px">
-                                <livewire:news-button>
-                            </div>
-                        </div> --}}
+{{--                         <div class="col-6 pl-0 pr-0" style="position: relative">--}}
+{{--                            <div>--}}
+{{--                                <button style="position: absolute;top:-18px;right:-13px;z-index:10000"--}}
+{{--                                    type="button" class="for-media-task-btn btn pl-0" data-toggle="modal"--}}
+{{--                                    data-target="#ustoz-shogird" onclick="livewire.emit('for_ustoz_stajer');">--}}
+{{--                                    <img src="{{ asset('mobile/ustoz/btnust.jpg') }}" class="for-media-task"--}}
+{{--                                    height="50px"--}}
+{{--                                    width=  "140px" style="margin-right:21px" alt="">--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                            <div style="padding-top:35px">--}}
+{{--                                <livewire:news-button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal"
                             data-target="#openkingcheck">
                             Ko'rish
@@ -794,11 +888,9 @@
                 @endphp
                 @if (gettype(getTeacher()) != 'array')
 
-                    <div class="container p-1" style="background:#3ad1717d;border-radius:13px;" data-toggle="modal"
-                        data-target="#new-elchi">
+                    <div class="container p-1" style="background:#3ad1717d;border-radius:13px;" data-toggle="modal" data-target="#new-elchi">
                         <h4 class="text-center">O'quv haftasi</h4>
                         @if (count($shifts) == 1)
-
                             @if (count($shogird_day) != 0)
                                 <h5 class="text-center">{{ count($shogird_day) }} - kun</h5>
                             @endif
@@ -827,7 +919,7 @@
 
                                         @for ($i = 1; $i <= 7; $i++)
                                             {{-- @if ($i == 5)
-                                        
+
                                         <div style="width:12%;height:15px;border: 1px solid #4e34da;border-radius:13px;@if ($i <= count($shogird_day))
                                         background:orange;
                                     @endif">
@@ -846,7 +938,7 @@
                                                 } else {
                                                     // $color = 'orange';
                                                 }
-                                                
+
                                             @endphp
                                             <div
                                                 style="width:11%;height:15px;border: 1px solid #4e34da;border-radius:13px;@if ($i <= count($shogird_day) - 1) background:{{ $color }}; @endif ">
@@ -860,6 +952,10 @@
 
                         </div>
                     </div>
+
+
+
+
 
                     <div class="container p-1 mt-3" style="background:#b1d4eb7d;border-radius:13px;">
                         <div class="row">
@@ -912,6 +1008,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+</script>
 {{-- <div>
 
 </div> --}}
