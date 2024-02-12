@@ -1,4 +1,4 @@
-<button style="position: relative" type="button" class="for-media-news-btn btn pl-0 class-news" data-toggle="modal"
+<button style="position: relative" type="button" class="for-media-news-btn for-media-news-btn-g btn pl-0 class-news" data-toggle="modal"
     data-target="#news">
     @if ($notifcount > 0)
         <div id="newsNotifCountParent">
@@ -22,12 +22,12 @@
                         transform: scale(1);
                         box-shadow: 1px 2px 10px rgb(red, green, blue);
                     }
-                    
+
                     50% {
                         transform: scale(1.3);
                         box-shadow: 1px 4px 20px rgb(red, green, blue);
                     }
-                    
+
                     100% {
                         transform: scale(1);
                         box-shadow: 1px 2px 10px rgb(red, green, blue);

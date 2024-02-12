@@ -66,7 +66,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$oltin_sut_topshiriq_name->star}}
                     </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$oltin_sut_crystall}}
                     </span>
@@ -92,7 +92,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                            <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                            <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                         <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
@@ -146,7 +146,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             {{$oltin_sut_topshiriq_name->star}}
                         </span>
-                        <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             {{$oltin_sut_crystall}}
                         </span>
@@ -180,7 +180,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$suyak_komplex_topshiriq_name->star}}
                     </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$suyak_komplex_crystall}}
                     </span>
@@ -205,7 +205,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
@@ -249,7 +249,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             {{$suyak_komplex_topshiriq_name->star}}
                         </span>
-                        <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             {{$suyak_komplex_crystall}}
                         </span>
@@ -278,7 +278,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$topshiriq_name->star}}
                         </span>
-                        <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     </div>
                 </div>
             @elseif($topshiriq_javob && $topshiriq_javob->status == 0)
@@ -299,7 +299,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             0
                         </span>
-                        <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     </div>
                 </div>
             @else
@@ -338,7 +338,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 9px">
                            {{$topshiriq_name->star}}
                        </span>
-                        <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     </div>
                 </div>
             @endif
@@ -363,7 +363,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$smena_topshiriq->star}}
                         </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
         @elseif($smena_topshiriq_javob && $smena_topshiriq_javob->status == 0)
@@ -384,7 +384,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$smena_topshiriq->star}}
                         </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
         @else
@@ -423,7 +423,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
                        {{$smena_topshiriq->star}}
                    </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
         @endif
@@ -448,7 +448,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$savdo_topshiriq_name->star}}
                         </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
         @elseif($savdo_topshiriq_javob && $savdo_topshiriq_javob->status == 0)
@@ -469,7 +469,7 @@
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                        0
                     </span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="35" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
         @else
@@ -506,7 +506,7 @@
                 <div class="col-2" style="padding: 0 !important;">
                     <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
                     <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">{{$savdo_topshiriq_name->star}}</span>
-                    <img src="{{asset('images/jang_topshiriq/sovrin.svg')}}" width="30" alt="">
+                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                 </div>
             </div>
 

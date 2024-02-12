@@ -55,7 +55,7 @@
         @include('modals.myrekrut')
     @endif
 
-    {{-- @include('modals.news') --}}
+    @include('modals.news')
     @include('modals.recommendNews')
     @include('modals.showNw')
     @include('modals.exercise')

@@ -50,7 +50,7 @@
     }
     progress::-webkit-progress-value {
         border-radius: 12px;
-        background: orange;
+        background: rgb(54, 131, 231);
     }
 
     @media screen and (max-width: 360px) {
@@ -126,16 +126,54 @@
             <div class="container pl-0 pr-0">
                 <div class="row">
                     <div class="col-6 pl-0 pr-0">
+                        <div>
+                            <button type="button"
+                                class="for-media-task-btn btn" data-toggle="modal" data-target="#topshiriq">
+                                <img src="{{ asset('mobile/tlogo.png') }}" class="for-tlogo" >
+                            </button>
+                            <div style="position: absolute" class="level-topsh">
+                                <img src="{{ asset('mobile/turnir/topsh.png') }}" class="level-topsh-img">
+                                <div style="position: absolute" class="level-topsh-txt">
+                                    <span class="supercell">
+                                        {{$user_level_profile['level']}}
+                                    </span>
+                                </div>
+                                <div style="position: absolute" class="level-topsh-progres">
+                                    <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"
+                                    style="background: #0d2650;"
+                                    class="level-topsh-progres-bar"
+                                    ></progress>
+                                    <span class="level_topshiriq_bar">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 pl-0 pr-0">
+                        <div style="padding-top:37px">
+                            <livewire:news-button>
+                        </div>
+                    </div>
+                    <div class="col-6 pl-0 pr-0">
+                            <div>
+                                <button type="button"
+                                    class="for-media-task-btn-t btn" data-toggle="modal" data-target="#turnir">
+                                    <img src="{{ asset('mobile/turnir/mgt.webp') }}" class="for-media-task"
+                                    style="width:75%;" alt="">
+                                </button>
+
+                            </div>
+                    </div>
+                </div>
+                {{-- <div class="row"> --}}
+                    {{-- <div class="col-6 pl-0 pr-0">
 
                         <button type="button" class="btn pr-0" data-toggle="modal" data-target="#topshiriq">
                             <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">
                         </button>
-                    </div>
-                    <div class="col-6 pl-0 pr-0">
+                    </div> --}}
+                    {{-- <div class="col-6 pl-0 pr-0">
 
-{{--                        <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">--}}
-{{--                            <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">--}}
-{{--                        </button>--}}
+
                         <button type="button" style="background: #329fff;
                                     color: white;
                                     -webkit-text-stroke: 1px black;
@@ -147,11 +185,14 @@
 
                         <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"></progress>
                         <span class="level_topshiriq">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
-                    </div>
+                    </div> --}}
+                    {{-- <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">
+                           <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">
+                       </button> --}}
 {{--                    <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal" data-target="#openkingcheck">--}}
 {{--                        Ko'rish--}}
 {{--                    </button>--}}
-                </div>
+                {{-- </div> --}}
 
             </div>
             @foreach (getShogirdUser() as $item)
@@ -270,17 +311,9 @@
                                     SINOV
                                 </button>
                             </div>
-                            <div class="col-12" style="position: relative">
-                                {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
-                                    Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
-                                    0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                    </svg>
-                                    </button> --}}
+                            {{-- <div class="col-12" style="position: relative">
                                     <livewire:turnir-button>
-                            </div>
+                            </div> --}}
 
                             {{-- <div class="col-6 pl-0 pr-0" style="position: relative">
                                 <div>
@@ -295,31 +328,15 @@
                                 </div>
                             </div> --}}
                         @else
-                            @if (Auth::user()->status == 1)
+                            {{-- @if (Auth::user()->status == 1)
                                 <div class="col-12" style="position: relative">
-                                    {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
-                                        Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
-                                        0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                        </svg>
-                                      </button> --}}
                                     <livewire:turnir-button>
                                 </div>
                             @else
                                 <div class="col-12" style="position: relative">
-                                    {{-- <button style="position: absolute;top:10px;right:35px;z-index:10;border:none;outline:none;background:transparent;color:#fff" type="button" class="rounded d-flex align-items-center justify-content-center" data-toggle="popover" title="Shox yurish nima?"  data-content="Shox yurish -bu savdoni oshirish va oylikdan tashqari  premiya  olish uchun ajoyib imkoniyat !!!
-                                        Bir mijozga 200.000 va undan ortiq summada soting va chekni sistemaga kiriting!!!
-                                        0.5 Shox yurish: Bir mijozga 4 ta choy yoki 1 ta preparat+2 ta choy" data-placement="left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                        </svg>
-                                      </button> --}}
                                       <livewire:turnir-button>
                                 </div>
-                            @endif
+                            @endif --}}
 
                             {{-- @if (Auth::user()->status == 1)
 

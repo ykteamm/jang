@@ -9516,6 +9516,336 @@ button.bg-dark:focus {
   }
 }
 
+@media (max-width: 18000px) {
+    .for-tlogo{
+        width: 220px;
+        margin-left: -2px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 231px;
+        top: -141px;
+    }
+    .for-media-news-btn-g{
+        top: 0px;
+    }
+    .level-topsh{
+        left: 22px;
+        top: 82px;
+    }
+    .level-topsh-img{
+        width: 40px;
+    }
+    .level-topsh-txt{
+        font-size: 19px;
+        top: 3px;
+        left: 15px;
+    }
+    .level-topsh-progres{
+        top: 0px;
+        left: 41px;
+    }
+    .level-topsh-progres-bar{
+        width: 168px;
+        height: 20px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 430px) {
+    .for-tlogo{
+        width: 220px;
+        margin-left: -2px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 231px;
+        top: -141px;
+    }
+    .for-media-news-btn-g{
+        top: 0px;
+    }
+    .level-topsh{
+        left: 22px;
+        top: 82px;
+    }
+    .level-topsh-img{
+        width: 40px;
+    }
+    .level-topsh-txt{
+        font-size: 19px;
+        top: 3px;
+        left: 15px;
+    }
+    .level-topsh-progres{
+        top: 0px;
+        left: 41px;
+    }
+    .level-topsh-progres-bar{
+        width: 168px;
+        height: 20px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .for-tlogo{
+        width: 210px;
+        margin-left: -2px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 216px;
+        top: -146px;
+    }
+    .for-media-news-btn-g{
+        top: -5px;
+    }
+    .level-topsh{
+        left: 22px;
+        top: 78px;
+    }
+    .level-topsh-img{
+        width: 40px;
+    }
+    .level-topsh-txt{
+        font-size: 19px;
+        top: 3px;
+        left: 15px;
+    }
+    .level-topsh-progres{
+        top: 0px;
+        left: 41px;
+    }
+    .level-topsh-progres-bar{
+        width: 162px;
+        height: 20px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .for-tlogo{
+        width: 210px;
+        margin-left: -2px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 199px;
+        top: -139px;
+    }
+    .for-media-news-btn-g{
+        top: -5px;
+    }
+    .level-topsh{
+        left: 22px;
+        top: 78px;
+    }
+    .level-topsh-img{
+        width: 40px;
+    }
+    .level-topsh-txt{
+        font-size: 19px;
+        top: 3px;
+        left: 15px;
+    }
+    .level-topsh-progres{
+        top: 0px;
+        left: 41px;
+    }
+    .level-topsh-progres-bar{
+        width: 162px;
+        height: 20px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .for-tlogo{
+        width: 210px;
+        margin-left: -37px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 206px;
+        top: -136px;
+    }
+    .for-media-news-btn-g{
+        top: -9px;
+    }
+    .level-topsh{
+        left: 22px;
+        top: 78px;
+    }
+    .level-topsh-img{
+        width: 40px;
+    }
+    .level-topsh-txt{
+        font-size: 19px;
+        top: 3px;
+        left: 15px;
+    }
+    .level-topsh-progres{
+        top: 0px;
+        left: 41px;
+    }
+    .level-topsh-progres-bar{
+        width: 162px;
+        height: 20px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 350px) {
+    .for-tlogo{
+        width: 190px;
+        margin-left: -40px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 199px;
+        top: -139px;
+    }
+    .for-media-news-btn-g{
+        top: -17px;
+    }
+    .level-topsh{
+        left: 19px;
+        top: 74px;
+    }
+    .level-topsh-img{
+        width: 33px;
+    }
+    .level-topsh-txt{
+        font-size: 17px;
+        top: 3px;
+        left: 12px;
+    }
+    .level-topsh-progres{
+        top: -2px;
+        left: 35px;
+    }
+    .level-topsh-progres-bar{
+        width: 147px;
+        height: 18px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .for-tlogo{
+        width: 190px;
+        margin-left: -40px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 180px;
+        top: -139px;
+    }
+    .for-media-news-btn-g{
+        top: -17px;
+    }
+    .level-topsh{
+        left: 19px;
+        top: 74px;
+    }
+    .level-topsh-img{
+        width: 33px;
+    }
+    .level-topsh-txt{
+        font-size: 17px;
+        top: 3px;
+        left: 12px;
+    }
+    .level-topsh-progres{
+        top: -2px;
+        left: 35px;
+    }
+    .level-topsh-progres-bar{
+        width: 147px;
+        height: 18px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 300px) {
+    .for-tlogo{
+        width: 155px;
+        margin-left: -40px;
+    }
+    .for-media-task-btn-t{
+        position: relative;
+        left: 156px;
+        top: -147px;
+    }
+    .for-media-news-btn-g{
+        top: -31px;
+    }
+    .level-topsh{
+        left: 19px;
+        top: 58px;
+    }
+    .level-topsh-img{
+        width: 33px;
+    }
+    .level-topsh-txt{
+        font-size: 17px;
+        top: 3px;
+        left: 12px;
+    }
+    .level-topsh-progres{
+        top: -1px;
+        left: 35px;
+    }
+    .level-topsh-progres-bar{
+        width: 115px;
+        height: 18px;
+    }
+    .level_topshiriq_bar{
+        position: absolute;
+        transform: translate(-45%, -160%);
+        color: white;
+        font-size: 10px;
+    }
+}
+
+
+
 .text-lowercase {
   text-transform: lowercase !important;
 }

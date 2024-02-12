@@ -1,16 +1,19 @@
 <script>
 
-   
+
 
     $(document).ready(function(){
-        
-        // $('.class-news').click(function(){
-        //     getAllNews()
-        //     livewire.emit('for_newsin');
 
-        // });
+        setTimeout(function() {
+            $('.class-news').click(function(){
+                getAllNews()
+                livewire.emit('for_newsin');
+            });
+        }, 4000);
+
+
     });
-    
+
         function readNotificationEvent(id) {
             $.ajax({
                 url: `/read-notification/${id}`,
@@ -40,7 +43,7 @@
         function showVid(id) {
             $("#showVid" + id).click()
         }
-        
+
     function setReaction() {
             setTimeout(() => {
                 getAllNews();
@@ -137,5 +140,5 @@
             })
         }
 
-        
+
 </script>

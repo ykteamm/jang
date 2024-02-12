@@ -265,9 +265,18 @@ class HomeController extends Controller
         $haveTurnirBattle = 'no';
 
 //        Level
-         $userID = \auth()->user()->id;
+         $userID = Auth::id();
          $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
          $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
+         if(!$user_star)
+         {
+            $user_star = new TopshiriqStar;
+            $user_star->tg_user_id = $userID;
+            $user_star->star = 0;
+            $user_star->save();
+         }
+         $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
+
          $daraja = TopshiriqLevel::where('daraja',1)->first();
          $daraja_2 = TopshiriqLevel::where('daraja',2)->first();
          $daraja_3 = TopshiriqLevel::where('daraja',3)->first();
@@ -810,6 +819,7 @@ class HomeController extends Controller
          }
 //         End Suyak Komplex
 
+        $news = News::where('publish', true)->orderBy('id', "DESC")->get();
 
         return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
         ,'summa1'
@@ -821,6 +831,7 @@ class HomeController extends Controller
         ,'all_battle'
         ,'battle_start_day'
         ,'user_level_profile'
+        ,'news'
         ));
 
     }
@@ -1577,7 +1588,7 @@ class HomeController extends Controller
         $battle_yes = 'yes';
 
         }
-        // return $my_battle;
+        return $news;
         return view('index',compact('videos','infos','battle_yes','outerMarket','lock','haveTurnirBattle','news','shifts','makeCloseShift','products','pharmacy','all_sold'
         ,'summa1'
         ,'summa2'
