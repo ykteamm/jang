@@ -45,6 +45,7 @@ class Topshiriq extends Component
 
 //  Oltin sut
     public $oltin_sut;
+    public $oltin_sut_crystall;
     public $oltin_sut_topshiriq_name;
     public $oltin_sut_topshiriq_javob;
     public $oltin_sut_date;
@@ -54,6 +55,7 @@ class Topshiriq extends Component
 
 //  Suyak Komplex
     public $suyak_komplex;
+    public $suyak_komplex_crystall;
     public $suyak_komplex_topshiriq_name;
     public $suyak_komplex_topshiriq_javob;
     public $suyak_komplex_date;
@@ -115,6 +117,7 @@ class Topshiriq extends Component
         $oltin_sut_first_date = $this->oltin_sut_topshiriq_name->first_date;
         $oltin_sut_end_date = $this->oltin_sut_topshiriq_name->end_date;
 
+        $this->oltin_sut_crystall = $this->oltin_sut_topshiriq_name->crystall;
         $this->oltin_sut = $topshiriq->oltin_sut($userID,$oltin_sut_first_date,$oltin_sut_end_date);
 
         $oltin_end_date = new DateTime($oltin_sut_end_date);
@@ -125,6 +128,9 @@ class Topshiriq extends Component
 //        Suyak Komplex
         $this->suyak_komplex_topshiriq_name = TopshiriqModel::where(['key'=>'suyak_komplex','status'=>1])->first();
         $this->suyak_komplex_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$this->suyak_komplex_topshiriq_name->id,'topshiriq_key'=>$this->suyak_komplex_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+
+        $this->suyak_komplex_crystall = $this->suyak_komplex_topshiriq_name->crystall;
+
         $suyak_komplex_first_date = $this->suyak_komplex_topshiriq_name->first_date;
         $suyak_komplex_end_date = $this->suyak_komplex_topshiriq_name->end_date;
 

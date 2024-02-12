@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            TurnirPlayoffSeeder::class
+//            TurnirPlayoffSeeder::class,
+            TopshiriqSeeder::class,
+            TopshiriqLevelSeeder::class,
         ]);
         // $users = User::all();
 
@@ -100,7 +102,7 @@ class DatabaseSeeder extends Seeder
         //     'date_end' => '2023-06-27',
         //     'month' => '2023-06-01'
         // ]);
-        
+
         // $i = 1;
         // foreach ($turnirTeams as $t) {
         //     $groupId = $turnirGroups[0]->id;
