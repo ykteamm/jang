@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Services\LMSTopshiriq;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -57,10 +58,8 @@ class AdminController extends Controller
     public function TTL()
     {
 
+        $userID = Auth::id();
 
-        $userID = \auth()->user()->id;
-        $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
-        $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
         $daraja = TopshiriqLevel::where('daraja',1)->first();
         $daraja_2 = TopshiriqLevel::where('daraja',2)->first();
         $daraja_3 = TopshiriqLevel::where('daraja',3)->first();
@@ -68,90 +67,97 @@ class AdminController extends Controller
         $daraja_5 = TopshiriqLevel::where('daraja',5)->first();
         $daraja_6 = TopshiriqLevel::where('daraja',6)->first();
 
-        $user_level_profile = [];
+
+        $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
         if (!$level_user){
             $user_level = new TopshiriqLevelUsers();
             $user_level->tg_user_id = $userID;
             $user_level->level_user = $daraja->daraja;
             $user_level->save();
-
-            $user_level_profile = [
-                'level'=>$daraja->daraja,
-                'collect_star'=>$daraja->number_star,
-                'star'=>$user_star->star,
-            ];
         }
-        elseif ($level_user && $user_star->star >= $daraja->number_star)
+
+        $user_star = TopshiriqStar::where(['tg_user_id'=>$userID,'level'=>$level_user->level_user])->get();
+        $star_all = 0;
+        $level_all = 0;
+
+        foreach ($user_star as $star) {
+            $star_all += $star->star;
+            $level_all = $star->level; // Levelni o'zgartirish uchun
+        }
+//        return $level_user && $daraja->daraja == $level_all && $star_all >= $daraja->number_star;
+
+//        return Auth::id();
+//        return $star_all;
+//        return $level_all;
+        $user_level_profile[] = [
+            'level'=>$daraja->daraja,
+            'collect_star'=>$daraja->number_star,
+            'star'=>$star_all,
+        ];
+        if ($level_user && $daraja->daraja == $level_all && $star_all  >= $daraja->number_star)
         {
             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_2->daraja
             ]);
             $user_level_profile = [
                 'level'=>$daraja_2->daraja,
-                'level_eski_star'=>$daraja->number_star,
                 'collect_star'=>$daraja_2->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
         }
-        elseif ($level_user && ($user_star->star - $daraja->number_star) >= $daraja_2->number_star)
+        elseif ($level_user && $daraja_2->daraja == $level_all && $star_all >= $daraja_2->number_star)
         {
             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_3->daraja
             ]);
             $user_level_profile = [
                 'level'=>$daraja_3->daraja,
-                'level_eski_star'=>$daraja_2->number_star,
                 'collect_star'=>$daraja_3->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
         }
-        elseif ($level_user && ($user_star->star - $daraja_2->number_star) >= $daraja_3->number_star)
+        elseif ($level_user && $daraja_3->daraja == $level_all && $star_all >= $daraja_3->number_star)
         {
             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_4->daraja
             ]);
             $user_level_profile = [
                 'level'=>$daraja_4->daraja,
-                'level_eski_star'=>$daraja_3->number_star,
                 'collect_star'=>$daraja_4->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
         }
-        elseif ($level_user && ($user_star->star - $daraja_3->number_star) >= $daraja_4->number_star)
+        elseif ($level_user && $daraja_4->daraja == $level_all && $star_all >= $daraja_4->number_star)
         {
             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_5->daraja
             ]);
             $user_level_profile = [
                 'level'=>$daraja_5->daraja,
-                'level_eski_star'=>$daraja_4->number_star,
                 'collect_star'=>$daraja_5->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
         }
-        elseif ($level_user && ($user_star->star - $daraja_4->number_star) >= $daraja_5->number_star)
+        elseif ($level_user && $daraja_5->daraja == $level_all && $star_all >= $daraja_5->number_star)
         {
             $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_6->daraja
             ]);
             $user_level_profile = [
                 'level'=>$daraja_6->daraja,
-                'level_eski_star'=>$daraja_5->number_star,
                 'collect_star'=>$daraja_6->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
-        }
-        else{
+        } else{
             $daraja_find = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
             $star_find = TopshiriqLevel::where('daraja',$daraja_find->level_user)->first();
             $user_level_profile = [
                 'level'=>$daraja_find->level_user,
                 'collect_star'=>$star_find->number_star,
-                'star'=>$user_star->star,
+                'star'=>$star_all,
             ];
         }
-//$a =  $user_star->star - $daraja->number_star >= $daraja_2->number_star;
-//        return $a;
+
         return $user_level_profile;
 
     }

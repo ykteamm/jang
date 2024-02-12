@@ -10,5 +10,5 @@ class TopshiriqStar extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     protected $table = 'topshiriq_star';
-    protected $fillable = ['tg_user_id','star'];
+    protected $fillable = ['tg_user_id','star','level'];
 }

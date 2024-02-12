@@ -11,6 +11,7 @@ use App\Models\TopshiriqLevel;
 use App\Models\TopshiriqLevelUsers;
 use App\Models\TopshiriqStar;
 use App\Models\UserBattleDay;
+use App\Models\UserCrystall;
 use App\Services\LMSTopshiriq;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -265,17 +266,8 @@ class HomeController extends Controller
         $haveTurnirBattle = 'no';
 
 //        Level
+
          $userID = Auth::id();
-         $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
-         $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
-         if(!$user_star)
-         {
-            $user_star = new TopshiriqStar;
-            $user_star->tg_user_id = $userID;
-            $user_star->star = 0;
-            $user_star->save();
-         }
-         $user_star = TopshiriqStar::where('tg_user_id',$userID)->first();
 
          $daraja = TopshiriqLevel::where('daraja',1)->first();
          $daraja_2 = TopshiriqLevel::where('daraja',2)->first();
@@ -284,20 +276,32 @@ class HomeController extends Controller
          $daraja_5 = TopshiriqLevel::where('daraja',5)->first();
          $daraja_6 = TopshiriqLevel::where('daraja',6)->first();
 
-         $user_level_profile = [];
+
+         $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
          if (!$level_user){
              $user_level = new TopshiriqLevelUsers();
              $user_level->tg_user_id = $userID;
              $user_level->level_user = $daraja->daraja;
              $user_level->save();
-
-             $user_level_profile = [
-               'level'=>$daraja->daraja,
-               'collect_star'=>$daraja->number_star,
-                 'star'=>$user_star->star,
-             ];
          }
-         elseif ($level_user && $user_star->star >= $daraja->number_star)
+         $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
+
+         $user_star = TopshiriqStar::where(['tg_user_id'=>$userID,'level'=>$level_user->level_user])->get();
+         $star_all = 0;
+         $level_all = 0;
+
+         foreach ($user_star as $star) {
+             $star_all += $star->star;
+             $level_all = $star->level; // Levelni o'zgartirish uchun
+         }
+
+
+         $user_level_profile[] = [
+             'level'=>$daraja->daraja,
+             'collect_star'=>$daraja->number_star,
+             'star'=>$star_all,
+         ];
+         if ($level_user && $daraja->daraja == $level_all && $star_all >= $daraja->number_star)
          {
              $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                 'level_user'=>$daraja_2->daraja
@@ -305,10 +309,10 @@ class HomeController extends Controller
              $user_level_profile = [
                  'level'=>$daraja_2->daraja,
                  'collect_star'=>$daraja_2->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
          }
-         elseif ($level_user && $user_star->star >= $daraja_2->number_star)
+         elseif ($level_user && $daraja_2->daraja == $level_all &&  $star_all >= $daraja_2->number_star)
          {
              $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                  'level_user'=>$daraja_3->daraja
@@ -316,10 +320,10 @@ class HomeController extends Controller
              $user_level_profile = [
                  'level'=>$daraja_3->daraja,
                  'collect_star'=>$daraja_3->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
          }
-         elseif ($level_user && $user_star->star >= $daraja_3->number_star)
+         elseif ($level_user && $daraja_3->daraja == $level_all && $star_all >= $daraja_3->number_star)
          {
              $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                  'level_user'=>$daraja_4->daraja
@@ -327,10 +331,10 @@ class HomeController extends Controller
              $user_level_profile = [
                  'level'=>$daraja_4->daraja,
                  'collect_star'=>$daraja_4->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
          }
-         elseif ($level_user && $user_star->star >= $daraja_4->number_star)
+         elseif ($level_user && $daraja_4->daraja == $level_all && $star_all >= $daraja_4->number_star)
          {
              $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                  'level_user'=>$daraja_5->daraja
@@ -338,10 +342,10 @@ class HomeController extends Controller
              $user_level_profile = [
                  'level'=>$daraja_5->daraja,
                  'collect_star'=>$daraja_5->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
          }
-         elseif ($level_user && $user_star->star >= $daraja_5->number_star)
+         elseif ($level_user && $daraja_5->daraja == $level_all && $star_all >= $daraja_5->number_star)
          {
              $daraja_update = TopshiriqLevelUsers::where('tg_user_id',$userID)->update([
                  'level_user'=>$daraja_6->daraja
@@ -349,23 +353,17 @@ class HomeController extends Controller
              $user_level_profile = [
                  'level'=>$daraja_6->daraja,
                  'collect_star'=>$daraja_6->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
-         }
-         else{
+         } else{
              $daraja_find = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
              $star_find = TopshiriqLevel::where('daraja',$daraja_find->level_user)->first();
              $user_level_profile = [
                  'level'=>$daraja_find->level_user,
                  'collect_star'=>$star_find->number_star,
-                 'star'=>$user_star->star,
+                 'star'=>$star_all,
              ];
          }
-
-
-
-
-
 
 
 //         End Level
@@ -375,10 +373,11 @@ class HomeController extends Controller
 // LMS dars ko'rish
         $userID = \auth()->user()->id;
         $topshiriq = new LMSTopshiriq();
+        $user_crystall = DB::table('user_crystalls')->where('user_id',$userID)->first();
 
         $topshiriq_name = Topshiriq::where(['key'=>'lms','status'=>1])->first();
         $topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$topshiriq_name->id,'topshiriq_key'=>$topshiriq_name->key,'tg_user_id'=>$userID])->first();
-        $top_star_ball = TopshiriqStar::where('tg_user_id',$userID)->first();
+//        $top_star_ball = TopshiriqStar::where('tg_user_id',$userID)->first();
         $user_id = $userID;
         $first_date = $topshiriq_name->first_date;
         $end_date = $topshiriq_name->end_date;
@@ -405,16 +404,13 @@ class HomeController extends Controller
                     $javob->topshiriq_star = $topshiriq_name->star;
                     $javob->status = 1;
                     $javob->save();
-                    if (!$top_star_ball){
+//                    star
                         $star = new TopshiriqStar();
                         $star->tg_user_id = $userID;
                         $star->star = $topshiriq_name->star;
+                        $star->level = $level_user->level_user;
                         $star->save();
-                    }else{
-                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                            'star'=>$top_star_ball->star + $topshiriq_name->star
-                        ]);
-                    }
+//                   end star
                 }
             }else{
                 if (!$topshiriq_javob){
@@ -427,16 +423,13 @@ class HomeController extends Controller
                     $javob->topshiriq_star = 0;
                     $javob->status = 0;
                     $javob->save();
-                    if (!$top_star_ball){
+//                  star
                         $star = new TopshiriqStar();
                         $star->tg_user_id = $userID;
                         $star->star = 0;
+                        $star->level = $level_user->level_user;
                         $star->save();
-                    }else{
-                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                            'star'=>$top_star_ball->star + 0
-                        ]);
-                    }
+//                   end star
                 }
             }
         }else{
@@ -451,16 +444,13 @@ class HomeController extends Controller
                     $javob->topshiriq_star = $topshiriq_name->star;
                     $javob->status = 1;
                     $javob->save();
-                    if (!$top_star_ball){
+//                  star
                         $star = new TopshiriqStar();
                         $star->tg_user_id = $userID;
                         $star->star = $topshiriq_name->star;
+                        $star->level = $level_user->level_user;
                         $star->save();
-                    }else{
-                        $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                            'star'=>$top_star_ball->star + $topshiriq_name->star
-                        ]);
-                    }
+//                   end star
                 }
             }
         }
@@ -469,13 +459,13 @@ class HomeController extends Controller
 
 //         SMENA ochish
          $userID = \auth()->user()->id;
-        $smena_topshiriq_name = Topshiriq::where(['key'=>'smena','status'=>1])->first();
-        $smena_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$smena_topshiriq_name->id,'topshiriq_key'=>$smena_topshiriq_name->key,'tg_user_id'=>$userID])->first();
-        $smena_first_date=  $smena_topshiriq_name->first_date;
-        $smena_end_date = $smena_topshiriq_name->end_date;
-        $smena_number = $smena_topshiriq_name->number;
+         $smena_topshiriq_name = Topshiriq::where(['key'=>'smena','status'=>1])->first();
+         $smena_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$smena_topshiriq_name->id,'topshiriq_key'=>$smena_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+         $smena_first_date=  $smena_topshiriq_name->first_date;
+         $smena_end_date = $smena_topshiriq_name->end_date;
+         $smena_number = $smena_topshiriq_name->number;
 
-        $smena = $topshiriq->SMENA($userID,$smena_first_date,$smena_end_date);
+         $smena = $topshiriq->SMENA($userID,$smena_first_date,$smena_end_date);
 
          $sana = new DateTime($smena_end_date);
          $intervalSana = $time->diff($sana);
@@ -495,16 +485,13 @@ class HomeController extends Controller
                      $smena_javob->topshiriq_star = $smena_topshiriq_name->star;
                      $smena_javob->status = 1;
                      $smena_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $smena_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $smena_topshiriq_name->star
-                         ]);
-                     }
+//                     end star
                  }
              }else{
                  if (!$smena_topshiriq_javob){
@@ -517,16 +504,13 @@ class HomeController extends Controller
                      $smena_javob->topshiriq_star = 0;
                      $smena_javob->status = 0;
                      $smena_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = 0;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + 0
-                         ]);
-                     }
+//                     end star
                  }
              }
          }else{
@@ -541,16 +525,13 @@ class HomeController extends Controller
                      $javob->topshiriq_star = $smena_topshiriq_name->star;
                      $javob->status = 1;
                      $javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $smena_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $smena_topshiriq_name->star
-                         ]);
-                     }
+//                     end star
                  }
              }
          }
@@ -584,16 +565,13 @@ class HomeController extends Controller
                      $savdo_javob->topshiriq_star = $savdo_topshiriq_name->star;
                      $savdo_javob->status = 1;
                      $savdo_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $savdo_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $savdo_topshiriq_name->star
-                         ]);
-                     }
+//                     end star
                  }
              }else{
                  if (!$savdo_topshiriq_javob){
@@ -606,16 +584,13 @@ class HomeController extends Controller
                      $savdo_javob->topshiriq_star = 0;
                      $savdo_javob->status = 0;
                      $savdo_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = 0;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + 0
-                         ]);
-                     }
+//                     end star
                  }
              }
          }else{
@@ -630,20 +605,18 @@ class HomeController extends Controller
                      $javob->topshiriq_star = $savdo_topshiriq_name->star;
                      $javob->status = 1;
                      $javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $savdo_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
-                     }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $savdo_topshiriq_name->star
-                         ]);
-                     }
+//                     end star
                  }
              }
          }
 //         end Savdo 300
+
 
 //         Oltin Sut
          $oltin_sut_topshiriq_name = Topshiriq::where(['key'=>'oltin_sut','status'=>1])->first();
@@ -671,16 +644,24 @@ class HomeController extends Controller
                      $oltin_sut_javob->topshiriq_star = $oltin_sut_topshiriq_name->star;
                      $oltin_sut_javob->status = 1;
                      $oltin_sut_javob->save();
-                     if (!$top_star_ball){
+//                    star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $oltin_sut_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                    end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = $oltin_sut_topshiriq_name->crystall;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $oltin_sut_topshiriq_name->star
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                            'crystall'=>$user_crystall->crystall + $oltin_sut_topshiriq_name->crystall
                          ]);
                      }
+
                  }
              }else{
                  if (!$oltin_sut_topshiriq_javob){
@@ -693,14 +674,21 @@ class HomeController extends Controller
                      $oltin_sut_javob->topshiriq_star = 0;
                      $oltin_sut_javob->status = 0;
                      $oltin_sut_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = 0;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                     end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = 0;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + 0
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                             'crystall'=>$user_crystall->crystall + 0
                          ]);
                      }
                  }
@@ -717,14 +705,21 @@ class HomeController extends Controller
                      $javob->topshiriq_star = $oltin_sut_topshiriq_name->star;
                      $javob->status = 1;
                      $javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $oltin_sut_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                     end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = $oltin_sut_topshiriq_name->crystall;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $oltin_sut_topshiriq_name->star
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                             'crystall'=>$user_crystall->crystall + $oltin_sut_topshiriq_name->crystall
                          ]);
                      }
                  }
@@ -735,11 +730,11 @@ class HomeController extends Controller
 //         Suyak Komplex
          $suyak_komplex_topshiriq_name = Topshiriq::where(['key'=>'suyak_komplex','status'=>1])->first();
          $suyak_komplex_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$suyak_komplex_topshiriq_name->id,'topshiriq_key'=>$suyak_komplex_topshiriq_name->key,'tg_user_id'=>$userID])->first();
-         $suyak_komplex_first_date =  $oltin_sut_topshiriq_name->first_date;
-         $suyak_komplex_end_date = $oltin_sut_topshiriq_name->end_date;
-         $suyak_komplex_number = $oltin_sut_topshiriq_name->number;
+         $suyak_komplex_first_date =  $suyak_komplex_topshiriq_name->first_date;
+         $suyak_komplex_end_date = $suyak_komplex_topshiriq_name->end_date;
+         $suyak_komplex_number = $suyak_komplex_topshiriq_name->number;
 
-         $suyak_komplex = $topshiriq->oltin_sut($userID,$suyak_komplex_first_date,$suyak_komplex_end_date);
+         $suyak_komplex = $topshiriq->suyak_complex($userID,$suyak_komplex_first_date,$suyak_komplex_end_date);
 
          $sana = new DateTime($suyak_komplex_end_date);
          $intervalSana = $time->diff($sana);
@@ -758,14 +753,21 @@ class HomeController extends Controller
                      $suyak_komplex_javob->topshiriq_star = $suyak_komplex_topshiriq_name->star;
                      $suyak_komplex_javob->status = 1;
                      $suyak_komplex_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $suyak_komplex_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                     end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = $suyak_komplex_topshiriq_name->crystall;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $suyak_komplex_topshiriq_name->star
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                             'crystall'=>$user_crystall->crystall + $suyak_komplex_topshiriq_name->crystall
                          ]);
                      }
                  }
@@ -780,14 +782,21 @@ class HomeController extends Controller
                      $suyak_komplex_javob->topshiriq_star = 0;
                      $suyak_komplex_javob->status = 0;
                      $suyak_komplex_javob->save();
-                     if (!$top_star_ball){
+//                     star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = 0;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                    end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = 0;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + 0
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                             'crystall'=>$user_crystall->crystall + 0
                          ]);
                      }
                  }
@@ -804,14 +813,21 @@ class HomeController extends Controller
                      $javob->topshiriq_star = $suyak_komplex_topshiriq_name->star;
                      $javob->status = 1;
                      $javob->save();
-                     if (!$top_star_ball){
+//                    star
                          $star = new TopshiriqStar();
                          $star->tg_user_id = $userID;
                          $star->star = $suyak_komplex_topshiriq_name->star;
+                         $star->level = $level_user->level_user;
                          $star->save();
+//                     end star
+                     if (!$user_crystall){
+                         $crystall = new UserCrystall();
+                         $crystall->user_id = $userID;
+                         $crystall->crystall = $suyak_komplex_topshiriq_name->crystall;
+                         $crystall->save();
                      }else{
-                         $star_id = TopshiriqStar::where('tg_user_id',$userID)->update([
-                             'star'=>$top_star_ball->star + $suyak_komplex_topshiriq_name->star
+                         DB::table('user_crystalls')->where('user_id',$userID)->update([
+                             'crystall'=>$user_crystall->crystall + $suyak_komplex_topshiriq_name->crystall
                          ]);
                      }
                  }
