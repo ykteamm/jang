@@ -75,7 +75,7 @@ class LMSTopshiriq
     {
         $suyak_complex = DB::table('tg_productssold')
             ->selectRaw('SUM(number) as total_number')
-            ->where('medicine_id',59)
+            ->where('medicine_id',251)
             ->where('user_id', $user_id)
             ->whereDate('created_at', '>=', $first_date)
             ->whereDate('created_at', '<=', $end_date)
