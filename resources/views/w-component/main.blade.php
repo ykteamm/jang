@@ -976,12 +976,15 @@
 
                     <div class="container p-1 mt-3" style="background:#b1d4eb7d;border-radius:13px;">
                         <div class="row">
+                            @if (isset(getTeacher()->image_url))
                             <div class="col-6 pl-0 pr-0">
                                 <div style="border-radius:10px">
                                     <img src="{{ getTeacher()->image_url }}" width="80px"
                                         style="border-radius:13px;">
                                 </div>
                             </div>
+                            @endif
+
                             <div class="pl-0 pr-0pl-0 pr-0">
                                 <p class="text-dark m-0">Ustozingiz</p>
                                 <p class="m-0">{{ getTeacher()->first_name }} {{ getTeacher()->last_name }}</p>
