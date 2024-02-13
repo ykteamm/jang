@@ -62,9 +62,9 @@
             <div class="col">
                 <a href="{{route('provizor')}}"  class="btn btn-outline-warning rounded btn-block">Provizor</a>
             </div>
-            <div class="col">
+            {{-- <div class="col">
                 <a href="{{route('register')}}" class="btn btn-outline-warning rounded btn-block">Registratsiya</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
