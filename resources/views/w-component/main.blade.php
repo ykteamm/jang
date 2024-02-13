@@ -983,13 +983,14 @@
                                         style="border-radius:13px;">
                                 </div>
                             </div>
-                            @endif
-
                             <div class="pl-0 pr-0pl-0 pr-0">
                                 <p class="text-dark m-0">Ustozingiz</p>
                                 <p class="m-0">{{ getTeacher()->first_name }} {{ getTeacher()->last_name }}</p>
                                 <p>{{ getTeacher()->phone_number }}</p>
                             </div>
+                            @endif
+
+
                         </div>
 
                     </div>
