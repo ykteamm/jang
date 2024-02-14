@@ -126,18 +126,20 @@ class HomeController extends Controller
         // $b = new UserBattleService;
         // $Store = date('l');
         // return $Store;
-        // $date = date('2023-12-19');
-        // $bser = $b->battle($date);
-        // $bser = $b->endBattle($date);
+        // $date = date('2024-02-07');
         // $bser = $b->battleDay($date);
+        // $bser = $b->endBattle($date);
+        // $bser = $b->battle($date);
+
+
 
 
 
         $host = substr(request()->getHttpHost(),0,3);
         if($host == 127)
         {
-            $battle_date = date('Y-m-d');
-            $sold_date = date('Y-m-d');
+            $battle_date = date('2024-02-08');
+            $sold_date = date('2024-02-08');
 
         }else{
             $battle_date = date('Y-m-d');
