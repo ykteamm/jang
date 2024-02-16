@@ -141,7 +141,7 @@
                             <div style="height:70px" class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="mb-1 supercell text-dark" style="font-size:12px;">
-                                        IYUL-AVG-SEN
+                                        YAN-FEV-MART
                                     </div>
                                     <div class="text-left">
                                         <span class="supercell"
@@ -159,7 +159,7 @@
                                     style="width: {{ ($fact * 100) / $plan }}%" aria-valuenow="25" aria-valuemin="0"
                                     aria-valuemax="100">
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                         <div class="col-2">
                             <div style="height:70px" class="d-flex justify-content-between align-items-center mt-3">
@@ -167,8 +167,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                        
+
+
                 </div>
             </div>
         </div>
