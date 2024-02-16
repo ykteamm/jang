@@ -156,11 +156,11 @@ class MoneyService
     }
     public function getMonthMaosh($month)
     {
-
-        $calendar = Calendar::where('id','>',31)->orderBy('id','DESC')->pluck('year_month')->toArray();
+        $last_id = Calendar::orderBy('id','DESC')->first();
+        $calendar = Calendar::where('id',$last_id->id)->pluck('year_month')->toArray();
 
         // $month = $month - 1;
-        // for($i=$month;$i>=0;$i--)
+        // for($i=$month;$i>=0;$i--)`
         // for($i=0;$i<=$month;$i++)
         foreach($calendar as $cl)
 

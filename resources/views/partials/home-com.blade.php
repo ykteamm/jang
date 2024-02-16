@@ -11,7 +11,7 @@
 
         }
     $(document).ready(function(){
-        
+
         $(".live-reyting").click(function(){
             livewire.emit('for_reyting');
         });
@@ -39,39 +39,42 @@
         $('.live-history-crystal').click(function(){
             livewire.emit('for_history_crystal');
         });
-        
+
 
 
         getUserCrystall()
 
 
-        setTimeout(function() { 
+        setTimeout(function() {
             livewire.emit('for_turnir');
         }, 4000);
 
+        setTimeout(function() {
+            livewire.emit('for_teambattle');
+        }, 4000);
 
-        setTimeout(function() { 
-                livewire.emit('for_profil'); 
-                livewire.emit('for_money'); 
+        setTimeout(function() {
+                livewire.emit('for_profil');
+                livewire.emit('for_money');
         }, 2500);
 
-        setTimeout(function() { 
-                // livewire.emit('for_teambattle'); 
-                // livewire.emit('for_rekrut'); 
+        setTimeout(function() {
+                // livewire.emit('for_teambattle');
+                // livewire.emit('for_rekrut');
                 // var rekrut_count = <?php echo json_encode(count(getRekrut())); ?>;
                 // if(rekrut_count > 0)
                 // {
                     // $('.live-rekrut').click();
                 // }
         }, 2000);
-        
-        setTimeout(function() { 
-                // livewire.emit('for_info'); 
+
+        setTimeout(function() {
+                // livewire.emit('for_info');
         }, 3000);
 
-        
+
     });
-    
+
     function showRegion(id) {
         livewire.emit('regionlive',id);
     }

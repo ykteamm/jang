@@ -35,7 +35,6 @@ class TeamBattle extends Component
     {
         $this->resime = 2;
         $this->sliders = DB::table('team_battle_sliders')->get();
-
         $this->month = getMonthName(date("F"));
         $this->start = date("Y-m-d");
         $this->end = date("Y-m-d");
