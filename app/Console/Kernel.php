@@ -22,8 +22,22 @@ class Kernel extends ConsoleKernel
         $schedule->command('battleEnd:elchi')
         ->dailyAt('23:55');
 
-        // $schedule->command('ksb:battle')
-        // ->dailyAt('23:45');
+//        create origins dori
+         $schedule->command('ksb:battle')
+             ->weeklyOn(1, '00:00');
+
+//topshiriq_check
+        $schedule->command('topshiriq:check')
+            ->weekly();
+
+//origin_check
+        $schedule->command('origin:check')
+            ->weekly();
+
+//        create topshiriq
+        $schedule->command('topshiriq:create')
+            ->weeklyOn(1, '00:00');
+
 
         $schedule->command('shift:close')
         ->dailyAt('23:58');
@@ -51,7 +65,7 @@ class Kernel extends ConsoleKernel
 
         // $schedule->command('create:karmaball')
         // ->dailyAt('23:50');
-        
+
     }
 
     /**

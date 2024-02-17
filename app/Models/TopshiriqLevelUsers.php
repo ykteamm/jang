@@ -10,5 +10,5 @@ class TopshiriqLevelUsers extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     protected $table = 'topshiriq_level_users';
-    protected $fillable = ['tg_user_id','topshiriq_level'];
+    protected $fillable = ['tg_user_id','level_user'];
 }

@@ -1,3 +1,4 @@
+@php use App\Services\LMSTopshiriq; @endphp
 <div class="modal-content">
     <style>
         .news-menu-item {
@@ -43,37 +44,38 @@
         ">
 
             {{--        Oltin sut--}}
+        @if($oltin_sut_topshiriq_name)
             @if($oltin_sut_topshiriq_javob && $oltin_sut_topshiriq_javob->status == 1)
-            <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
+                <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
             background-size: cover;
             /*background-repeat: no-repeat;*/
             height: 58px;
             /*background-repeat: no-repeat;*/
             margin-bottom: 15px;
             ">
-                <div class="col-2" style=" text-align: center">
-                    <img src="{{asset('images/jang_topshiriq/correct.svg')}}"  height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$oltin_sut_topshiriq_name->name}}</h6>
-                    <svg width="200px" height="30">
-                        <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
-                    </svg>
-                </div>
+                    <div class="col-2" style=" text-align: center">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"  height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$oltin_sut_topshiriq_name->name}}</h6>
+                        <svg width="200px" height="30">
+                            <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
 
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$oltin_sut_topshiriq_name->star}}
                     </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$oltin_sut_crystall}}
                     </span>
-                    <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
-                    {{--                <img src="{{asset('images/jang_topshiriq/toj.svg')}}" height="30" alt="">--}}
+                        <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
+                        {{--                <img src="{{asset('images/jang_topshiriq/toj.svg')}}" height="30" alt="">--}}
+                    </div>
                 </div>
-            </div>
             @elseif($oltin_sut_topshiriq_javob && $oltin_sut_topshiriq_javob->status == 0)
                 <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);
@@ -92,11 +94,11 @@
                         <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                            <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                         <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                            <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
+                        <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
                         {{--                <img src="{{asset('images/jang_topshiriq/toj.svg')}}" height="30" alt="">--}}
                     </div>
                 </div>
@@ -131,7 +133,7 @@
                         margin-top: 20px
                         ">{{$oltin_sut_topshiriq_name->name}}</h6>
                         <div >
-                            <svg width="150" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
                                 <foreignObject width="100%" height="100%">
                                     <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
                                 </foreignObject>
@@ -155,64 +157,68 @@
                     </div>
                 </div>
             @endif
+        @else
+        @endif
+
             {{--        End oltin sut--}}
 
             {{--        Suyak Komplex--}}
+        @if($suyak_komplex_topshiriq_name)
             @if($suyak_komplex_topshiriq_javob && $suyak_komplex_topshiriq_javob->status ==1 )
-            <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
+                <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
             background-size: cover;
             height: 58px;
             /*background-repeat: no-repeat;*/
             margin-bottom: 15px;
             ">
-                <div class="col-2" style=" text-align: center">
-                    <img src="{{asset('images/jang_topshiriq/correct.svg')}}"  height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$suyak_komplex_topshiriq_name->name}}</h6>
-                    <svg width="200px" height="30">
-                        <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
-                    </svg>
-                </div>
+                    <div class="col-2" style=" text-align: center">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"  height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$suyak_komplex_topshiriq_name->name}}</h6>
+                        <svg width="200px" height="30">
+                            <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
 
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$suyak_komplex_topshiriq_name->star}}
                     </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                         {{$suyak_komplex_crystall}}
                     </span>
-                    <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
+                        <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
+                    </div>
                 </div>
-            </div>
             @elseif($suyak_komplex_topshiriq_javob && $suyak_komplex_topshiriq_javob->status == 0)
-            <div class="row align-items-center justify-content-center" style="
+                <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);
                 background-size: cover;height: 58px; margin-bottom: 15px; ">
-                <div class="col-2" style="margin: auto;padding: 0 !important; text-align: center">
-                    <img src="{{asset('images/jang_topshiriq/error.svg')}}"  height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$suyak_komplex_topshiriq_name->name}}</h6>
-                    <svg width="280px" height="30">
-                        <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
-                    </svg>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                    <div class="col-2" style="margin: auto;padding: 0 !important; text-align: center">
+                        <img src="{{asset('images/jang_topshiriq/error.svg')}}"  height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;">{{$suyak_komplex_topshiriq_name->name}}</h6>
+                        <svg width="280px" height="30">
+                            <text y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;margin-bottom: 0 !important;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                    <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <span style="font-family: Supercell-Magic;font-size: 12px;color: white;">
                             0
                         </span>
-                    <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
-                    {{--                <img src="{{asset('images/jang_topshiriq/toj.svg')}}" height="30" alt="">--}}
+                        <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="15" alt="">
+                        {{--                <img src="{{asset('images/jang_topshiriq/toj.svg')}}" height="30" alt="">--}}
+                    </div>
                 </div>
-            </div>
             @else
                 <div class="row align-items-center " style="
                 background-image: url(/images/jang_topshiriq/svg100.svg);
@@ -234,7 +240,7 @@
                     <div class="col-7" style="padding: 0 !important;text-align: center">
                         <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-top: 20px">{{$suyak_komplex_topshiriq_name->name}}</h6>
                         <div style="">
-                            <svg width="150" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
                                 <foreignObject width="100%" height="100%">
                                     <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
                                 </foreignObject>
@@ -257,9 +263,13 @@
                     </div>
                 </div>
             @endif
+        @else
+        @endif
+
             {{--        End suyak komplex--}}
 
 {{--        LMS         --}}
+        @if($topshiriq_name)
             @if($topshiriq_javob && $topshiriq_javob->status == 1)
                 <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
@@ -323,7 +333,7 @@
                     <div class="col-7" style="padding: 0 !important;text-align: center">
                         <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$topshiriq_name->name}}</h6>
                         <div style="margin-top: 15px;margin-bottom: 15px;">
-                            <svg width="150" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
                                 <foreignObject width="100%" height="100%">
                                     <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
                                 </foreignObject>
@@ -342,53 +352,56 @@
                     </div>
                 </div>
             @endif
+        @else
+        @endif
 {{--    END LMS    --}}
 
         {{--SMENA--}}
-        @if($smena_topshiriq_javob && $smena_topshiriq_javob->status == 1)
-            <div class="row align-items-center justify-content-center" style="
+        @if($smena_topshiriq)
+            @if($smena_topshiriq_javob && $smena_topshiriq_javob->status == 1)
+                <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
                 height: 58px; margin-top: 20px">
-                <div class="col-2">
-                    <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$smena_topshiriq->name}}</h6>
-                    <svg width="200px" height="30">
-                        <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
-                    </svg>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$smena_topshiriq->name}}</h6>
+                        <svg width="200px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$smena_topshiriq->star}}
                         </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
                 </div>
-            </div>
-        @elseif($smena_topshiriq_javob && $smena_topshiriq_javob->status == 0)
-            <div class="row align-items-center justify-content-center" style="
+            @elseif($smena_topshiriq_javob && $smena_topshiriq_javob->status == 0)
+                <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
                 height: 58px; margin-top: 20px">
-                <div class="col-2">
-                    <img src="{{asset('images/jang_topshiriq/error.svg')}}"   height="30" alt="">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/error.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$smena_topshiriq->name}}</h6>
+                        <svg width="250px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                        0
+                    </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
                 </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$smena_topshiriq->name}}</h6>
-                    <svg width="250px" height="30">
-                        <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
-                    </svg>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 13px;color: black;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
-                        {{$smena_topshiriq->star}}
-                        </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                </div>
-            </div>
-        @else
-            <div class="row align-items-center " style="
+            @else
+                <div class="row align-items-center " style="
             background-image: url(/images/jang_topshiriq/svg100.svg);
             justify-content: space-evenly;
             margin-top: 20px;
@@ -397,83 +410,86 @@
             /*background-repeat: no-repeat;*/
             /*width: 470px;*/
             ">
-                <div class="col-2" style="padding: 0 !important;">
-                    <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
-                        Qilindi
-                    </h5>
-                    <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
+                            Qilindi
+                        </h5>
+                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
                     {{$smena}} / {{$smena_topshiriq->number}}
                 </span>
-                </div>
-                <div class="col-7" style="padding: 0 !important;text-align: center">
-                    <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$smena_topshiriq->name}}</h6>
-                    <div style="margin-top: 15px;margin-bottom: 15px;">
-                        <svg width="150" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
-                            <foreignObject width="100%" height="100%">
-                                <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
-                            </foreignObject>
-                            <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
-                                {{$smena_date}}
-                            </text>
-                        </svg>
                     </div>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
+                    <div class="col-7" style="padding: 0 !important;text-align: center">
+                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$smena_topshiriq->name}}</h6>
+                        <div style="margin-top: 15px;margin-bottom: 15px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                                <foreignObject width="100%" height="100%">
+                                    <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
+                                </foreignObject>
+                                <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
+                                    {{$smena_date}}
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
                        {{$smena_topshiriq->star}}
                    </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
                 </div>
-            </div>
+            @endif
+        @else
         @endif
         {{--END SMENA--}}
 
 {{--        Savdo 300--}}
-        @if($savdo_topshiriq_javob && $savdo_topshiriq_javob->status == 1)
-            <div class="row align-items-center justify-content-center" style="
+        @if($savdo_topshiriq_name)
+            @if($savdo_topshiriq_javob && $savdo_topshiriq_javob->status == 1)
+                <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
                 height: 58px; margin-top: 20px">
-                <div class="col-2">
-                    <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$savdo_topshiriq_name->name}}</h6>
-                    <svg width="200px" height="30">
-                        <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
-                    </svg>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 13px;color: black;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$savdo_topshiriq_name->name}}</h6>
+                        <svg width="200px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                         {{$savdo_topshiriq_name->star}}
                         </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
                 </div>
-            </div>
-        @elseif($savdo_topshiriq_javob && $savdo_topshiriq_javob->status == 0)
-            <div class="row align-items-center justify-content-center" style="
+            @elseif($savdo_topshiriq_javob && $savdo_topshiriq_javob->status == 0)
+                <div class="row align-items-center justify-content-center" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
                 height: 58px; margin-top: 20px">
-                <div class="col-2">
-                    <img src="{{asset('images/jang_topshiriq/error.svg')}}"   height="30" alt="">
-                </div>
-                <div class="col-8 text-center" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$savdo_topshiriq_name->name}}</h6>
-                    <svg width="250px" height="30">
-                        <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
-                    </svg>
-                </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/error.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$savdo_topshiriq_name->name}}</h6>
+                        <svg width="250px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                        0
                     </span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
                 </div>
-            </div>
-        @else
-            <div class="row align-items-center " style="
+            @else
+                <div class="row align-items-center " style="
             background-image: url(/images/jang_topshiriq/svg100.svg);
             justify-content: space-evenly;
             margin-top: 20px;
@@ -482,36 +498,195 @@
             /*background-repeat: no-repeat;*/
             /*width: 470px;*/
             ">
-                <div class="col-2" style="padding: 0 !important;">
-                    <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
-                        Qilindi
-                    </h5>
-                    <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
+                            Qilindi
+                        </h5>
+                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
                     {{$savdo}} / {{$savdo_topshiriq_name->number}}
                 </span>
-                </div>
-                <div class="col-7" style="padding: 0 !important;text-align: center">
-                    <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$savdo_topshiriq_name->name}}</h6>
-                    <div style="margin-top: 15px;margin-bottom: 15px;">
-                        <svg width="150" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
-                            <foreignObject width="100%" height="100%">
-                                <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
-                            </foreignObject>
-                            <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
-                                {{$savdo_date}}
-                            </text>
-                        </svg>
+                    </div>
+                    <div class="col-7" style="padding: 0 !important;text-align: center">
+                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$savdo_topshiriq_name->name}}</h6>
+                        <div style="margin-top: 15px;margin-bottom: 15px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                                <foreignObject width="100%" height="100%">
+                                    <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
+                                </foreignObject>
+                                <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
+                                    {{$savdo_date}}
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">{{$savdo_topshiriq_name->star}}</span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
                     </div>
                 </div>
-                <div class="col-2" style="padding: 0 !important;">
-                    <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
-                    <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">{{$savdo_topshiriq_name->star}}</span>
-                    <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                </div>
-            </div>
-
+            @endif
+        @else
         @endif
         {{--        End Savdo 300--}}
+
+
+        {{--Birga bir jang--}}
+        @if($birga_bir_topshiriq_name)
+            @if($birga_bir_topshiriq_javob && $birga_bir_topshiriq_javob->status == 1)
+                <div class="row align-items-center justify-content-center" style="
+                background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
+                height: 58px; margin-top: 20px">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$birga_bir_topshiriq_name->name}}</h6>
+                        <svg width="200px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                        {{$birga_bir_topshiriq_name->star}}
+                        </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
+                </div>
+            @elseif($birga_bir_topshiriq_javob && $birga_bir_topshiriq_javob->status == 0)
+                <div class="row align-items-center justify-content-center" style="
+                background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
+                height: 58px; margin-top: 20px">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/error.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$birga_bir_topshiriq_name->name}}</h6>
+                        <svg width="250px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarilmadi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                        0
+                    </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
+                </div>
+            @else
+                <div class="row align-items-center " style="
+            background-image: url(/images/jang_topshiriq/svg100.svg);
+            justify-content: space-evenly;
+            margin-top: 20px;
+            background-size: cover;
+            height: 102px;
+            /*background-repeat: no-repeat;*/
+            /*width: 470px;*/
+            ">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
+                            Qilindi
+                        </h5>
+                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
+                    {{$birga_bir['win_count']}} / {{$birga_bir_topshiriq_name->number}}
+                </span>
+                    </div>
+                    <div class="col-7" style="padding: 0 !important;text-align: center">
+                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$birga_bir_topshiriq_name->name}}</h6>
+                        {{--                    <div style="margin-top: 15px;margin-bottom: 15px;">--}}
+                        {{--                        <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">--}}
+                        {{--                            <foreignObject width="100%" height="100%">--}}
+                        {{--                                <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>--}}
+                        {{--                            </foreignObject>--}}
+                        {{--                            <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">--}}
+                        {{--                                {{$smena_date}}--}}
+                        {{--                            </text>--}}
+                        {{--                        </svg>--}}
+                        {{--                    </div>--}}
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
+                       {{$birga_bir_topshiriq_name->star}}
+                   </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
+                </div>
+            @endif
+        @else
+        @endif
+        {{--END birga bir jang--}}
+
+        @foreach($origin_savdo as $origin)
+            @php
+            $user_id = auth()->user()->id;
+            $topshiriq = new LMSTopshiriq();
+            $check = $topshiriq->origin_check($user_id,$origin->medicine_id,$origin->start_day,$origin->end_day)
+            @endphp
+            @if($origin && $origin->success == 1)
+                <div class="row align-items-center justify-content-center" style="
+                background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
+                height: 58px; margin-top: 20px">
+                    <div class="col-2">
+                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
+                    </div>
+                    <div class="col-8 text-center" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$origin->medicine_name}}</h6>
+                        <svg width="200px" height="30">
+                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
+                        </svg>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
+                        {{$origin->elexir}}
+                        </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
+                </div>
+            @else
+                <div class="row align-items-center " style="
+            background-image: url(/images/jang_topshiriq/svg100.svg);
+            justify-content: space-evenly;
+            margin-top: 20px;
+            background-size: cover;
+            height: 102px;
+            /*background-repeat: no-repeat;*/
+            /*width: 470px;*/
+            ">
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
+                            Qilindi
+                        </h5>
+                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
+                    {{$check}} / {{$origin->plan}}
+                </span>
+                    </div>
+                    <div class="col-7" style="padding: 0 !important;text-align: center">
+                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$origin->medicine_name}}</h6>
+                        <div style="margin-top: 15px;margin-bottom: 15px;">
+                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
+                                <foreignObject width="100%" height="100%">
+                                    <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
+                                </foreignObject>
+                                <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
+                                    {{$origin_date}}
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-2" style="padding: 0 !important;">
+                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
+                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
+                        {{$origin->elexir}}
+                        </span>
+                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
+                    </div>
+                </div>
+            @endif
+        @endforeach
 
     </div>
     </div>
