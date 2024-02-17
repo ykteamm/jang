@@ -665,7 +665,7 @@
                 </span>
                     </div>
                     <div class="col-7" style="padding: 0 !important;text-align: center">
-                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">{{$origin->medicine_name}}</h6>
+                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">Bir haftada {{$origin->plan}} ta {{$origin->medicine_name}} doridan sotish</h6>
                         <div style="margin-top: 15px;margin-bottom: 15px;">
                             <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
                                 <foreignObject width="100%" height="100%">
