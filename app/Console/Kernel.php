@@ -24,14 +24,14 @@ class Kernel extends ConsoleKernel
 
 //        create origins dori
          $schedule->command('ksb:battle')
-             ->weeklyOn(1, '00:00');
+             ->weeklyOn(0, '23:50');
 
 //topshiriq_check
 //        $schedule->command('topshiriq:check')
 //            ->weekly();
 
         $schedule->command('topshiriq:check')
-            ->weeklyOn(0, '23:00');
+            ->weeklyOn(0, '23:15');
 
 //origin_check
         $schedule->command('origin:check')
@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
 
 //        create topshiriq
         $schedule->command('topshiriq:create')
-            ->weeklyOn(1, '00:00');
+            ->weeklyOn(0, '23:55');
 
 
         $schedule->command('shift:close')
