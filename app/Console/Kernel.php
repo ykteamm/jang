@@ -27,8 +27,11 @@ class Kernel extends ConsoleKernel
              ->weeklyOn(1, '00:00');
 
 //topshiriq_check
+//        $schedule->command('topshiriq:check')
+//            ->weekly();
+
         $schedule->command('topshiriq:check')
-            ->weekly();
+            ->weeklyOn(0, '23:00');
 
 //origin_check
         $schedule->command('origin:check')
