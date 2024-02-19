@@ -6,6 +6,7 @@ use App\Models\Topshiriq;
 use App\Models\TopshiriqJavob;
 use App\Models\TopshiriqLevelUsers;
 use App\Models\TopshiriqStar;
+use App\Models\UserCrystall;
 use App\Services\LMSTopshiriq;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -231,6 +232,19 @@ class TopshiriqCheck extends Command
                             $star->level = $level_user_origin->level_user;
                             $star->save();
 //                   end star
+                            $user_crystall = DB::table('user_crystalls')->where('user_id',$data->user_id)->first();
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $data->user_id;
+                                $crystall->crystall = $top->crystall;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$data->user_id)->update([
+                                    'crystall'=>$user_crystall->crystall + $top->crystall
+                                ]);
+                            }
+
+
                         }
                     }else{
                         if (!$topshiriq_javob){
@@ -250,6 +264,17 @@ class TopshiriqCheck extends Command
                             $star->level = $level_user_origin->level_user;
                             $star->save();
 //                   end star
+                            $user_crystall = DB::table('user_crystalls')->where('user_id',$data->user_id)->first();
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $data->user_id;
+                                $crystall->crystall = 0;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$data->user_id)->update([
+                                    'crystall'=>$user_crystall->crystall + 0
+                                ]);
+                            }
                         }
                     }
                 }
@@ -274,6 +299,17 @@ class TopshiriqCheck extends Command
                             $star->level = $level_user_origin->level_user;
                             $star->save();
 //                   end star
+                            $user_crystall = DB::table('user_crystalls')->where('user_id',$data->user_id)->first();
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $data->user_id;
+                                $crystall->crystall = $top->crystall;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$data->user_id)->update([
+                                    'crystall'=>$user_crystall->crystall + $top->crystall
+                                ]);
+                            }
                         }
                     }else{
                         if (!$topshiriq_javob){
@@ -293,6 +329,17 @@ class TopshiriqCheck extends Command
                             $star->level = $level_user_origin->level_user;
                             $star->save();
 //                   end star
+                            $user_crystall = DB::table('user_crystalls')->where('user_id',$data->user_id)->first();
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $data->user_id;
+                                $crystall->crystall = 0;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$data->user_id)->update([
+                                    'crystall'=>$user_crystall->crystall + 0
+                                ]);
+                            }
                         }
                     }
                 }
