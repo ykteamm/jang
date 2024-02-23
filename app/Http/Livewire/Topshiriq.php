@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\ElexirExercise;
 use App\Models\TopshiriqJavob;
+use App\Models\TopshiriqUserPlanWeek;
 use App\Services\LMSTopshiriq;
 use App\Services\TurnirService;
 use DateTime;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Topshiriq as TopshiriqModel;
+use function Symfony\Component\Translation\t;
 
 class Topshiriq extends Component
 {
@@ -69,10 +71,38 @@ class Topshiriq extends Component
     public $birga_bir_topshiriq_javob;
 //end birga bir jang
 
+// origins savdo
     public $origin_savdo;
     public $origin_date;
     public $monday;
     public $saturday;
+
+//    end origins savdo
+
+// oraliq test
+
+    public $oraliq_test;
+    public $oraliq_test_topshiriq_name;
+    public $oraliq_test_topshiriq_javob;
+
+// end oraliq test
+
+// plan week
+    public $plan_week;
+    public $pul_week;
+
+// end plan week
+
+// Kombo Sotuv
+
+    public $kombo_sotuv;
+    public $kombo_topshiriq_name;
+    public $kombo_topshiriq_javob;
+    public $kombo_date;
+
+// End Kombo Sotuv
+
+
     public function mount()
     {
 
@@ -161,13 +191,42 @@ class Topshiriq extends Component
         }
 //        End Suyak Komplex
 
+//        Kombo Sotuv
+        $this->kombo_topshiriq_name = TopshiriqModel::where(['key'=>'kombo_sotuv','status'=>1])->first();
+
+        if ($this->kombo_topshiriq_name){
+            $this->kombo_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$this->kombo_topshiriq_name->id,'topshiriq_key'=>$this->kombo_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+            $kombo_end = $this->kombo_topshiriq_name->end_date;
+            $kombo_date = new DateTime($kombo_end);
+
+            $sotuv = $topshiriq->kombo_sotuv($userID);
+            $this->kombo_sotuv = $sotuv['number'];
+            $this->kombo_date = $time->diff($kombo_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
+
+        }
+
+//        End Kombo Sotuv
+
+
 //        Birga  bir jang
         $this->birga_bir_topshiriq_name = TopshiriqModel::where(['key'=>'birga_bir','status'=>1])->first();
         if ($this->birga_bir_topshiriq_name){
             $this->birga_bir_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$this->birga_bir_topshiriq_name->id,'topshiriq_key'=>$this->birga_bir_topshiriq_name->key,'tg_user_id'=>$userID])->first();
-
             $this->birga_bir = $topshiriq->birga_bir_jang($userID);
+        }
+
 //        End birga bir jang
+
+//            Oraliq Test
+            $this->oraliq_test_topshiriq_name = TopshiriqModel::where(['key'=>'oraliq_test','status'=>1])->first();
+            if ($this->oraliq_test_topshiriq_name){
+                $this->oraliq_test_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$this->oraliq_test_topshiriq_name->id,'topshiriq_key'=>$this->oraliq_test_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+//                $this->oraliq_test = $topshiriq->OraliqTest($userID);
+//                dd($this->oraliq_test);
+            }
+
+//            End oraliq Test
+
 
 //        Origin Savdo
             $this->monday = date("Y-m-d", strtotime('monday this week'));
@@ -177,8 +236,6 @@ class Topshiriq extends Component
             $this->origin_date = $time->diff($origin_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
 
-        }
-
         $this->origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
             ->where('elexir_exercises.user_id', $user_id)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
@@ -187,6 +244,22 @@ class Topshiriq extends Component
             ->get();
 
 //        end Origin savdo
+
+//        Plan week
+
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $saturday = date("Y-m-d", strtotime('saturday this week'));
+
+        $this->plan_week = TopshiriqUserPlanWeek::where(['user_id'=>$userID,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->first();
+
+        $data = $topshiriq->ViewHaftalikPlan($userID,$monday,$saturday);
+        if ($data){
+            $this->pul_week  = $data->total_savdo;
+        }else{
+            $this->pul_week = 0;
+        }
+
+//        End Plan week
     }
     public function render()
     {

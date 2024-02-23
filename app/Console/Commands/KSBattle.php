@@ -54,7 +54,7 @@ class KSBattle extends Command
     {
 
         $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
 
         $topshiriq = new LMSTopshiriq();
         $users = DB::table('tg_user')
@@ -75,7 +75,7 @@ class KSBattle extends Command
             $data = $topshiriq->origins_dori_daraja($user_id);
             $number = 1;
             foreach ($data['data'] as $origin){
-                $have = ElexirExercise::where(['user_id'=>$user_id,'medicine_id'=>$origin->medicine_id])->first();
+                $have = ElexirExercise::where(['user_id'=>$user_id,'medicine_id'=>$origin->medicine_id,'start_day'=>$monday,'end_day'=>$sunday])->first();
                 if (!$have){
                     $elixir = new ElexirExercise();
                     $elixir->user_id = $user_id;
@@ -84,7 +84,7 @@ class KSBattle extends Command
                     $elixir->plan = $data['week_'.$number++] ;
                     $elixir->success = 0;
                     $elixir->start_day =  $monday;
-                    $elixir->end_day = $saturday;
+                    $elixir->end_day = $sunday;
                     $elixir->created_at = now();
                     $elixir->updated_at = now();
                     $elixir->save();

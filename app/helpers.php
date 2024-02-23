@@ -1168,12 +1168,66 @@ if(!function_exists('getTeachQuestion')){
 
 if(!function_exists('getShogirdUser')){
     function getShogirdUser() {
-        $shogird = TeacherUser::where('teacher_id',Auth::id())->pluck('user_id')->toArray();
-        // foreach ($shogird as $key => $value) {
-            $user = User::whereIn('id',$shogird)->whereIn('status',[0,1,4])->get();
-        // }
+        $ustoz = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->pluck('user_id')->toArray();
+
+        $user = User::whereIn('id', $ustoz)->whereIn('status', [0, 1, 4])->get();
+
+        $ustoz_id = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->first();
+        $ids = $ustoz_id->teacher_id;
+        $teacher_user = User::where('id', $ids)->first();
+
+// Prepend $teacher_user to the beginning of $user array
+        $user->prepend($teacher_user);
+
         return $user;
+
     }
+
+    function HaftalikShogirdStatistic($user_id)
+    {
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
+
+        $savdo = DB::table('tg_productssold')
+            ->selectRaw('SUM(number * price_product) as total_savdo')
+            ->where('user_id', $user_id)
+            ->whereDate('created_at', '>=', $monday)
+            ->whereDate('created_at', '<=', $sunday)
+            ->first();
+        if ($savdo)
+        {
+            return $savdo->total_savdo;
+        }else{
+            return 0;
+        }
+    }
+    function OylikShogirdStatistic($user_id)
+    {
+        $first_day_month = date("Y-m-01");
+        $end_day_month = date("Y-m-t");
+
+        $savdo = DB::table('tg_productssold')
+            ->selectRaw('SUM(number * price_product) as total_savdo')
+            ->where('user_id', $user_id)
+            ->whereDate('created_at', '>=', $first_day_month)
+            ->whereDate('created_at', '<=', $end_day_month)
+            ->first();
+        if ($savdo)
+        {
+            return $savdo->total_savdo;
+        }else{
+            return 0;
+        }
+    }
+
+    function AptekaNomi($user_id)
+    {
+        $pharm = DB::table('tg_pharmacy_users')->where('user_id',$user_id)->pluck('pharma_id');
+        $phar_name = DB::table('tg_pharmacy')->whereIn('id',$pharm)->get();
+
+        return $phar_name;
+    }
+
 }
 
 if (!function_exists('numb')) {

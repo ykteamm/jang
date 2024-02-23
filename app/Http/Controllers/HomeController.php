@@ -11,9 +11,11 @@ use App\Models\TopshiriqJavob;
 use App\Models\TopshiriqLevel;
 use App\Models\TopshiriqLevelUsers;
 use App\Models\TopshiriqStar;
+use App\Models\TopshiriqUserPlanWeek;
 use App\Models\UserBattleDay;
 use App\Models\UserCrystall;
 use App\Services\LMSTopshiriq;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Battle;
@@ -98,6 +100,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function AptekaEdit(Request $request, $id)
+    {
+        $user_id = $request->user_id;
+        $edit_pharm = $request->apteka;
+
+        $update = DB::table('tg_pharmacy_users')->where(['user_id'=>$user_id,'pharma_id'=>$id])
+        ->update([
+            'pharma_id'=>$edit_pharm
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function AptekaDelete(Request $request, $id)
+    {
+        $user_id = $request->user_id;
+        $delete_pharm = $id;
+
+        $update = DB::table('tg_pharmacy_users')->where(['user_id'=>$user_id,'pharma_id'=>$delete_pharm])
+            ->delete();
+
+        return redirect()->back();
+    }
 
     public function index()
     {
@@ -848,6 +874,122 @@ class HomeController extends Controller
         }
 //         End Suyak Komplex
 
+
+//        Kombo Sotuv
+        $kombo_topshiriq_name = Topshiriq::where(['key'=>'kombo_sotuv','status'=>1])->first();
+        if ($kombo_topshiriq_name){
+            $kombo_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$kombo_topshiriq_name->id,'topshiriq_key'=>$kombo_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+            $sotuv = $topshiriq->kombo_sotuv($userID);
+            $kombo_sotuv = $sotuv['number'];
+            $kombo_end_date = $kombo_topshiriq_name->end_date;
+
+            $sana = new DateTime($kombo_end_date);
+            $intervalSana = $time->diff($sana);
+            $intervalSoat = $time->diff($soat);
+            $kombo_days = $intervalSana->days == 0 && $intervalSoat->h == 0 && $intervalSoat->i == 0 && $intervalSoat->s == 0;
+
+            if ($kombo_days){
+                if ($kombo_sotuv >= $kombo_topshiriq_name->number){
+                    if (!$kombo_topshiriq_javob){
+                        $kombo_javob = new TopshiriqJavob();
+                        $kombo_javob->topshiriq_id = $kombo_topshiriq_name->id;
+                        $kombo_javob->tg_user_id = $userID;
+                        $kombo_javob->topshiriq_key = $kombo_topshiriq_name->key;
+                        $kombo_javob->topshiriq_done = $kombo_sotuv;
+                        $kombo_javob->topshiriq_number = $kombo_topshiriq_name->number;
+                        $kombo_javob->topshiriq_star = $kombo_topshiriq_name->star;
+                        $kombo_javob->status = 1;
+                        $kombo_javob->save();
+//                     star
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = $kombo_topshiriq_name->number->star;
+                        $star->level = $level_user->level_user;
+                        $star->save();
+//                     end star
+                        if ($kombo_topshiriq_name->crystall){
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $userID;
+                                $crystall->crystall = $kombo_topshiriq_name->crystall;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$userID)->update([
+                                    'crystall'=>$user_crystall->crystall + $kombo_topshiriq_name->number->crystall
+                                ]);
+                            }
+                        }
+                    }
+                }else{
+                    if (!$kombo_topshiriq_javob){
+                        $kombo_javob = new TopshiriqJavob();
+                        $kombo_javob->topshiriq_id = $kombo_topshiriq_name->id;
+                        $kombo_javob->tg_user_id = $userID;
+                        $kombo_javob->topshiriq_key = $kombo_topshiriq_name->key;
+                        $kombo_javob->topshiriq_done = $kombo_sotuv;
+                        $kombo_javob->topshiriq_number = $kombo_topshiriq_name->number;
+                        $kombo_javob->topshiriq_star = 0;
+                        $kombo_javob->status = 0;
+                        $kombo_javob->save();
+//                     star
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = 0;
+                        $star->level = $level_user->level_user;
+                        $star->save();
+//                    end star
+                        if ($kombo_topshiriq_name->crystall){
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $userID;
+                                $crystall->crystall = 0;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$userID)->update([
+                                    'crystall'=>$user_crystall->crystall + 0
+                                ]);
+                            }
+                        }
+                    }
+                }
+            }else{
+                if ($kombo_sotuv >= $kombo_topshiriq_name->number){
+                    if (!$kombo_topshiriq_javob){
+                        $javob = new TopshiriqJavob();
+                        $javob->topshiriq_id = $kombo_topshiriq_name->id;
+                        $javob->tg_user_id = $userID;
+                        $javob->topshiriq_key = $kombo_topshiriq_name->key;
+                        $javob->topshiriq_done = $kombo_sotuv;
+                        $javob->topshiriq_number = $kombo_topshiriq_name->number;
+                        $javob->topshiriq_star = $kombo_topshiriq_name->star;
+                        $javob->status = 1;
+                        $javob->save();
+//                    star
+                        $star = new TopshiriqStar();
+                        $star->tg_user_id = $userID;
+                        $star->star = $kombo_topshiriq_name->star;
+                        $star->level = $level_user->level_user;
+                        $star->save();
+//                     end star
+                        if($kombo_topshiriq_name->crystall){
+                            if (!$user_crystall){
+                                $crystall = new UserCrystall();
+                                $crystall->user_id = $userID;
+                                $crystall->crystall = $kombo_topshiriq_name->crystall;
+                                $crystall->save();
+                            }else{
+                                DB::table('user_crystalls')->where('user_id',$userID)->update([
+                                    'crystall'=>$user_crystall->crystall + $kombo_topshiriq_name->crystall
+                                ]);
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+//        End Kombo Sotuv
+
 //         Birga bir jang
         $birga_bir_topshiriq_name = Topshiriq::where(['key'=>'birga_bir','status'=>1])->first();
         if ($birga_bir_topshiriq_name){
@@ -888,9 +1030,106 @@ class HomeController extends Controller
                 }
             }
         }
-
-
 //         end Birga bir jang
+
+//        Oraliq Test
+        $oraliq_test_topshiriq_name = Topshiriq::where(['key'=>'oraliq_test','status'=>1])->first();
+        if ($oraliq_test_topshiriq_name){
+            $oraliq_test_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$oraliq_test_topshiriq_name->id,'topshiriq_key'=>$oraliq_test_topshiriq_name->key,'tg_user_id'=>$userID])->first();
+            $oraliq_test = $topshiriq->OraliqTest($userID);
+            if ($oraliq_test){
+                if (!$oraliq_test_topshiriq_javob && $oraliq_test->success == 1){
+                    $oraliq_test_javob = new TopshiriqJavob();
+                    $oraliq_test_javob->topshiriq_id = $oraliq_test_topshiriq_name->id;
+                    $oraliq_test_javob->tg_user_id = $userID;
+                    $oraliq_test_javob->topshiriq_key = $oraliq_test_topshiriq_name->key;
+                    $oraliq_test_javob->topshiriq_done = $oraliq_test->success;
+                    $oraliq_test_javob->topshiriq_number = $oraliq_test_topshiriq_name->number;
+                    $oraliq_test_javob->topshiriq_star = $oraliq_test_topshiriq_name->star;
+                    $oraliq_test_javob->status = 1;
+                    $oraliq_test_javob->save();
+//                     star
+                    $star = new TopshiriqStar();
+                    $star->tg_user_id = $userID;
+                    $star->star = $oraliq_test_topshiriq_name->star;
+                    $star->level = $level_user->level_user;
+                    $star->save();
+//                     end star
+                    if ($oraliq_test_topshiriq_name->crystall){
+                        if (!$user_crystall){
+                            $crystall = new UserCrystall();
+                            $crystall->user_id = $userID;
+                            $crystall->crystall = $oraliq_test_topshiriq_name->crystall;
+                            $crystall->save();
+                        }else{
+                            DB::table('user_crystalls')->where('user_id',$userID)->update([
+                                'crystall'=>$user_crystall->crystall + $oraliq_test_topshiriq_name->crystall
+                            ]);
+                        }
+                    }
+                }
+                elseif (!$oraliq_test_topshiriq_javob && $oraliq_test->success == 0){
+                    $oraliq_test_javob = new TopshiriqJavob();
+                    $oraliq_test_javob->topshiriq_id = $oraliq_test_topshiriq_name->id;
+                    $oraliq_test_javob->tg_user_id = $userID;
+                    $oraliq_test_javob->topshiriq_key = $oraliq_test_topshiriq_name->key;
+                    $oraliq_test_javob->topshiriq_done = $oraliq_test->success;
+                    $oraliq_test_javob->topshiriq_number = $oraliq_test_topshiriq_name->number;
+                    $oraliq_test_javob->topshiriq_star = $oraliq_test_topshiriq_name->star;
+                    $oraliq_test_javob->status = 0;
+                    $oraliq_test_javob->save();
+//                     star
+                    $star = new TopshiriqStar();
+                    $star->tg_user_id = $userID;
+                    $star->star = 0;
+                    $star->level = $level_user->level_user;
+                    $star->save();
+//                     end star
+                    if ($oraliq_test_topshiriq_name->crystall){
+                        if (!$user_crystall){
+                            $crystall = new UserCrystall();
+                            $crystall->user_id = $userID;
+                            $crystall->crystall = $oraliq_test_topshiriq_name->crystall;
+                            $crystall->save();
+                        }else{
+                            DB::table('user_crystalls')->where('user_id',$userID)->update([
+                                'crystall'=>$user_crystall->crystall + $oraliq_test_topshiriq_name->crystall
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+//        End oraliq test
+
+//        Plan Week
+
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $saturday = date("Y-m-d", strtotime('saturday this week'));
+        $users = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$saturday,'status'=>1,'user_id'=>$userID])->first();
+
+        if ($users){
+            $topshiriq = new LMSTopshiriq();
+            $user_id = $users->user_id;
+            $plan = $users->plan_week;
+            $start_day = $users->start_day;
+            $end_day = $users->end_day;
+            $data = $topshiriq->CheckHaftalikPlan($user_id,$start_day,$end_day,$plan);
+            if ($data){
+                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->update([
+                    'success'=>1
+                ]);
+            }else{
+                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->update([
+                    'success'=>0
+                ]);
+            }
+        }
+
+
+
+//        End Plan Week
+
 
 //         Origin Savdo
         $user_id = auth()->user()->id;

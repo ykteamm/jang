@@ -59,6 +59,9 @@ Route::get('test-topshiriq-lms', [AdminController::class, 'TTL'])->name('test-to
 
 Route::middleware('auth')->group(function () {
 
+    Route::put('/apteka-edit/{id}',[HomeController::class,'AptekaEdit'])->name('apteka-edit');
+    Route::delete('/apteka-delete/{id}',[HomeController::class,'AptekaDelete'])->name('apteka-delete');
+
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Route::get('/', [HomeController::class, 'anotherTeacher'])->name('another-teacher');/
 

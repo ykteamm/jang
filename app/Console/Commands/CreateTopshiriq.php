@@ -40,7 +40,7 @@ class CreateTopshiriq extends Command
     public function handle()
     {
         $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
         $topshiriq = Topshiriq::where('status',1)->get();
 
         foreach ($topshiriq as $top){
@@ -59,7 +59,7 @@ class CreateTopshiriq extends Command
             'name'=>'LMSda 4 ta dars ko\'rish',
             'description'=>'LMS ga kirib, 4 ta darsni ko\'rib testlarni ishlash',
             'first_date'=>$monday,
-            'end_date'=>$saturday,
+            'end_date'=>$sunday,
             'number'=>4,
             'star'=>22,
             'status'=>1,
@@ -71,7 +71,7 @@ class CreateTopshiriq extends Command
             'name'=>'50 ta oltin sut sotilsa, 150 ta cystall',
             'description'=>'1 hafta mobaynida 50 ta oltin sut sotilsa 150 ta crystall qo\'shib beriladi',
             'first_date'=>$monday,
-            'end_date'=>$saturday,
+            'end_date'=>$sunday,
             'number'=>50,
             'star'=>100,
             'status'=>1,
@@ -83,7 +83,7 @@ class CreateTopshiriq extends Command
             'name'=>'12ta suyak komplex sotilsa 200 ta cystall beriladi',
             'description'=>'1 haftada 12ta suyak komplex sotilsa 200 ta crystall beriladi',
             'first_date'=>$monday,
-            'end_date'=>$saturday,
+            'end_date'=>$sunday,
             'number'=>12,
             'star'=>90,
             'crystall'=>200,
@@ -95,7 +95,7 @@ class CreateTopshiriq extends Command
             'name'=>'Birga bir jang oxirgi 3ta jangda 2ta g\'alaba qilish',
             'description'=>'Oxirgi 3ta jangda 2ta g\'alaba qilish',
             'first_date'=>$monday,
-            'end_date'=>$saturday,
+            'end_date'=>$sunday,
             'number'=>2,
             'star'=>30,
 //            'crystall'=>200,

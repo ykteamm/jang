@@ -15,6 +15,7 @@ class ShogirdIn extends Component
     public function shogirdin()
     {
         $this->resime = 2;
+
     }
 
     public function render()

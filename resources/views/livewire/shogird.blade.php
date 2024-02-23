@@ -1,161 +1,350 @@
 <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-                <img src="{{asset('mobile/vil.webp')}}" width="111%" style="border-radius:15px;margin-left: -20px;margin-top:-18px;position:relative">
+        <div class="modal-header" style="padding: 0 !important;">
+{{--                <img src="{{asset('mobile/vil.webp')}}" width="111%" style="border-radius:15px;margin-left: -20px;margin-top:-18px;position:relative">--}}
+            <div class="container p-0" style="background: #2d6ace;border-top:5px solid #e3b456;border-bottom:5px solid #e3b456">
+                <span class="supercell text-white pl-3" style="font-size:25px;">Shogird</span>
+            </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity: 5;position:absolute;top:8px;right:10px;">
                     <img src="{{asset('mobile/xclose.png')}}" width="30px">
                 </button>
         </div>
         @if ($resime == 2)
-            
             <div class="modal-body p-0">
-
                 <div class="container p-0">
                     <div class="mb-3 pt-3">
                         @foreach (getShogirdUser() as $key => $item)
-                                
-                            <div class="col-12  ">
-                                @php
-                                $shogird_day = getShogirdDay($item->id);
-                                @endphp
-                            <div class="container p-1" style="background:#3ad1717d;border-radius:13px;" data-toggle="modal" data-target="#new-elchi">
-                                <div class="border-0 mb-1">
-                                    <div class="card-body" style="border-radius:15px;">
-                                        <div class="row align-items-center">
-                                            <div class="col-2">
-                                                <button type="button" class="btn btn-sm btn-secondary " style="background: #e0aa2c;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                                    {{$key+1}}
-                                                </button>
-                                            </div>
-                                            <div class="col-auto ml-auto mr-3">
-                                                <span class="mb-1" style="color: #272730;font-size:12px">{{$item->last_name}} {{$item->first_name}}</span>
-                                            </div>
-                                            
-                                        </div>
-                                        @if ($item->status == 4)
-                                            <div class="align-items-center mt-2">
-                                                <h6 class="text-center" style="color:red">Haftalik plan bajarilmagani uchun shogirdni profili bloklandi</h6>
-                                            </div>
-                                        @endif
-                                        @if ($item->status == 1)
-                                            <div class="align-items-center mt-2">
-                                                <h6 class="text-center" style="color:#0f2f89">
-                                                    Shogirdingiz haftalik planni bajardi va ishga qabul qilindi.Sizga esa 200 000 so'm pul mukofoti.
-                                                </h6>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div data-toggle="modal" data-target="#myshogirdin{{$item->id}}" class="p-2" style="background: #97c8dc;border-radius: 10px;">
-
-                                    <h5 class="text-center">O'quv haftasi</h5>
-                                    @if ($item->status != 1)
-                                        @if (count($shogird_day) != 0)
-                                        <h5 class="text-center">{{count($shogird_day)}} - kun</h5>
-                                        @endif
-                                    @endif
-                                    <div class="card-body" style="padding: 5px 25px;">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div style="font-weight:500">Plan:</div>
-                                            <div style="font-weight:500">
-                                                {{number_format(getShogirdPlan(),0,',',' ')}} so'm
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div style="font-weight:500">Bajarildi:</div>
-                                            <div style="font-weight:500">
-                                                {{number_format(getShogirdFact($item->id),0,',',' ')}} so'm
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img src="{{asset('mobile/target.webp')}}" width="30px" alt="">
-                                            </div>
-                                            <div class="col-9 mt-2 pl-0 pr-0">
-                                                <div class="row">
-                                                    
-                                                    @for ($i = 1; $i <= 7; $i++)
-                                                    {{-- @if ($i == 5)
-                                                        
-                                                        <div style="width:12%;height:15px;border: 1px solid #4e34da;border-radius:13px;@if ($i <= count($shogird_day))
-                                                        background:orange;
-                                                    @endif">
-                                                            <span style="display: block;font-size:10px;">{{count($shogird_day)}}/7</span>
+                            @php
+                                $week = HaftalikShogirdStatistic($item->id);
+                                $month = OylikShogirdStatistic($item->id);
+                                $apteka = AptekaNomi($item->id)
+                            @endphp
+                            <div class="col-12">
+                                @if($item->id == Auth::id())
+                                    <div class="container p-1" style="background:rgba(14,94,246,0.96);border-radius:13px; margin-bottom: 20px" data-toggle="modal" data-target="#new-elchi">
+                                        <div data-toggle="modal" data-target="#myshogirdin{{$item->id}}" class="p-2">
+                                            <div class="border-0 mb-1">
+                                                <div class="card-body" style="border-radius:15px;">
+                                                    <div class="row">
+                                                        <div class="col-4" style="border: 1px solid gray;padding-top:10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                T/R
+                                                            </h6>
+                                                            <h6 style="color: white">
+                                                                {{$key+1}}
+                                                            </h6>
                                                         </div>
-                                                    @endif --}}
-                                                    @php
-                                                        if ($i <= count($shogird_day))
-                                                        {
-                                                            $sum = getShogirdDay($item->id);
-                                                            $all_sum = $sum[$i]['make'] + $sum[$i]['make_other'];
-                                                            if($all_sum >= 250000)
-                                                            {
-                                                                $color = 'green';
-                                                            }else{
-                                                                $color = 'orange';
-
-                                                            }
-                                                        }else{
-                                                            $color = 'orange';
-
-                                                        }
-                                                        
-                                                    @endphp
-                                                        <div style="width:11%;height:15px;border: 1px solid #4e34da;border-radius:13px;@if ($i <= count($shogird_day))
-                                                        background:{{$color}};
-                                                    @endif ">
-                
+                                                        <div class="col-8"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                Ismi va Familiyasi
+                                                            </h6>
+                                                            <h6 style="color: white">
+                                                                {{$item->first_name}} {{$item->last_name}}
+                                                            </h6>
                                                         </div>
-                                                    @endfor
+                                                        <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                Haftalik
+                                                            </h6>
+                                                            <h6 style="color: white">
+                                                                {{$week}}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                Oylik
+                                                            </h6>
+                                                            <h6 style="color: white">
+                                                                {{$month}}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="col-6"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                Apteka
+                                                            </h6>
+                                                            @foreach($apteka as $apt)
+                                                                <button class="col-12 mt-2 mb-2 btn btn-info" style="color: white">
+                                                                    @foreach($pharm as $ph)
+                                                                        @if($ph->id == $apt->id)
+                                                                            {{$ph->name}}
+                                                                        @endif
+                                                                    @endforeach
+                                                                </button>
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="col-6"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                            <h6 style="border-bottom: 1px solid gray;color: white">
+                                                                Action
+                                                            </h6>
+                                                            @foreach($apteka as $apt)
+                                                                <button class="col-12 mt-2 mb-2 btn btn-info" type="button" data-toggle="modal" data-target="#AptekaTahrir{{$apt->id}}{{$item->id}}">
+                                                                    <i class="fas fa-edit"></i>
+                                                                    Tahrir
+                                                                </button>
+                                                                        {{--                                                                <button class="col-6 mt-2 btn btn-danger" type="button"   data-toggle="modal" data-target="#AptekaDelete{{$apt->id}}{{$item->id}}">--}}
+                                                                        {{--                                                                    <i class="fas fa-trash"></i>--}}
+                                                                        {{--                                                                    O'chirish--}}
+                                                                        {{--                                                                </button>--}}
+
+                                                                        <!-- Modal -->
+                                                                <div class="modal fade" id="AptekaTahrir{{$apt->id}}{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Aptekani tahrirlash</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form action="{{route('apteka-edit',['id'=>$apt->id])}}" method="POST">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+                                                                                    <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">
+                                                                                    <div class="form-group col-md-12 col-12">
+                                                                                        <label for="apteka">Apteka tanglang</label><br>
+                                                                                        <select class="custom-select custom-select-lg mb-3 col-md-12" name="apteka" id="apteka" aria-label=".form-select-lg example">
+                                                                                            <option value="">--Tanglang--</option>
+                                                                                            @foreach($pharm as $ph)
+                                                                                                <option @if($ph->id == $apt->id) selected @else @endif value="{{$ph->id}}">{{$ph->name}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                        <button type="submit" class="btn btn-primary">
+                                                                                            <i class="fas fa-edit"></i>
+                                                                                            Tahrirlash
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                        {{--                                                                <div class="modal fade" id="AptekaDelete{{$apt->id}}{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+                                                                        {{--                                                                    <div class="modal-dialog">--}}
+                                                                        {{--                                                                        <div class="modal-content">--}}
+                                                                        {{--                                                                            <div class="modal-header">--}}
+                                                                        {{--                                                                                <h5 class="modal-title" id="exampleModalLabel">Aptekani o'chirish</h5>--}}
+                                                                        {{--                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                                                                        {{--                                                                                    <span aria-hidden="true">&times;</span>--}}
+                                                                        {{--                                                                                </button>--}}
+                                                                        {{--                                                                            </div>--}}
+                                                                        {{--                                                                            <div class="modal-body">--}}
+                                                                        {{--                                                                                <form action="{{route('apteka-delete',['id'=>$apt->id])}}" method="POST">--}}
+                                                                        {{--                                                                                    @csrf--}}
+                                                                        {{--                                                                                    @method('DELETE')--}}
+                                                                        {{--                                                                                    <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">--}}
+                                                                        {{--                                                                                    <h1>Sizni ishonchingiz komilmi?</h1>--}}
+                                                                        {{--                                                                                    <div class="modal-footer">--}}
+                                                                        {{--                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                                                                        {{--                                                                                        <button type="submit" class="btn btn-danger">--}}
+                                                                        {{--                                                                                            <i class="fas fa-trash"></i>--}}
+                                                                        {{--                                                                                            O'chirish--}}
+                                                                        {{--                                                                                        </button>--}}
+                                                                        {{--                                                                                    </div>--}}
+                                                                        {{--                                                                                </form>--}}
+                                                                        {{--                                                                            </div>--}}
+                                                                        {{--                                                                        </div>--}}
+                                                                        {{--                                                                    </div>--}}
+                                                                        {{--                                                                </div>--}}
+
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                
                                             </div>
                                         </div>
-                                        
                                     </div>
-                                </div>
-                                @if ($item->status == 1)
-                                    <div data-toggle="modal" data-target="#onemonthin{{$item->id}}" class="p-2 mt-3" style="background: #97c8dc;border-radius: 10px;">
-                                        @php
-                                            $sum = 0;
-                                            $plan = 0;
-                                            $sinovoyi = getSinovUser($item->id);
-                                            if($sinovoyi > 0 && is_array($sinovoyi)) {
-                                                foreach ($sinovoyi as $key => $item) {
-                                                    $sum += $item['make'];
-                                                    $plan += $item['plan'];
-                                                }
-                                            }
-                                        @endphp
-                                        <h5 class="text-center">Sinov oyi</h5>
-                                        <div class="card-body" style="padding: 5px 25px;">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div style="font-weight:500">Plan:</div>
-                                                <div style="font-weight:500">
-                                                    {{number_format($plan,0,',',' ')}} so'm
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div style="font-weight:500">Bajarildi:</div>
-                                                <div style="font-weight:500">
-                                                    {{number_format($sum,0,',',' ')}} so'm
+                                @else
+                                    <div class="container p-1" style="background:#3ad1717d;border-radius:13px; margin-bottom: 20px" data-toggle="modal" data-target="#new-elchi">
+                                        <div data-toggle="modal" data-target="#myshogirdin{{$item->id}}" class="p-2">
+                                            <div class="border-0 mb-1">
+                                                <div class="card-body" style="border-radius:15px;">
+                                                    <div class="row">
+                                                        <div class="col-4" style="border: 1px solid gray;padding-top:10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    T/R
+                                                                </h6>
+                                                                <h6 style="color: red">
+                                                                    {{$key+1}}
+                                                                </h6>
+                                                            </div>
+                                                        <div class="col-8"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    Ismi va Familiyasi
+                                                                </h6>
+                                                                <h6 style="color: red">
+                                                                    {{$item->first_name}} {{$item->last_name}}
+                                                                </h6>
+                                                            </div>
+                                                        <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    Haftalik
+                                                                </h6>
+                                                                <h6 style="color: red">
+                                                                    {{$week}}
+                                                                </h6>
+                                                            </div>
+                                                        <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    Oylik
+                                                                </h6>
+                                                                <h6 style="color: red">
+                                                                    {{$month}}
+                                                                </h6>
+                                                            </div>
+                                                        <div class="col-6"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    Apteka
+                                                                </h6>
+                                                                @foreach($apteka as $apt)
+                                                                    <button class="col-12 mt-2 mb-2 btn btn-info" style="color: white">
+                                                                        @foreach($pharm as $ph)
+                                                                            @if($ph->id == $apt->id)
+                                                                                {{$ph->name}}
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </button>
+                                                                @endforeach
+                                                            </div>
+                                                        <div class="col-6"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
+                                                                <h6 style="border-bottom: 1px solid gray">
+                                                                    Action
+                                                                </h6>
+                                                                <div class="row justify-content-center" >
+                                                                    @foreach($apteka as $apt)
+                                                                        <button class="col-10 mt-2 mb-2 btn btn-info" type="button" data-toggle="modal" data-target="#AptekaTahrir{{$apt->id}}{{$item->id}}">
+                                                                            <i class="fas fa-edit"></i>
+                                                                            Tahrir
+                                                                        </button>
+
+                                                                        {{--                                                                <button class="col-6 mt-2 btn btn-danger" type="button"   data-toggle="modal" data-target="#AptekaDelete{{$apt->id}}{{$item->id}}">--}}
+                                                                        {{--                                                                    <i class="fas fa-trash"></i>--}}
+                                                                        {{--                                                                    O'chirish--}}
+                                                                        {{--                                                                </button>--}}
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="AptekaTahrir{{$apt->id}}{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="exampleModalLabel">Aptekani tahrirlash</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <form action="{{route('apteka-edit',['id'=>$apt->id])}}" method="POST">
+                                                                                            @csrf
+                                                                                            @method('PUT')
+                                                                                            <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">
+                                                                                            <div class="form-group col-md-12 col-12">
+                                                                                                <label for="apteka">Apteka tanglang</label><br>
+                                                                                                <select class="custom-select custom-select-lg mb-3 col-md-12" name="apteka" id="apteka" aria-label=".form-select-lg example">
+                                                                                                    <option value="">--Tanglang--</option>
+                                                                                                    @foreach($pharm as $ph)
+                                                                                                        <option @if($ph->id == $apt->id) selected @else @endif value="{{$ph->id}}">{{$ph->name}}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                <button type="submit" class="btn btn-primary">
+                                                                                                    <i class="fas fa-edit"></i>
+                                                                                                    Tahrirlash
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        {{--                                                                <div class="modal fade" id="AptekaDelete{{$apt->id}}{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+                                                                        {{--                                                                    <div class="modal-dialog">--}}
+                                                                        {{--                                                                        <div class="modal-content">--}}
+                                                                        {{--                                                                            <div class="modal-header">--}}
+                                                                        {{--                                                                                <h5 class="modal-title" id="exampleModalLabel">Aptekani o'chirish</h5>--}}
+                                                                        {{--                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                                                                        {{--                                                                                    <span aria-hidden="true">&times;</span>--}}
+                                                                        {{--                                                                                </button>--}}
+                                                                        {{--                                                                            </div>--}}
+                                                                        {{--                                                                            <div class="modal-body">--}}
+                                                                        {{--                                                                                <form action="{{route('apteka-delete',['id'=>$apt->id])}}" method="POST">--}}
+                                                                        {{--                                                                                    @csrf--}}
+                                                                        {{--                                                                                    @method('DELETE')--}}
+                                                                        {{--                                                                                    <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">--}}
+                                                                        {{--                                                                                    <h1>Sizni ishonchingiz komilmi?</h1>--}}
+                                                                        {{--                                                                                    <div class="modal-footer">--}}
+                                                                        {{--                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                                                                        {{--                                                                                        <button type="submit" class="btn btn-danger">--}}
+                                                                        {{--                                                                                            <i class="fas fa-trash"></i>--}}
+                                                                        {{--                                                                                            O'chirish--}}
+                                                                        {{--                                                                                        </button>--}}
+                                                                        {{--                                                                                    </div>--}}
+                                                                        {{--                                                                                </form>--}}
+                                                                        {{--                                                                            </div>--}}
+                                                                        {{--                                                                        </div>--}}
+                                                                        {{--                                                                    </div>--}}
+                                                                        {{--                                                                </div>--}}
+
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-
-
-                            </div>
-                                
                             </div>
                         @endforeach
+                        <div class="col-12">
+                            <div class="container p-1" style="background:rgba(252,11,11,0.96);border-radius:13px; margin-bottom: 20px" data-toggle="modal" data-target="#new-elchi">
+                                <div data-toggle="modal" data-target="#myshogirdin{{$item->id}}" class="p-2">
+                                    <div class="border-0 mb-1">
+                                        <div class="card-body" style="border-radius:15px;">
+                                            <div class="row">
+                                                <div class="col-12 text-center">
+                                                    <h3 style="color: white;">Umumiy</h3>
+                                                </div>
+                                                <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                    <h6 style="border-bottom: 1px solid gray;color: white">
+                                                        Haftalik
+                                                    </h6>
+                                                    <h6 style="color: white">
+                                                        @if($pul_data['hafta'])
+                                                            {{$pul_data['hafta']}}
+                                                        @else
+                                                            0
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                                <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
+                                                    <h6 style="border-bottom: 1px solid gray;color: white">
+                                                        Oylik
+                                                    </h6>
+                                                    <h6 style="color: white">
+                                                        @if($pul_data['oy'])
+                                                            {{$pul_data['oy']}}
+                                                        @else
+                                                            0
+                                                        @endif
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         @endif
 
     </div>
