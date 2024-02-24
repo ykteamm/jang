@@ -54,43 +54,45 @@ class CreateTopshiriq extends Command
         $oltin_sut = 'oltin_sut';
         $suyak_komplex = 'suyak_komplex';
         $birga_bir = 'birga_bir';
+        $kombo_sotuv = 'kombo_sotuv';
+        $oraliq_test = 'oraliq_test';
 
-        DB::table('topshiriq')->insert([
-            'name'=>'LMSda 4 ta dars ko\'rish',
-            'description'=>'LMS ga kirib, 4 ta darsni ko\'rib testlarni ishlash',
-            'first_date'=>$monday,
-            'end_date'=>$sunday,
-            'number'=>4,
-            'star'=>22,
-            'status'=>1,
-            'key'=>$lms,
-            'created_at'=>now(),
-        ]);
+//        DB::table('topshiriq')->insert([
+//            'name'=>'LMSda 4 ta dars ko\'rish',
+//            'description'=>'LMS ga kirib, 4 ta darsni ko\'rib testlarni ishlash',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>4,
+//            'star'=>22,
+//            'status'=>1,
+//            'key'=>$lms,
+//            'created_at'=>now(),
+//        ]);
 
-        DB::table('topshiriq')->insert([
-            'name'=>'50 ta oltin sut sotilsa, 150 ta cystall',
-            'description'=>'1 hafta mobaynida 50 ta oltin sut sotilsa 150 ta crystall qo\'shib beriladi',
-            'first_date'=>$monday,
-            'end_date'=>$sunday,
-            'number'=>50,
-            'star'=>100,
-            'status'=>1,
-            'key'=>$oltin_sut,
-            'crystall'=>150,
-            'created_at'=>now(),
-        ]);
-        DB::table('topshiriq')->insert([
-            'name'=>'12ta suyak komplex sotilsa 200 ta cystall beriladi',
-            'description'=>'1 haftada 12ta suyak komplex sotilsa 200 ta crystall beriladi',
-            'first_date'=>$monday,
-            'end_date'=>$sunday,
-            'number'=>12,
-            'star'=>90,
-            'crystall'=>200,
-            'status'=>1,
-            'key'=>$suyak_komplex,
-            'created_at'=>now(),
-        ]);
+//        DB::table('topshiriq')->insert([
+//            'name'=>'50 ta oltin sut sotilsa, 150 ta cystall',
+//            'description'=>'1 hafta mobaynida 50 ta oltin sut sotilsa 150 ta crystall qo\'shib beriladi',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>50,
+//            'star'=>100,
+//            'status'=>1,
+//            'key'=>$oltin_sut,
+//            'crystall'=>150,
+//            'created_at'=>now(),
+//        ]);
+//        DB::table('topshiriq')->insert([
+//            'name'=>'12ta suyak komplex sotilsa 200 ta cystall beriladi',
+//            'description'=>'1 haftada 12ta suyak komplex sotilsa 200 ta crystall beriladi',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>12,
+//            'star'=>90,
+//            'crystall'=>200,
+//            'status'=>1,
+//            'key'=>$suyak_komplex,
+//            'created_at'=>now(),
+//        ]);
         DB::table('topshiriq')->insert([
             'name'=>'Birga bir jang oxirgi 3ta jangda 2ta g\'alaba qilish',
             'description'=>'Oxirgi 3ta jangda 2ta g\'alaba qilish',
@@ -101,6 +103,32 @@ class CreateTopshiriq extends Command
 //            'crystall'=>200,
             'status'=>1,
             'key'=>$birga_bir,
+            'created_at'=>now(),
+        ]);
+
+        DB::table('topshiriq')->insert([
+            'name'=>'LMSda oraliq testni ishlash',
+            'description'=>'Bu haftada oraliq testni ishlash',
+            'first_date'=>$monday,
+            'end_date'=>$sunday,
+            'number'=>1,
+            'star'=>30,
+//            'crystall'=>200,
+            'status'=>1,
+            'key'=>$oraliq_test,
+            'created_at'=>now(),
+        ]);
+
+        DB::table('topshiriq')->insert([
+            'name'=>'Kombo Sotuv',
+            'description'=>'Bir haftadan 4marta kombo sotuv, Kombo Sotuv bu birinchi kunda qilgan savdosidan ikkinchi kun ko\'proq qilishdir',
+            'first_date'=>$monday,
+            'end_date'=>$sunday,
+            'number'=>4,
+            'star'=>30,
+//            'crystall'=>200,
+            'status'=>1,
+            'key'=>$kombo_sotuv,
             'created_at'=>now(),
         ]);
 
