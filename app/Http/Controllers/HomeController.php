@@ -496,7 +496,8 @@ class HomeController extends Controller
             $smena_number = $smena_topshiriq_name->number;
 
             $smena = $topshiriq->SMENA($userID,$smena_first_date,$smena_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('23:59');
             $sana = new DateTime($smena_end_date);
             $intervalSana = $time->diff($sana);
             $intervalSoat = $time->diff($soat);
@@ -579,7 +580,8 @@ class HomeController extends Controller
             $savdo_number = $savdo_topshiriq_name->number;
 
             $savdo = $topshiriq->savdo_300($userID,$savdo_first_date,$savdo_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('23:59');
             $sana = new DateTime($savdo_end_date);
             $intervalSana = $time->diff($sana);
             $intervalSoat = $time->diff($soat);
@@ -662,7 +664,8 @@ class HomeController extends Controller
             $oltin_sut_number = $oltin_sut_topshiriq_name->number;
 
             $oltin_sut = $topshiriq->oltin_sut($userID,$oltin_sut_first_date,$oltin_sut_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('23:59');
             $sana = new DateTime($oltin_sut_end_date);
             $intervalSana = $time->diff($sana);
             $intervalSoat = $time->diff($soat);
@@ -773,7 +776,8 @@ class HomeController extends Controller
             $suyak_komplex_number = $suyak_komplex_topshiriq_name->number;
 
             $suyak_komplex = $topshiriq->suyak_complex($userID,$suyak_komplex_first_date,$suyak_komplex_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('23:59');
             $sana = new DateTime($suyak_komplex_end_date);
             $intervalSana = $time->diff($sana);
             $intervalSoat = $time->diff($soat);
@@ -882,7 +886,8 @@ class HomeController extends Controller
             $sotuv = $topshiriq->kombo_sotuv($userID);
             $kombo_sotuv = $sotuv['number'];
             $kombo_end_date = $kombo_topshiriq_name->end_date;
-
+            $time = new DateTime();
+            $soat = new DateTime('23:59');
             $sana = new DateTime($kombo_end_date);
             $intervalSana = $time->diff($sana);
             $intervalSoat = $time->diff($soat);
