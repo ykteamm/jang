@@ -135,7 +135,8 @@ class Topshiriq extends Component
             $smena_first_date = $this->smena_topshiriq->first_date;
             $smena_end_date = $this->smena_topshiriq->end_date;
             $this->smena = $topshiriq->SMENA($userID,$smena_first_date,$smena_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
             $smen_end_date = new DateTime($smena_end_date);
             $this->smena_date = $time->diff($smen_end_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
@@ -151,7 +152,8 @@ class Topshiriq extends Component
             $savdo_end_date = $this->savdo_topshiriq_name->end_date;
 
             $this->savdo = $topshiriq->savdo_300($userID,$savdo_first_date,$savdo_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
             $sav_end_date = new DateTime($savdo_end_date);
             $this->savdo_date = $time->diff($sav_end_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
@@ -167,7 +169,8 @@ class Topshiriq extends Component
 
             $this->oltin_sut_crystall = $this->oltin_sut_topshiriq_name->crystall;
             $this->oltin_sut = $topshiriq->oltin_sut($userID,$oltin_sut_first_date,$oltin_sut_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
             $oltin_end_date = new DateTime($oltin_sut_end_date);
             $this->oltin_sut_date = $time->diff($oltin_end_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
@@ -185,7 +188,8 @@ class Topshiriq extends Component
             $suyak_komplex_end_date = $this->suyak_komplex_topshiriq_name->end_date;
 
             $this->suyak_komplex = $topshiriq->suyak_complex($userID,$suyak_komplex_first_date,$suyak_komplex_end_date);
-
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
             $suyak_end_date = new DateTime($suyak_komplex_end_date);
             $this->suyak_komplex_date = $time->diff($suyak_end_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
         }
@@ -198,7 +202,8 @@ class Topshiriq extends Component
             $this->kombo_topshiriq_javob = TopshiriqJavob::where(['topshiriq_id'=>$this->kombo_topshiriq_name->id,'topshiriq_key'=>$this->kombo_topshiriq_name->key,'tg_user_id'=>$userID])->first();
             $kombo_end = $this->kombo_topshiriq_name->end_date;
             $kombo_date = new DateTime($kombo_end);
-
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
             $sotuv = $topshiriq->kombo_sotuv($userID);
             $this->kombo_sotuv = $sotuv['number'];
             $this->kombo_date = $time->diff($kombo_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
@@ -231,7 +236,8 @@ class Topshiriq extends Component
 //        Origin Savdo
             $this->monday = date("Y-m-d", strtotime('monday this week'));
             $this->saturday = date("Y-m-d", strtotime('saturday this week'));
-
+        $time = new DateTime();
+        $soat = new DateTime('24:00');
             $origin_date = new DateTime($this->saturday);
             $this->origin_date = $time->diff($origin_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
