@@ -861,76 +861,78 @@
         @endif
 {{--        End Plan Week--}}
 
+{{--        Origin savdo--}}
 
-        @foreach($origin_savdo as $origin)
-            @php
-            $user_id = auth()->user()->id;
-            $topshiriq = new LMSTopshiriq();
-            $check = $topshiriq->origin_check($user_id,$origin->medicine_id,$origin->start_day,$origin->end_day)
-            @endphp
-            @if($origin && $origin->success == 1)
-                <div class="row align-items-center justify-content-center" style="
-                background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;
-                height: 58px; margin-top: 20px">
-                    <div class="col-2">
-                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">
-                    </div>
-                    <div class="col-8 text-center" style="padding: 0 !important;">
-                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$origin->medicine_name}}</h6>
-                        <svg width="200px" height="30">
-                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>
-                        </svg>
-                    </div>
-                    <div class="col-2" style="padding: 0 !important;">
-                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>
-                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
-                        {{$origin->elexir}}
-                        </span>
-                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                    </div>
-                </div>
-            @else
-                <div class="row align-items-center " style="
-            background-image: url(/images/jang_topshiriq/svg100.svg);
-            justify-content: space-evenly;
-            margin-top: 20px;
-            background-size: cover;
-            height: 102px;
-            /*background-repeat: no-repeat;*/
-            /*width: 470px;*/
-            ">
-                    <div class="col-2" style="padding: 0 !important;">
-                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
-                            Qilindi
-                        </h5>
-                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
-                    {{$check}} / {{$origin->plan}}
-                </span>
-                    </div>
-                    <div class="col-7" style="padding: 0 !important;text-align: center">
-                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">Bir haftada {{$origin->plan}} ta {{$origin->medicine_name}} sotish</h6>
-                        <div style="margin-top: 15px;margin-bottom: 15px;">
-                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">
-                                <foreignObject width="100%" height="100%">
-                                    <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>
-                                </foreignObject>
-                                <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">
-                                    {{$origin_date}}
-                                </text>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="col-2" style="padding: 0 !important;">
-                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>
-                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">
-                        {{$origin->elexir}}
-                        </span>
-                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">
-                    </div>
-                </div>
-            @endif
-        @endforeach
+{{--        @foreach($origin_savdo as $origin)--}}
+{{--            @php--}}
+{{--            $user_id = auth()->user()->id;--}}
+{{--            $topshiriq = new LMSTopshiriq();--}}
+{{--            $check = $topshiriq->origin_check($user_id,$origin->medicine_id,$origin->start_day,$origin->end_day)--}}
+{{--            @endphp--}}
+{{--            @if($origin && $origin->success == 1)--}}
+{{--                <div class="row align-items-center justify-content-center" style="--}}
+{{--                background-image: url(/images/jang_topshiriq/svg125.svg);background-size: cover;--}}
+{{--                height: 58px; margin-top: 20px">--}}
+{{--                    <div class="col-2">--}}
+{{--                        <img src="{{asset('images/jang_topshiriq/correct.svg')}}"   height="30" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-8 text-center" style="padding: 0 !important;">--}}
+{{--                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: #131313;margin-top: 10px">{{$origin->medicine_name}}</h6>--}}
+{{--                        <svg width="200px" height="30">--}}
+{{--                            <text x="0" y="15" font-family="Supercell-Magic" font-size="15" fill="white" stroke="#d6ba93" stroke-width="1">Topshiriq bajarildi</text>--}}
+{{--                        </svg>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-2" style="padding: 0 !important;">--}}
+{{--                        <h6 style="font-family: Supercell-Magic;font-size: 12px;color: black;">Yutuq</h6>--}}
+{{--                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">--}}
+{{--                        {{$origin->elexir}}--}}
+{{--                        </span>--}}
+{{--                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @else--}}
+{{--                <div class="row align-items-center " style="--}}
+{{--            background-image: url(/images/jang_topshiriq/svg100.svg);--}}
+{{--            justify-content: space-evenly;--}}
+{{--            margin-top: 20px;--}}
+{{--            background-size: cover;--}}
+{{--            height: 102px;--}}
+{{--            /*background-repeat: no-repeat;*/--}}
+{{--            /*width: 470px;*/--}}
+{{--            ">--}}
+{{--                    <div class="col-2" style="padding: 0 !important;">--}}
+{{--                        <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">--}}
+{{--                            Qilindi--}}
+{{--                        </h5>--}}
+{{--                        <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">--}}
+{{--                    {{$check}} / {{$origin->plan}}--}}
+{{--                </span>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-7" style="padding: 0 !important;text-align: center">--}}
+{{--                        <h6 style="font-family: Supercell-Magic; font-size: 12px; color: white;margin-bottom: 0 !important;margin-top: 20px">Bir haftada {{$origin->plan}} ta {{$origin->medicine_name}} sotish</h6>--}}
+{{--                        <div style="margin-top: 15px;margin-bottom: 15px;">--}}
+{{--                            <svg width="180" height="35" style="background: #0c60ac; border-radius: 8px; padding: 6px;">--}}
+{{--                                <foreignObject width="100%" height="100%">--}}
+{{--                                    <i class="fas fa-stopwatch" style="color: white;font-size: 17px;float: left;margin-top: 6px;margin-left: 5px;"></i>--}}
+{{--                                </foreignObject>--}}
+{{--                                <text x="25" y="20" font-family="Supercell-Magic" font-size="13" fill="white" stroke="blue" stroke-width="1">--}}
+{{--                                    {{$origin_date}}--}}
+{{--                                </text>--}}
+{{--                            </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-2" style="padding: 0 !important;">--}}
+{{--                        <h6 style="font-family: Supercell-Magic;font-size: 13px;color: white;text-align: center">Sovrin</h6>--}}
+{{--                        <span style="font-family: Supercell-Magic;font-size: 10px;color: white;margin-left: 7px">--}}
+{{--                        {{$origin->elexir}}--}}
+{{--                        </span>--}}
+{{--                        <img src="{{ asset('mobile/turnir/topsh.png') }}" width="25" alt="">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--        @endforeach--}}
 
+{{--        End Origin Savdo--}}
     </div>
     </div>
 </div>
