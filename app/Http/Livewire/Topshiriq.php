@@ -254,11 +254,11 @@ class Topshiriq extends Component
 //        Plan week
 
         $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
 
-        $this->plan_week = TopshiriqUserPlanWeek::where(['user_id'=>$userID,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->first();
+        $this->plan_week = TopshiriqUserPlanWeek::where(['user_id'=>$userID,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->first();
 
-        $data = $topshiriq->ViewHaftalikPlan($userID,$monday,$saturday);
+        $data = $topshiriq->ViewHaftalikPlan($userID,$monday,$sunday);
         if ($data){
             $this->pul_week  = $data->total_savdo;
         }else{
