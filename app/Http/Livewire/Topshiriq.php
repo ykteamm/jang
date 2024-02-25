@@ -75,7 +75,7 @@ class Topshiriq extends Component
     public $origin_savdo;
     public $origin_date;
     public $monday;
-    public $saturday;
+    public $sunday;
 
 //    end origins savdo
 
@@ -235,7 +235,7 @@ class Topshiriq extends Component
 
 //        Origin Savdo
             $this->monday = date("Y-m-d", strtotime('monday this week'));
-            $this->saturday = date("Y-m-d", strtotime('saturday this week'));
+            $this->sunday = date("Y-m-d", strtotime('sunday this week'));
         $time = new DateTime();
         $soat = new DateTime('24:00');
             $origin_date = new DateTime($this->saturday);
@@ -246,7 +246,7 @@ class Topshiriq extends Component
             ->where('elexir_exercises.user_id', $user_id)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
             ->whereDate('elexir_exercises.start_day', '>=', $this->monday)
-            ->whereDate('elexir_exercises.end_day', '<=', $this->saturday)
+            ->whereDate('elexir_exercises.end_day', '<=', $this->sunday)
             ->get();
 
 //        end Origin savdo
