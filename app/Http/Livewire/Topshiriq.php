@@ -238,7 +238,7 @@ class Topshiriq extends Component
             $this->sunday = date("Y-m-d", strtotime('sunday this week'));
         $time = new DateTime();
         $soat = new DateTime('24:00');
-            $origin_date = new DateTime($this->saturday);
+            $origin_date = new DateTime($this->sunday);
             $this->origin_date = $time->diff($origin_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
 
 
