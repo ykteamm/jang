@@ -842,7 +842,7 @@
                             Qilindi
                         </h5>
                         <span style="font-family: 'Supercell-Magic'; font-size: 10px; text-align: center; color: #d6bbbb;">
-                             {{$pul_week}} / {{$plan_week->plan_week}}
+                             @if($pul_week){{$pul_week}}@else 0 @endif / {{$plan_week->plan_week}}
                         </span>
                     </div>
                     <div class="col-7" style="padding: 0 !important;text-align: center">
