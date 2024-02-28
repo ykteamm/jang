@@ -1,5 +1,6 @@
 @php use App\Services\LMSTopshiriq; @endphp
-<div class="modal-content">
+<div class="modal-content" style="border: 1px solid blue;
+    border-radius: 0px 0px 20px 20px;">
     <style>
         .news-menu-item {
             width: 32.2%;
@@ -27,6 +28,49 @@
             1px -1px 0 #000,
             -1px -1px 0 #000;
         }
+        .crystal {
+            /*width: 0;*/
+            /*height: 0;*/
+            /*border-left: 50px solid transparent;*/
+            /*border-right: 50px solid transparent;*/
+            /*border-bottom: 87px solid #74b9ff;*/
+            /*position: relative;*/
+            animation: sparkle 0.5s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .crystal2 {
+            /*width: 0;*/
+            /*height: 0;*/
+            /*border-left: 50px solid transparent;*/
+            /*border-right: 50px solid transparent;*/
+            /*border-bottom: 87px solid #74b9ff;*/
+            /*position: relative;*/
+            animation: sparkle2 0.5s infinite alternate;
+        }
+
+        @keyframes sparkle2 {
+            0% {
+                transform: translateY(-10px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
     <div class="modal-header p-0" style="position:relative;background:#384b5e">
         <div class="container p-0"
@@ -40,13 +84,15 @@
     </div>
     <div class="modal-body" style="
         background-image: url(/promo/dist/img/promo/bg2.png);
+        border-radius: 0px 0px 19px 19px;
+        padding: 20px;
      /*padding: 2rem !important;*/
         ">
 
             {{--        Oltin sut--}}
         @if($oltin_sut_topshiriq_name)
             @if($oltin_sut_topshiriq_javob && $oltin_sut_topshiriq_javob->status == 1)
-                <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
+                <div class="row align-items-center justify-content-center crystal" style="background-image: url(/images/jang_topshiriq/svg125.svg);
             background-size: cover;
             /*background-repeat: no-repeat;*/
             height: 58px;
@@ -77,7 +123,7 @@
                     </div>
                 </div>
             @elseif($oltin_sut_topshiriq_javob && $oltin_sut_topshiriq_javob->status == 0)
-                <div class="row align-items-center justify-content-center" style="
+                <div class="row align-items-center justify-content-center crystal" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);
                 background-size: cover;height: 58px; margin-bottom: 15px;">
                     <div class="col-2" style="margin: auto;padding: 0 !important; text-align: center">
@@ -103,7 +149,7 @@
                     </div>
                 </div>
             @else
-                <div class="row align-items-center" style="
+                <div class="row align-items-center crystal" style="
                 background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/
@@ -152,7 +198,7 @@
                         <span style="font-family: Supercell-Magic;font-size: 10px;color: white;">
                             {{$oltin_sut_crystall}}
                         </span>
-                        <img src="{{asset('images/jang_topshiriq/crys.png')}}" width="20"  alt="">
+                        <img src="{{asset('images/jang_topshiriq/crys.png')}}"  width="20"  alt="">
                         {{--                    <i class="fas fa-star" style="color: #fbb72c;"></i>--}}
                     </div>
                 </div>
@@ -165,7 +211,7 @@
             {{--        Suyak Komplex--}}
         @if($suyak_komplex_topshiriq_name)
             @if($suyak_komplex_topshiriq_javob && $suyak_komplex_topshiriq_javob->status ==1 )
-                <div class="row align-items-center justify-content-center" style="background-image: url(/images/jang_topshiriq/svg125.svg);
+                <div class="row align-items-center justify-content-center crystal2" style="background-image: url(/images/jang_topshiriq/svg125.svg);
             background-size: cover;
             height: 58px;
             /*background-repeat: no-repeat;*/
@@ -194,7 +240,7 @@
                     </div>
                 </div>
             @elseif($suyak_komplex_topshiriq_javob && $suyak_komplex_topshiriq_javob->status == 0)
-                <div class="row align-items-center justify-content-center" style="
+                <div class="row align-items-center justify-content-center crystal2" style="
                 background-image: url(/images/jang_topshiriq/svg125.svg);
                 background-size: cover;height: 58px; margin-bottom: 15px; ">
                     <div class="col-2" style="margin: auto;padding: 0 !important; text-align: center">
@@ -220,7 +266,7 @@
                     </div>
                 </div>
             @else
-                <div class="row align-items-center " style="
+                <div class="row align-items-center crystal2" style="
                 background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/

@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <style>
     /*progress {*/
     /*    width: 40%;*/
@@ -582,16 +583,16 @@
                                 <div class="container mt-5 natija-img">
                                     <div class="col-auto text-center img-container">
 
-                                        {{-- @if (count($battle_history) > 0)
-                                            @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)
-                                                <a class="play-btn" style="position: absolute;top:40px;right:10px"
-                                                    aria-labelledby="#imageDownload" data-toggle="modal"
-                                                    data-target="#imageDownload">
-                                                    <img src="{{ asset('mobile/kb.png') }}" alt="Image"
-                                                        width="30">
-                                                </a>
-                                            @endif
-                                        @endif --}}
+{{--                                         @if (count($battle_history) > 0)--}}
+{{--                                            @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)--}}
+{{--                                                <a class="play-btn" style="position: absolute;top:40px;right:10px"--}}
+{{--                                                    aria-labelledby="#imageDownload" data-toggle="modal"--}}
+{{--                                                    data-target="#imageDownload">--}}
+{{--                                                    <img src="{{ asset('mobile/kb.png') }}" alt="Image"--}}
+{{--                                                        width="30">--}}
+{{--                                                </a>--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
 
 
                                         <button type="button" class="btn" data-toggle="modal"

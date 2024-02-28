@@ -52,11 +52,13 @@ class CheckPlanWeek extends Command
             $data = $topshiriq->CheckHaftalikPlan($user_id,$start_day,$end_day,$plan);
             if ($data){
                 $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
-                   'success'=>1
+                   'success'=>1,
+                    'status'=>0,
                 ]);
             }else{
                 $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
-                    'success'=>0
+                    'success'=>0,
+                    'status'=>0
                 ]);
             }
         }
