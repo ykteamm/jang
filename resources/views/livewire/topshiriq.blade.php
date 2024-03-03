@@ -150,13 +150,14 @@
                 </div>
             @else
                 <div class="row align-items-center crystal" style="
-                background-image: url(/images/jang_topshiriq/gif2.gif);
+                background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/
                 background-size: cover;
                 /*height: 102px;*/
-                /*background-repeat: no-repeat;*/
+                /* background-repeat: no-repeat; */
                 /*width: 470px;*/
+
                 ">
                     <div class="col-2" style="padding: 0 !important; text-align: center">
                         <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
@@ -267,13 +268,14 @@
                 </div>
             @else
                 <div class="row align-items-center crystal2" style="
-               background-image: url(/images/jang_topshiriq/gif2.gif);
+                background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/
                 background-size: cover;
                 /*height: 102px;*/
-                /*background-repeat: no-repeat;*/
+                /* background-repeat: no-repeat; */
                 /*width: 470px;*/
+
                 ">
                     <div class="col-2" style="padding: 0 !important; text-align: center">
                         <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
