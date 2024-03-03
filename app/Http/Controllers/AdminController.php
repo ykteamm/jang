@@ -118,11 +118,90 @@ $user_id = \auth()->user()->id;
 //            'number'=>$number,
 //        ];
 
-        $topshiq = new LMSTopshiriq();
-        $data  = $topshiq->kombo_sotuv($user_id);
+//        $topshiq = new LMSTopshiriq();
+//        $data  = $topshiq->kombo_sotuv($user_id);
+//
+//        return $data;
 
-        return $data;
+//        $start = '2024-02-01';
+//        $end = '2024-02-10';
+////        return $user_id;
+//
+//        $check = DB::table('tg_productssold')
+//            ->selectRaw('SUM(number * price_product) as total_savdo')
+//            ->where('user_id', $user_id)
+//            ->whereDate('created_at', '>=', $start)
+//            ->whereDate('created_at', '<=', $end)
+//            ->first();
+//
+////        return $check;
+////
+//        $weeks['sum'] = DB::table("tg_productssold AS p")
+//            ->selectRaw("SUM(p.number * p.price_product) AS prodaja")
+//            ->where('p.user_id', $user_id)
+//            ->whereBetween('p.created_at', [$start, $end])
+//            ->first()->prodaja ?? 0;
+//        return [
+//            'weeks'=>$weeks,
+//            'check'=>$check
+//        ];
+
+//        $weeks = $this->weekDays();
+//        foreach ($weeks as $week => $value) {
+//            try {
+//                $weeks[$week]['sum'] = DB::table("tg_productssold AS p")
+//                    ->selectRaw("SUM(p.number * p.price_product) AS prodaja")
+//                    ->where('p.user_id', $user_id)
+//                    ->whereBetween('p.created_at', [$value['start'], $value['end']])
+//                    ->first()->prodaja ?? 0;
+//            } catch (\Throwable $th) {
+//                $weeks[$week]['sum'] = 0;
+//            }
+//        }
+//        return $weeks;
+
+
+
+
     }
+
+    private function weekDays()
+    {
+        $startM = Carbon::now()->startOfMonth()->format("Y-m-d");
+        $endM = Carbon::now()->endOfMonth()->format("Y-m-d");
+        $endWeek = Carbon::parse($startM)->endOfWeek()->format("Y-m-d");
+
+        $weeks = [];
+        for ($i = 1; $i < 5; $i++) {
+            $week = "$i-hafta";
+            $weeks[$week] = [];
+            switch ($i) {
+                case 1:
+                    $weeks[$week]['start'] = $startM;
+                    if ((strtotime($endWeek) - strtotime($startM)) > 4 * 86400) {
+                        $weeks[$week]['end'] = $endWeek;
+                    } else {
+                        $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($endWeek)));
+                    }
+                    break;
+                case 2:
+                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['1-hafta']['end'])));
+                    $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($weeks['1-hafta']['end'])));
+                    break;
+                case 3:
+                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['2-hafta']['end'])));
+                    $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($weeks['2-hafta']['end'])));
+                    break;
+                case 4:
+                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['3-hafta']['end'])));
+                    $weeks[$week]['end'] = $endM;
+                    break;
+            }
+        }
+        return $weeks;
+
+    }
+
 
 
 }

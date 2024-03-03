@@ -63,6 +63,9 @@
     @include('modals.turnir')
 
     @include('modals.topshiriq')
+    @include('modals.lock')
+    @include('modals.image')
+{{--    @include('modals.openkingcheck')--}}
 
     @include('modals.mega-turnir-dori')
     @include('modals.mega-turnir-battle')

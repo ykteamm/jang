@@ -17,7 +17,7 @@
                 <div class="card mb-3">
                     @if(Session::has('kingCheck'))
                     <div class="container p-0">
-                        
+
                         @foreach ($solds as $key=> $item)
                             <div class="card">
                                 {{-- <div class="card-body"> --}}
@@ -30,7 +30,7 @@
                                             </div>
                                         </div>
                                         <div class="col pl-0">
-                                            
+
                                             @php
                                                 $sum = 0;
                                                 $arr = $item->order->sold;
@@ -58,7 +58,7 @@
                                                         {{$checks}}
                                                     @endif
                                                     </span>
-                                                    
+
                                                 </p>
                                             @foreach ($arr as $a)
                                                 <p class="small m-0 p-0">
@@ -66,7 +66,7 @@
                                                 </p>
                                             @endforeach
                                         </div>
-                                       
+
                                 </div>
                                 @if($item->comment != null)
                                 <div class="col pl-0 text-center">

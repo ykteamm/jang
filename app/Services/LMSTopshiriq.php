@@ -272,4 +272,12 @@ class LMSTopshiriq
     }
 
 
+    function IshdanBoshatish($user_id)
+    {
+        $update = DB::table('tg_user')->where('id',$user_id)->update([
+            'status'=>2
+        ]);
+    }
+
+
 }

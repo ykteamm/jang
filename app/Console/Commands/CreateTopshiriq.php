@@ -49,8 +49,8 @@ class CreateTopshiriq extends Command
             ]);
         }
         $lms = 'lms';
-//        $smena = 'smena';
-//        $savdo = 'savdo_300';
+        $smena = 'smena';
+        $savdo = 'savdo_300';
         $oltin_sut = 'oltin_sut';
         $suyak_komplex = 'suyak_komplex';
         $birga_bir = 'birga_bir';
@@ -69,55 +69,55 @@ class CreateTopshiriq extends Command
 //            'created_at'=>now(),
 //        ]);
 
-//        DB::table('topshiriq')->insert([
-//            'name'=>'50 ta oltin sut sotilsa, 150 ta cystall',
-//            'description'=>'1 hafta mobaynida 50 ta oltin sut sotilsa 150 ta crystall qo\'shib beriladi',
-//            'first_date'=>$monday,
-//            'end_date'=>$sunday,
-//            'number'=>50,
-//            'star'=>100,
-//            'status'=>1,
-//            'key'=>$oltin_sut,
-//            'crystall'=>150,
-//            'created_at'=>now(),
-//        ]);
-//        DB::table('topshiriq')->insert([
-//            'name'=>'12ta suyak komplex sotilsa 200 ta cystall beriladi',
-//            'description'=>'1 haftada 12ta suyak komplex sotilsa 200 ta crystall beriladi',
-//            'first_date'=>$monday,
-//            'end_date'=>$sunday,
-//            'number'=>12,
-//            'star'=>90,
-//            'crystall'=>200,
-//            'status'=>1,
-//            'key'=>$suyak_komplex,
-//            'created_at'=>now(),
-//        ]);
         DB::table('topshiriq')->insert([
-            'name'=>'Birga bir jang oxirgi 3ta jangda 2ta g\'alaba qilish',
-            'description'=>'Oxirgi 3ta jangda 2ta g\'alaba qilish',
+            'name'=>'50 ta oltin sut sotilsa, 150 ta cystall',
+            'description'=>'1 hafta mobaynida 50 ta oltin sut sotilsa 150 ta crystall qo\'shib beriladi',
             'first_date'=>$monday,
             'end_date'=>$sunday,
-            'number'=>2,
-            'star'=>30,
-//            'crystall'=>200,
+            'number'=>50,
+            'star'=>100,
             'status'=>1,
-            'key'=>$birga_bir,
+            'key'=>$oltin_sut,
+            'crystall'=>150,
             'created_at'=>now(),
         ]);
+        DB::table('topshiriq')->insert([
+            'name'=>'12ta suyak komplex sotilsa 200 ta cystall beriladi',
+            'description'=>'1 haftada 12ta suyak komplex sotilsa 200 ta crystall beriladi',
+            'first_date'=>$monday,
+            'end_date'=>$sunday,
+            'number'=>12,
+            'star'=>90,
+            'crystall'=>200,
+            'status'=>1,
+            'key'=>$suyak_komplex,
+            'created_at'=>now(),
+        ]);
+//        DB::table('topshiriq')->insert([
+//            'name'=>'Birga bir jang oxirgi 3ta jangda 2ta g\'alaba qilish',
+//            'description'=>'Oxirgi 3ta jangda 2ta g\'alaba qilish',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>2,
+//            'star'=>30,
+////            'crystall'=>200,
+//            'status'=>1,
+//            'key'=>$birga_bir,
+//            'created_at'=>now(),
+//        ]);
 
-        DB::table('topshiriq')->insert([
-            'name'=>'LMSda oraliq testni ishlash',
-            'description'=>'Bu haftada oraliq testni ishlash',
-            'first_date'=>$monday,
-            'end_date'=>$sunday,
-            'number'=>1,
-            'star'=>30,
-//            'crystall'=>200,
-            'status'=>1,
-            'key'=>$oraliq_test,
-            'created_at'=>now(),
-        ]);
+//        DB::table('topshiriq')->insert([
+//            'name'=>'LMSda oraliq testni ishlash',
+//            'description'=>'Bu haftada oraliq testni ishlash',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>1,
+//            'star'=>30,
+////            'crystall'=>200,
+//            'status'=>1,
+//            'key'=>$oraliq_test,
+//            'created_at'=>now(),
+//        ]);
 
         DB::table('topshiriq')->insert([
             'name'=>'Kombo Sotuv',
@@ -129,6 +129,19 @@ class CreateTopshiriq extends Command
 //            'crystall'=>200,
             'status'=>1,
             'key'=>$kombo_sotuv,
+            'created_at'=>now(),
+        ]);
+
+        DB::table('topshiriq')->insert([
+            'name'=>'Smena ochish soat 9:00 dan kechikmasdan',
+            'description'=>'Ketma - ket 4kun 9:00dan oldin smena ochilsa 20ta yulduz beriladi',
+            'first_date'=>$monday,
+            'end_date'=>$sunday,
+            'number'=>4,
+            'star'=>20,
+//            'crystall'=>200,
+            'status'=>1,
+            'key'=>$smena,
             'created_at'=>now(),
         ]);
 

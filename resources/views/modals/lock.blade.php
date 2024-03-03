@@ -1,4 +1,4 @@
-<div class="modal fade" id="lock" tabindex="-1" role="dialog" aria-labelledby="lockElchiModal" aria-hidden="true">
+<div class="modal fade" id="lock" tabindex="-1" role="dialog" aria-labelledby="LockElchiModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">

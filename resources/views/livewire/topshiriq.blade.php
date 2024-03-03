@@ -150,11 +150,11 @@
                 </div>
             @else
                 <div class="row align-items-center crystal" style="
-                background-image: url(/images/jang_topshiriq/svg100.svg);
+                background-image: url(/images/jang_topshiriq/gif2.gif);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/
                 background-size: cover;
-                height: 102px;
+                /*height: 102px;*/
                 /*background-repeat: no-repeat;*/
                 /*width: 470px;*/
                 ">
@@ -267,11 +267,11 @@
                 </div>
             @else
                 <div class="row align-items-center crystal2" style="
-                background-image: url(/images/jang_topshiriq/svg100.svg);
+               background-image: url(/images/jang_topshiriq/gif2.gif);
                 justify-content: space-evenly;
                 /*margin-bottom: 15px;*/
                 background-size: cover;
-                height: 102px;
+                /*height: 102px;*/
                 /*background-repeat: no-repeat;*/
                 /*width: 470px;*/
                 ">

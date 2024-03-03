@@ -281,7 +281,7 @@ class HomeController extends Controller
 
         $outerMarket = OuterMarket::all();
         // $battle_yes = 'no';
-        $lock = 1;
+//        $lock = 1;
         // $summa1 = 1;
         // $summa2 = 1;
         // $battle_history = 1;
@@ -1167,8 +1167,36 @@ class HomeController extends Controller
 
 //         End Origin Savdo
 
+        $lock = $this->lockElchiService->init(Auth::user()->id);
 
         $news = News::where('publish', true)->orderBy('id', "DESC")->get();
+
+        $battle_history = UserBattle::where('ends',1)
+            ->where(function($query) use ($my_id){
+                $query->where('u1id',$my_id)
+                    ->orWhere('u2id',$my_id);
+            })->orderBy('id','DESC')->get();
+        foreach ($battle_history as $key => $value) {
+            if($value->u2id == $my_id && $value->bot ==1)
+            {
+                unset($battle_history[$key]);
+            }
+        }
+        $teskari2=[];
+        foreach ($battle_history as $key => $value) {
+            $teskari2[] = $value;
+        }
+        // $teskari=[];
+        // foreach ($teskari2 as $key => $value) {
+        //     $teskari[] = $teskari2[count($teskari2)-$key-1];
+        // }
+        // $battle_history = $teskari;
+
+        $winImage = null;
+        $battle_history = array_merge([], $battle_history->all());
+        if(count($battle_history) > 0) {
+            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
+        }
 
         return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
             ,'summa1'
@@ -1180,7 +1208,8 @@ class HomeController extends Controller
             ,'all_battle'
             ,'battle_start_day'
             ,'user_level_profile'
-            ,'news'
+            ,'news',
+            'winImage',
         ));
 
     }
@@ -1555,7 +1584,7 @@ class HomeController extends Controller
         $haveTurnirBattle = $turnir->haveTurnirBattle(Auth::id());
 
         // return view('home',compact('haveTurnirBattle','battleVideos','makeCloseShift','user_king_liga','videos','infos','outerMarket','news','weekDays','lock','winImage','bonus_product','producte','all_sold','all_battle','battle_history','battle_start_day','summa1','summa_bugun1','summa_bugun2','summa2','my_battle','products','shifts','pharmacy','number_array','number_array_user','exercise','user_exercise','battle_yes'));
-        return view('home',compact('haveTurnirBattle'));
+        return view('home',compact('haveTurnirBattle',));
 
     }
     public function index4()
