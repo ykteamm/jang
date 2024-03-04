@@ -378,16 +378,16 @@
 {{--                                    data-placement="right">--}}
 {{--                                    <img width="20" class="instruksiya" src="{{ asset('mobile/instruksiya.png') }}" alt="Instruksiya">--}}
 {{--                                </button> --}}
-                                @if (count($battle_history) > 0)
-                                    @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)
-                                        <a class="play-btn" style="position: absolute;top:40px;right:10px"
-                                           aria-labelledby="#imageDownload" data-toggle="modal"
-                                           data-target="#imageDownload">
-                                            <img src="{{ asset('mobile/kb.png') }}" alt="Image"
-                                                 width="30">
-                                        </a>
-                                    @endif
-                                @endif
+{{--                                @if (count($battle_history) > 0)--}}
+{{--                                    @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)--}}
+{{--                                        <a class="play-btn" style="position: absolute;top:40px;right:10px"--}}
+{{--                                           aria-labelledby="#imageDownload" data-toggle="modal"--}}
+{{--                                           data-target="#imageDownload">--}}
+{{--                                            <img src="{{ asset('mobile/kb.png') }}" alt="Image"--}}
+{{--                                                 width="30">--}}
+{{--                                        </a>--}}
+{{--                                    @endif--}}
+{{--                                @endif--}}
                                 <div class="">
                                     <div class="for-avatar avatar avatar-140 rounded-circle mx-auto"
                                         style="width: 130px;height:130px;">
@@ -590,16 +590,16 @@
                                 <div class="container mt-5 natija-img">
                                     <div class="col-auto text-center img-container">
 
-                                         @if (count($battle_history) > 0)
-                                            @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)
-                                                <a class="play-btn" style="position: absolute;top:40px;right:10px"
-                                                    aria-labelledby="#imageDownload" data-toggle="modal"
-                                                    data-target="#imageDownload">
-                                                    <img src="{{ asset('mobile/kb.png') }}" alt="Image"
-                                                        width="30">
-                                                </a>
-                                            @endif
-                                        @endif
+{{--                                         @if (count($battle_history) > 0)--}}
+{{--                                            @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)--}}
+{{--                                                <a class="play-btn" style="position: absolute;top:40px;right:10px"--}}
+{{--                                                    aria-labelledby="#imageDownload" data-toggle="modal"--}}
+{{--                                                    data-target="#imageDownload">--}}
+{{--                                                    <img src="{{ asset('mobile/kb.png') }}" alt="Image"--}}
+{{--                                                        width="30">--}}
+{{--                                                </a>--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
 
 
                                         <button type="button" class="btn" data-toggle="modal"
@@ -835,16 +835,16 @@
                                     <div class="container mt-5 natija-img">
                                         <div class="col-auto text-center img-container">
 
-                                             @if (count($battle_history) > 0)
-                                                @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)
-                                                    <a class="play-btn" style="position: absolute;top:40px;right:10px"
-                                                        aria-labelledby="#imageDownload" data-toggle="modal"
-                                                        data-target="#imageDownload">
-                                                        <img src="{{ asset('mobile/kb.png') }}" alt="Image"
-                                                            width="30">
-                                                    </a>
-                                                @endif
-                                            @endif
+{{--                                             @if (count($battle_history) > 0)--}}
+{{--                                                @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)--}}
+{{--                                                    <a class="play-btn" style="position: absolute;top:40px;right:10px"--}}
+{{--                                                        aria-labelledby="#imageDownload" data-toggle="modal"--}}
+{{--                                                        data-target="#imageDownload">--}}
+{{--                                                        <img src="{{ asset('mobile/kb.png') }}" alt="Image"--}}
+{{--                                                            width="30">--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
 
 
                                             <button type="button" class="btn" data-toggle="modal"
