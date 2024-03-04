@@ -1192,11 +1192,11 @@ class HomeController extends Controller
         // }
         // $battle_history = $teskari;
 
-        $winImage = null;
-        $battle_history = array_merge([], $battle_history->all());
-        if(count($battle_history) > 0) {
-            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
-        }
+//        $winImage = null;
+//        $battle_history = array_merge([], $battle_history->all());
+//        if(count($battle_history) > 0) {
+//            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
+//        }
 
         return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
             ,'summa1'
@@ -1209,7 +1209,7 @@ class HomeController extends Controller
             ,'battle_start_day'
             ,'user_level_profile'
             ,'news',
-            'winImage',
+//            'winImage',
         ));
 
     }
