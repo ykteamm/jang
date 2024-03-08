@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AllSold;
 use App\Models\ElexirExercise;
 use App\Models\Topshiriq;
 use App\Models\TopshiriqJavob;
@@ -10,7 +11,10 @@ use App\Models\TopshiriqLevelUsers;
 use App\Models\TopshiriqStar;
 use App\Models\TopshiriqUserPlanWeek;
 use App\Models\User;
+use App\Models\UserBattle;
 use App\Services\LMSTopshiriq;
+use App\Services\LockService;
+use App\Services\MakeImageService;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Console\Scheduling\Schedule;
@@ -61,111 +65,28 @@ class AdminController extends Controller
 
     public function TTL()
     {
+        $check = new LMSTopshiriq();
 
-$user_id = \auth()->user()->id;
+        $now_date = Carbon::now()->format('Y-m-d');
+//        return $now_date;
+        $last30Days = Carbon::now()->subDays(30)->toDateString();
 
-//        $test = DB::table('lms_oraliq_test')
-//            ->join('lms_users', 'lms_users.id', '=', 'lms_oraliq_test.user_id')
-//            ->where('lms_users.tg_user_id',$user_id)
-//            ->where('lms_users.status', 1)
-//            ->select('lms_oraliq_test.id','lms_oraliq_test.user_id','lms_oraliq_test.success','lms_oraliq_test.ball')
-//            ->first();
-//
-//        return $test;
-
-
-//        $monday = date("Y-m-d", strtotime('monday this week'));
-//        $tuesday = date("Y-m-d", strtotime('tuesday this week'));
-//        $wednesday = date("Y-m-d", strtotime('wednesday this week'));
-//        $thursday = date("Y-m-d", strtotime('thursday this week'));
-//        $friday = date("Y-m-d", strtotime('friday this week'));
-//        $saturday = date("Y-m-d", strtotime('saturday this week'));
-//
-//        $kombo = [];
-//        $daysOfWeek = [$monday, $tuesday, $wednesday, $thursday, $friday, $saturday];
-//
-//        $prevTotalSavdo = null;
-//
-//        $number = 0;
-//        foreach ($daysOfWeek as $day) {
-//            $totalSavdo = DB::table('tg_productssold')
-//                ->selectRaw('SUM(number * price_product) as total_savdo')
-//                ->where('user_id', $user_id)
-//                ->whereDate('created_at', $day)
-//                ->value('total_savdo');
-//
-//            // Check if the total sales for the current day are less than or equal to the total sales for the previous day
-//            $kombo[$day] = $prevTotalSavdo !== null && $totalSavdo <= $prevTotalSavdo ? 0 : 1;
-//
-//            if ($prevTotalSavdo !== null && $totalSavdo <= $prevTotalSavdo)
-//            {
-//                $number = 0;
-//            }elseif ($prevTotalSavdo !== null && $totalSavdo >= $prevTotalSavdo){
-//                $number++;
-//            }
-//
-//            // Update prevTotalSavdo for the next iteration
-//            $prevTotalSavdo = $totalSavdo;
-//        }
-////        return $number;
-//
-//// Sum the values in $kombo
-//        $totalKombo = array_sum($kombo);
-//
-//        return [
-//            'kombo' => $kombo,
-//            'count' => $totalKombo,
-//            'number'=>$number,
-//        ];
-
-//        $topshiq = new LMSTopshiriq();
-//        $data  = $topshiq->kombo_sotuv($user_id);
-//
-//        return $data;
-
-//        $start = '2024-02-01';
-//        $end = '2024-02-10';
-////        return $user_id;
-//
-//        $check = DB::table('tg_productssold')
-//            ->selectRaw('SUM(number * price_product) as total_savdo')
-//            ->where('user_id', $user_id)
-//            ->whereDate('created_at', '>=', $start)
-//            ->whereDate('created_at', '<=', $end)
-//            ->first();
-//
-////        return $check;
-////
-//        $weeks['sum'] = DB::table("tg_productssold AS p")
-//            ->selectRaw("SUM(p.number * p.price_product) AS prodaja")
-//            ->where('p.user_id', $user_id)
-//            ->whereBetween('p.created_at', [$start, $end])
-//            ->first()->prodaja ?? 0;
-//        return [
-//            'weeks'=>$weeks,
-//            'check'=>$check
-//        ];
-
-//        $weeks = $this->weekDays();
-//        foreach ($weeks as $week => $value) {
-//            try {
-//                $weeks[$week]['sum'] = DB::table("tg_productssold AS p")
-//                    ->selectRaw("SUM(p.number * p.price_product) AS prodaja")
-//                    ->where('p.user_id', $user_id)
-//                    ->whereBetween('p.created_at', [$value['start'], $value['end']])
-//                    ->first()->prodaja ?? 0;
-//            } catch (\Throwable $th) {
-//                $weeks[$week]['sum'] = 0;
-//            }
-//        }
-//        return $weeks;
-
-
-
+        $users = DB::table('tg_user')->whereIn('status',[0,1,2,3])->get();
+        $user_data = [];
+        foreach ($users as $user){
+            $user_data[$user->id] = $check->IshdanBoshatish($user->id,$last30Days,$now_date);
+            if ($user_data[$user->id] == 0){
+                $update = DB::table('tg_user')->where('id',$user->id)->update([
+                    'status'=>4
+                ]);
+            }
+//            return $user_data;
+        }
+        return $user_data;
 
     }
 
-    private function weekDays()
+private function weekDays()
     {
         $startM = Carbon::now()->startOfMonth()->format("Y-m-d");
         $endM = Carbon::now()->endOfMonth()->format("Y-m-d");

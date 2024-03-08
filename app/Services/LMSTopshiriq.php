@@ -271,13 +271,18 @@ class LMSTopshiriq
         return $check;
     }
 
-
-    function IshdanBoshatish($user_id)
+    function IshdanBoshatish($user_id,$start_day,$end_day)
     {
-        $update = DB::table('tg_user')->where('id',$user_id)->update([
-            'status'=>2
-        ]);
+        $check = DB::table('tg_productssold')
+            ->selectRaw('SUM(number * price_product) as total_savdo')
+            ->where('user_id', $user_id)
+            ->whereDate('created_at', '>=', $start_day)
+            ->whereDate('created_at', '<=', $end_day)
+            ->first();
+
+        return $check->total_savdo ? $check->total_savdo : 0;
     }
+
 
 
 }

@@ -59,6 +59,7 @@ Route::get('test-topshiriq-lms', [AdminController::class, 'TTL'])->name('test-to
 
 Route::middleware('auth')->group(function () {
 
+    Route::post('/create_apteka',[HomeController::class,'CreateApteka'])->name('create_apteka');
     Route::put('/apteka-edit/{id}',[HomeController::class,'AptekaEdit'])->name('apteka-edit');
     Route::delete('/apteka-delete/{id}',[HomeController::class,'AptekaDelete'])->name('apteka-delete');
 

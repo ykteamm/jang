@@ -129,24 +129,24 @@ class MakeImageService
     // $id1 = $battle['user1id'];
     // $id2 = $battle['user2id'];
 
-    $sold1 = AllSold::where('user_id',$battle['user1id'])
-    ->whereDate('created_at','>=',$battle['begin'])
-    ->whereDate('created_at','<=',$battle['end'])
+    $sold1 = AllSold::where('user_id',$battle['u1id'])
+    ->whereDate('created_at','>=',$battle['start_day'])
+    ->whereDate('created_at','<=',$battle['end_day'])
     ->sum(DB::raw('price_product*number'));
 
-    $sold2 = AllSold::where('user_id',$battle['user2id'])
-    ->whereDate('created_at','>=',$battle['begin'])
-    ->whereDate('created_at','<=',$battle['end'])
+    $sold2 = AllSold::where('user_id',$battle['u2id'])
+    ->whereDate('created_at','>=',$battle['start_day'])
+    ->whereDate('created_at','<=',$battle['end_day'])
     ->sum(DB::raw('price_product*number'));
 
 
     if($sold1 > $sold2)
     {
-        $winner = User::find($battle['user1id']);
-        $loser = User::find($battle['user2id']);
+        $winner = User::find($battle['u1id']);
+        $loser = User::find($battle['u2id']);
     }else{
-        $winner = User::find($battle['user2id']);
-        $loser = User::find($battle['user1id']);
+        $winner = User::find($battle['u2id']);
+        $loser = User::find($battle['u1id']);
     }
 
 
@@ -157,8 +157,8 @@ class MakeImageService
     $winnerName = $this->namer($winner);
     $loserName = $this->namer($loser);
 
-    $sum1 = $this->summer($winner->id, $battle['begin'], $battle['end']);
-    $sum2 = $this->summer($loser->id, $battle['begin'], $battle['end']);
+    $sum1 = $this->summer($winner->id, $battle['start_day'], $battle['end_day']);
+    $sum2 = $this->summer($loser->id, $battle['start_day'], $battle['end_day']);
     $ball = 12;
     // dd($battle, $sum1, $sum2, $ball);
 
@@ -193,6 +193,19 @@ class MakeImageService
         ->save($innerPath)
         // ->print()
         ->destroy();
+
+
+
+    if ($battle['win_image'] == null){
+        DB::table('user_battles')->where([
+            'u1id'=>$battle['u1id'],
+            'u2id'=>$battle['u2id'],
+            'start_day'=>$battle['start_day'],
+            'end_day'=>$battle['end_day']
+        ])->update([
+            'win_image'=>$imgName,
+        ]);
+    }
 
     DB::table('mega_turnir_user_battles')
       ->where('id', $battle['id'])

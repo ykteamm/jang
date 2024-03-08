@@ -1170,22 +1170,21 @@ if(!function_exists('getShogirdUser')){
     function getShogirdUser() {
         $ustoz = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->pluck('user_id')->toArray();
 
-        $user = User::whereIn('id', $ustoz)->whereIn('status', [0, 1, 4])->get();
+        $user = User::whereIn('id', $ustoz)->whereIn('status', [0,1,2,4])->get();
 
         $ustoz_id = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->first();
         if($ustoz_id)
         {
-$ids = $ustoz_id->teacher_id;
-        $teacher_user = User::where('id', $ids)->first();
+            $ids = $ustoz_id->teacher_id;
+            $teacher_user = User::where('id', $ids)->first();
 
 // Prepend $teacher_user to the beginning of $user array
-        $user->prepend($teacher_user);
-
-        return $user;
+            $user->prepend($teacher_user);
+            return $user;
         }else{
             return [];
         }
-        
+
 
     }
 

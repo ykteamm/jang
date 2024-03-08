@@ -152,12 +152,13 @@
                 <div class="row align-items-center crystal" style="
                 background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
-                /*margin-bottom: 15px;*/
+                margin-bottom: 25px;
                 background-size: cover;
+                background-position: center;
                 /*height: 102px;*/
                 /* background-repeat: no-repeat; */
                 /*width: 470px;*/
-
+                filter: drop-shadow(0px 0px 20px yellow)
                 ">
                     <div class="col-2" style="padding: 0 !important; text-align: center">
                         <h5 style="font-family: 'Supercell-Magic';font-size: 13px;color: #fff;margin-bottom: 0 !important;">
@@ -270,8 +271,10 @@
                 <div class="row align-items-center crystal2" style="
                 background-image: url(/images/jang_topshiriq/svg100.svg);
                 justify-content: space-evenly;
-                /*margin-bottom: 15px;*/
+                margin-bottom: 25px;
                 background-size: cover;
+                background-position: center;
+                filter: drop-shadow(0px 0px 20px yellow)
                 /*height: 102px;*/
                 /* background-repeat: no-repeat; */
                 /*width: 470px;*/

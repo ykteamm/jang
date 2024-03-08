@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Blacklist;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,8 +45,8 @@ class LockService
             $lock->prodaja = $oneMonAgoProdaja->prodaja;
             $lock->day = (int)round($this->dateDiff / 86400);
             $lock->hour = (int)round(($this->dateDiff % 86400) / 3600);
-            $lock->mayBeLocked = $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->prodaja < 15_000_000;
-            $willBeLocked = $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->prodaja < 15_000_000 && $twoMonAgoProdaja->prodaja < 15_000_000;
+            $lock->mayBeLocked = $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->prodaja < 10_000_000;
+            $willBeLocked = $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->joined < date("Y-m-d", strtotime("-2 month")) && $lock->prodaja < 10_000_000 && $twoMonAgoProdaja->prodaja < 10_000_000;
             if ($willBeLocked) {
                 $lockUser = Blacklist::where('user_id', Auth::id())->first();
                 if ($lockUser) {
@@ -55,11 +56,17 @@ class LockService
                         Blacklist::where('user_id', Auth::id())->where('id', $lockUser->id)->update([
                             'active' => 1
                         ]);
+                        DB::table('tg_user')->where('id',Auth::id())->update([
+                            'status'=>4
+                        ]);
                     }
                 } else {
                     Blacklist::create([
                         'user_id' => Auth::id(),
                         'active' => 1
+                    ]);
+                    DB::table('tg_user')->where('id',Auth::id())->update([
+                        'status'=>4
                     ]);
                 }
             }
@@ -131,7 +138,7 @@ class LockService
     private function oneMonthAgoProdaja($id)
     {
         try {
-            return DB::select("SELECT 
+            return DB::select("SELECT
             COALESCE(SUM(CASE WHEN DATE(p.created_at) BETWEEN ? AND ? THEN p.number * p.price_product END), 0) AS prodaja,
             u.date_joined AS joined
             FROM tg_productssold AS p
@@ -146,7 +153,7 @@ class LockService
     private function twoMonthAgoProdaja($id)
     {
         try {
-            return DB::select("SELECT 
+            return DB::select("SELECT
             COALESCE(SUM(CASE WHEN DATE(p.created_at) BETWEEN ? AND ? THEN p.number * p.price_product END), 0) AS prodaja,
             u.date_joined AS joined
             FROM tg_productssold AS p

@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; $ids=1; @endphp
 <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
         <div class="modal-header" style="padding: 0 !important;">
@@ -24,7 +25,9 @@
                                                 </div>
                                                 <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                     <h6 style="border-bottom: 1px solid gray;color: black">
-                                                        Haftalik
+                                                        Haftalik Savdo
+                                                        <br>
+                                                        ({{ $start_week }} - {{ $end_week }})
                                                     </h6>
                                                     <h6 style="color: red">
                                                         @if($pul_data['hafta'])
@@ -36,7 +39,9 @@
                                                 </div>
                                                 <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                     <h6 style="border-bottom: 1px solid gray;color: black">
-                                                        Oylik
+                                                        Oylik Savdo
+                                                        <br>
+                                                        ({{$month_name}})
                                                     </h6>
                                                     <h6 style="color: red">
                                                         @if($pul_data['oy'])
@@ -72,10 +77,51 @@
                                                             <h6 style="color: white">
                                                                 {{$item->first_name}} {{$item->last_name}} <br> Login: {{$item->username}} <br> Parol: {{$item->pr}}
                                                             </h6>
+                                                            <button class="btn btn-info" type="button" data-toggle="modal" data-target="#AptekaCreate{{$item->id}}">
+                                                                <i class="fas fa-plus"></i>
+                                                            </button>
+
+                                                            <div class="modal fade" id="AptekaCreate{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Aptekani yaratish</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="{{route('create_apteka')}}" method="POST">
+                                                                                @csrf
+                                                                                <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">
+                                                                                <div class="form-group col-md-12 col-12">
+                                                                                    <label for="apteka">Apteka tanglang</label><br>
+                                                                                    <select class="custom-select custom-select-lg mb-3 col-md-12" name="pharma_id" id="apteka" aria-label=".form-select-lg example" required>
+                                                                                        <option value="">--Tanglang--</option>
+                                                                                        @foreach($pharm as $ph)
+                                                                                            <option value="{{$ph->id}}">{{$ph->name}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                    <button type="submit" class="btn btn-primary">
+                                                                                        <i class="fas fa-edit"></i>
+                                                                                        Saqlash
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                             <h6 style="border-bottom: 1px solid gray;color: white">
-                                                                Haftalik
+                                                                Haftalik savdo
+                                                                <br>
+                                                                ({{ $start_week }} - {{ $end_week }})
                                                             </h6>
                                                             <h6 style="color: white">
                                                                 @if($week)
@@ -87,7 +133,9 @@
                                                         </div>
                                                         <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                             <h6 style="border-bottom: 1px solid gray;color: white">
-                                                                Oylik
+                                                                Oylik savdo
+                                                                <br>
+                                                                ({{$month_name}})
                                                             </h6>
                                                             <h6 style="color: white">
                                                                 @if($month)
@@ -186,6 +234,35 @@
                                                                 </div>
                                                             @endforeach
                                                         </div>
+                                                        <div class="col-12"style="border: 1px solid gray">
+                                                            @foreach($week_smena as $id => $smena)
+                                                                @if($smena->user_id == $item->id)
+                                                                    @php
+                                                                        $name = Carbon::parse($smena->open_date)->locale('uz_UZ')->isoFormat('dddd');
+                                                                        $open = Carbon::parse($smena->open_date)->format('H:i:s');
+                                                                        $close = Carbon::parse($smena->close_date)->format('H:i:s');
+                                                                    @endphp
+                                                                    <div style="color: white; padding: 15px;border: 1px solid;margin: 12px;">
+{{--                                                                         <span style="color: wheat; margin-right: 10px;padding: 5px">--}}
+{{--                                                                            {{$ids++}}--}}
+{{--                                                                         </span>--}}
+                                                                        <span style="color: wheat">
+                                                                            {{$name}}
+                                                                         </span>
+                                                                        <h6 class="text-center">Smena ochish</h6>
+                                                                        <h6 class="text-center">{{$open}}</h6>
+                                                                        <div class="text-center">
+                                                                            <img src="{{asset('images/users/open_smena/'.$smena->open_image)}}" alt="" width="120" height="100" style="background-position: center;background-repeat: no-repeat;background-size: cover">
+                                                                        </div>
+                                                                        <h6 class="text-center" style="margin-top: 15px">Smena yopish</h6>
+                                                                        <h6 class="text-center">{{$close}}</h6>
+                                                                        <div class="text-center">
+                                                                            <img src="{{asset('images/users/close_smena/'.$smena->close_image)}}" alt="" width="120" height="100" style="background-position: center;background-repeat: no-repeat;background-size: cover">
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,10 +281,51 @@
                                                             <h6 style="color: black">
                                                                 {{$item->first_name}} {{$item->last_name}} <br> Login: {{$item->username}} <br> Parol: {{$item->pr}}
                                                             </h6>
+                                                            <button class="btn btn-info" type="button" data-toggle="modal" data-target="#AptekaCreate{{$item->id}}">
+                                                                <i class="fas fa-plus"></i>
+                                                            </button>
+
+                                                            <div class="modal fade" id="AptekaCreate{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Aptekani yaratish</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form action="{{route('create_apteka')}}" method="POST">
+                                                                                @csrf
+                                                                                <input class='text-input' id='user_id' name='user_id' type='hidden' value="{{$item->id}}">
+                                                                                <div class="form-group col-md-12 col-12">
+                                                                                    <label for="apteka">Apteka tanglang</label><br>
+                                                                                    <select class="custom-select custom-select-lg mb-3 col-md-12" name="pharma_id" id="apteka" aria-label=".form-select-lg example" required>
+                                                                                        <option value="">--Tanglang--</option>
+                                                                                        @foreach($pharm as $ph)
+                                                                                            <option value="{{$ph->id}}">{{$ph->name}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                    <button type="submit" class="btn btn-primary">
+                                                                                        <i class="fas fa-edit"></i>
+                                                                                        Saqlash
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                            <h6 style="border-bottom: 1px solid gray">
-                                                               Haftalik
+                                                               Haftalik savdo
+                                                               <br>
+                                                               ({{ $start_week }} - {{ $end_week }})
                                                            </h6>
                                                            <h6 style="color: red">
                                                                @if($week)
@@ -219,7 +337,9 @@
                                                         </div>
                                                         <div class="col-6"  style="border: 1px solid gray;padding-top: 10px;text-align: center;">
                                                                 <h6 style="border-bottom: 1px solid gray">
-                                                                    Oylik
+                                                                    Oylik savdo
+                                                                    <br>
+                                                                    ({{$month_name}})
                                                                 </h6>
                                                                 <h6 style="color: red">
                                                                     @if($month)
@@ -241,7 +361,7 @@
                                                                 @endforeach
                                                         </div>
                                                         <div class="col-6"  style="border: 1px solid gray; padding-top: 10px;text-align: center;">
-                                                                <div class="row " style="justify-content: space-around">
+                                                            <div class="row " style="justify-content: space-around">
                                                                     @foreach($apteka as $apt)
                                                                         <button class="col-5 mt-2 mb-2 btn btn-info" type="button" data-toggle="modal" data-target="#AptekaTahrir{{$apt->id}}{{$item->id}}">
                                                                             <i class="fas fa-edit"></i>
@@ -319,7 +439,37 @@
                                                                         </div>
                                                                     @endforeach
                                                                 </div>
-                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12"style="border: 1px solid gray">
+                                                            @foreach($week_smena as $id => $smena)
+                                                                @if($smena->user_id == $item->id)
+                                                                    @php
+                                                                        $name = Carbon::parse($smena->open_date)->locale('uz_UZ')->isoFormat('dddd');
+                                                                        $open = Carbon::parse($smena->open_date)->format('H:i:s');
+                                                                        $close = Carbon::parse($smena->close_date)->format('H:i:s');
+                                                                    @endphp
+                                                                     <div style="padding: 15px;border: 1px solid white;margin: 12px;">
+{{--                                                                         <span style="color: black; margin-right: 10px;padding: 5px">--}}
+{{--                                                                            {{$ids++}}--}}
+{{--                                                                         </span>--}}
+                                                                         <span style="color: black">
+                                                                            {{$name}}
+                                                                         </span>
+                                                                         <h6 class="text-center">Smena ochish</h6>
+                                                                         <h6 class="text-center">{{$open}}</h6>
+                                                                         <div class="text-center">
+                                                                             <img src="{{asset('images/users/open_smena/'.$smena->open_image)}}" width="120" height="100" style="background-position: center;background-repeat: no-repeat;background-size: cover" alt="">
+                                                                         </div>
+                                                                         <h6 class="text-center" style="margin-top: 15px">Smena yopish</h6>
+                                                                         <h6 class="text-center">{{$close}}</h6>
+                                                                         <div class="text-center">
+                                                                             <img src="{{asset('images/users/close_smena/'.$smena->close_image)}}" alt="" width="120" height="100" style="background-position: center;background-repeat: no-repeat;background-size: cover">
+                                                                         </div>
+                                                                     </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

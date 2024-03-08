@@ -98,9 +98,23 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Support\Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
 
+    public function CreateApteka(Request $request)
+    {
+        $request->validate([
+            'user_id'=>'required',
+            'pharma_id'=>'required',
+        ]);
+
+        $pharm_create = new PharmacyUser();
+        $pharm_create->user_id = $request->user_id;
+        $pharm_create->pharma_id = $request->pharma_id;
+        $pharm_create->save();
+
+        return redirect()->back();
+    }
     public function AptekaEdit(Request $request, $id)
     {
         $user_id = $request->user_id;
@@ -220,15 +234,40 @@ class HomeController extends Controller
             }
         }
 
-        $teskari2=[];
-        foreach ($battle_history as $key => $value) {
-            $teskari2[] = $value;
+//        $battle_history = UserBattle::where('ends',1)
+//            ->where(function($query) use ($my_id){
+//                $query->where('u1id',$my_id)
+//                    ->orWhere('u2id',$my_id);
+//            })->orderBy('id','DESC')->get();
+//        foreach ($battle_history as $key => $value) {
+//            if($value->u2id == $my_id && $value->bot ==1)
+//            {
+//                unset($battle_history[$key]);
+//            }
+//        }
+        // $teskari=[];
+        // foreach ($teskari2 as $key => $value) {
+        //     $teskari[] = $teskari2[count($teskari2)-$key-1];
+        // }
+        // $battle_history = $teskari;
+
+        $winImage = null;
+        $battle_history = array_merge([], $battle_history->all());
+//        return $battle_history[count($battle_history)-1];
+//        return count($battle_history);
+        if(count($battle_history) > 0) {
+            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
         }
-        $teskari=[];
-        foreach ($teskari2 as $key => $value) {
-            $teskari[] = $teskari2[count($teskari2)-$key-1];
-        }
-        $battle_history = $teskari;
+
+//        $teskari2=[];
+//        foreach ($battle_history as $key => $value) {
+//            $teskari2[] = $value;
+//        }
+//        $teskari=[];
+//        foreach ($teskari2 as $key => $value) {
+//            $teskari[] = $teskari2[count($teskari2)-$key-1];
+//        }
+//        $battle_history = $teskari;
         // return $battle_history;
 
         $all_battle = UserBattle::with('u1ids','u2ids','battle_elchi','battle_elchi.u1ids','battle_elchi.u2ids')
@@ -1171,32 +1210,7 @@ class HomeController extends Controller
 
         $news = News::where('publish', true)->orderBy('id', "DESC")->get();
 
-        $battle_history = UserBattle::where('ends',1)
-            ->where(function($query) use ($my_id){
-                $query->where('u1id',$my_id)
-                    ->orWhere('u2id',$my_id);
-            })->orderBy('id','DESC')->get();
-        foreach ($battle_history as $key => $value) {
-            if($value->u2id == $my_id && $value->bot ==1)
-            {
-                unset($battle_history[$key]);
-            }
-        }
-        $teskari2=[];
-        foreach ($battle_history as $key => $value) {
-            $teskari2[] = $value;
-        }
-        // $teskari=[];
-        // foreach ($teskari2 as $key => $value) {
-        //     $teskari[] = $teskari2[count($teskari2)-$key-1];
-        // }
-        // $battle_history = $teskari;
 
-//        $winImage = null;
-//        $battle_history = array_merge([], $battle_history->all());
-//        if(count($battle_history) > 0) {
-//            $winImage = $this->image->make($battle_history[count($battle_history)-1]);
-//        }
 
         return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
             ,'summa1'
@@ -1209,7 +1223,7 @@ class HomeController extends Controller
             ,'battle_start_day'
             ,'user_level_profile'
             ,'news',
-//            'winImage',
+            'winImage',
         ));
 
     }

@@ -41,7 +41,7 @@
                     </div>
                     <div class="p-2" style="font-size:20px;font-weight:600">
                         Akkauntni blokirovkaga tushmasligi uchun
-                        oyiga <strong style="color:#000">15 000 000</strong> <span style="color:#000">so'm</span>
+                        oyiga <strong style="color:#000">10 000 000</strong> <span style="color:#000">so'm</span>
                         savdo qilishingiz kerak !
                     </div>
                     <div>
@@ -50,13 +50,13 @@
                             @foreach ($lock->weeks as $week => $desc)
                                 <div class="col-6">
                                     <div class="p-2">
-                                        <div style="border:2px solid @if($desc['sum'] > 3750000) green @else red @endif"
+                                        <div style="border:2px solid @if($desc['sum'] > 2500000) green @else red @endif"
                                             class="p-2 border-2 text-center bold h5 rounded rounded-2">
                                             <div style="font-weight:600" class="pb-1">
                                                 {{ $week }}
                                             </div>
                                             <div style="font-size:16px;font-weight:600">
-                                                {{ number_format($desc['sum'], 0, '', ' ') }}/3 750 000
+                                                {{ number_format($desc['sum'], 0, '', ' ') }}/2 500 000
                                             </div>
                                         </div>
                                     </div>
