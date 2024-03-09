@@ -234,20 +234,20 @@ class Topshiriq extends Component
 
 
 //        Origin Savdo
-//            $this->monday = date("Y-m-d", strtotime('monday this week'));
-//            $this->sunday = date("Y-m-d", strtotime('sunday this week'));
-//            $time = new DateTime();
-//            $soat = new DateTime('24:00');
-//            $origin_date = new DateTime($this->sunday);
-//            $this->origin_date = $time->diff($origin_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
-//
-//
-//        $this->origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
-//            ->where('elexir_exercises.user_id', $user_id)
-//            ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
-//            ->whereDate('elexir_exercises.start_day', '>=', $this->monday)
-//            ->whereDate('elexir_exercises.end_day', '<=', $this->sunday)
-//            ->get();
+            $this->monday = date("Y-m-d", strtotime('monday this week'));
+            $this->sunday = date("Y-m-d", strtotime('sunday this week'));
+            $time = new DateTime();
+            $soat = new DateTime('24:00');
+            $origin_date = new DateTime($this->sunday);
+            $this->origin_date = $time->diff($origin_date)->format('%a:')."k ".$time->diff($soat)->format('%h:')."s ".$time->diff($soat)->format('%i:')."m ";
+
+
+        $this->origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
+            ->where('elexir_exercises.user_id', $user_id)
+            ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
+            ->whereDate('elexir_exercises.start_day', '>=', $this->monday)
+            ->whereDate('elexir_exercises.end_day', '<=', $this->sunday)
+            ->get();
 
 //        end Origin savdo
 

@@ -84,6 +84,7 @@ class AdminController extends Controller
         }
         return $user_data;
 
+
     }
 
 private function weekDays()

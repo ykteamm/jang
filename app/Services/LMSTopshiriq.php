@@ -38,6 +38,7 @@ class LMSTopshiriq
 
     function kombo_sotuv($user_id)
     {
+
         $monday = date("Y-m-d", strtotime('monday this week'));
         $tuesday = date("Y-m-d", strtotime('tuesday this week'));
         $wednesday = date("Y-m-d", strtotime('wednesday this week'));
@@ -50,7 +51,7 @@ class LMSTopshiriq
 
         $prevTotalSavdo = null;
 
-        $number = 0;
+        $number = 1;
         foreach ($daysOfWeek as $day) {
             $totalSavdo = DB::table('tg_productssold')
                 ->selectRaw('SUM(number * price_product) as total_savdo')
@@ -58,20 +59,21 @@ class LMSTopshiriq
                 ->whereDate('created_at', $day)
                 ->value('total_savdo');
 
-            // Check if the total sales for the current day are less than or equal to the total sales for the previous day
-            $kombo[$day] = $prevTotalSavdo !== null && $totalSavdo <= $prevTotalSavdo ? 0 : 1;
+            // Check if $totalSavdo is not null before accessing its property
+            $totalSavdoValue = $totalSavdo !== null ? $totalSavdo : 0;
 
-            if ($prevTotalSavdo !== null && $totalSavdo <= $prevTotalSavdo)
-            {
-                $number = 0;
-            }elseif ($prevTotalSavdo !== null && $totalSavdo >= $prevTotalSavdo){
+            // Check if the total sales for the current day are less than or equal to the total sales for the previous day
+            $kombo[$day] = $prevTotalSavdo !== null && $totalSavdoValue <= $prevTotalSavdo ? 0 : 1;
+
+            if ($prevTotalSavdo !== null && $totalSavdoValue >= $prevTotalSavdo) {
                 $number++;
+            } else {
+                $number = 0; // Move this line outside the inner if statement
             }
 
             // Update prevTotalSavdo for the next iteration
-            $prevTotalSavdo = $totalSavdo;
+            $prevTotalSavdo = $totalSavdoValue;
         }
-//        return $number;
 
 // Sum the values in $kombo
         $totalKombo = array_sum($kombo);
@@ -79,7 +81,7 @@ class LMSTopshiriq
         return [
             'kombo' => $kombo,
             'count' => $totalKombo,
-            'number'=>$number,
+            'number' => $number,
         ];
     }
 

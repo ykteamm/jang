@@ -119,16 +119,29 @@ class CreateTopshiriq extends Command
 //            'created_at'=>now(),
 //        ]);
 
+//        DB::table('topshiriq')->insert([
+//            'name'=>'Kombo Sotuv',
+//            'description'=>'Bir haftadan 4marta kombo sotuv, Kombo Sotuv bu birinchi kunda qilgan savdosidan ikkinchi kun ko\'proq qilishdir',
+//            'first_date'=>$monday,
+//            'end_date'=>$sunday,
+//            'number'=>4,
+//            'star'=>30,
+////            'crystall'=>200,
+//            'status'=>1,
+//            'key'=>$kombo_sotuv,
+//            'created_at'=>now(),
+//        ]);
+
         DB::table('topshiriq')->insert([
-            'name'=>'Kombo Sotuv',
-            'description'=>'Bir haftadan 4marta kombo sotuv, Kombo Sotuv bu birinchi kunda qilgan savdosidan ikkinchi kun ko\'proq qilishdir',
+            'name'=>'1haftada 3kun 300 mingdan sotish',
+            'description'=>'1 hafta davomida xohlagan 3 kunda 300 000 savdo qilish',
             'first_date'=>$monday,
             'end_date'=>$sunday,
-            'number'=>4,
+            'number'=>3,
             'star'=>30,
 //            'crystall'=>200,
             'status'=>1,
-            'key'=>$kombo_sotuv,
+            'key'=>$savdo,
             'created_at'=>now(),
         ]);
 
