@@ -82,7 +82,7 @@ class AdminController extends Controller
         $monday = date("Y-m-d", strtotime('monday this week'));
         $sunday = date("Y-m-d", strtotime('sunday this week'));
         $topshiriq = new LMSTopshiriq();
-        return $tgProductssoldData;
+//        return $tgProductssoldData;
         foreach ($tgProductssoldData as $user)
         {
             $user_id = $user->user_id;
