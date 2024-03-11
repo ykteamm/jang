@@ -31,7 +31,8 @@
                                                     </h6>
                                                     <h6 style="color: red">
                                                         @if($pul_data['hafta'])
-                                                            {{$pul_data['hafta']}}
+                                                            @php $weeks = number_format($pul_data['hafta'], 0, '.', ' '); @endphp
+                                                            {{$weeks}}
                                                         @else
                                                             0
                                                         @endif
@@ -45,7 +46,8 @@
                                                     </h6>
                                                     <h6 style="color: red">
                                                         @if($pul_data['oy'])
-                                                            {{$pul_data['oy']}}
+                                                            @php $month_money = number_format($pul_data['oy'], 0, '.', ' '); @endphp
+                                                            {{$month_money}}
                                                         @else
                                                             0
                                                         @endif
@@ -125,7 +127,8 @@
                                                             </h6>
                                                             <h6 style="color: white">
                                                                 @if($week)
-                                                                    {{$week}}
+                                                                    @php $weeks = number_format($week, 0, '.', ' '); @endphp
+                                                                    {{$weeks}}
                                                                 @else
                                                                     0
                                                                 @endif
@@ -139,7 +142,8 @@
                                                             </h6>
                                                             <h6 style="color: white">
                                                                 @if($month)
-                                                                    {{$month}}
+                                                                    @php $month_money = number_format($month, 0, '.', ' '); @endphp
+                                                                    {{$month_money}}
                                                                 @else
                                                                     0
                                                                 @endif
@@ -329,7 +333,8 @@
                                                            </h6>
                                                            <h6 style="color: red">
                                                                @if($week)
-                                                                   {{$week}}
+                                                                   @php $weeks = number_format($pul_data['hafta'], 0, '.', ' '); @endphp
+                                                                   {{$weeks}}
                                                                @else
                                                                    0
                                                                @endif
@@ -343,7 +348,8 @@
                                                                 </h6>
                                                                 <h6 style="color: red">
                                                                     @if($month)
-                                                                        {{$month}}
+                                                                        @php $month_money = number_format($month, 0, '.', ' '); @endphp
+                                                                        {{$month_money}}
                                                                     @else
                                                                         0
                                                                     @endif
