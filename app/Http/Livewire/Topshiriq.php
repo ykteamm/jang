@@ -243,7 +243,7 @@ class Topshiriq extends Component
 
 
         $this->origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
-            ->where('elexir_exercises.user_id', $user_id)
+            ->where('elexir_exercises.user_id', $userID)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
             ->whereDate('elexir_exercises.start_day', '>=', $this->monday)
             ->whereDate('elexir_exercises.end_day', '<=', $this->sunday)
