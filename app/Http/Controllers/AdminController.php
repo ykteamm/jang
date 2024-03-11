@@ -65,25 +65,11 @@ class AdminController extends Controller
 
     public function TTL()
     {
-        $check = new LMSTopshiriq();
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
+        $plan_week = TopshiriqUserPlanWeek::where(['status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->get();
 
-        $now_date = Carbon::now()->format('Y-m-d');
-//        return $now_date;
-        $last30Days = Carbon::now()->subDays(30)->toDateString();
-
-        $users = DB::table('tg_user')->whereIn('status',[0,1,2,3])->get();
-        $user_data = [];
-        foreach ($users as $user){
-            $user_data[$user->id] = $check->IshdanBoshatish($user->id,$last30Days,$now_date);
-            if ($user_data[$user->id] == 0){
-                $update = DB::table('tg_user')->where('id',$user->id)->update([
-                    'status'=>4
-                ]);
-            }
-//            return $user_data;
-        }
-        return $user_data;
-
+return $plan_week;
 
     }
 
