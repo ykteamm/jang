@@ -1184,8 +1184,10 @@ class HomeController extends Controller
         $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
             ->where('elexir_exercises.user_id', $user_id)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
-            ->whereDate('elexir_exercises.start_day', '>=', $monday)
-            ->whereDate('elexir_exercises.end_day', '<=', $saturday)
+//            ->whereDate('elexir_exercises.start_day', '>=', $monday)
+//            ->whereDate('elexir_exercises.end_day', '<=', $saturday)
+            ->whereDate('elexir_exercises.start_day', '<=', $monday)
+            ->whereDate('elexir_exercises.end_day', '>=', $saturday)
             ->get();
         $level_user_origin = TopshiriqLevelUsers::where('tg_user_id',$user_id)->first();
         foreach($origin_savdo as $origin){
