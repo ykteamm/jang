@@ -72,8 +72,8 @@ class AdminController extends Controller
             ->where('elexir_exercises.user_id', 579)
 //            ->where('elexir_exercises.success',0)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
-            ->whereDate('elexir_exercises.start_day', '>=', $monday)
-            ->whereDate('elexir_exercises.end_day', '<=', $saturday)
+            ->whereDate('elexir_exercises.start_day', '<=', $monday)
+            ->whereDate('elexir_exercises.end_day', '>=', $saturday)
             ->get();
 
         return $origin_savdo;
