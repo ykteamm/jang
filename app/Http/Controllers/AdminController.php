@@ -65,41 +65,24 @@ class AdminController extends Controller
 
     public function TTL()
     {
-//        $users = DB::table('tg_user')
-//            ->orWhere('status',1)
-//            ->orWhere('status',0)
-//            ->select('id','first_name','last_name','status')
-//            ->get();
-//        $userIds = $users->pluck('id');
-//        $tgProductssoldData = DB::table('tg_productssold')
-//            ->whereIn('user_id', $userIds)
-//            ->select('user_id', DB::raw('SUM(number * price_product) as total_number'))
-//            ->where('created_at', '>=', Carbon::now()->subDays(30))
-//            ->groupBy('user_id')
-//            ->orderBy('user_id', 'asc')
-//            ->get();
-//
-//        $monday = date("Y-m-d", strtotime('monday this week'));
-//        $sunday = date("Y-m-d", strtotime('sunday this week'));
-//        $topshiriq = new LMSTopshiriq();
-////        return $tgProductssoldData;
-//        foreach ($tgProductssoldData as $user)
-//        {
-//            $user_id = $user->user_id;
-//            $have = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->first();
-//            $data = $topshiriq->HaftalikPlan($user_id);
-////            echo ' pul ' . $data['pul'] . '   '. $user_id;
-//            if (!$have){
-//                $plan = new TopshiriqUserPlanWeek();
-//                $plan->user_id = $user_id;
-//                $plan->star = 30;
-//                $plan->plan_week = $data['pul'];
-//                $plan->status = 1;
-//                $plan->start_day = $monday;
-//                $plan->end_day = $sunday;
-//                $plan->save();
-//            }
-//        }
+        $user_id = 579;
+        $medicine_id = 50;
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $saturday = date("Y-m-d", strtotime('saturday this week'));
+
+        $origin_check = DB::table('tg_productssold')
+            ->selectRaw('SUM(number) as total_number')
+            ->where('medicine_id',$medicine_id)
+            ->where('user_id', $user_id)
+            ->whereDate('created_at', '>=', $monday)
+            ->whereDate('created_at', '<=', $saturday)
+            ->first();
+
+        return $origin_check;
+
+    }
+    function origin_check($user_id,$medicine_id,$monday,$saturday)
+    {
 
     }
 
