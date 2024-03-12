@@ -65,7 +65,7 @@ class AdminController extends Controller
 
     public function TTL()
     {
-        $user_id = 579;
+        $user_id = Auth::id();
         $monday = date("Y-m-d", strtotime('monday this week'));
         $saturday = date("Y-m-d", strtotime('saturday this week'));
         $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
