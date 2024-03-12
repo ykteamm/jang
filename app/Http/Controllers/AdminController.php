@@ -68,12 +68,7 @@ class AdminController extends Controller
         $user_id = Auth::id();
         $monday = date("Y-m-d", strtotime('monday this week'));
         $saturday = date("Y-m-d", strtotime('saturday this week'));
-        $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
-            ->where('elexir_exercises.user_id', $user_id)
-            ->where('elexir_exercises.success',0)
-            ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
-            ->whereDate('elexir_exercises.start_day', '>=', $monday)
-            ->whereDate('elexir_exercises.end_day', '<=', $saturday)
+        $origin_savdo = ElexirExercise::where('user_id',579)->orderBy('id','desc')
             ->get();
 
         return $origin_savdo;
