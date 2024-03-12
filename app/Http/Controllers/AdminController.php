@@ -65,26 +65,10 @@ class AdminController extends Controller
 
     public function TTL()
     {
-        $user_id = 579;
-        $medicine_id = 50;
-        $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
 
-        $origin_check = DB::table('tg_productssold')
-            ->selectRaw('SUM(number) as total_number')
-            ->where('medicine_id',$medicine_id)
-            ->where('user_id', $user_id)
-            ->whereDate('created_at', '>=', $monday)
-            ->whereDate('created_at', '<=', $saturday)
-            ->first();
-
-        return $origin_check;
 
     }
-    function origin_check($user_id,$medicine_id,$monday,$saturday)
-    {
 
-    }
 
 private function weekDays()
     {
