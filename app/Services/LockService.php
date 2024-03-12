@@ -56,18 +56,18 @@ class LockService
                         Blacklist::where('user_id', Auth::id())->where('id', $lockUser->id)->update([
                             'active' => 1
                         ]);
-                        DB::table('tg_user')->where('id',Auth::id())->update([
-                            'status'=>4
-                        ]);
+//                        DB::table('tg_user')->where('id',Auth::id())->update([
+//                            'status'=>4
+//                        ]);
                     }
                 } else {
                     Blacklist::create([
                         'user_id' => Auth::id(),
                         'active' => 1
                     ]);
-                    DB::table('tg_user')->where('id',Auth::id())->update([
-                        'status'=>4
-                    ]);
+//                    DB::table('tg_user')->where('id',Auth::id())->update([
+//                        'status'=>4
+//                    ]);
                 }
             }
             if ($lockUser = Blacklist::where('user_id', Auth::id())->first()) {
