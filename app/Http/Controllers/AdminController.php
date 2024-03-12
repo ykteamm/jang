@@ -70,6 +70,7 @@ class AdminController extends Controller
         $saturday = date("Y-m-d", strtotime('saturday this week'));
         $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
             ->where('elexir_exercises.user_id', $user_id)
+            ->where('elexir_exercises.success',0)
             ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
             ->whereDate('elexir_exercises.start_day', '>=', $monday)
             ->whereDate('elexir_exercises.end_day', '<=', $saturday)
