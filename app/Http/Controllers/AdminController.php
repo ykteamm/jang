@@ -65,7 +65,17 @@ class AdminController extends Controller
 
     public function TTL()
     {
+        $user_id = 579;
+        $monday = date("Y-m-d", strtotime('monday this week'));
+        $saturday = date("Y-m-d", strtotime('saturday this week'));
+        $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
+            ->where('elexir_exercises.user_id', $user_id)
+            ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
+            ->whereDate('elexir_exercises.start_day', '>=', $monday)
+            ->whereDate('elexir_exercises.end_day', '<=', $saturday)
+            ->get();
 
+        return $origin_savdo;
 
     }
 
