@@ -16,7 +16,7 @@ class TeamBattleServices
 
     public function __construct($user_id)
     {
-        
+
         $this->uid = $user_id;
     }
 
@@ -56,8 +56,8 @@ class TeamBattleServices
     public function getTeamMembers($start, $end, $teamId)
     {
         return DB::select(
-            "SELECT 
-            COALESCE(SUM(CASE WHEN DATE(p.created_at) BETWEEN ? AND ? THEN p.number * p.price_product END), 0) AS allprice, 
+            "SELECT
+            COALESCE(SUM(CASE WHEN DATE(p.created_at) BETWEEN ? AND ? THEN p.number * p.price_product END), 0) AS allprice,
             u.id AS id,
             u.image_url AS i,
             u.first_name AS f,
@@ -67,7 +67,7 @@ class TeamBattleServices
             LEFT JOIN tg_members AS m ON m.user_id = u.id
             LEFT JOIN tg_teams AS t ON t.id = m.team_id
             WHERE u.id != ?
-            AND t.id = ?            
+            AND t.id = ?
             GROUP BY u.id, l, f
             ORDER BY allprice DESC",
             [$start, $end, 72, $teamId]
@@ -77,7 +77,7 @@ class TeamBattleServices
     public function sum($start, $end, $teamId)
     {
         return DB::select(
-            "SELECT 
+            "SELECT
             COALESCE(SUM(CASE WHEN DATE(p.created_at) BETWEEN ? AND ? THEN p.number * p.price_product END), 0) AS allprice
             FROM tg_productssold AS p
             LEFT JOIN tg_members AS m ON m.user_id = p.user_id
@@ -93,6 +93,7 @@ class TeamBattleServices
         $haveIGotTeam = false;
         $isTeamBattleBegin = false;
         $my_team_id = $this->getTeamId();
+
         if (count($my_team_id) > 0) {
             $haveIGotTeam = true;
             $team_id = $my_team_id[0]->team_id;
@@ -180,10 +181,10 @@ class TeamBattleServices
         $team2_users = $this->getTeamMembers($start_day, $end_day, $team2_id);
 
         $arr = array(
-            'round' => $battle->round, 
-            'team1_name' => $team1_name->name, 
-            'team2_name' => $team2_name->name, 
-            'team1_sum' => $team1_sum, 
+            'round' => $battle->round,
+            'team1_name' => $team1_name->name,
+            'team2_name' => $team2_name->name,
+            'team1_sum' => $team1_sum,
             'team2_sum' => $team2_sum,
             'team1_users' => $team1_users,
             'team2_users' => $team2_users

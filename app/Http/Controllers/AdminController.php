@@ -15,6 +15,7 @@ use App\Models\UserBattle;
 use App\Services\LMSTopshiriq;
 use App\Services\LockService;
 use App\Services\MakeImageService;
+use App\Services\UserBattleService;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Console\Scheduling\Schedule;
@@ -65,59 +66,14 @@ class AdminController extends Controller
 
     public function TTL()
     {
-        $user_id = Auth::id();
-        $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
-        $origin_savdo = ElexirExercise::select('elexir_exercises.*','tg_medicine.name as medicine_name')
-            ->where('elexir_exercises.user_id', 579)
-//            ->where('elexir_exercises.success',0)
-            ->join('tg_medicine', 'tg_medicine.id', '=', 'elexir_exercises.medicine_id')
-            ->whereDate('elexir_exercises.start_day', '<=', $monday)
-            ->whereDate('elexir_exercises.end_day', '>=', $saturday)
-            ->get();
+        $s=DB::table('tg_productssold')
+            ->where('user_id',533)
+            ->selectRaw('SUM(tg_productssold.number*tg_productssold.price_product) as all_price')
+            ->whereDate('created_at','>=','2024-02-01')
+            ->whereDate('created_at','<=','2024-02-29')
+            ->first();
 
-        return $origin_savdo;
-
+        return $s;
     }
-
-
-private function weekDays()
-    {
-        $startM = Carbon::now()->startOfMonth()->format("Y-m-d");
-        $endM = Carbon::now()->endOfMonth()->format("Y-m-d");
-        $endWeek = Carbon::parse($startM)->endOfWeek()->format("Y-m-d");
-
-        $weeks = [];
-        for ($i = 1; $i < 5; $i++) {
-            $week = "$i-hafta";
-            $weeks[$week] = [];
-            switch ($i) {
-                case 1:
-                    $weeks[$week]['start'] = $startM;
-                    if ((strtotime($endWeek) - strtotime($startM)) > 4 * 86400) {
-                        $weeks[$week]['end'] = $endWeek;
-                    } else {
-                        $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($endWeek)));
-                    }
-                    break;
-                case 2:
-                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['1-hafta']['end'])));
-                    $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($weeks['1-hafta']['end'])));
-                    break;
-                case 3:
-                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['2-hafta']['end'])));
-                    $weeks[$week]['end'] = date("Y-m-d", strtotime("+7 day", strtotime($weeks['2-hafta']['end'])));
-                    break;
-                case 4:
-                    $weeks[$week]['start'] = date("Y-m-d", strtotime("+1 day", strtotime($weeks['3-hafta']['end'])));
-                    $weeks[$week]['end'] = $endM;
-                    break;
-            }
-        }
-        return $weeks;
-
-    }
-
-
 
 }
