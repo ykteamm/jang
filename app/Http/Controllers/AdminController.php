@@ -69,8 +69,8 @@ class AdminController extends Controller
         $s=DB::table('tg_productssold')
             ->where('user_id',533)
             ->selectRaw('SUM(tg_productssold.number*tg_productssold.price_product) as all_price')
-            ->whereDate('created_at','<=','2024-02-01')
-            ->whereDate('created_at','>=','2024-02-29')
+            ->whereDate('created_at','>=','2024-02-01')
+            ->whereDate('created_at','<=','2024-02-29')
             ->first();
 
         return $s;
