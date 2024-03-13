@@ -333,7 +333,7 @@
                                                            </h6>
                                                            <h6 style="color: red">
                                                                @if($week)
-                                                                   @php $weeks = number_format($pul_data['hafta'], 0, '.', ' '); @endphp
+                                                                   @php $weeks = number_format($week, 0, '.', ' '); @endphp
                                                                    {{$weeks}}
                                                                @else
                                                                    0

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AllSold;
 use App\Models\ElexirExercise;
+use App\Models\Shift;
 use App\Models\Topshiriq;
 use App\Models\TopshiriqJavob;
 use App\Models\TopshiriqLevel;
@@ -66,14 +67,28 @@ class AdminController extends Controller
 
     public function TTL()
     {
-        $s=DB::table('tg_productssold')
-            ->where('user_id',553)
-            ->selectRaw('SUM(tg_productssold.number*tg_productssold.price_product) as all_price')
-            ->whereDate('created_at','>=','2024-02-01')
-            ->whereDate('created_at','<=','2024-02-29')
-            ->first();
+        $ws = DB::table('tg_user')->where('id',79)->first();
 
-        return $s;
+        $work_start = '2024-01-01';
+        $date_end = '2024-01-31';
+        $plus_date = date('Y-m-d',(strtotime ( '30 days' , strtotime ( $work_start ) ) ));
+
+//        return $plus_date;
+
+//        $work_day = Shift::where('user_id',79)
+//            ->where('open_date','!=',NULL)
+//            ->whereDate('open_date','>=',$work_start)
+//            ->whereDate('open_date','<=',$date_end)
+//            ->count('id');
+//
+//        return $work_day;
+        $work_day = Shift::where('user_id', 79)
+            ->where('open_date', '!=', NULL)
+            ->whereDate('open_date', '>=', $work_start)
+            ->whereDate('open_date', '<=', $date_end)
+            ->count();
+
+        return $work_day;
     }
 
 }
