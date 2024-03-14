@@ -1149,8 +1149,8 @@ class HomeController extends Controller
 //        Plan Week
 
         $monday = date("Y-m-d", strtotime('monday this week'));
-        $saturday = date("Y-m-d", strtotime('saturday this week'));
-        $users = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$saturday,'status'=>1,'user_id'=>$userID])->first();
+        $sunday = date("Y-m-d", strtotime('sunday this week'));
+        $users = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$sunday,'status'=>1,'user_id'=>$userID])->first();
 
         if ($users){
             $topshiriq = new LMSTopshiriq();
@@ -1160,11 +1160,11 @@ class HomeController extends Controller
             $end_day = $users->end_day;
             $data = $topshiriq->CheckHaftalikPlan($user_id,$start_day,$end_day,$plan);
             if ($data){
-                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->update([
+                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
                     'success'=>1
                 ]);
             }else{
-                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$saturday])->update([
+                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
                     'success'=>0
                 ]);
             }
