@@ -95,11 +95,14 @@ class AdminController extends Controller
             ->whereDate('end_day', '<=', $sunday)
             ->first();
 
+        $users_test = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$sunday,'status'=>1,'user_id'=>$userID])->first();
+
         return [
             'user_id'=>$userID,
             'users'=>$users,
             'monday'=>$monday,
             'sunday'=>$sunday,
+            'test'=>$users_test
         ];
     }
 
