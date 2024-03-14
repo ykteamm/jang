@@ -89,6 +89,7 @@ class AdminController extends Controller
         $sunday = date("Y-m-d", strtotime('sunday this week'));
         $users = DB::table('topshiriq_user_plan_week')
             ->where('status', 1)
+            ->where('success',1)
             ->whereDate('start_day', '>=', $monday)
             ->whereDate('end_day', '<=', $sunday)
             ->get();
