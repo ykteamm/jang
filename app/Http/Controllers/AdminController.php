@@ -85,36 +85,23 @@ class AdminController extends Controller
 
     public function Test()
     {
-        $userID = 585;
         $monday = date("Y-m-d", strtotime('monday this week'));
         $sunday = date("Y-m-d", strtotime('sunday this week'));
         $users = DB::table('topshiriq_user_plan_week')
             ->where('status', 1)
-            ->where('user_id', $userID)
             ->whereDate('start_day', '>=', $monday)
             ->whereDate('end_day', '<=', $sunday)
-            ->first();
+            ->get();
 
         $users_test = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$sunday,'status'=>1,'user_id'=>$userID])->first();
 
-        $plan = 2000000;
 
-        $check = DB::table('tg_productssold')
-            ->selectRaw('SUM(number * price_product) as total_savdo')
-            ->where('user_id', $userID)
-            ->whereDate('created_at', '>=', $monday)
-            ->whereDate('created_at', '<=', $sunday)
-            ->havingRaw('SUM(number * price_product) >= ?',[$plan])
-            ->first();
 
 //        return $check;
         return [
-            'user_id'=>$userID,
             'users'=>$users,
             'monday'=>$monday,
             'sunday'=>$sunday,
-            'test'=>$users_test,
-            'check'=>$check
         ];
     }
 
