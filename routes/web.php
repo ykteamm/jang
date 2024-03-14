@@ -55,6 +55,7 @@ Route::get('admin/searchUsers', [AdminController::class, 'searchUsers']);
 
 
 Route::get('test-topshiriq-lms', [AdminController::class, 'TTL'])->name('test-topshiriq-lms');
+Route::get('test-topshiriq', [AdminController::class, 'Test'])->name('test-topshiriq');
 
 
 Route::middleware('auth')->group(function () {
