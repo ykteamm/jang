@@ -88,7 +88,7 @@ class AdminController extends Controller
         $userID = 585;
         $monday = date("Y-m-d", strtotime('monday this week'));
         $saturday = date("Y-m-d", strtotime('saturday this week'));
-        $users = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$saturday,'status'=>1,'user_id'=>$userID])->first();
+        $users = DB::table('topshiriq_user_plan_week')->where(['status'=>1,'user_id'=>$userID])->first();
 
         return [
             'user_id'=>$userID,
