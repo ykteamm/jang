@@ -1163,6 +1163,13 @@ class HomeController extends Controller
                 $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
                     'success'=>1
                 ]);
+//                star
+                $star = new TopshiriqStar();
+                $star->tg_user_id = $userID;
+                $star->star = $users->star;
+                $star->level = $level_user->level_user;
+                $star->save();
+//                     end star
             }
 //            else{
 //                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([

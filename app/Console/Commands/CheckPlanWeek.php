@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\TopshiriqLevelUsers;
+use App\Models\TopshiriqStar;
 use App\Models\TopshiriqUserPlanWeek;
 use App\Services\LMSTopshiriq;
 use Illuminate\Console\Command;
@@ -45,6 +47,7 @@ class CheckPlanWeek extends Command
         $users = DB::table('topshiriq_user_plan_week')->where(['start_day'=>$monday,'end_day'=>$sunday,'status'=>1])->get();
         $topshiriq = new LMSTopshiriq();
         foreach ($users as $user){
+            $level_user = TopshiriqLevelUsers::where('tg_user_id',$user->user_id)->first();
             $user_id = $user->user_id;
             $plan = $user->plan_week;
             $start_day = $user->start_day;
@@ -55,6 +58,11 @@ class CheckPlanWeek extends Command
                    'success'=>1,
                    'status'=>0,
                 ]);
+                $star = new TopshiriqStar();
+                $star->tg_user_id = $user_id;
+                $star->star = $user->star;
+                $star->level = $level_user ? $level_user->level_user : 1;
+                $star->save();
             }else{
                 $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
                     'success'=>0,
