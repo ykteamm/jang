@@ -1159,15 +1159,16 @@ class HomeController extends Controller
             $start_day = $users->start_day;
             $end_day = $users->end_day;
             $data = $topshiriq->CheckHaftalikPlan($user_id,$start_day,$end_day,$plan);
-            if ($data){
+            if ($data != null){
                 $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
                     'success'=>1
                 ]);
-            }else{
-                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
-                    'success'=>0
-                ]);
             }
+//            else{
+//                $update = TopshiriqUserPlanWeek::where(['user_id'=>$user_id,'status'=>1,'start_day'=>$monday,'end_day'=>$sunday])->update([
+//                    'success'=>0
+//                ]);
+//            }
         }
 
 
