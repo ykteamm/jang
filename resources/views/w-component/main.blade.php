@@ -304,12 +304,12 @@
 
                         {{-- end topshiriq --}}
                         @if (getShogirdOneMonth(Auth::id()) == 1)
-                            <div class="col-12 pb-1 pl-0 pr-0">
-                                <button type="button" class="btn" style="background: #8bd137" data-toggle="modal"
-                                    data-target="#onemonth">
-                                    SINOV
-                                </button>
-                            </div>
+{{--                            <div class="col-12 pb-1 pl-0 pr-0">--}}
+{{--                                <button type="button" class="btn" style="background: #8bd137" data-toggle="modal"--}}
+{{--                                    data-target="#onemonth">--}}
+{{--                                    SINOV--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
                             {{-- <div class="col-12" style="position: relative">
                                     <livewire:turnir-button>
                             </div> --}}
@@ -682,10 +682,72 @@
                         <livewire:turnir-home>
                         @else
                             @if ($battle_yes == 'end' || $battle_yes == 'no')
-                                <div class="container-fluid text-center mb-2 mt-1 pl-0 pd-0 img-container">
-                                    Sizga mos raqib tanlayapmiz
-                                    <p>Jangga tayyor turing</p>
-                                </div>
+{{--                                <div class="container-fluid text-center mb-2 mt-1 pl-0 pd-0 img-container">--}}
+{{--                                    Sizga mos raqib tanlayapmiz--}}
+{{--                                    <p>Jangga tayyor turing</p>--}}
+{{--                                </div>--}}
+                                    <div class="container-fluid text-center mb-2 mt-3 pl-0 pd-0 img-container">
+                                        {{--                                --}}{{-- <img class="responsive-img" src="{{asset('mobile/jang3.webp')}}"> <button style="position: absolute;top:10px;left:5px;z-index:10;border:none;outline:none;background:transparent;color:#fff"--}}
+                                        {{--                                    type="button" class="rounded d-flex align-items-center justify-content-center"--}}
+                                        {{--                                    data-toggle="popover" title="Elchi jangi"--}}
+                                        {{--                                    data-content="3 kunlik Elchi Jangida g'olib bo'ling va kuboklarga ega bo'ling!"--}}
+                                        {{--                                    data-placement="right">--}}
+                                        {{--                                    <img width="20" class="instruksiya" src="{{ asset('mobile/instruksiya.png') }}" alt="Instruksiya">--}}
+                                        {{--                                </button> --}}
+                                        @if (count($battle_history) > 0)
+                                            @if ($battle_history[count($battle_history) - 1]['win'] == Auth::user()->id)
+                                                <a class="play-btn" style="position: absolute;top:40px;right:10px"
+                                                   aria-labelledby="#imageDownload" data-toggle="modal"
+                                                   data-target="#imageDownload">
+                                                    <img src="{{ asset('mobile/kb.png') }}" alt="Image"
+                                                         width="30">
+                                                </a>
+                                            @endif
+                                        @endif
+                                        <div class="">
+                                            <div class="for-avatar avatar avatar-140 rounded-circle mx-auto"
+                                                 style="width: 130px;height:130px;">
+                                                <div class="background">
+
+                                                    @if (isset(Auth::user()->image_url))
+                                                        <img src="{{ Auth::user()->image_url }}" height="10px"
+                                                             alt="">
+                                                    @else
+                                                        <img src="https://api.multiavatar.com/kathrin.svg" height="100px"
+                                                             alt="">
+                                                    @endif
+
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="text-white mt-1 supercell text-font for-name">
+                                                {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container pl-0 pr-0 mt-3">
+                                        <div class="row">
+                                            <div class="col-6 pl-3 pr-0">
+
+                                                <button type="button" class="btn pr-0" data-toggle="modal"
+                                                        data-target="#reyting">
+                                                    <img src="{{ asset('mobile/reyting.webp') }}" class="for-media-img live-reyting"
+                                                         width="160px" alt="">
+                                                </button>
+                                            </div>
+                                            <div class="col-6 pl-0 pr-4">
+
+                                                <button type="button" class="btn pl-0" data-toggle="modal"
+                                                        data-target="#region">
+                                                    {{-- data-target="#viloyatim"> --}}
+                                                    <img src="{{ asset('mobile/viloyatim.webp') }}" class="for-media-img live-region"
+                                                         width="160px" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                             @endif
                             @if ($battle_yes == 'yes')
                                 <div class="container-fluid text-center mb-2 mt-1 pl-0 pd-0 img-container">
