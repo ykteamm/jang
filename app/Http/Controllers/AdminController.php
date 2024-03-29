@@ -84,24 +84,12 @@ class AdminController extends Controller
 
     public function Test()
     {
-        $monday = date("Y-m-d", strtotime('monday this week'));
-        $sunday = date("Y-m-d", strtotime('sunday this week'));
-        $users = DB::table('topshiriq_user_plan_week')
-            ->where('status', 1)
-            ->where('success',1)
-            ->whereDate('start_day', '>=', $monday)
-            ->whereDate('end_day', '<=', $sunday)
-            ->get();
+        $b = new UserBattleService;
 
+        $date = date('Y-m-d');
 
-
-
-//        return $check;
-        return [
-            'users'=>$users,
-            'monday'=>$monday,
-            'sunday'=>$sunday,
-        ];
+        $bser = $b->endBattle($date);
+        $bser = $b->battle($date);
     }
 
 }
