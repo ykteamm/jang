@@ -68,18 +68,17 @@ class AdminController extends Controller
     public function TTL()
     {
 
-        $stars = TopshiriqStar::select(
-            'topshiriq_star.tg_user_id',
-            'tg_user.first_name',
-            'tg_user.last_name',
-            DB::raw('SUM(topshiriq_star.star) as total_star')
-        )
-            ->join('tg_user', 'tg_user.id', '=', 'topshiriq_star.tg_user_id')
-            ->groupBy('topshiriq_star.tg_user_id',  'tg_user.first_name', 'tg_user.last_name')
-            ->orderBy('total_star','desc')
-            ->get();
+        $b = new UserBattleService;
+        // $Store = date('l');
+        // return $Store;
+        $date = date('Y-m-d');
+        $bser = $b->battle($date);
 
-        return $stars;
+        $sunday = date('w');
+        if($sunday != 0)
+        {
+            $bser = $b->battleDay($date);
+        }
 
     }
 
