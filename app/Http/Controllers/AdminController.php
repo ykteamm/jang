@@ -68,17 +68,20 @@ class AdminController extends Controller
     public function TTL()
     {
 
-        $b = new UserBattleService;
-        // $Store = date('l');
-        // return $Store;
-        $date = date('Y-m-d');
-        $bser = $b->battle($date);
+        $jang = UserBattle::orderBy('id','desc')->get();
 
-        $sunday = date('w');
-        if($sunday != 0)
-        {
-            $bser = $b->battleDay($date);
-        }
+        return $jang;
+//        $b = new UserBattleService;
+//        // $Store = date('l');
+//        // return $Store;
+//        $date = date('Y-m-d');
+//        $bser = $b->battle($date);
+//
+//        $sunday = date('w');
+//        if($sunday != 0)
+//        {
+//            $bser = $b->battleDay($date);
+//        }
 
     }
 
