@@ -70,18 +70,18 @@ class AdminController extends Controller
 
         $jang = UserBattle::orderBy('id','desc')->get();
 
+        $b = new UserBattleService;
+        // $Store = date('l');
+        // return $Store;
+        $date = date('Y-m-d');
+        $bser = $b->battle($date);
+
+        $sunday = date('w');
+        if($sunday != 0)
+        {
+            $bser = $b->battleDay($date);
+        }
         return $jang;
-//        $b = new UserBattleService;
-//        // $Store = date('l');
-//        // return $Store;
-//        $date = date('Y-m-d');
-//        $bser = $b->battle($date);
-//
-//        $sunday = date('w');
-//        if($sunday != 0)
-//        {
-//            $bser = $b->battleDay($date);
-//        }
 
     }
 
