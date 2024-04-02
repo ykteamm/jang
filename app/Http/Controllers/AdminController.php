@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AllSold;
 use App\Models\ElexirExercise;
+use App\Models\MegaTurnirUserBattle;
 use App\Models\Shift;
 use App\Models\Topshiriq;
 use App\Models\TopshiriqJavob;
@@ -68,6 +69,9 @@ class AdminController extends Controller
     public function TTL()
     {
 
+        $data = MegaTurnirUserBattle::orderBy('id','desc')->get();
+
+        return $data;
 
     }
 
