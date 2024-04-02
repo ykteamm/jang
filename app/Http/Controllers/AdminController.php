@@ -69,7 +69,7 @@ class AdminController extends Controller
     public function TTL()
     {
 
-        $data = MegaTurnirUserBattle::orderBy('id','desc')->get();
+        $data = UserBattle::orderBy('id','desc')->get();
 
         return $data;
 
