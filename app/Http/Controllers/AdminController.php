@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AllSold;
 use App\Models\ElexirExercise;
 use App\Models\MegaTurnirUserBattle;
+use App\Models\NewUserOneMonth;
 use App\Models\Shift;
 use App\Models\Topshiriq;
 use App\Models\TopshiriqJavob;
@@ -69,9 +70,22 @@ class AdminController extends Controller
     public function TTL()
     {
 
-        $data = UserBattle::orderBy('id','desc')->get();
+        $new_user_id = NewUserOneMonth::where('active',1)->pluck('user_id')->toArray();
+        $arr_new = [];
+        foreach ($new_user_id as $key => $value) {
+            $my_battle_all = UserBattle::with('u1ids','u2ids')
+                ->where(function($query) use ($value){
+                    $query->where('u1id',$value)
+                        ->orWhere('u2id',$value);
+                })->where('ends',1)->get();
 
-        return $data;
+            if(count($my_battle_all) < 2)
+            {
+                $arr_new[] = $value;
+            }
+        }
+
+        return $arr_new;
 
     }
 
