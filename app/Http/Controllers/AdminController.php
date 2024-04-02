@@ -78,6 +78,9 @@ class AdminController extends Controller
 
 
         $level_user = TopshiriqLevelUsers::where('tg_user_id',$userID)->first();
+
+        $test = TopshiriqLevelUsers::all();
+        return $test;
         if (!$level_user){
             $user_level = new TopshiriqLevelUsers();
             $user_level->tg_user_id = $userID;
@@ -165,7 +168,7 @@ class AdminController extends Controller
             ];
         }
 
-        return $user_level_profile;
+
     }
 
 
