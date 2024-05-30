@@ -1,5 +1,6 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 {{-- <div class="modal-dialog modal-dialog-scrollable" role="document"> --}}
-        
+
     <div class="card">
 
             <style>
@@ -12,30 +13,30 @@
                     align-items: center;
                     justify-content: center;
                 }
-        
+
                 .team-btn img {
                     width: 200px;
                     animation: tbtn 2s linear infinite;
                 }
-        
+
                 .change-team-time {
                     animation: tbtn 2s linear infinite;
                 }
-        
+
                 @keyframes tbtn {
                     0% {
                         transform: scale(1);
                     }
-        
+
                     50% {
                         transform: scale(1.1);
                     }
-        
+
                     100% {
                         transform: scale(1);
                     }
                 }
-        
+
                 .tmloader {
                     display: flex;
                     justify-content: center;
@@ -46,32 +47,32 @@
                     left: -10px;
                     bottom: 0;
                 }
-        
+
                 .tmloader .dot {
                     position: absolute;
-        
+
                 }
-        
+
                 .tmloader img {
                     animation: rotate 10s linear infinite;
                 }
-        
-        
+
+
                 @-webkit-keyframes rotate {
                     0% {
                         transform: rotate(0);
                     }
-        
+
                     100% {
                         transform: rotate(360deg);
                     }
                 }
-        
+
                 @keyframes rotate {
                     0% {
                         transform: rotate(0);
                     }
-        
+
                     100% {
                         transform: rotate(360deg);
                     }
@@ -91,7 +92,7 @@
                     }
                 }
             </style>
-        
+
         @if ($resime == 2)
 
 
@@ -110,7 +111,7 @@
                 </div>
             @endif
             @if ($haveIGotTeam && $isTeamBattleBegin)
-            
+            @php $user_id = Auth::id(); $image = new \App\Services\TeamBattleServices($user_id); $name = $myTeamBattle->team1->win_bonus; $bonus_image = $image->getBonusImage($name); @endphp
             <div class="container p-0 card" style="height:400px;position: relative;">
                 <div style="position: relative;width:350px;height:400px;" class="btn pl-0 pr-0 team-btl">
                     <button style="position: absolute;top:25px;right:5px;z-index:10;border:none;outline:none;background:transparent;color:#fff"
@@ -132,11 +133,11 @@
                     </div>
                     <div style="position: absolute;top:-85px;left:0px;right:0;bottom:0;z-index:5;color:#fab516"
                         class="d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('mobile/team/'.$myTeamBattle->team1->win_bonus.'.webp') }}" style="width:50%" alt="Image">
+                        <img src="https://matrix.novatio.uz/market/bonus/{{$bonus_image}}" style="width:50%" alt="Image">
                     </div>
                 </div>
             </div>
-        
+
             <div class="container-fluid text-center mb-2 mt-1 pl-0 pd-0 img-container">
                 <img class="responsive-img" style="border: 1px solid #fff;border-radius:20px"
                     src="{{ asset('mobile/team/battle.webp') }}">
@@ -162,7 +163,7 @@
                             <img src="{{asset('mobile/regions/'.$myTeamBattle2->team2->id.'.png')}}" alt="">
                         </div>
                     </div>
-        
+
                     <div class="text-white mt-4 supercell text-font for-name">
                         {{$myTeamBattle2->team2->name}}
                     </div>
@@ -173,7 +174,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <style>
                     @media (min-width: 200px) {
                         .turnir-status {
@@ -183,19 +184,19 @@
                             color: #fff;
                             font-size: 12px;
                         }
-        
+
                         .userimage1 {
                             position: absolute;
                             top: 31%;
                             left: 10%;
                         }
-        
+
                         .userimage2 {
                             position: absolute;
                             top: 31%;
                             right: 10%;
                         }
-        
+
                         .teamprof {
                             display: flex;
                             overflow: hidden;
@@ -203,94 +204,96 @@
                             height: 80px;
                             background: red;
                         }
-        
+
                         .teamprof div {
                             overflow: hidden;
                             width: 50%;
                         }
-        
+
                         .teamprof div img {
                             transform: translateX(-40%);
                             width: 100px;
                         }
-        
+
                         .turgold {
                             width: 17px;
                         }
-        
+
                         .turking {
                             width: 17px;
                         }
                     }
-        
+
                     @media (min-width: 340px) {
                         .teamprof {
                             width: 90px;
                             height: 90px;
                             background: yellow;
                         }
-        
+
                         .userimage1,
                         .userimage2 {
                             top: 30%;
                         }
-        
+
                         .turgold {
                             width: 20px;
                         }
-        
+
                         .turking {
                             width: 20px;
                         }
                     }
-        
+
                     @media (min-width: 370px) {
                         .teamprof {
                             width: 100px;
                             height: 100px;
                             background: yellow;
                         }
-        
+
                         .turgold {
                             width: 22px;
                         }
-        
+
                         .turking {
                             width: 22px;
                         }
-        
+
                         .turnir-status {
                             font-size: 14px;
                         }
                     }
-        
+
                     @media (min-width: 410px) {
                         .turnir-result {
-                            margin-top: 15px; 
+                            margin-top: 15px;
                         }
                     }
                 </style>
             </div>
-        
-        
+
+                @php
+                   $date = date_when($myTeamBattle->end_day);
+                @endphp
             <div class="container mt-1 mb-1 p-0">
                 <div class="col-12 pt-4 pb-4 pr-3 supercell text-center"
                     style="color: white;background-image: url({{ asset('mobile/counter.png') }});background-size: 100% 100%;">
                     <p class="p-0 mb-0" style="font-size: 20px;">{{ $myTeamBattle->monthround }} - round</p>
-        
+
                     <span class="text-center" id="count-timer-day2" style="font-size: 35px;"></span>
-                    <span style="font-size: 15px;">kun :</span>
+                    <span style="font-size: 15px;">{{$date['kun']}} kun :</span>
                     <span class="text-center" id="count-timer-hour2" style="font-size: 35px;"></span>
-                    <span style="font-size: 15px;">soat :</span>
+                    <span style="font-size: 15px;">{{$date['soat']}} soat :</span>
                     <span class="text-center" id="count-timer-minut2" style="font-size: 35px;"></span>
-                    <span style="font-size: 15px;">min</span>
+                    <span style="font-size: 15px;">{{$date['minut']}} min</span>
                     <p class="p-0" style="font-size: 20px;">Round tugashiga qoldi</p>
                 </div>
             </div>
             <div class="container">
                 <div class="w-100 my-2 row">
                     <div class="col-6">
-                        <button wire:click="$emit('change')" class="btn btn-block btn-warning supercell change-team-time">
+                        <button wire:click="changeByTime" class="btn btn-block btn-warning supercell change-team-time">
                             {{ $time }}
                         </button>
                     </div>
@@ -316,7 +319,7 @@
                             <span style="font-size:13px;-webkit-text-stroke: 1px #040c10;color:white;"
                                 class="supercell py-1">{{ number_format($sum1, 0, ',', ' ') }}</span>
                         </div>
-        
+
                         <div class="container p-0">
                             @foreach ($team1 as $k1 => $t1)
                                 @php
@@ -432,13 +435,13 @@
                     </div>
                 </div>
             </div>
-            
+
             @endif
 
         @endif
 
     </div>
-    
+
 
 
 {{-- </div> --}}

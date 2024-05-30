@@ -59,6 +59,10 @@ Route::get('test-topshiriq', [AdminController::class, 'Test'])->name('test-topsh
 
 
 Route::middleware('auth')->group(function () {
+    Route::post('month_plan',[AdminController::class,'MonthPlan'])->name('month_plan');
+    Route::put('month_plan_edit/{id}',[AdminController::class,'MonthPlanEdit'])->name('month_plan_edit');
+
+
 
     Route::post('/create_apteka',[HomeController::class,'CreateApteka'])->name('create_apteka');
     Route::put('/apteka-edit/{id}',[HomeController::class,'AptekaEdit'])->name('apteka-edit');

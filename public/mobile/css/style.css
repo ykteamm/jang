@@ -6219,6 +6219,53 @@ a.close.disabled {
   transition: opacity 0.15s ease;
 }
 
+.carousel-control-prev1,
+.carousel-control-next1 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+.carousel-control-prev2,
+.carousel-control-next2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
+.carousel-control-prev3,
+.carousel-control-next3 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-control-prev,
   .carousel-control-next {
@@ -6241,6 +6288,29 @@ a.close.disabled {
 
 .carousel-control-next {
   right: 0;
+}
+
+.carousel-control-prev1 {
+    left: 0;
+}
+
+.carousel-control-next1 {
+    right: 0;
+}
+.carousel-control-prev2 {
+    left: 0;
+}
+
+.carousel-control-next2 {
+    right: 0;
+}
+
+.carousel-control-prev3 {
+    left: 0;
+}
+
+.carousel-control-next3 {
+    right: 0;
 }
 
 .carousel-control-prev-icon,

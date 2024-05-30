@@ -75,5 +75,85 @@ class AdminController extends Controller
         return $data;
     }
 
+    public function MonthPlan(Request $request)
+    {
+        $teacherId = $request->input('teacher_id');
+        $userIds = $request->input('user_id');
+        $plans = $request->input('user_plan');
+        $first_day_month = date("Y-m-01");
+        $end_day_month = date("Y-m-t");
+
+        $data = [];
+
+        // Ma'lumotlarni to'plab bo'sh massivga joylash
+        foreach ($userIds as $key => $userId) {
+            $data[] = [
+                'teacher_id' => $teacherId,
+                'user_id' => $userId,
+                'plan' => $plans[$key]
+            ];
+        }
+
+        foreach ($data as $dat){
+            DB::table('tg_jamoalar_plan')->insert([
+                'teacher_id'=> $dat['teacher_id'],
+                    'user_id'=>$dat['user_id'],
+                    'plan_pul'=>$dat['plan'],
+                    'start_day'=>$first_day_month,
+                    'end_day'=>$end_day_month,
+                    'created_at'=>now(),
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function MonthPlanEdit(Request $request,$id)
+    {
+        $userIds = $request->input('user_id');
+        $plans = $request->input('user_plan');
+
+        $first_day_month = date("Y-m-01");
+        $end_day_month = date("Y-m-t");
+
+        $data = [];
+
+        // Ma'lumotlarni to'plab bo'sh massivga joylash
+        foreach ($userIds as $key => $userId) {
+            $data[] = [
+                'user_id' => $userId,
+                'plan' => $plans[$key]
+            ];
+        }
+
+//        return $data;
+
+        foreach ($data as $dat){
+            $user_plan = DB::table('tg_jamoalar_plan')->where('teacher_id',$id)->where('user_id',$dat['user_id'])->first();
+
+            if ($user_plan){
+                DB::table('tg_jamoalar_plan')->where('teacher_id',$id)->where('user_id',$dat['user_id'])
+                    ->update([
+//                'user_id'=>$dat['user_id'],
+                        'plan_pul'=>$dat['plan'],
+                        'start_day'=>$first_day_month,
+                        'end_day'=>$end_day_month,
+                        'updated_at'=>now(),
+                    ]);
+            }else{
+                DB::table('tg_jamoalar_plan')->insert([
+                    'teacher_id'=> $id,
+                    'user_id'=>$dat['user_id'],
+                    'plan_pul'=>$dat['plan'],
+                    'start_day'=>$first_day_month,
+                    'end_day'=>$end_day_month,
+                    'created_at'=>now(),
+                ]);
+            }
+
+
+        }
+        return redirect()->back();
+    }
+
 
 }

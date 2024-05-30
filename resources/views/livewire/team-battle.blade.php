@@ -121,7 +121,7 @@
                         <div class="carousel-item @if($key == 0) active @endif">
                             <img class="d-block w-100" src="https://matrix.novatio.uz/market/slider/{{$item->image}}"
                             style="border-radius:6px" height="230px" alt="Second slide">
-                            {{-- <img class="d-block w-100" src="https://matrix.novatio.uz/market/slider/{{$item->image}}" alt="Second slide"> --}}
+{{--                             <img class="d-block w-100" src="https://matrix.novatio.uz/market/slider/{{$item->image}}" alt="Second slide"> --}}
                         </div>
                     @endforeach
                 </div>
@@ -134,18 +134,21 @@
                 <div class="col align-self-center">
                     @php
                                 $fact = $sum11;
-                                $plan = $myTeamBattle2->team1->plan*1000000;
+//                                echo $fact;
+//                                $fact = 10;
+                                $plan = $myTeamBattle2->team1->plan * 1000000;
+//                                $plan = 5;
                             @endphp
                     <div class="row">
                         <div class="col-10">
                             <div style="height:70px" class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="mb-1 supercell text-dark" style="font-size:12px;">
-                                        YAN-FEV-MART
+{{--                                        YAN-FEV-MART--}}
                                     </div>
                                     <div class="text-left">
                                         <span class="supercell"
-                                            style="color:#272730;font-weight:600;font-size:10px">{{numb($fact)}}/{{$myTeamBattle2->team1->plan}}M</span>
+                                            style="color:#272730;font-weight:600;font-size:10px">{{numb($fact)}}/{{numb($plan)}}</span>
                                     </div>
                                 </div>
                                 <div>

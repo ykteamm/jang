@@ -1168,10 +1168,9 @@ if(!function_exists('getTeachQuestion')){
 
 if(!function_exists('getShogirdUser')){
     function getShogirdUser() {
+
         $ustoz = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->pluck('user_id')->toArray();
-
         $user = User::whereIn('id', $ustoz)->whereIn('status', [0,1,2,4])->get();
-
         $ustoz_id = DB::table('tg_jamoalar')->where('teacher_id', Auth::id())->first();
         if($ustoz_id)
         {
@@ -1185,8 +1184,26 @@ if(!function_exists('getShogirdUser')){
             return [];
         }
 
+//        return $user;
 
     }
+
+    function Plan()
+    {
+
+    }
+
+    function raqamni_aylantirish($raqam) {
+        // Qo'shuv belgisini olib tashlash
+        $raqam = str_replace(' ', '', $raqam);
+        return $raqam;
+    }
+
+    function Sonni_orasini_ochish($number){
+        $formattedNumber = number_format($number, 0, '.', ' ');
+        return $formattedNumber;
+    }
+
 
     function HaftalikShogirdStatistic($user_id)
     {
@@ -1225,6 +1242,31 @@ if(!function_exists('getShogirdUser')){
         }
     }
 
+    function OylikPlanView($user_id)
+    {
+        $first_day_month = date("Y-m-01");
+        $end_day_month = date("Y-m-t");
+
+        $plan = DB::table('tg_jamoalar_plan')
+            ->where('user_id', $user_id)
+            ->whereDate('start_day', '>=', $first_day_month)
+            ->whereDate('end_day', '<=', $end_day_month)
+            ->first();
+        if ($plan)
+        {
+           return $plan->plan_pul;
+        }else{
+            return 0;
+        }
+    }
+
+    function OylikPlan($user_id)
+    {
+        $plan = DB::table('tg_jamoalar_teacher_plan')->where('teacher_id',$user_id)->first();
+
+        return $plan;
+    }
+
     function AptekaNomi($user_id)
     {
         $pharm = DB::table('tg_pharmacy_users')->where('user_id',$user_id)->pluck('pharma_id');
@@ -1248,6 +1290,31 @@ if (!function_exists('numb')) {
             $format = number_format($number, 0, '', '.');
         }
         return $format;
+    }
+}
+
+if (!function_exists('date_when')) {
+    function date_when($end_day)
+    {
+        $now = new DateTime();
+
+        // Convert the end_day to a DateTime object
+        $end_date = new DateTime($end_day);
+
+        // Calculate the difference
+        $interval = $now->diff($end_date);
+
+        // Get the difference in days, hours, and minutes
+        $days = $interval->days;
+        $hours = $interval->h;
+        $minutes = $interval->i;
+
+        // Return the values as an array
+        return [
+            'kun' => $days,
+            'soat' => $hours,
+            'minut' => $minutes
+        ];
     }
 }
 

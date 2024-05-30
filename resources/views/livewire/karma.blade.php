@@ -1,6 +1,6 @@
 <div class="modal-content">
     @if ($resime == 2)
-        
+
         <div class="modal-body p-0">
             <div class="container">
                 <img src="{{asset('mobile/kh.png')}}" width="111%" style="border-radius:15px;margin-left: -20px;margin-top:-5px;position:relative">
@@ -13,14 +13,14 @@
                     @foreach ($karmahistory as $item)
                             <div class="col-12 ">
                                 <div class="card border-0 mb-1">
-                                    <div class="card-body" class="pr-0" style="background: #c8d7ec;border-radius:15px;">
+                                    <div class="card-body pr-0" style="background: #c8d7ec;border-radius:15px;">
                                         <div class="row align-items-center supercell" style="font-size:13px;">
                                             <div class="col pr-0">
-                                                {{$item->karma}}                                                            
+                                                {{$item->karma}}
                                             </div>
                                             @if($item->user != null)
                                             <div class="col pr-0">
-                                                {{$item->user->last_name}}  {{$item->user->first_name}}                                                            
+                                                {{$item->user->last_name}}  {{$item->user->first_name}}
                                             </div>
                                             @endif
                                             <div class="col-auto text-right">
@@ -28,7 +28,7 @@
                                                     {{$item->comment}}
                                                     </span>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>

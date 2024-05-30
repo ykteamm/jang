@@ -1,4 +1,6 @@
-<button style="position: relative" type="button" class="for-media-news-btn for-media-news-btn-g btn pl-0 class-news" data-toggle="modal"
+<button style="position: relative;background-color: transparent;
+    border: transparent;" type="button"
+        data-toggle="modal"
     data-target="#news">
     @if ($notifcount > 0)
         <div id="newsNotifCountParent">
@@ -10,10 +12,16 @@
                     animation: tbtn 0.5s linear infinite;
                 }
 
+                @media only screen and (max-width: 375px) {
+                    .notifications-count{
+                        top: 0px !important;
+                        right: 37px !important;
+                    }
+                }
                 @media only screen and (max-width:360px) {
                     .notifications-count {
-                        top: 18px !important;
-                        right: 6px !important;
+                        top: -6px !important;
+                        right: 33px !important;
                     }
                 }
 
@@ -37,7 +45,7 @@
             <div class="notifications-count"
                 style="position: absolute;
                     top: 6px;
-                    right: -16px;
+                    right: 24px;
                     background: red;
                     width: 25px;
                     height: 25px;
@@ -51,6 +59,6 @@
             </div>
         </div>
     @endif
-    <img src="{{ asset('mobile/news/news.png') }}" class="for-media-news" width="160px" style="margin-right:-50px"
+    <img src="{{ asset('mobile/news/news.png') }}" class="for-media-news" width="160"
         alt="">
 </button>

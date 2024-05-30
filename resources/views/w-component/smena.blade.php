@@ -151,7 +151,7 @@
                             <div class="row">
                                 @if (count(getShogirdUser()) > 0)
 
-                                <div class="col-6 pl-0 pr-0">
+                                <div class="col-4 pl-0 pr-0">
 
                                     <button type="button" style="background: #8bd137" class="btn live-shogird"
                                         data-toggle="modal" data-target="#myshogird">
@@ -160,8 +160,23 @@
                                 </div>
                                 @endif
 
+
+                                @if (count(getShogirdUser()) > 0)
+                                    @php $oylik = OylikPlan(\Illuminate\Support\Facades\Auth::id()); @endphp
+                                    @if(!$jamoaviy_plan->isEmpty())
+                                        <div class="col-4 pl-0 pr-0">
+                                            <button type="button" style="background: #8bd137" class="btn live-shogird"
+                                                    data-toggle="modal" data-target="#plan_check">
+                                            Oylik PLAN
+                                            </button>
+                                        </div>
+                                    @else
+                                        <div class="col-4"></div>
+                                    @endif
+                                @endif
+{{--                                    <div class="col-4"></div>--}}
                                 @if (count(getRekrut()) > 0)
-                                    <div class="col-6 pl-0 pr-0">
+                                    <div class="col-4 pl-0 pr-0">
 
                                         <button type="button" style="background: #8bd137" class="btn live-rekrut"
                                             data-toggle="modal" data-target="#myrekrut">

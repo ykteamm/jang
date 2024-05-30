@@ -125,8 +125,8 @@ class TeamBattle extends Component
     public function changeByTimeAll()
     {
         $teamService = new TeamBattleServices($this->user_id ?? Auth::id());
-            $start12 = "2023-07-01";
-            $end12 = "2023-09-30";
+            $start12 = "2024-06-01";
+            $end12 = "2024-08-31";
         $teamBtl = $teamService->getTeamBattle($this->start, $this->end);
         $this->isTeamBattleBegin = $teamBtl->isTeamBattleBegin;
         $this->haveIGotTeam = $teamBtl->haveIGotTeam;

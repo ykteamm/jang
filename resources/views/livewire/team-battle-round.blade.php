@@ -1,6 +1,6 @@
 <div class="modal-body pt-0">
     @if ($resime == 2)
-        
+
         <div>
             <img src="{{ asset('mobile/roundlar.png') }}" alt="Image" width="111%"
                 style="margin-left: -20px">
@@ -14,6 +14,9 @@
                                 <div class="card-header p-0">
                                     <div class="w-100 supercell text-center text-white pt-2">
                                         {{ getMonthName($month) }}
+                                        @if (isset($info['battles'][0]['year']))
+                                            {{ $info['battles'][0]['year'] }}
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body text-white py-0 px-2">

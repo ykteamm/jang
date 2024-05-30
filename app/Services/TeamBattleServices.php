@@ -143,8 +143,9 @@ class TeamBattleServices
                 ->where(function ($query) use ($team_id) {
                     $query->where('team1_id', $team_id)
                         ->orWhere('team2_id', $team_id);
-                })->whereDate('start_day', '<', $date)
-                ->whereDate('start_day', '>', '2023-03-31')
+                })->whereDate('start_day', '<=', $date)
+                ->whereDate('start_day', '>=', '2023-03-31')
+                ->whereIn('round',[1,2,3,4,5])
                 ->orderBy('id', "DESC")
                 ->get();
             foreach ($my_team_battle_all as $key => $value) {
@@ -162,7 +163,7 @@ class TeamBattleServices
                 $get_battle_arr[$month]['battles'][] = $tmbattle;
             }
         }
-        // dd($get_battle_arr);
+//         dd($get_battle_arr);
         return $get_battle_arr;
     }
     public function gameTeamBattle($battle)
@@ -179,7 +180,7 @@ class TeamBattleServices
         $team2_name = Team::find($team2_id);
         $team1_users = $this->getTeamMembers($start_day, $end_day, $team1_id);
         $team2_users = $this->getTeamMembers($start_day, $end_day, $team2_id);
-
+        $year = date("Y", strtotime($battle->month));
         $arr = array(
             'round' => $battle->round,
             'team1_name' => $team1_name->name,
@@ -187,7 +188,8 @@ class TeamBattleServices
             'team1_sum' => $team1_sum,
             'team2_sum' => $team2_sum,
             'team1_users' => $team1_users,
-            'team2_users' => $team2_users
+            'team2_users' => $team2_users,
+            'year'=>$year,
         );
 
         return $arr;
@@ -210,5 +212,17 @@ class TeamBattleServices
         }
 
         return $sum;
+    }
+
+    public function getBonusImage($name)
+    {
+
+        $image = DB::table('tg_bonus_image')->where('bonus_number',$name)->first();
+
+        if ($image){
+            return $image->bonus_image;
+        }else{
+            return null;
+        }
     }
 }

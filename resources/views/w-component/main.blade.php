@@ -70,14 +70,37 @@
 
         .for-media-news {
             width: 135px !important;
-            margin-right: -30px !important;
-            padding-top: 15px !important;
+            /*margin-right: -30px !important;*/
+            /*padding-top: 15px !important;*/
         }
 
         .for-media-task {
             width: 90px !important;
         }
 
+    }
+
+    .level-topsh-progres-bar-1{
+        background: #132b40;
+        width: 100%;
+        height: 25px;
+    }
+
+    .oylik-plan {
+        background-color: #4caf50;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .level_topshiriq_bar-1 {
+        position: absolute;
+        transform: translate(-45%, -170%);
+        color: white;
+        font-size: 12px;
+    }
+    .plan_title{
+        font-size: 28px;
     }
 </style>
 <div class="swiper-slide overflow-hidden text-center">
@@ -100,6 +123,7 @@
                             </span> soat
                         </span>
                     </button>
+
 {{--                @else--}}
 {{--                    <div class="container pl-0 pr-0">--}}
 {{--                        <div class="row">--}}
@@ -122,78 +146,128 @@
 {{--                    </div>--}}
                 @endif
             @endif
+
+
+
+        @if(count(getShogirdUser()) > 0)
+            @php $oylik = OylikPlan(Auth::id()); @endphp
+            @if($jamoaviy_plan->isEmpty() && $oylik)
+                <button type="button" class="my-2 btn btn-danger w-100 mt-0 d-flex align-items-center justify-content-between"
+                        data-toggle="modal" data-target="#plan">
+                    <div class="" style="font-size:20px;font-weight:800">
+                        Siz jamoangizga oylik plan qo'ymadingiz!
+                    </div>
+                    <span class="d-flex align-items-end">
+                        <span class="mr-1" style="font-size:20px;font-weight:800">
+                            @php
+                                $date = new DateTime(now()->format('F'));
+                                $now_date = now()->format('d');
+                                $monthNumber = $date->format('n');
+                                $uzbekMonths = [
+                                    1 => 'Yanvar',
+                                    2 => 'Fevral',
+                                    3 => 'Mart',
+                                    4 => 'Aprel',
+                                    5 => 'May',
+                                    6 => 'Iyun',
+                                    7 => 'Iyul',
+                                    8 => 'Avgust',
+                                    9 => 'Sentabr',
+                                    10 => 'Oktabr',
+                                    11 => 'Noyabr',
+                                    12 => 'Dekabr',
+                                ];
+                                $monthName = $uzbekMonths[$monthNumber];
+                            @endphp
+                            {{$now_date}}  {{$monthName}}
+                        </span>
+                    </span>
+                </button>
+            @endif
+        @endif
+
+        @php
+            $date = new DateTime(now()->format('F'));
+            $now_date = now()->format('d');
+            $monthNumber = $date->format('n');
+            $uzbekMonths = [1 => 'Yanvar',2 => 'Fevral',3 => 'Mart',4 => 'Aprel',5 => 'May',6 => 'Iyun',7 => 'Iyul',8 => 'Avgust',9 => 'Sentabr',10 => 'Oktabr',11 => 'Noyabr',12 => 'Dekabr',];
+            $monthName = $uzbekMonths[$monthNumber];
+
+            $plan_have = OylikPlanView(Auth::id());
+            $plan_raqam = raqamni_aylantirish($plan_have);
+            $plan_total_savdo = OylikShogirdStatistic(Auth::id());
+            $format_number = Sonni_orasini_ochish($plan_total_savdo)
+        @endphp
+        @if($plan_have != 0)
+               <div class="oylik-plan">
+                   <h2 class="plan_title">{{$monthName}} Plan</h2>
+                   <div  class="level-topsh-progres">
+                       <progress max="{{$plan_raqam}}" value="{{$plan_total_savdo}}" class="level-topsh-progres-bar-1"></progress>
+                       <span class="level_topshiriq_bar-1">{{$format_number}} / {{$plan_have}}</span>
+                   </div>
+               </div>
+        @endif
+
             <div class="container pl-0 pr-0">
                 <div class="row">
-                    <div class="col-6 pl-0 pr-0">
-                        <div>
-                            <button type="button"
-                                class="for-media-task-btn btn" data-toggle="modal" data-target="#topshiriq">
-                                <img src="{{ asset('mobile/tlogo.png') }}" class="for-tlogo" >
-                            </button>
-                            <div style="position: absolute" class="level-topsh">
-                                <img src="{{ asset('mobile/turnir/topsh.png') }}" class="level-topsh-img">
-                                <div style="position: absolute" class="level-topsh-txt">
-                                    <span class="supercell">
-                                        {{$user_level_profile['level']}}
-                                    </span>
-                                </div>
-                                <div style="position: absolute" class="level-topsh-progres">
-                                    <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"
-                                    style="background: #0d2650;"
-                                    class="level-topsh-progres-bar"
-                                    ></progress>
-                                    <span class="level_topshiriq_bar">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
-                                </div>
+                    <div class="col-7 ">
+                        <button type="button" class="for-media-task-btn btn" data-toggle="modal" data-target="#topshiriq">
+                            <img src="{{ asset('mobile/tlogo.png') }}" class="for-tlogo" >
+                        </button>
+                        <div style="position: absolute" class="level-topsh">
+                            <img src="{{ asset('mobile/turnir/topsh.png') }}" class="level-topsh-img">
+                            <div style="position: absolute" class="level-topsh-txt">
+                                <span class="supercell">
+                                    {{$user_level_profile['level']}}
+                                </span>
+                            </div>
+                            <div style="position: absolute" class="level-topsh-progres">
+                                <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}" style="background: #0d2650;" class="level-topsh-progres-bar"></progress>
+                                <span class="level_topshiriq_bar">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 pl-0 pr-0">
-                        <div style="padding-top:37px">
+                    <div class="col-5 ">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#yutuqsaroy">
+                            <img src="{{ asset('mobile/turnir/mgt.webp') }}" width="100%" class="for-media-task" alt="">
+                        </button>
+                        <div >
                             <livewire:news-button>
                         </div>
                     </div>
-                    <div class="col-6 pl-0 pr-0">
-                            <div>
-                                <button type="button"
-                                    class="for-media-task-btn-t btn" data-toggle="modal" data-target="#turnir">
-                                    <img src="{{ asset('mobile/turnir/mgt.webp') }}" class="for-media-task"
-                                    style="width:75%;" alt="">
-                                </button>
-
-                            </div>
-                    </div>
                 </div>
-                {{-- <div class="row"> --}}
-                    {{-- <div class="col-6 pl-0 pr-0">
+{{--                --}}{{-- <div class="row"> --}}
+{{--                    --}}{{-- <div class="col-6 pl-0 pr-0">--}}
 
-                        <button type="button" class="btn pr-0" data-toggle="modal" data-target="#topshiriq">
-                            <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">
-                        </button>
-                    </div> --}}
-                    {{-- <div class="col-6 pl-0 pr-0">
+{{--                        <button type="button" class="btn pr-0" data-toggle="modal" data-target="#topshiriq">--}}
+{{--                            <img src="{{asset('mobile/top22.webp')}}" class="for-media-img" width="160px" alt="">--}}
+{{--                        </button>--}}
+{{--                    </div> --}}
+{{--                    --}}{{-- <div class="col-6 pl-0 pr-0">--}}
 
 
-                        <button type="button" style="background: #329fff;
-                                    color: white;
-                                    -webkit-text-stroke: 1px black;
-                                    font-size: 25px;
-                                    border: 2px solid white;
-                                    border-radius: 12px;" class="btn" data-toggle="modal" data-target="#addprovizor">
-                            {{$user_level_profile['level']}}
-                        </button>
+{{--                        <button type="button" style="background: #329fff;--}}
+{{--                                    color: white;--}}
+{{--                                    -webkit-text-stroke: 1px black;--}}
+{{--                                    font-size: 25px;--}}
+{{--                                    border: 2px solid white;--}}
+{{--                                    border-radius: 12px;" class="btn" data-toggle="modal" data-target="#addprovizor">--}}
+{{--                            {{$user_level_profile['level']}}--}}
+{{--                        </button>--}}
 
-                        <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"></progress>
-                        <span class="level_topshiriq">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>
-                    </div> --}}
-                    {{-- <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">
-                           <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">
-                       </button> --}}
+{{--                        <progress max="{{$user_level_profile['collect_star']}}" value="{{$user_level_profile['star']}}"></progress>--}}
+{{--                        <span class="level_topshiriq">{{$user_level_profile['star']}} / {{$user_level_profile['collect_star']}}</span>--}}
+{{--                    </div> --}}
+{{--                    --}}{{-- <button type="button" class="btn pl-0" data-toggle="modal" data-target="#turnir">--}}
+{{--                           <img src="{{asset('mobile/ksold.webp')}}" class="for-media-img" width="160px" alt="">--}}
+{{--                       </button> --}}
 {{--                    <button type="button" class="btn d-none" id="openkingchecksold" data-toggle="modal" data-target="#openkingcheck">--}}
 {{--                        Ko'rish--}}
 {{--                    </button>--}}
-                {{-- </div> --}}
+{{--                --}}{{-- </div> --}}
 
             </div>
+
             @foreach (getShogirdUser() as $item)
                 <div class="container mt-3">
                     @if (count(getAllShiftShogird($item->id)) != 0)
@@ -327,19 +401,19 @@
                                 </div>
                             </div> --}}
                         @else
-                            {{-- @if (Auth::user()->status == 1)
-                                <div class="col-12" style="position: relative">
-                                    <livewire:turnir-button>
-                                </div>
-                            @else
-                                <div class="col-12" style="position: relative">
-                                      <livewire:turnir-button>
-                                </div>
-                            @endif --}}
+{{--                             @if (Auth::user()->status == 1)--}}
+{{--                                <div class="col-12" style="position: relative">--}}
+{{--                                    <livewire:turnir-button>--}}
+{{--                                </div>--}}
+{{--                            @else--}}
+{{--                                <div class="col-12" style="position: relative">--}}
+{{--                                      <livewire:turnir-button>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
-                            {{-- @if (Auth::user()->status == 1)
+{{--                             @if (Auth::user()->status == 1)--}}
 
-                            @endif --}}
+{{--                            @endif--}}
                         @endif
 {{--                         <div class="col-6 pl-0 pr-0" style="position: relative">--}}
 {{--                            <div>--}}

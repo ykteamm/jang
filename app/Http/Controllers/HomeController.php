@@ -1222,8 +1222,50 @@ class HomeController extends Controller
         $news = News::where('publish', true)->orderBy('id', "DESC")->get();
 
 
+        $first_day_month = date("Y-m-01");
+        $end_day_month = date("Y-m-t");
 
-        return view('index',compact('haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
+//        return $first_day_month;
+
+
+        $jamoaviy_plan = DB::table('tg_jamoalar_plan')
+            ->where('teacher_id', Auth::id())
+            ->whereDate('start_day', '>=', $first_day_month)
+            ->whereDate('end_day', '<=', $end_day_month)
+            ->get();
+
+
+//        $jamoaviy_plan = DB::table('tg_jamoalar_plan')
+//            ->selectRaw(
+//                'SUM(tg_productssold.number * tg_productssold.price_product) as total_savdo,
+//                 tg_user.id,
+//                 tg_user.first_name,
+//                 tg_user.last_name,
+//                 tg_jamoalar_plan.start_day,
+//                 tg_jamoalar_plan.end_day,
+//                 tg_jamoalar_plan.plan_pul
+//                '
+//            )
+//            ->join('tg_user', 'tg_jamoalar_plan.user_id', '=', 'tg_user.id')
+//            ->join('tg_productssold', 'tg_productssold.user_id', '=', 'tg_user.id')
+//            ->where('tg_jamoalar_plan.teacher_id', Auth::id())
+//            ->whereDate('tg_jamoalar_plan.start_day', '>=', $first_day_month)
+//            ->whereDate('tg_jamoalar_plan.end_day', '<=', $end_day_month)
+//            ->groupBy('tg_user.id','tg_jamoalar_plan.start_day','tg_jamoalar_plan.end_day','tg_jamoalar_plan.plan_pul')
+//            ->get();
+
+
+//return $jamoaviy_plan;
+
+//        if ($jamoaviy_plan->isEmpty()){
+//            echo 'bor';
+//        }else{
+//            echo 'yoq';
+//        }
+
+
+
+        return view('index',compact('jamoaviy_plan','haveTurnirBattle','battle_yes','outerMarket','lock','shifts','makeCloseShift','products','pharmacy','all_sold'
             ,'summa1'
             ,'summa2'
             ,'battle_history'
